@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<catalog>
+  <plant>
+    <common>Bloodroot</common>
+    <botanical>Sanguinaria canadensis</botanical>
+    <zone>4</zone>
+    <light>Mostly Shady</light>
+    <price>2.44</price>
+    <availability>03/15/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Columbine</common>
+    <botanical>Aquilegia canadensis</botanical>
+    <zone>3</zone>
+    <light>Mostly Shady</light>
+    <price>9.37</price>
+    <availability>03/06/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Marsh Marigold</common>
+    <botanical>Caltha palustris</botanical>
+    <zone>4</zone>
+    <light>Mostly Sunny</light>
+    <price>6.81</price>
+    <availability>05/17/2006</availability>
+    <indoor>false</indoor>
+  </plant>
+  <plant>
+    <common>Cowslip</common>
+    <botanical>Caltha palustris</botanical>
+    <zone>4</zone>
+    <light>Mostly Shady</light>
+    <price>9.90</price>
+    <availability>03/06/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Dutchman's-Breeches</common>
+    <botanical>Dicentra cucullaria</botanical>
+    <zone>3</zone>
+    <light>Mostly Shady</light>
+    <price>6.44</price>
+    <availability>01/20/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Ginger, Wild</common>
+    <botanical>Asarum canadense</botanical>
+    <zone>3</zone>
+    <light>Mostly Shady</light>
+    <price>9.03</price>
+    <availability>04/18/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Hepatica</common>
+    <botanical>Hepatica americana</botanical>
+    <zone>4</zone>
+    <light>Mostly Shady</light>
+    <price>4.45</price>
+    <availability>01/26/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Liverleaf</common>
+    <botanical>Hepatica americana</botanical>
+    <zone>4</zone>
+    <light>Mostly Shady</light>
+    <price>3.99</price>
+    <availability>01/02/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Jack-In-The-Pulpit</common>
+    <botanical>Arisaema triphyllum</botanical>
+    <zone>4</zone>
+    <light>Mostly Shady</light>
+    <price>3.23</price>
+    <availability>02/01/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Mayapple</common>
+    <botanical>Podophyllum peltatum</botanical>
+    <zone>3</zone>
+    <light>Mostly Shady</light>
+    <price>2.98</price>
+    <availability>06/05/2006</availability>
+    <indoor>true</indoor>
+  </plant>
+  <plant>
+    <common>Phlox, Woodland</common>
+    <botanical>Phlox divaricata</botanical>
+    <zone>3</zone>
+    <light>Sun or Shade</light>
+    <price>2.80</price>
+    <availability>01/22/2006</availability>
+    <indoor>false</indoor>
+  </plant>
+</catalog>
