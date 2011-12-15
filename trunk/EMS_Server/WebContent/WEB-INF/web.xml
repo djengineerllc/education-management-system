@@ -43,43 +43,17 @@
       <param-value>true</param-value>
     </init-param>
 
+	<init-param>
+		<param-name>registryConfiguratorClass</param-name>
+		<param-value>com.ems.system.ActionRegistryConfigurator</param-value>
+	</init-param>
+
     <init-param>
       <param-name>apis</param-name>
       <param-value>
-        main,
-        biz_test
       </param-value>
     </init-param>
    
-    <init-param>
-      <param-name>main.apiFile</param-name>
-            <param-value>apis/ems/main/MainActions.js</param-value>
-    </init-param>
-    <init-param>
-      <param-name>main.apiNamespace</param-name>
-      <param-value>ems.main.MainActions</param-value>
-    </init-param>
-    <init-param>
-      <param-name>main.classes</param-name>
-      <param-value>
-      	com.ems.client.action.MainAction
-      </param-value>
-    </init-param>
-    
-    <init-param>
-      <param-name>biz_test.apiFile</param-name>
-      <param-value>apis/ems/biz/test/TestActions.js</param-value>
-    </init-param>
-    <init-param>
-      <param-name>biz_test.apiNamespace</param-name>
-      <param-value>ems.biz.test.TestActions</param-value>
-    </init-param>
-    <init-param>
-      <param-name>biz_test.classes</param-name>
-      <param-value>
-      	com.ems.client.action.test.TestAction
-      </param-value>
-    </init-param>
 
     <load-on-startup>1</load-on-startup>
   </servlet>  
