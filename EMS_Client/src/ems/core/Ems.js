@@ -29,7 +29,7 @@ Ems = ems.core.Ems = {
 	startup: function(config) {
 		var me = this;
 		me.config = Ext.applyIf(config || {}, {
-			serverUrl: 'http://localhost:8080/EMS_Server',
+			serverUrl: 'http://localhost/ES',
 			serverApiPath: '/apis',
 			ajaxTimeout: 60000,
 			enableQuickTips: true,
@@ -50,24 +50,28 @@ Ems = ems.core.Ems = {
 					'ems': me.appFolder
 		        }
 			},
-			require: [
+			requires: [
 				'Ext.Ajax',
 				'Ext.tip.QuickTipManager',
 				'Ext.util.KeyMap',
 				
 				'ems.core.Module',
 				'ems.core.Actions',
-				'ems.core.EventBus'
+				'ems.core.EventBus',
+				'ems.core.EmsUtils'
+			],
+			requireModules: [
+				'ems.system.System'
 			]
 		});
 		
 		Ext.Loader.setConfig(config.extLoaderConfig);
 		
-		var require = [].concat(
-			config.require,
+		var requires = [].concat(
+			config.requires,
 			config.viewportModuleId
 		);
-		Ext.require(config.require);
+		Ext.require(config.requires);
 		
 		Ext.onReady(function() {
 			me._initConfig();
@@ -101,6 +105,15 @@ Ems = ems.core.Ems = {
 		}
 		if (cfg.stateProvider) {
 			Ext.state.Manager.setProvider(Ext.create(cfg.stateProvider));
+		}
+		if (cfg.locale) {
+//			Ext.Loader.loadScriptFile('lib/ext/locale/ext-lang-' + cfg.locale + '.js', Ext.emptyFn);
+		}
+		
+		if (cfg.requireModules) {
+			Ext.each(me.config.requireModules, function(moduleId) {
+				me.RM(moduleId);
+			}, me);
 		}
 		
 		this.eventBus = Ext.create('ems.core.EventBus');
@@ -169,6 +182,8 @@ Ems = ems.core.Ems = {
 		me.plugins = null;
 		me.privileges = null;
 		
+//		Ext.EventManager.onWindowUnload();
+		
 		me.isStarted = false;
 	},
 	
@@ -181,13 +196,15 @@ Ems = ems.core.Ems = {
 		if (!module) {
 			module = me.loadModule(id, config);
 			module.init();
-			if (module.silent === false) {
-				module.createUI();
-			}
 		}
-		if (cb) {
-			scope = scope || module;
-			cb && cb.call(scope, module);
+		
+		if (module) {
+			if (cb) {
+				scope = scope || module;
+				cb && cb.call(scope, module);
+			}
+		} else {
+			Ext.log('module not found: ' + id);
 		}
 	},
 	RM: function(id, config, cb, scope) {
@@ -232,10 +249,10 @@ Ems = ems.core.Ems = {
 	 *     }
 	 * })
 	 */
-	A: function(id, require) { // action
+	A: function(id, request) { // action
 		this.makeRequest(id, {
 			m: 'action',
-			p: require
+			p: request
 		});
 	},
 	

@@ -49,7 +49,7 @@ Ext.define('ems.main.Main', {
 	addWorkItem: function(params, request) {
 		var me = this,
 			ea = request.eventArgs,
-			record = ea[1],
+			record = ea ? ea[1] : {},
 			workItemConfig = Ext.apply({}, params),
 			moduleId = workItemConfig.moduleId = (workItemConfig.moduleId || record.get('moduleId'));
 		if (!moduleId) {
@@ -64,9 +64,9 @@ Ext.define('ems.main.Main', {
 		}
 		
 		Ext.applyIf(workItemConfig, {
-			moduleConfig: (Ext.decode(record.get('moduleConfig') || '{}')),
+			moduleConfig: (record.get ? (Ext.decode(record.get('moduleConfig') || '{}')) : null),
 			id: moduleId,
-			title: record.get('moduleName'),
+			title: record.get ? record.get('moduleName') : null,
 			autoScroll: true
 		});
 		Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
@@ -74,7 +74,7 @@ Ext.define('ems.main.Main', {
 			workItem = workspace.add(workItemConfig); // add workItem(tab)
 			workItem.on('beforedestroy', me._doDestroyWorkItem, this);
 			
-			workspace.setActiveTab(workItem);
+			me.activeWorkItem(workItem, request);
 		}, me);
 	},
 	_doDestroyWorkItem: function(workItem) {
@@ -87,9 +87,15 @@ Ext.define('ems.main.Main', {
 			ea = request.eventArgs, 
 			tabPanel = ea[0], 
 			workItem = ea[1], 
-			prevWorkItem = ea[2];
+			prevWorkItem = ea[2],
+			moduleId = workItem.moduleId;
 		
-		
+		if (moduleId) {
+			Ems.MR(moduleId, {
+				m: 'activate',
+				p: request
+			});
+		}
 	},
 	getActiveWorkItem: function() {
 		return this.getWorkspace().getActiveTab();
@@ -97,9 +103,17 @@ Ext.define('ems.main.Main', {
 	
 	activeWorkItem: function(moduleId, request) {
 		var me = this,
+			moduleId = moduleId,
 			workspace = me.getWorkspace(),
+			workItem;
+		
+		if (Ext.isString(moduleId)) {
 			workItem = workspace.getChildByElement(moduleId);
-			
+		} else {
+			moduleId = moduleId.moduleId;
+			workItem = moduleId;
+		}
+		
 		if (workItem) {
 			workspace.setActiveTab(workItem);
 			Ems.MR(moduleId, {

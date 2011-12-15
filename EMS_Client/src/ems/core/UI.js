@@ -4,7 +4,8 @@
 
 Ext.define('ems.core.UI', {
 	extend: 'Ext.panel.Panel',
-	
+
+	border: false,	
 	autoScroll: true,
 	
 	// START: module DI
@@ -23,7 +24,7 @@ Ext.define('ems.core.UI', {
 	
 	uiConfig: Ext.emptyFn,
 	
-	initComponent: function() {
+	initComponent: function() {//debugger;
 		var me = this,
 			uiConfig = me.uiConfig();
 			

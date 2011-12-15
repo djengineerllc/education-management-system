@@ -22,7 +22,7 @@ Ext.define('ems.core.Module', { // Controller
 	
 	autoLoadActions: true,
 	actions: null,
-	actionsClassSuffix: "Actions",
+	actionsClassSuffix: 'Actions',
 	
 	uiEl: null,
 	segmentUI: true,
@@ -40,7 +40,7 @@ Ext.define('ems.core.Module', { // Controller
 		me.uiIdPrefix = me.$className.substring(0, me.$className.lastIndexOf('.')).replace(/\./g, '-').toLowerCase() + '-';
 	},
 	
-	init: function() {
+	init: function() {//debugger;
 		var me = this;
 		me.addEvents(
 			'beforeHandlerRequest'
@@ -49,6 +49,9 @@ Ext.define('ems.core.Module', { // Controller
 		if (me.autoLoadActions) {
 			var actionsClassName = (me.$className + me.actionsClassSuffix);
 			me.actions = Ext.create(actionsClassName);
+		}
+		if (me.silent === false) {
+			me.createUI();
 		}
 	},
 	
@@ -91,7 +94,17 @@ Ext.define('ems.core.Module', { // Controller
 		if (ar.cb) {
 			var s = ar.s || me;
 //			p = p.concat(Ext.bind(ar.cb, s));
-			p = p.concat(ar.cb).concat(s);
+//			p = p.concat(ar.cb).concat(s);
+			p = p.concat(function(result, e) {
+				var tx = e.getTransaction();
+				if (e.status) {
+//					alert(String.format('<p><b>Successful call to {0}.{1} with response:</b><xmp>{2}</xmp></p>', tx.action, tx.method, Ext.encode(result)))
+				} else {
+//					alert(String.format('<p><b>Call to {0}.{1} failed with message:</b><xmp>{2}</xmp></p>', tx.action, tx.method, e.message));
+				}
+				
+				ar.cb.apply(s, arguments);
+			}).concat(s);
 		}
 		
 		m.apply(me.actions, p); // Ext.pass(m, params.p, a)();
@@ -104,6 +117,8 @@ Ext.define('ems.core.Module', { // Controller
 			config = Ext.merge({renderTo: me.renderTo}, me._moduleUIConfig(), config);
 			me.uiEl = Ext.create(uiClassName, config);
 		}
+		
+		return me.uEl;
 	},
 	
 	renderView: function(viewId, viewConfig, position) {
@@ -118,7 +133,7 @@ Ext.define('ems.core.Module', { // Controller
 		}
 		
 		Ext.apply(viewConfig, {
-			id: viewId
+			id: viewId // TODO viewId conflict
 		});
 		
 		var refCmp = Ext.getCmp(renderTo);
@@ -132,6 +147,9 @@ Ext.define('ems.core.Module', { // Controller
 		refCmp.add(view);
 		
 		return view;
+	},
+	RV: function(viewId, viewConfig, position) {
+		return this.renderView(viewId, viewConfig, position);
 	},
 	
 	_moduleUIConfig: function() {
@@ -223,5 +241,14 @@ Ext.define('ems.core.Module', { // Controller
 		}
 		
 		return Ext.get(id);
+	},
+	
+	getCmp: function(id) {
+		var me = this;
+		if (Ext.isString(id)) {
+			id = (me.uiIdPrefix + id);
+		}
+		
+		return Ext.getCmp(id);
 	}
 });
