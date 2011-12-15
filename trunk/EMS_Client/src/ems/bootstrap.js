@@ -51,6 +51,9 @@
 //		'lib/ext/classes.js',
 //		'lib/ext/ext-all-dev.js',
 //		'lib/ext/ext-all.js',
+		
+//		'src/ems/core/util/CheckLeaksUtil.js',
+
 		'src/ems/core/Ems.js'
 	];
 	

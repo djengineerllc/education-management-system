@@ -19,3 +19,6 @@
       "uid":"34","email":"aaron@extjs.com","company":"Ext JS, LLC","name":
       "Aaron Conran","foo":"bar"}},"type":"rpc"}
   
+  
+  s.destroyStore();
+//									s.destroy();

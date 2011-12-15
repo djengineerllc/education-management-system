@@ -10,8 +10,9 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 			sf = g.searchForm;
 			
 		if (sf) {
-			var searchFormConfig = Ext.apply(me._defaultSearchFormConfig(), sf);
-			g.addDocked(searchFormConfig, 0);
+			var config = me._defaultSearchFormConfig();
+			Ext.apply(config.items[0], sf);
+			g.addDocked(config, 0);
 		}
 	},
 	
@@ -19,33 +20,36 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 		var me = this;
 		return {
 			dock: 'top',
-            xtype: 'form',
-            title: '查询筛选',
-			collapsible: true,
-//			frame: true,
-            defaultType: 'textfield',
-//			bodyPadding: 5,
+			xtype: 'form',
+//			title: '查询筛选',
+//			titleCollapse: true,
+//			collapsible: true,
+			frame: me.grid.frame,
 			border: false,
-//			columns: 2,
-//			layout: 'column',
+			bodyPadding: '10 10 0 10',
 			layout: {
+				type: 'hbox',
 				pack: 'center',
-		        type: 'table',
-		        // The total column count must be specified here
-		        columns: 2
-		    },
-		    defaults: {
-		        // applied to each contained panel
-		        
-		    },
+				align: 'middle'
+			},
 			fieldDefaults: {
-	            labelAlign: 'right',
+				labelAlign: 'right',
+				labelWidth: 100,
 	            msgTarget: 'side'
-	        },
-            defaults: {
-//                anchor: '100%',
-				bodyStyle: 'padding:5px'
-            },
+			},
+			items: [{
+	            xtype: 'container',
+	            layout: {
+					type: 'table',
+					columns: 3
+				},
+				defaultType: 'textfield',
+				defaults: {
+//					,allowBlank: false,
+//					selectOnFocus: false
+				}
+	        }],
+			buttonAlign: 'center',
 			buttons:  [{
 				text: '查询',
 	            handler: function() {
@@ -65,6 +69,25 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 					var f = this.up('form').getForm();
 					f.reset();
 				}
+			}],
+			dockedItems: [{
+				dock: 'top',
+				xtype: 'toolbar',
+				border: true,
+				items: [{
+					xtype: 'label',
+					baseCls: 'x-panel-header-text',
+					text: '查询筛选'
+				}]
+			}, {
+				dock: 'bottom',
+				xtype: 'toolbar',
+				border: true,
+				items: [{
+					xtype: 'label',
+					baseCls: 'x-panel-header-text',
+					text: '查询结果'
+				}]
 			}]
 		}
 	},

@@ -2,23 +2,28 @@ Ext.define('ems.core.widget.XGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.xgrid',
 	
-	frame: true,
+	frame: false,
 	border: false,
 	columnLines: false,
+		
+	rowNumberer: true,
 	
-	rowNumberer: false,
 	loadDF: Ext.emptyFn,
+	
 	searchForm: {},
-	selMode: 'null', // single / simple / multi / null
-	editingMode: 'null', // cellediting / rowediting / null
+	
+	selMode: null, // single / simple / multi / null
+	
+	editingMode: null, // cellediting / rowediting / null
+	
 	expandRowBodyTpl: null,
-	columns: [],
-	buttons: [],
+	
+	paging: true,
 	
     initComponent: function(){
         var me = this, 
 			config = me._defaultXGridConfig();
-			
+		
 		if (me.store == undefined) {
 			config.store = me._buildStore();
 		}
@@ -27,11 +32,22 @@ Ext.define('ems.core.widget.XGrid', {
 		}
 		if (me.plugins == undefined) {
 			config.plugins = me._buildPlugins();
-		};
-		
+		}
         Ext.applyIf(me, config);
+		
+		if (me.rowNumberer) {
+			me.columns = [{ xtype:'rownumberer' }].concat(me.columns || []);
+		}
         
         this.callParent(arguments);
+		
+		if (me.paging == true) {
+			me.addDocked(Ext.create('Ext.toolbar.Paging', {
+				dock: 'bottom',
+				store: config.store,
+				displayInfo: true
+			}));
+		}
 		
 		me.store.load({
 			params: {
@@ -45,14 +61,10 @@ Ext.define('ems.core.widget.XGrid', {
 			cols = me.columns,
 			fields = [];
 		
-		if (me.rowNumberer) {
-			fields.push({ xtype:'rownumberer' });
-		}
-		
 		Ext.each(cols, function(col) {
 			var field = { name: col.dataIndex}, 
 				attrVal;
-			Ext.each(me._ModelFieldAttrs, function(attr) {
+			Ext.each(me._modelFieldAttrs, function(attr) {
 				attrVal = col[attr];
 				if (attrVal != undefined) {
 					field[attr] = attrVal;
@@ -66,6 +78,7 @@ Ext.define('ems.core.widget.XGrid', {
 		}, me);
 		
 		var config = Ext.applyIf(me.storeConfig || {}, {
+			autoDestroy: true,
 			fields: fields,
 		    proxy: {
 		        type: 'direct',
@@ -82,7 +95,13 @@ Ext.define('ems.core.widget.XGrid', {
 	},
 	_buildselModel: function() {
 		var me = this;
-		return Ext.create('Ext.selection.CheckboxModel', {mode: me.selMode});
+		
+		var config = {
+			selType: 'checkboxmodel',
+			mode: me.selMode
+		};
+		
+		return config;
 	},
 	_buildPlugins: function() {
 		var me = this;
@@ -112,11 +131,10 @@ Ext.define('ems.core.widget.XGrid', {
     _defaultXGridConfig: function(){
 		var me = this;
         return {
-			// TODO
         }
     },
 	
-	_ModelFieldAttrs: [
+	_modelFieldAttrs: [
 		'type',
 		'convert',
 		'dateFormat',
@@ -131,7 +149,7 @@ Ext.define('ems.core.widget.XGrid', {
 	
 	destroy: function() {
 		var me = this;
-		me.store.destroy(true);
+		Ext.destroy(me.store);
 		me.callParent(arguments);
 	}
 });

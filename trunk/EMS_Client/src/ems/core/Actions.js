@@ -25,6 +25,8 @@ Ext.define('ems.core.Actions', {
 	
 	mixinRemoteAction: true,
 	
+	loadRemotingApiOnInit: true,
+	
 	constructor: function() {
 		var me = this;
 		me.callParent(arguments);
@@ -33,7 +35,9 @@ Ext.define('ems.core.Actions', {
 	
 	init: function() {
 		var me = this;
-		me._loadRemotingApi();
+		if (me.loadRemotingApiOnInit) {
+			me._loadRemotingApi();
+		}
 	},
 	destroy: function() {
 		var me = this;

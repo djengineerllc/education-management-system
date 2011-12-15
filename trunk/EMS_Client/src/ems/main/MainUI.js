@@ -23,10 +23,7 @@ Ext.define('ems.main.MainUI', {
 	getInitConfig: function() {
 		var me = this;
 		return {
-			layout: {
-				type: 'border',
-				padding: 5
-			},
+			layout: 'border',
 			defaults: {
 				padding: 1
 			},
@@ -53,6 +50,10 @@ Ext.define('ems.main.MainUI', {
 							height: '100%',
 							border: false,
 							listeners: me.MRA('itemclick', 'addWorkItem', {
+								layout: 'anchor',
+								border: false,
+								frame: false,
+								autoScroll: true,
 								closable: true
 							})
 						}
@@ -81,7 +82,17 @@ Ext.define('ems.main.MainUI', {
 				}]
 		    }, {
 				region: 'south',
-				height: 30
+				border: false,
+				items: [
+					Ext.create('Ext.ux.statusbar.StatusBar', {
+					border: false,
+	                id: 'form-statusbar',
+	                defaultText: 'Ready',
+					statusAlign: 'right',
+		            items: [{
+		                text: 'A Button'
+		            }, '-', 'Plain Text', ' ', ' ']
+	            })]
 			}]
 		};
 	}
