@@ -29,7 +29,7 @@ Ems = ems.core.Ems = {
 	startup: function(config) {
 		var me = this;
 		me.config = Ext.applyIf(config || {}, {
-			serverUrl: 'http://localhost/ES',
+			serverUrl: 'http://localhost:8080/EMS_Server',
 			serverApiPath: '/apis',
 			ajaxTimeout: 60000,
 			enableQuickTips: true,
