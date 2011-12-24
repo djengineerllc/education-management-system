@@ -1,8 +1,9 @@
 package com.ems.common.model.info.applyonline;
 
-import java.util.Date;
 
 public class ApplyInfo {
+	
+	private Integer id;
 	private String projectName;
 	private String zyName;
 	private String projectNameSec;
@@ -10,15 +11,15 @@ public class ApplyInfo {
 	private String stuName;
 	private String stuSex;
 	private String stuIDNo;
-	private Date stuBirthday;
-	private String stumz;
+	private String stuBirthday;
+	private String stuMz;
 	private String stuProvice;
 	private String stuCity;
 	private String stuAddress;
 	private String stuZip;
-	private String addressFamily;
+	private String familyAddress;
 	private String familyZip;
-	private String contract;
+	private String contactPerson;
 	private String mobile;
 	private String phone;
 	private String email;
@@ -27,29 +28,37 @@ public class ApplyInfo {
 	private String rejectCountry;
 	private String rejectTime;
 	private String rejectReason;
-	//学习经历
 	private String graduateSchool;
 	private String graduateZy;
-	private Date graduateTime;
-	private String education;//学历
+	private String graduateTime;
+	private String education;
 	private String englishLevel;
-	private int gkTotal;
-	private int gkEngTotal;
-	private int gkMathTotal;
+	private Integer gkTotal;
+	private Integer gkYw;
+	private Integer gkSx;
 	private String gkYear;
 	private String gkProvice;
 	private String gkType;
-	private String gkStuNo;//考生号
-	private String gkNo;//准考证号
-	//家庭情况
+	private String gkStuNo;
+	private String gkNo;
 	private String fatherName;
-	private String fatherWorkPlace;
+	private String fatherWork;
 	private String fatherWorkPosition;
 	private String fatherTel;
 	private String motherName;
-	private String motherWorkPlace;
+	private String motherWork;
 	private String motherWorkPosition;
 	private String motherTel;
+	private String zsInfoSource;
+	private String applyTime;
+	private String createTime;
+	private String updateTime;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getProjectName() {
 		return projectName;
 	}
@@ -92,11 +101,17 @@ public class ApplyInfo {
 	public void setStuIDNo(String stuIDNo) {
 		this.stuIDNo = stuIDNo;
 	}
-	public Date getStuBirthday() {
+	public String getStuBirthday() {
 		return stuBirthday;
 	}
-	public void setStuBirthday(Date stuBirthday) {
+	public void setStuBirthday(String stuBirthday) {
 		this.stuBirthday = stuBirthday;
+	}
+	public String getStuMz() {
+		return stuMz;
+	}
+	public void setStuMz(String stuMz) {
+		this.stuMz = stuMz;
 	}
 	public String getStuProvice() {
 		return stuProvice;
@@ -122,11 +137,11 @@ public class ApplyInfo {
 	public void setStuZip(String stuZip) {
 		this.stuZip = stuZip;
 	}
-	public String getAddressFamily() {
-		return addressFamily;
+	public String getFamilyAddress() {
+		return familyAddress;
 	}
-	public void setAddressFamily(String addressFamily) {
-		this.addressFamily = addressFamily;
+	public void setFamilyAddress(String familyAddress) {
+		this.familyAddress = familyAddress;
 	}
 	public String getFamilyZip() {
 		return familyZip;
@@ -134,11 +149,11 @@ public class ApplyInfo {
 	public void setFamilyZip(String familyZip) {
 		this.familyZip = familyZip;
 	}
-	public String getContract() {
-		return contract;
+	public String getContactPerson() {
+		return contactPerson;
 	}
-	public void setContract(String contract) {
-		this.contract = contract;
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
 	public String getMobile() {
 		return mobile;
@@ -200,10 +215,10 @@ public class ApplyInfo {
 	public void setGraduateZy(String graduateZy) {
 		this.graduateZy = graduateZy;
 	}
-	public Date getGraduateTime() {
+	public String getGraduateTime() {
 		return graduateTime;
 	}
-	public void setGraduateTime(Date graduateTime) {
+	public void setGraduateTime(String graduateTime) {
 		this.graduateTime = graduateTime;
 	}
 	public String getEducation() {
@@ -218,23 +233,23 @@ public class ApplyInfo {
 	public void setEnglishLevel(String englishLevel) {
 		this.englishLevel = englishLevel;
 	}
-	public int getGkTotal() {
+	public Integer getGkTotal() {
 		return gkTotal;
 	}
-	public void setGkTotal(int gkTotal) {
+	public void setGkTotal(Integer gkTotal) {
 		this.gkTotal = gkTotal;
 	}
-	public int getGkEngTotal() {
-		return gkEngTotal;
+	public Integer getGkYw() {
+		return gkYw;
 	}
-	public void setGkEngTotal(int gkEngTotal) {
-		this.gkEngTotal = gkEngTotal;
+	public void setGkYw(Integer gkYw) {
+		this.gkYw = gkYw;
 	}
-	public int getGkMathTotal() {
-		return gkMathTotal;
+	public Integer getGkSx() {
+		return gkSx;
 	}
-	public void setGkMathTotal(int gkMathTotal) {
-		this.gkMathTotal = gkMathTotal;
+	public void setGkSx(Integer gkSx) {
+		this.gkSx = gkSx;
 	}
 	public String getGkYear() {
 		return gkYear;
@@ -272,11 +287,11 @@ public class ApplyInfo {
 	public void setFatherName(String fatherName) {
 		this.fatherName = fatherName;
 	}
-	public String getFatherWorkPlace() {
-		return fatherWorkPlace;
+	public String getFatherWork() {
+		return fatherWork;
 	}
-	public void setFatherWorkPlace(String fatherWorkPlace) {
-		this.fatherWorkPlace = fatherWorkPlace;
+	public void setFatherWork(String fatherWork) {
+		this.fatherWork = fatherWork;
 	}
 	public String getFatherWorkPosition() {
 		return fatherWorkPosition;
@@ -296,11 +311,11 @@ public class ApplyInfo {
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
-	public String getMotherWorkPlace() {
-		return motherWorkPlace;
+	public String getMotherWork() {
+		return motherWork;
 	}
-	public void setMotherWorkPlace(String motherWorkPlace) {
-		this.motherWorkPlace = motherWorkPlace;
+	public void setMotherWork(String motherWork) {
+		this.motherWork = motherWork;
 	}
 	public String getMotherWorkPosition() {
 		return motherWorkPosition;
@@ -314,11 +329,32 @@ public class ApplyInfo {
 	public void setMotherTel(String motherTel) {
 		this.motherTel = motherTel;
 	}
-	public String getStumz() {
-		return stumz;
+	public String getZsInfoSource() {
+		return zsInfoSource;
 	}
-	public void setStumz(String stumz) {
-		this.stumz = stumz;
+	public void setZsInfoSource(String zsInfoSource) {
+		this.zsInfoSource = zsInfoSource;
 	}
-
+	public String getApplyTime() {
+		return applyTime;
+	}
+	public void setApplyTime(String applyTime) {
+		this.applyTime = applyTime;
+	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	
+	
+	
+	
 }

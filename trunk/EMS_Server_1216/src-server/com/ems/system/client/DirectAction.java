@@ -1,4 +1,4 @@
-package com.ems.system;
+package com.ems.system.client;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

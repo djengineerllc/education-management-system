@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.commons.fileupload.FileItem;
 
+import com.ems.system.client.vo.ExtFormVO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
@@ -37,26 +38,78 @@ public class TestAction {
 	// Fixed format data: the data itself is an inner Data class
 	public static class BasicInfo {
 		public static class Data {
-			public String foo;
-			public String name;
-			public String company;
-			public String email;
+			private String foo;
+			private String name;
+			private String company;
+			private String email;
+			
+			public String getFoo() {
+				return foo;
+			}
+			public void setFoo(String foo) {
+				this.foo = foo;
+			}
+			public String getName() {
+				return name;
+			}
+			public void setName(String name) {
+				this.name = name;
+			}
+			public String getCompany() {
+				return company;
+			}
+			public void setCompany(String company) {
+				this.company = company;
+			}
+			public String getEmail() {
+				return email;
+			}
+			public void setEmail(String email) {
+				this.email = email;
+			}
 		}
 
-		public boolean success = true;
-		public Data data = new Data();
+		private boolean success = true;
+		private Data data = new Data();
+		public boolean isSuccess() {
+			return success;
+		}
+		public void setSuccess(boolean success) {
+			this.success = success;
+		}
+		public Data getData() {
+			return data;
+		}
+		public void setData(Data data) {
+			this.data = data;
+		}
 	}
 
 	@DirectMethod
-	public BasicInfo getBasicInfo(Long userId, String foo) {
+	public ExtFormVO getBasicInfo(Long userId, String foo) {
 		assert userId != null;
 		assert foo != null;
 
-		BasicInfo result = new BasicInfo();
-		result.data.foo = foo;
-		result.data.name = "Aaron Conran";
-		result.data.company = "Ext JS, LLC";
-		result.data.email = "aaron@extjs.com";
+//		BasicInfo result = new BasicInfo();
+//		result.data.foo = foo;
+//		result.data.name = "Aaron Conran";
+//		result.data.company = "Ext JS, LLC";
+//		result.data.email = "aaron@extjs.com";
+		
+		ExtFormVO result = new ExtFormVO();
+//		result.addField("foo", "foo");
+//		result.addField("name", "Aaron Conran");
+//		result.addField("company", "Ext JS, LLC");
+//		result.addField("email", 112312);
+		
+		BasicInfo.Data data = new BasicInfo.Data();
+		data.foo = foo;
+		data.name = "Aaron Conran";
+		data.company = "Ext JS, LLC";
+		data.email = "aaron@extjs.com";
+		
+		result.setDataFormObject(data);
+		
 		return result;
 	}
 
@@ -91,21 +144,35 @@ public class TestAction {
 	}
 
 	@DirectFormPostMethod
-	public SubmitResult updateBasicInfo(Map<String, String> formParameters,
+	public ExtFormVO updateBasicInfo(Map<String, String> formParameters,
 			Map<String, FileItem> fileFields) {
 		assert formParameters != null;
 		assert fileFields != null;
+		
+		System.out.println(formParameters);
 
-		SubmitResult result = new SubmitResult();
-
-		String email = formParameters.get("email");
-		result.success = !email.equals("aaron@extjs.com");
-		if (!result.success) {
-			result.errors = new HashMap<String, String>();
-			result.errors.put("email", "already taken");
-		}
-
-		result.debug_formPacket = formParameters;
+//		SubmitResult result = new SubmitResult();
+//
+//		String email = formParameters.get("email");
+//		result.success = !email.equals("aaron@extjs.com");
+//		if (!result.success) {
+//			result.errors = new HashMap<String, String>();
+//			result.errors.put("email", "already taken");
+//		}
+//
+//		result.debug_formPacket = formParameters;
+		
+		
+		ExtFormVO result = new ExtFormVO();
+		
+//		result.addError("email", "already taken");
+		
+		BasicInfo.Data data = new BasicInfo.Data();
+		data.name = "Aaron Conran";
+		data.company = "Ext JS, LLC";
+		data.email = "aaron@extjs.com";
+		result.setErrorsFormObject(data);
+		
 		return result;
 	}
 	

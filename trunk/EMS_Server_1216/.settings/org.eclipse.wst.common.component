@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src-server"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src-client"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/framework"/>
         <property name="context-root" value="EMS_Server"/>
         <property name="java-output-path"/>
     </wb-module>

@@ -3,10 +3,8 @@ package com.ems.client.action.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.softwarementors.extjs.djn.config.annotations.DirectAction;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 
-@DirectAction(action="MainAction")
 public class MainAction {
 	public static class Node {
 		public String id;
