@@ -3,6 +3,8 @@ package com.ems.common.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import conf.hibernate.CodeType;
+
 
 public interface ICommonDAO {
 	
@@ -65,6 +67,13 @@ public interface ICommonDAO {
 	@SuppressWarnings({ "unchecked"})
 	public <T> List<T> find(Class<T> clazz, final String[] fields, final String[] operators,
 			final  Object[] values) ;
+	
+	/**
+	 * 获取指定codetype的代码集合
+	 * @param codeType
+	 * @return
+	 */
+	public List<CodeType> getCodeTypeByType(String codeType);
 	
 
 }

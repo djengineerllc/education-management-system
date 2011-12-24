@@ -13,6 +13,8 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.ems.common.dao.ICommonDAO;
 
+import conf.hibernate.CodeType;
+
 
 public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 	
@@ -86,6 +88,11 @@ public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 				return query.list();
 			}
 		});
+	}
+	
+	public List<CodeType> getCodeTypeByType(String codeType){
+		return this.find(CodeType.class, new String[]{"codeType"}, 
+				new String[]{"="}, new String[]{codeType});
 	}
 	
 	

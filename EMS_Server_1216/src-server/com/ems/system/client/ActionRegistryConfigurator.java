@@ -1,4 +1,4 @@
-package com.ems.system;
+package com.ems.system.client;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class ActionRegistryConfigurator implements ServletRegistryConfigurator {
 		String apiFile = String.format("apis/ems/%ss.js", fullActionName.replace('.', File.separatorChar)) ;
 		String fullGeneratedApiFile = webRootPath + apiFile;
 		String apiNamespace = String.format("ems.%ss", fullActionName);
-		String actionsNamespace = "";
+		String actionsNamespace = "";//String.format("ems.%ss.ns", fullActionName);
 		
 		List<Class<?>> classes = new ArrayList<Class<?>>(1);
 		classes.add(Class.forName(className));

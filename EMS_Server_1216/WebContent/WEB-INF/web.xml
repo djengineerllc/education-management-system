@@ -45,7 +45,7 @@
 
 	<init-param>
 		<param-name>registryConfiguratorClass</param-name>
-		<param-value>com.ems.system.ActionRegistryConfigurator</param-value>
+			<param-value>com.ems.system.client.ActionRegistryConfigurator</param-value>
 	</init-param>
 
     <init-param>
