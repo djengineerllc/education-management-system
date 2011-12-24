@@ -1,0 +1,60 @@
+前段时间写jsfw [ JavaScript FrameWork ]，写完后发现每刷新一次内存就升大几百K，用一个小时IE内存占用高到一两百M。看了以下文章，五个分类我犯了四个，问题是找到了，不过改起来很累
+---------------------------以下文章不知道是从哪Copy来的-------------------
+在IE下的JS编程中，以下的编程方式都会造成即使关闭IE也无法释放内存的问题，下面分类给出：
+
+1、给DOM对象添加的属性是一个对象的引用。范例：
+var MyObject = {};
+document.getElementById('myDiv').myProp = MyObject;
+解决方法：
+在window.onunload事件中写上: document.getElementById('myDiv').myProp = null;
+
+
+2、DOM对象与JS对象相互引用。范例：
+function Encapsulator(element) {
+   this.elementReference = element;
+   element.myProp = this;
+}
+new   Encapsulator(document.getElementById('myDiv'));
+解决方法：
+在onunload事件中写上: document.getElementById('myDiv').myProp = null;
+
+
+3、给DOM对象用attachEvent绑定事件。范例：
+function doClick() {}
+element.attachEvent("onclick", doClick);
+解决方法：
+在onunload事件中写上: element.detachEvent('onclick', doClick);
+
+
+4、从外到内执行appendChild。这时即使调用removeChild也无法释放。范例：
+var parentDiv =   document.createElement("div");
+var childDiv = document.createElement("div");
+document.body.appendChild(parentDiv);
+parentDiv.appendChild(childDiv);
+解决方法：
+从内到外执行appendChild:
+var parentDiv =   document.createElement("div");
+var childDiv = document.createElement("div");
+parentDiv.appendChild(childDiv);
+document.body.appendChild(parentDiv);
+
+
+5、反复重写同一个属性会造成内存大量占用(但关闭IE后内存会被释放)。范例：
+for(i = 0; i < 5000; i++) {
+   hostElement.text = "asdfasdfasdf";
+}
+这种方式相当于定义了5000个属性！
+解决方法：
+其实没什么解决方法:P~~~就是编程的时候尽量避免出现这种情况咯~~
+
+
+说明：
+1、以上资料均来源于微软官方的MSDN站点，链接地址：
+http://msdn.microsoft.com/librar ... e_leak_patterns.asp
+大家可以到上面这个地址中看到详细的说明，包括范例和图例都有。只是我英文不太好，看不太懂，如果我上述有失误或有需要补充的地方请大家指出。
+
+2、对于第一条，事实上包括 element.onclick = funcRef 这种写法也算在其中，因为这也是一个对对象的引用。在页面onunload时应该释放掉。
+
+3、对于第三条，在MSDN的英文说明中好像是说即使调用detachEvent也无法释放内存，因为在attachEvent的时候就已经造成内存“LEAK”了，不过detachEvent后情况还是会好一点。不知道是不是这样，请英文好的亲能够指出。
+
+4、在实际编程中，这些内存问题的实际影响并不大，尤其是给客户使用时，客户对此绝不会有察觉，然而这些问题对于程序员来说却始终是个心病 --- 有这样的BUG心里总会觉得不舒服吧？能解决则给与解决，这样是最好的。事实上我在webfx.eae.net这样顶级的JS源码站点中，在它们的源码里都会看到采用上述解决方式进行内存的释放管理。
