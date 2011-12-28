@@ -1,7 +1,8 @@
-package com.ems.common.model.info.applyonline;
+package com.ems.common.model.vo.applyonline;
 
+import java.util.Date;
 
-public class ApplyInfo {
+public class ApplyVO {
 	
 	private Integer id;
 	private String projectName;
@@ -11,7 +12,7 @@ public class ApplyInfo {
 	private String stuName;
 	private String stuSex;
 	private String stuIDNo;
-	private String stuBirthday;
+	private Date stuBirthday;
 	private String stuMz;
 	private String stuProvice;
 	private String stuCity;
@@ -26,11 +27,11 @@ public class ApplyInfo {
 	private String isReject;
 	private String rejectType;
 	private String rejectCountry;
-	private String rejectTime;
+	private Date rejectTime;
 	private String rejectReason;
 	private String graduateSchool;
 	private String graduateZy;
-	private String graduateTime;
+	private Date graduateTime;
 	private String education;
 	private String englishLevel;
 	private Integer gkTotal;
@@ -50,9 +51,9 @@ public class ApplyInfo {
 	private String motherWorkPosition;
 	private String motherTel;
 	private String zsInfoSource;
-	private String applyTime;
-	private String createTime;
-	private String updateTime;
+	private Date applyTime;
+	private Date createTime;
+	private Date updateTime;
 	public Integer getId() {
 		return id;
 	}
@@ -101,10 +102,10 @@ public class ApplyInfo {
 	public void setStuIDNo(String stuIDNo) {
 		this.stuIDNo = stuIDNo;
 	}
-	public String getStuBirthday() {
+	public Date getStuBirthday() {
 		return stuBirthday;
 	}
-	public void setStuBirthday(String stuBirthday) {
+	public void setStuBirthday(Date stuBirthday) {
 		this.stuBirthday = stuBirthday;
 	}
 	public String getStuMz() {
@@ -191,10 +192,10 @@ public class ApplyInfo {
 	public void setRejectCountry(String rejectCountry) {
 		this.rejectCountry = rejectCountry;
 	}
-	public String getRejectTime() {
+	public Date getRejectTime() {
 		return rejectTime;
 	}
-	public void setRejectTime(String rejectTime) {
+	public void setRejectTime(Date rejectTime) {
 		this.rejectTime = rejectTime;
 	}
 	public String getRejectReason() {
@@ -215,10 +216,10 @@ public class ApplyInfo {
 	public void setGraduateZy(String graduateZy) {
 		this.graduateZy = graduateZy;
 	}
-	public String getGraduateTime() {
+	public Date getGraduateTime() {
 		return graduateTime;
 	}
-	public void setGraduateTime(String graduateTime) {
+	public void setGraduateTime(Date graduateTime) {
 		this.graduateTime = graduateTime;
 	}
 	public String getEducation() {
@@ -335,26 +336,23 @@ public class ApplyInfo {
 	public void setZsInfoSource(String zsInfoSource) {
 		this.zsInfoSource = zsInfoSource;
 	}
-	public String getApplyTime() {
+	public Date getApplyTime() {
 		return applyTime;
 	}
-	public void setApplyTime(String applyTime) {
+	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	public String getUpdateTime() {
+	public Date getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(String updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	
-	
-	
+
 }

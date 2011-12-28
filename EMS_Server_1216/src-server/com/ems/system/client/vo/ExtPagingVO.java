@@ -14,6 +14,12 @@ public class ExtPagingVO extends ExtBaseVO {
 		this.items = new ArrayList();
 	}
 	
+	public ExtPagingVO(String id, List items) {
+		this.id = id;
+		this.totalCount = items.size();
+		this.items = items;
+	}
+
 	public ExtPagingVO(String id, Integer totalCount, List items) {
 		this.id = id;
 		this.totalCount = totalCount;

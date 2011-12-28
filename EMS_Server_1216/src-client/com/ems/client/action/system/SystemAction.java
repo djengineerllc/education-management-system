@@ -5,15 +5,18 @@ import java.util.Date;
 import java.util.List;
 
 import com.ems.biz.applyonline.service.IApplyOnlineService;
+import com.ems.client.action.login.LoginAction;
+import com.ems.client.action.login.vo.LoginInfoVO;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.model.vo.DicVO;
 import com.ems.system.client.DirectAction;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
-
-import conf.hibernate.CodeType;
+import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
+import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 import conf.hibernate.Project;
+import conf.hibernate.CodeType;
 
-
+@ActionScope(scope=Scope.APPLICATION)
 public class SystemAction extends DirectAction {
 	
 	@DirectMethod
@@ -48,5 +51,16 @@ public class SystemAction extends DirectAction {
 		}
 		
 		return dicVOList;
+	}
+
+	
+	@DirectMethod
+	public LoginInfoVO getLoginInfo() {
+		LoginAction loginAction = this.getAction(LoginAction.class);
+		if (loginAction != null) {
+			return loginAction.getLoginInfo();
+		}
+		
+		return null;
 	}
 }

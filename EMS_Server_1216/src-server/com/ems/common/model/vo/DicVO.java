@@ -2,6 +2,10 @@ package com.ems.common.model.vo;
 
 import java.io.Serializable;
 
+/**
+ * 数据字典VO
+ * @author Chiknin
+ */
 public class DicVO implements Serializable {
 	
 	private Integer id;
@@ -15,6 +19,15 @@ public class DicVO implements Serializable {
 	public DicVO() {
 	}
 	
+	public DicVO(Integer id, String type, String key, String value, String name) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.key = key;
+		this.value = value;
+		this.name = name;
+	}
+
 	public DicVO(Integer id, String type, String key, String value, String name, String desc, String group) {
 		this.id = id;
 		this.type = type;
