@@ -94,7 +94,7 @@ Ext.define('ems.biz.applyonline.apply.ApplyUI', {
                 columnWidth: 0.5
             }, {
                 xtype: 'datefield',
-                format: 'Y-m-d ',
+                format: 'Y-m-d',
                 fieldLabel: '出生日期',
                 name: 'stuBirthday'
             }, {
@@ -156,7 +156,7 @@ Ext.define('ems.biz.applyonline.apply.ApplyUI', {
                 name: 'graduateZy'
             	}, {
             		xtype: 'datefield',
-            		format: 'Y-m-d ',
+            		format: 'Y-m-d',
                 	fieldLabel: '毕业时间',
                 	name: 'graduateTime'
             }, Dic.comboBox('education_level', {
@@ -173,7 +173,7 @@ Ext.define('ems.biz.applyonline.apply.ApplyUI', {
                 columnWidth: 0.5
             }, {
             	xtype: 'datefield',
-            	format: 'Y-m-d ',
+            	format: 'Y-m-d',
                 fieldLabel: '高考年份',
                 name: 'gkYear'
             }, {

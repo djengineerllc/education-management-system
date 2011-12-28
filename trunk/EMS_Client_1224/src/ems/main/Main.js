@@ -54,14 +54,14 @@ Ext.define('ems.main.Main', {
 			moduleId = workItemConfig.moduleId = (workItemConfig.moduleId || record.get('moduleId'));
 		if (!moduleId) {
 			return;
-		};
+		}
 		
 		var workspace = me.getWorkspace(),
 			workItem = workspace.getChildByElement(moduleId);
 		if (workItem) {
 			me.activeWorkItem(moduleId, request);
 			return;
-		};
+		}
 		
 		Ext.applyIf(workItemConfig, {
 			moduleConfig: (record.get ? (Ext.decode(record.get('moduleConfig') || '{}')) : null),
@@ -70,7 +70,7 @@ Ext.define('ems.main.Main', {
 			autoScroll: true
 		});
 		Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
-			workItemConfig.items = [module.uiEl];
+			workItemConfig.items = [module.ui];
 			workItem = workspace.add(workItemConfig); // add workItem(tab)
 			workItem.on('beforedestroy', me._doDestroyWorkItem, this);
 			
@@ -112,7 +112,7 @@ Ext.define('ems.main.Main', {
 		} else {
 			moduleId = moduleId.moduleId;
 			workItem = moduleId;
-		};
+		}
 		
 		if (workItem) {
 			workspace.setActiveTab(workItem);
@@ -120,7 +120,7 @@ Ext.define('ems.main.Main', {
 				m: 'activate',
 				p: request
 			});
-		};
+		}
 	},
 	
 	_toMenuItem: function(item, listeners) {
@@ -133,7 +133,16 @@ Ext.define('ems.main.Main', {
 		return item;
 	},
 	
-	onLogout: function () {
-        Ext.Msg.confirm('Logout', 'Are you sure you want to logout?');
-    },
+	onLogout: function (params, request) {
+		EU.showConfirmDialog({
+			msg: '您确认退出系统？',
+			callback: function(btnId, value) {
+				if (btnId == 'yes') {
+					Ems.MR('ems.login.Login', {
+						m: 'logout'
+					});
+				}
+			}
+		});
+    }
 });

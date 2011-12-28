@@ -31,7 +31,7 @@ Ems = ems.core.Ems = {
 		var me = this;
 		me.config = Ext.applyIf(config || {}, {
 			appVersion: '1.0',
-			serverUrl: 'http://localhost/ES',
+			serverUrl: 'http://localhost:8080/EMS_Server',
 			serverApiPath: '/apis',
 			ajaxTimeout: 60000,
 			enableQuickTips: true,
@@ -40,7 +40,7 @@ Ems = ems.core.Ems = {
 //			stateProvider: 'Ext.state.CookieProvider',
 			locale: 'zh_CN',
 			rootEl: Ext.getBody(),
-			viewportModuleId: 'ems.main.Main',
+			viewportModuleId: 'ems.login.Login', //'ems.main.Main',
 			viewportModuleConfig: {},
 			extLoaderConfig: {
 				enabled: true,
@@ -53,11 +53,7 @@ Ems = ems.core.Ems = {
 		        }
 			},
 			requires: [
-				'Ext.Ajax',
-				'Ext.tip.QuickTipManager',
-				'Ext.util.KeyMap',
-				
-				'ems.core.Core'
+				'ems.core.Requires'
 			],
 			requireModules: [
 				'ems.system.System'
@@ -67,8 +63,8 @@ Ems = ems.core.Ems = {
 		Ext.Loader.setConfig(config.extLoaderConfig);
 		
 		var requires = [].concat(
-			config.requires,
-			config.viewportModuleId
+			config.requires
+//			,config.viewportModuleId
 		);
 		Ext.require(requires);
 		
@@ -98,42 +94,42 @@ Ems = ems.core.Ems = {
 			Ext.Ajax.defaultHeaders = {
 				appVersion: cfg.appVersion
 			};
-		};
+		}
 		if (cfg.ajaxTimeout) {
 			Ext.Ajax.timeout = cfg.ajaxTimeout;
-		};
+		}
 		if (cfg.enableQuickTips) {
 			Ext.tip.QuickTipManager.init();
-		};
+		}
 		if (cfg.enableBuffer) {
 			Ext.direct.RemotingProvider.enableBuffer = cfg.enableBuffer;
-		};
+		}
 		if (cfg.stateProvider) {
 			Ext.state.Manager.setProvider(Ext.create(cfg.stateProvider));
-		};
+		}
 		if (cfg.locale) {
-//			Ext.Loader.loadScriptFile('lib/ext/locale/ext-lang-' + cfg.locale + '.js', Ext.emptyFn);
-		};
+			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.locale + '.js', Ext.emptyFn);
+		}
 		if (cfg.requireModules) {
 			Ext.each(me.config.requireModules, function(moduleId) {
 				me.RM(moduleId);
 			}, me);
-		};
+		}
 		
-		Ext.Ajax.self.override({
-			request: function(options){
-				var t = options.transaction;
-				if (t) {
-					t = Ext.isArray(t) ? t : [t];
-					Ext.each(t, function(ti) {
-						if (options.async === false || ti.async === false) {
-							options.async = false;
-						}
-					});
-				}
-				return this.callOverridden([options]);
-			}
-		});
+//		Ext.Ajax.self.override({
+//			request: function(options){
+//				var t = options.transaction;
+//				if (t) {
+//					t = Ext.isArray(t) ? t : [t];
+//					Ext.each(t, function(ti) {
+//						if (options.async === false || ti.async === false) {
+//							options.async = false;
+//						}
+//					});
+//				}
+//				return this.callOverridden([options]);
+//			}
+//		});
 	},
 	
 	_initApp: function() {
@@ -163,16 +159,7 @@ Ems = ems.core.Ems = {
 		
 	},
 	_initUI: function() {
-		var me = this,
-			cfg = me.config,
-			rootEl = cfg.rootEl,
-			viewportModuleId = cfg.viewportModuleId,
-			viewportModuleConfig = cfg.viewportModuleConfig;
-			
-		me.rootEl = rootEl ? Ext.get(rootEl) : Ext.getBody();
-		me.requestModule(viewportModuleId, viewportModuleConfig, function(module) {
-			// TODO ...
-		}, me);
+		this.requestViewportModule();
 	},
 	
 	shutdown: function() {
@@ -180,16 +167,8 @@ Ems = ems.core.Ems = {
 		
 		if (me.isStarted === false) {
 			return;
-		};
-		if (me.modules) {
-			for (var moduleId in me.modules) {
-				me.destroyModule(moduleId);
-			}
-		};
-		if (me.rootEl) {
-			Ext.destroy(me.rootEl);
-			me.rootEl = null;
-		};
+		}
+		this.destroyAllModule();
 //		Ext.destroy(Ext.getBody());
 
 		me.config = null;
@@ -202,17 +181,49 @@ Ems = ems.core.Ems = {
 		me.isStarted = false;
 	},
 	
+	
+	// -----------------------------------------------
+	// START: Global Mask
+	// -----------------------------------------------
+	_globalLoadMask: null,
+	_globalLoadMaskCounter: 0,
+	mask: function(store) {
+		var me = this,
+			counter = (++me._globalLoadMaskCounter);
+		if (counter == 1) {
+			var mask = me._globalLoadMask;
+						
+			if (!mask) {
+				mask = me._globalLoadMask = Ext.create('Ext.LoadMask', Ext.getBody(), {
+					store: store
+				});
+			}
+			mask.show();
+		}
+	},
+	unmask: function() {
+		var me = this,
+			counter = (--me._globalLoadMaskCounter);
+		if (counter == 0) {
+			me._globalLoadMask.hide();
+		}
+	},
+	// -----------------------------------------------
+	// END: Global Mask
+	// -----------------------------------------------
+	
+	
 	// -----------------------------------------------
 	// START: Module Management 
 	// -----------------------------------------------
 	requestModule: function(id, config, cb, scope) {
 		var me = this,
 			module = me.getModule(id);
-		
+			
 		if (!module) {
 			module = me.loadModule(id, config);
 			module.init();
-		};
+		}
 		
 		if (module) {
 			if (cb) {
@@ -225,7 +236,7 @@ Ems = ems.core.Ems = {
 				sourceMethod: 'requestModule',
 				msg: 'module not found: ' + id
             });
-		};
+		}
 	},
 	RM: function(id, config, cb, scope) {
 		this.requestModule(id, config, cb, scope);
@@ -235,9 +246,10 @@ Ems = ems.core.Ems = {
 	 * requests: [{m/method, p/params, cb/callback, s/scope}]
 	 */
 	makeRequest: function(id, requests) {
-		this.requestModule(id, null, function(module) {
+		var me = this;
+		me.requestModule(id, null, function(module) {
 			module.handleRequest(requests);
-		}, this);
+		}, me);
 	},
 	MR: function(id, requests) {
 		this.makeRequest(id, requests);
@@ -276,7 +288,7 @@ Ems = ems.core.Ems = {
 		});
 	},
 	
-	DF: function(id, method, action, async) { // directFn
+	DF: function(id, method, action) { // directFn // }, async) {
 		var me = this;
 		var module = me.getModule(id);
 		var remoteDirectFn = (action ? module.actions[action][method] : module.actions[method]);
@@ -294,15 +306,15 @@ Ems = ems.core.Ems = {
 				} else {
 					p.push(arg);
 				}
-			};
+			}
 			
 			Ems.A(id, {
 				action: action,
 				m: method,
 				p: p,
 				cb: cb,
-				s: s,
-				async: async
+				s: s
+//				,async: async
 			});
 		};
 		directFn.directCfg = remoteDirectFn.directCfg;
@@ -322,7 +334,7 @@ Ems = ems.core.Ems = {
 		
 		if (!module.id) {
 			module.id = module.$className;
-		};
+		}
 		module.app = me;
 		
 		me.modules[module.id] = module;
@@ -336,9 +348,36 @@ Ems = ems.core.Ems = {
 			delete me.modules[id];
 		}
 	},
+	destroyAllModule: function() {
+		var me = this;
+		if (me.modules) {
+			for (var moduleId in me.modules) {
+				me.destroyModule(moduleId);
+			}
+		}
+		if (me.rootEl) {
+			Ext.destroy(me.rootEl);
+			me.rootEl = null;
+		};
+	},
 	
 	getModule: function(id) {
 		return this.modules[id];
+	},
+	
+	requestViewportModule: function() {
+		var me = this,
+			cfg = me.config,
+			rootEl = cfg.rootEl,
+			viewportModuleId = cfg.viewportModuleId,
+			viewportModuleConfig = cfg.viewportModuleConfig;
+		
+		me.destroyAllModule();
+		
+		me.rootEl = rootEl ? Ext.get(rootEl) : Ext.getBody();
+		me.requestModule(viewportModuleId, viewportModuleConfig, function(module) {
+			// TODO ...
+		}, me);
 	},
 	// -----------------------------------------------
 	// END: Module Management 

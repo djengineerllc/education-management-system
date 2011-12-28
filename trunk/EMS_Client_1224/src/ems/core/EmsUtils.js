@@ -7,7 +7,12 @@ Ext.define('ems.core.EmsUtils', {
 	],
 	
 	showDialog: function(config) {
-		return Ext.MessageBox.show(config);
+		return Ext.MessageBox.show(config); 
+//		Ext.apply(config || {}, {
+//			autoHeight: true,
+//			autoWidth: true,
+//			autoScroll: true
+//		})).doLayout();
 	},
 	
 	showInfoDialog: function(config) {
@@ -44,7 +49,9 @@ Ext.define('ems.core.EmsUtils', {
 	},
 	showSuccessDialog: function(config) {
 		config = Ext.apply({
-			title: "成功"
+			title: "成功",
+			buttons: Ext.MessageBox.OK,
+			icon: 'ext-mb-success'
 		}, config);
 		return this.showDialog(config);
 	}

@@ -1,0 +1,46 @@
+.ems .ems-header .ems-logo .x-panel-body {
+	/*
+background-image: url('images/logo.png');
+    display: block;
+*/
+}
+
+.ems .icon-identity-card {
+	background-image: url('images/icons/identity_card_16.png');
+    display: block;
+}
+
+.ems .icon-user {
+	background-image: url('images/icons/user_16.png');
+    display: block;
+}
+
+.ems .icon-key {
+	background-image: url('images/icons/key_16.png');
+    display: block;
+}
+
+.ems .icon-horn {
+	background-image: url('images/icons/horn_16.png');
+    display: block;
+}
+
+.ems .icon-search {
+	background-image: url('images/woofunction-icons/search_button_16.png');
+    display: block;
+}
+
+.ems .icon-add, .ems .icon-new {
+    background-image: url('images/woofunction-icons/add_16.png');
+    display: block;
+}
+
+.ems .icon-edit {
+	background-image: url('images/icons/edit_16.png');
+    display: block;
+}
+
+.ems .icon-close, .ems .icon-delete {
+	background-image: url('images/woofunction-icons/close_16.png');
+    display: block;
+}

@@ -13,6 +13,11 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 			var config = me._defaultSearchFormConfig();
 			Ext.apply(config.items[0], sf);
 			g.addDocked(config, 0);
+			
+			g.mon(g.store, 'beforeload', function(store, operation) {
+				operation.params = Ext.apply(operation.params || {}, this._getSearchParams());
+				return true;
+			}, me);
 		}
 	},
 	
@@ -20,6 +25,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 		var me = this;
 		return {
 			dock: 'top',
+			itemId: 'xgridSearchForm',
 			xtype: 'form',
 //			title: '查询筛选',
 //			titleCollapse: true,
@@ -34,8 +40,8 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 			},
 			fieldDefaults: {
 				labelAlign: 'right',
-				labelWidth: 100,
-	            msgTarget: 'side'
+				labelWidth: 100
+//				,msgTarget: 'side'
 			},
 			items: [{
 	            xtype: 'container',
@@ -52,16 +58,15 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 			buttonAlign: 'center',
 			buttons:  [{
 				text: '查询',
+				iconCls: 'icon-search',
 	            handler: function() {
 					var form = this.up('form').getForm();
 					if (!form.isValid()) {
 						return;
 					};
 					
-	                var values = form.getValues();
-					me.grid.store.load({
-						params: values
-					});
+					me._setSearchParams(form.getValues());
+					me.grid.store.load();
 	            }
 			}, {
 				text: '重置',
@@ -69,31 +74,41 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 					var form = this.up('form').getForm();
 					form.reset();
 				}
-			}],
-			dockedItems: [{
+			}]
+			,dockedItems: [{
 				dock: 'top',
 				xtype: 'toolbar',
 				border: true,
 				items: [{
 					xtype: 'label',
 					baseCls: 'x-panel-header-text',
-					text: '查询筛选'
+					text: '学生消息列表'
 				}]
-			}, {
-				dock: 'bottom',
-				xtype: 'toolbar',
-				border: true,
-				items: [{
-					xtype: 'label',
-					baseCls: 'x-panel-header-text',
-					text: '查询结果'
-				}]
-			}]
+			}
+//			, {
+//				dock: 'bottom',
+//				xtype: 'toolbar',
+//				border: true,
+//				items: [{
+//					xtype: 'label',
+//					baseCls: 'x-panel-header-text',
+//					text: '查询结果'
+//				}]
+//			}
+			]
 		}
+	},
+	
+	_setSearchParams: function(params) {
+		this.grid._searchParams = params;
+	},
+	_getSearchParams: function() {
+		return this.grid._searchParams;
 	},
 	
 	destroy: function() {
 		var me = this;
+		delete this.grid._searchParams;
 		me.grid = null;
 	}
 });
