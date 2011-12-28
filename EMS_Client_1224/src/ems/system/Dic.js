@@ -51,28 +51,34 @@ Ext.define('ems.system.Dic', {
 		});
 		
 		var comboBox = Ext.create('Ext.form.field.ComboBox', config);
-		
-		
-		comboBox.mon(dicStore, 'load', function() {
-			if (this.value == undefined) {
-				var s = this.store;
-				if (s.getCount() > 0) {
-					var value;
-					if (this.valueKey) {
-						value = this.findRecord('key', this.valueKey);
-					} else {
-						value = s.getAt(0).data[this.valueField];
-					}
-					
-					if (value) {
-						this.originalValue = value;
-						this.setValue(value);
-					}
-				}
-			}
-		}, comboBox);
+		if (comboBox.store.getCount() > 0) {
+			me._initComboBoxDefaultValue(comboBox);
+		} else {
+			comboBox.mon(dicStore, 'load', function(){
+				me._initComboBoxDefaultValue(comboBox);
+			}, comboBox);
+		}
 		
 		return comboBox;
+	},
+	_initComboBoxDefaultValue: function(comboBox) {
+		var cb = comboBox;
+		if (cb.value == undefined) {
+			var s = cb.store;
+			if (s.getCount() > 0) {
+				var value;
+				if (cb.valueKey) {
+					value = cb.findRecord('key', cb.valueKey);
+				} else {
+					cb = s.getAt(0).data[cb.valueField];
+				}
+				
+				if (value) {
+					cb.originalValue = value;
+					cb.setValue(value);
+				}
+			}
+		}
 	},
 	
 	checkboxGroup: function(dicType, config) {
@@ -116,6 +122,13 @@ Ext.define('ems.system.Dic', {
 //			}
 			dicStore.load(function() {
 				me._onDataOfFieldContainer(fieldContainer, dicStore);
+				
+				if (dicStore.getCount() > 0) {
+					if (fieldContainer.fieldLabel) { // Ext bug
+						fieldContainer.fieldLabel = fieldContainer.fieldLabel + ':';
+						fieldContainer.updateLabel();
+					}
+				}
 			});
 		} else {
 			me._onDataOfFieldContainer(fieldContainer, dicStore);
@@ -144,11 +157,6 @@ Ext.define('ems.system.Dic', {
 		
 		if (items.length > 0) {
 			fc.add(items);
-			
-			if (fc.fieldLabel) { // Ext bug
-				fc.fieldLabel = fc.fieldLabel + ':';
-				fc.updateLabel();
-			}
 		}
 	},
 

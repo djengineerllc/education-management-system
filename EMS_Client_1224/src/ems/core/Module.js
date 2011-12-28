@@ -24,7 +24,7 @@ Ext.define('ems.core.Module', { // Controller
 	actions: null,
 	actionsClassSuffix: 'Actions',
 	
-	uiEl: null,
+	ui: null,
 	segmentUI: true,
 	uiClassSuffix: 'UI',
 	uiIdPrefix: null,
@@ -54,7 +54,7 @@ Ext.define('ems.core.Module', { // Controller
 				Ext.Error.raise({
 					sourceClass: Ext.getClassName(me),
 					sourceMethod: 'init',
-					msg: 'create action error: ' + actionsClassName
+					msg: 'create action[' + actionsClassName + '] error: ' + e.message
                 });
 			}
 		};
@@ -73,9 +73,16 @@ Ext.define('ems.core.Module', { // Controller
 	destroy: function() {
 		var me = this;
 		me.actions && me.actions.destroy();
-		if (me.uiEl) {
-			Ext.destroy(me.uiEl);
-			me.uiEl = null;
+		if (me.ui) {
+			Ext.destroy(me.ui);
+			me.ui = null;
+		}
+	},
+	destroyUI: function() {
+		var me = this;
+		if (me.ui) {
+			Ext.destroy(me.ui);
+			me.ui = null;
 		}
 	},
 	
@@ -101,14 +108,12 @@ Ext.define('ems.core.Module', { // Controller
 			a = ar.action ? me.actions[ar.action] : me.actions,
 			m = a[ar.m],
 			p = ar.p ? (Ext.isArray(ar.p) ? ar.p : [ar.p]) : [],
-			cb = ar.cb,
-			async = ar.async;
+			cb = ar.cb;
+//			async = ar.async;
 			
 		if (cb) {
 			var s = ar.s || me;
-//			p = p.concat(Ext.bind(cb, s));
-//			p = p.concat(cb).concat(s);
-			p = p.concat(function(result, e) {//debugger;
+			p = p.concat(function(result, e) {
 				var tx = e.getTransaction();
 				if (!e.status) {
 					EU.showErrorDialog({
@@ -120,11 +125,11 @@ Ext.define('ems.core.Module', { // Controller
 				cb.apply(s, arguments);
 			}).concat(s);
 		};
-		if (async === false) {
-			p.push(false); // 同步
-		}
+//		if (async === false) {
+//			p.push(false); // 同步
+//		}
 		
-		m.apply(a, p); // me.actions, p); // Ext.pass(m, params.p, a)();
+		m.apply(a, p);
 	},
 	
 	createUI: function(config) {
@@ -133,12 +138,12 @@ Ext.define('ems.core.Module', { // Controller
 			var uiClassName = me.getUIClassName();
 			config = Ext.merge({renderTo: me.renderTo}, me._moduleUIConfig(), config);
 			try {
-				me.uiEl = Ext.create(uiClassName, config);
+				me.ui = Ext.create(uiClassName, config);
 			} catch (e) {
 				Ext.Error.raise({
 					sourceClass: Ext.getClassName(me),
 					sourceMethod: 'createUI',
-					msg: 'create ui error: ' + uiClassName
+					msg: 'create ui[' + uiClassName + '] error: ' + e.message
                 });
 			}
 		};
@@ -153,10 +158,10 @@ Ext.define('ems.core.Module', { // Controller
 		var me = this,
 			viewConfig = Ext.apply({}, me._moduleUIConfig(), viewConfig),
 			position = position || 'place',
-			renderTo = (viewConfig.renderTo || me.uiEl.id);
+			renderTo = (viewConfig.renderTo || me.ui.id); // || Ext.getBody()
 		delete viewConfig.renderTo;
 		
-		if (viewId.indexOf('.') == -1) {
+		if (viewId.indexOf('.view.') == -1) {
 			viewId = (me.getModuleDir() + '.view.' + viewId);
 		};
 		
@@ -164,7 +169,7 @@ Ext.define('ems.core.Module', { // Controller
 			id: viewId // TODO viewId conflict
 		});
 		
-		var refCmp = Ext.getCmp(renderTo);
+		var refCmp = renderTo.isComponent ? renderTo : Ext.getCmp(renderTo);
 		if (position == 'place') {
 			refCmp.removeAll(true);
 		} else {
@@ -175,6 +180,11 @@ Ext.define('ems.core.Module', { // Controller
 		refCmp.add(view);
 		
 		return view;
+		
+//		Ext.defer(function() {
+//			var view = Ext.create(viewId, viewConfig);
+//			refCmp.add(view);
+//		}, 1, me);
 	},
 	RV: function(viewId, viewConfig, position) {
 		return this.renderView(viewId, viewConfig, position);
@@ -253,11 +263,10 @@ Ext.define('ems.core.Module', { // Controller
 		return cn.substring(0, cn.lastIndexOf('.'));
 	},
 	
-	queryEl: function(selector, root, multiRet) {
-		var me = this;
-		root = root || me.uiEl.dom;
-
-		var rets = Ext.query(selector, root);
+	query: function(selector, root, multiRet) {
+		var me = this,
+			root = root || me.ui,
+			rets = root.query(selector);
 		
 		return (multiRet === true ? rets : rets[0]);
 	},

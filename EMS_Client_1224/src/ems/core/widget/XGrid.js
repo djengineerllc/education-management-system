@@ -12,6 +12,8 @@ Ext.define('ems.core.widget.XGrid', {
 	
 	searchForm: null,
 	
+	storeConfig: null,
+	
 	selMode: null, // single / simple / multi / null
 	
 	editingMode: null, // cellediting / rowediting / null
@@ -52,6 +54,11 @@ Ext.define('ems.core.widget.XGrid', {
 			}));
 		};
     },
+	onDestroy: function() {
+		this.callParent(arguments);
+//		this.store.destroy();
+//		this.store = null;
+	},
 	
 	_buildStore: function() {
 		var me = this,
@@ -59,7 +66,7 @@ Ext.define('ems.core.widget.XGrid', {
 			fields = [];
 		
 		Ext.each(cols, function(col) {
-			var field = { name: col.dataIndex}, 
+			var field = {name: col.dataIndex}, 
 				attrVal;
 			Ext.each(me._modelFieldAttrs, function(attr) {
 				attrVal = col[attr];
@@ -151,11 +158,4 @@ Ext.define('ems.core.widget.XGrid', {
 		'persist',
 		'sortDir'
 	]
-//	,
-//	
-//	destroy: function() {
-//		var me = this;
-//		Ext.destroy(me.store);
-//		me.callParent(arguments);
-//	}
 });

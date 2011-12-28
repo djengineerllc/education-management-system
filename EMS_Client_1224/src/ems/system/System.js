@@ -2,7 +2,7 @@ Ext.define('ems.system.System', {
 	extend: 'ems.core.Module',
 	silent: true,
 //	autoLoadActions: false,
-	
+
 	requires: [
 		'ems.system.Dic'
 	],

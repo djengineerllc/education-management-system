@@ -27,6 +27,8 @@ Ext.define('ems.core.Actions', {
 	
 	loadRemotingApiOnInit: true,
 	
+	providerManaged: null,
+	
 	constructor: function() {
 		var me = this;
 		me.callParent(arguments);
@@ -40,10 +42,17 @@ Ext.define('ems.core.Actions', {
 		}
 	},
 	destroy: function() {
-		var me = this,
-			providerManaged = Ext.direct.Manager.removeProvider(me.getProvider());
-			
-		providerManaged.un('beforecall', me._beforecall, me);
+		var me = this;
+		if (me.providerManaged) {
+//			me.providerManaged.un('beforecall', me._beforecall, me);
+			Ext.direct.Manager.removeProvider(me.getProvider());
+		};
+		
+		me.remotingApiUrl = null;
+		me.remotingApi = null;
+		me.apiNamespace = null;
+		me.actionsNamespace = null;
+		me.providerManaged = null;
 	},
 	
 	_loadRemotingApi: function() {
@@ -60,8 +69,9 @@ Ext.define('ems.core.Actions', {
 	},
 	_onLoadRemotingApi: function() {
 		var me = this,
-			provider = me.getProvider(),
-			providerManaged = Ext.direct.Manager.addProvider(provider);
+			provider = me.getProvider();
+		
+		me.providerManaged = Ext.direct.Manager.addProvider(provider);
 		
 //		Djn.RemoteCallSupport.addCallValidation(provider);
 //		Djn.RemoteCallSupport.validateCalls = true;
@@ -87,7 +97,7 @@ Ext.define('ems.core.Actions', {
 			}
 		}
 		
-		providerManaged.on('beforecall', me._beforecall, me);
+//		me.providerManaged.on('beforecall', me._beforecall, me);
 	},
 	
 	getBaseRemotingApiUrl: function() {
@@ -112,10 +122,10 @@ Ext.define('ems.core.Actions', {
 	
 	getProvider: function() {
 		return eval(this.getProviderName());
-	},
-	
-	_beforecall: function(provider, transaction, method) {
-		transaction.async = transaction.args[method.len + 2] === false ? false : true;
-		return true;
 	}
-})
+	
+//	,_beforecall: function(provider, transaction, method) {
+//		transaction.async = transaction.args[method.len + 2] === false ? false : true;
+//		return true;
+//	}
+});

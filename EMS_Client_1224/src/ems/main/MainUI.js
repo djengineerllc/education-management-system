@@ -14,13 +14,17 @@ Ext.define('ems.main.MainUI', {
 	MRA: null,
 	DF: null,
 	
-	initComponent: function() {
-		var me = this;
-		Ext.apply(me, me.getInitConfig());
+	initComponent: function() {//debugger;
+		var me = this,
+			uiConfig = me.uiConfig();
+			
+		Ext.apply(me, uiConfig);
+        Ext.apply(this.initialConfig, uiConfig);
+		
 		me.callParent(arguments);
 	},
 	
-	getInitConfig: function() {
+	uiConfig: function() {
 		var me = this;
 		return {
 			layout: 'border',
@@ -29,8 +33,47 @@ Ext.define('ems.main.MainUI', {
 			},
 			items: [{
 				region: 'north',
-				height: 60,
-				html: 'north'
+				cls: 'ems-header',
+				height: 100,
+				layout: {
+                    type: 'hbox',
+                    align: 'stretch'
+                },
+				defaults: {
+					border: false
+				},
+				items: [{
+					cls: 'ems-logo',
+					width: 450
+				}, {
+					flex: 1,
+					margins:'70 0 0 0',
+					html: '教务管理系统'
+				}, {
+					margins:'5 5 0 0',
+					items: [{
+						xtype: 'button',
+						text: '退出系统',
+						listeners: me.MRA('click', 'onLogout')
+					}, {
+						xtype: 'button',
+						text: 'printAllScripts',
+						handler: function() {
+							var scripts = Ext.query('script');
+							Ext.each(scripts, function(scripts) {
+								var path = scripts.src;
+								if (path.indexOf('lib/ext') == -1) {
+									return;
+								}
+								
+								path = path.substring(path.indexOf('lib/ext'), path.indexOf('?_dc'));
+								var a = path.substring(0, path.lastIndexOf('\/'));
+								var b = path.substring(path.lastIndexOf('\/') + 1);
+								console.log(Ext.String.format('{"text" : "{0}", "path" : "{1}/"},',  b, a));
+							});
+						}
+					}]
+				}]
 			}, {
 				region: 'west',
 				layout: 'fit',
@@ -54,7 +97,11 @@ Ext.define('ems.main.MainUI', {
 								border: false,
 								frame: false,
 								autoScroll: true,
-								closable: true
+								closable: true,
+								defaults: {
+									layout: 'anchor',
+									anchor: '100% 100%'
+								}
 							})
 						}
 					})
@@ -69,11 +116,11 @@ Ext.define('ems.main.MainUI', {
 					id: 'workspace',
 //					maskOnDisable: true,
 //					cls: 'wscls',
-					plugins: [{
-						ptype: 'tabscrollermenu',
-						maxText  : 1,
-						pageSize : 1
-					}],
+//					plugins: [{
+//						ptype: 'tabscrollermenu',
+//						maxText: 1,
+//						pageSize: 1
+//					}],
 					items: [{
 						title: '首页',
 						html: 'Creating more tabs...'
