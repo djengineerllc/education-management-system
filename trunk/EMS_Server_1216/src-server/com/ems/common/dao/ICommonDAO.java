@@ -69,6 +69,15 @@ public interface ICommonDAO {
 			final  Object[] values) ;
 	
 	/**
+	 * 根据sql查找
+	 * @param queryString
+	 * @param parameters
+	 * @return
+	 * @throws Exception
+	 */
+	public List findBySql(final String queryString, final Object[] parameters) throws Exception;
+	
+	/**
 	 * 获取指定codetype的代码集合
 	 * @param codeType
 	 * @return

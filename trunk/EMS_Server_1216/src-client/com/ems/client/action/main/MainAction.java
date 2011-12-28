@@ -3,72 +3,40 @@ package com.ems.client.action.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ems.client.action.main.vo.MenuItemVO;
+import com.ems.system.client.DirectAction;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
+import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
+import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
-public class MainAction {
-	public static class Node {
-		public String id;
-		public String text;
-		public boolean leaf;
-
-		public String textKey;
-		public String moduleId;
-		public String moduleName;
-		public String moduleNameKey;
-		public String moduleConfig;
-
-		public Node() {
-			super();
-		}
-
-		public Node(String id, String text, boolean leaf) {
-			super();
-			this.id = id;
-			this.text = text;
-			this.leaf = leaf;
-		}
-
-		public Node(String id, String text, boolean leaf, String textKey,
-				String moduleId, String moduleName, String moduleNameKey,
-				String moduleConfig) {
-			super();
-			this.id = id;
-			this.text = text;
-			this.leaf = leaf;
-			this.textKey = textKey;
-			this.moduleId = moduleId;
-			this.moduleName = moduleName;
-			this.moduleNameKey = moduleNameKey;
-			this.moduleConfig = moduleConfig;
-		}
-	}
+@ActionScope(scope=Scope.APPLICATION)
+public class MainAction extends DirectAction {
 
 	@DirectMethod
-	public List<Node> getMenu(String id) {
-		List<Node> result = new ArrayList<Node>();
+	public List<MenuItemVO> getMenu(String id) {
+		List<MenuItemVO> result = new ArrayList<MenuItemVO>();
 
 		if ("root".equals(id)) { // StringUtils.isEmpty(id) ||
-			result.add(new Node("01", "学籍管理", false));
-			result.add(new Node("02", "师资管理", false));
-			result.add(new Node("03", "教室管理", false));
-			result.add(new Node("04", "教材管理", false));
+			result.add(new MenuItemVO("00", "实例", false));
+			result.add(new MenuItemVO("01", "学籍管理", false));
+			result.add(new MenuItemVO("02", "师资管理", false));
+			result.add(new MenuItemVO("03", "教室管理", false));
+			result.add(new MenuItemVO("04", "教材管理", false));
+			result.add(new MenuItemVO("05", "网上报名", false));
 		} else {
-			if ("01".equals(id)) {
-				result.add(new Node("0101", "学籍管理0101", false));
-				result.add(new Node("0102", "学籍管理0102", true, null,
-						"ems.biz.test.Test", "学籍管理0102Title", null, null));
-				result.add(new Node("0103", "学籍管理0103", true, null,
-						"ems.biz.test.Test", "学籍管理0103Title", null, null));
-			} else if ("0101".equals(id)) {
-				result.add(new Node("010101", "学籍管理010101", true, null,
-						"ems.biz.test.Test", "学籍管理010101Title", null, null));
-			} else if ("02".equals(id)) {
-				result.add(new Node("0201", "师资管理0201", true, null,
-						"ems.biz.test.Test", null, null, null));
-				result.add(new Node("0202", "师资管理0202", true, null,
-						"ems.biz.test.Test", null, null, null));
-				result.add(new Node("0203", "师资管理0203", true, null,
-						"ems.biz.test.Test", null, null, null));
+			if ("00".equals(id)) {
+				result.add(new MenuItemVO("0001", "测试节点1", false));
+				result.add(new MenuItemVO("0002", "实例-表格", "ems.biz.samples.xgridsample.XGridSample", "XGrid实例"));
+				result.add(new MenuItemVO("0003", "实例-表单", "ems.biz.samples.formsample.FormSample", "Form实例"));
+				result.add(new MenuItemVO("0004", "实例-对话框", "ems.biz.samples.dialogsample.DialogSample", "Dialog实例"));
+			}
+			if ("0001".equals(id)) {
+				result.add(new MenuItemVO("000101", "测试节点1.1", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.1Title"));
+				result.add(new MenuItemVO("000102", "测试节点1.2", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.2Title"));
+			}
+			if ("05".equals(id)) {
+				result.add(new MenuItemVO("0501", "网上报名", "ems.biz.applyonline.apply.Apply", "网上报名"));
+				result.add(new MenuItemVO("0502", "查看报名信息", "ems.biz.applyonline.query.Query", "查看报名信息"));
 			}
 		}
 		return result;

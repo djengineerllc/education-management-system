@@ -90,6 +90,20 @@ public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 		});
 	}
 	
+	public List findBySql(final String queryString, final Object[] parameters) {
+		return (List) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query query = session.createSQLQuery(queryString);
+				if (parameters != null) {
+					for (int i = 0; i < parameters.length; i++) {
+						query.setParameter(i, parameters[i]);
+					}
+				}				
+				return query.list();
+			}			
+		});
+	}
+	
 	public List<CodeType> getCodeTypeByType(String codeType){
 		return this.find(CodeType.class, new String[]{"codeType"}, 
 				new String[]{"="}, new String[]{codeType});

@@ -14,16 +14,42 @@ import com.softwarementors.extjs.djn.servlet.ssm.WebContextManager;
 /**
  * @author Chiknin
  */
+@SuppressWarnings("unchecked")
 public class DirectAction {
 	
 	protected ApplicationContext appCtx;
 	
 	public DirectAction() {
-		this.appCtx = WebApplicationContextUtils.getRequiredWebApplicationContext(this.getApplication());
+		this.appCtx = WebApplicationContextUtils.getWebApplicationContext(this.getApplication()); //WebApplicationContextUtils.getRequiredWebApplicationContext(this.getApplication());
 	}
 	
 	public WebContext getWebContext() {
 		return WebContextManager.get();
+	}
+	
+	public <T extends DirectAction> T getAction(Class<T> actionClass) {
+		String actionName = this.getActionName(actionClass);
+		System.out.println(actionName);
+		Object action = this.getWebContext().getSessionScopedObject(actionName);
+		if (action == null) {
+			action = this.getWebContext().getApplicationScopedObject(actionName);
+		}
+		
+		return (T) action;
+	}
+	
+	public String getActionName(Class actionClass) {
+		String className = actionClass.getName();
+		String actionPrefix = "com.ems.client.action.";
+		return String.format("ems.%ss", className.substring(className.indexOf(actionPrefix) + actionPrefix.length())).replace('.', '_') + '_' + actionClass.getSimpleName();
+	}
+	
+	public String getParameter(String name) {
+		return this.getRequest().getParameter(name);
+	}
+	
+	public String[] getParameterValues(String name) {
+		return this.getRequest().getParameterValues(name);
 	}
 	
 	public HttpServletRequest getRequest() {

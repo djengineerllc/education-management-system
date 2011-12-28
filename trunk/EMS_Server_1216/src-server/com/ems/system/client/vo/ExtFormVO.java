@@ -1,7 +1,7 @@
 package com.ems.system.client.vo;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.ems.common.util.BeanUtils;
 
@@ -23,9 +23,13 @@ public class ExtFormVO extends ExtBaseVO {
 		this.data = data;
 	}
 	
+	public ExtFormVO(Object dataObj) {
+		this.setDataFormObject(dataObj);
+	}
+
 	public ExtFormVO addField(String name, Object value) {
 		if (data == null) {
-			data = new HashMap<String, String>(); //SequencedHashMap(); //TreeMap<String, String>();
+			data = new TreeMap<String, String>();
 		}
 		
 		data.put(name, (value != null ? value.toString() : ""));
@@ -34,7 +38,7 @@ public class ExtFormVO extends ExtBaseVO {
 	}
 	public ExtFormVO setDataFormObject(Object dataObj) {
 		if (data == null) {
-			data = new HashMap<String, String>(); //SequencedHashMap(); //TreeMap<String, String>();
+			data = new TreeMap<String, String>();
 		}
 		
 		BeanUtils.copyBeanToMap(dataObj, data);
@@ -45,7 +49,7 @@ public class ExtFormVO extends ExtBaseVO {
 	public ExtFormVO addError(String fieldName, String errorMsg) {
 		if (errors == null) {
 			success = false;
-			errors = new HashMap<String, String>();
+			errors = new TreeMap<String, String>();
 		}
 		errors.put(fieldName, errorMsg);
 		
@@ -54,7 +58,7 @@ public class ExtFormVO extends ExtBaseVO {
 	public ExtFormVO setErrorsFormObject(Object dataObj) {
 		if (errors == null) {
 			success = false;
-			errors = new HashMap<String, String>();
+			errors = new TreeMap<String, String>();
 		}
 		
 		BeanUtils.copyBeanToMap(dataObj, errors);

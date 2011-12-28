@@ -43,8 +43,12 @@ public class ActionRegistryConfigurator implements ServletRegistryConfigurator {
 		this.fetchActionClassNameList(classNameList, new File(actionRootPath));
 		
 		List<ApiConfiguration> apiCfgs = new ArrayList<ApiConfiguration>();
+		ApiConfiguration apiCfg = null;
 		for (String className : classNameList) {
-			apiCfgs.add(this.createApiConfiguration(className));
+			apiCfg = this.createApiConfiguration(className);
+			if (apiCfg != null) {
+				apiCfgs.add(apiCfg);
+			}
 		}
 		
 		return apiCfgs;
@@ -67,6 +71,11 @@ public class ActionRegistryConfigurator implements ServletRegistryConfigurator {
 	}
 	
 	private ApiConfiguration createApiConfiguration(String className) throws Exception {
+		Class<?> actionClass = Class.forName(className);
+		if (!DirectAction.class.isAssignableFrom(actionClass)) {
+			return null;
+		}
+		
 		String fullActionName = className.substring(className.indexOf(actionPrefix) + actionPrefix.length());
 		
 		String api = fullActionName;
@@ -76,7 +85,7 @@ public class ActionRegistryConfigurator implements ServletRegistryConfigurator {
 		String actionsNamespace = "";//String.format("ems.%ss.ns", fullActionName);
 		
 		List<Class<?>> classes = new ArrayList<Class<?>>(1);
-		classes.add(Class.forName(className));
+		classes.add(actionClass);
 		
 		return 
 			new ApiConfiguration(
