@@ -69,13 +69,21 @@ public interface ICommonDAO {
 			final  Object[] values) ;
 	
 	/**
-	 * 根据sql查找
-	 * @param queryString
-	 * @param parameters
-	 * @return
-	 * @throws Exception
+	 * 使用jdbcTemplate查询
+	 * 
+	 * @param sql
+	 *            查询语句
+	 * @return 结果集(List of HashMap)
 	 */
-	public List findBySql(final String queryString, final Object[] parameters) throws Exception;
+	public List findBySql(String sql) ;
+	
+	/**
+	 * 
+	 * @param queryString 查询SQL语句
+	 * @param parameters 参数值
+	 * @return
+	 */
+	public List findBySql(final String queryString, final Object[] parameters);
 	
 	/**
 	 * 获取指定codetype的代码集合
