@@ -90,6 +90,17 @@ public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 		});
 	}
 	
+	/**
+	 * 使用jdbcTemplate查询
+	 * 
+	 * @param sql
+	 *            查询语句
+	 * @return 结果集(List of HashMap)
+	 */
+	public List findBySql(String sql) {
+		return jdbcTemplate.queryForList(sql);
+	}
+	
 	public List findBySql(final String queryString, final Object[] parameters) {
 		return (List) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -103,6 +114,7 @@ public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 			}			
 		});
 	}
+	
 	
 	public List<CodeType> getCodeTypeByType(String codeType){
 		return this.find(CodeType.class, new String[]{"codeType"}, 
