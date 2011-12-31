@@ -72,13 +72,16 @@ Ext.define('ems.biz.samples.xgridsample.view.XGridSample1ViewUI', {
 //				buttonAlign: 'center',
 				tbar: [{
 					text: '新增',
-					iconCls: 'icon-new'
+					iconCls: 'icon-create',
+					listeners: me.MRA('click', 'onCreate')
 				}, {
 					text: '修改',
-					iconCls: 'icon-edit'
+					iconCls: 'icon-modify',
+					listeners: me.MRA('click', 'onModify')
 				}, {
 					text: '删除',
-					iconCls: 'icon-delete'
+					iconCls: 'icon-delete',
+					listeners: me.MRA('click', 'onDelete')
 				}]
 			}]
 		}

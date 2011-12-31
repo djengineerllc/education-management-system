@@ -1,0 +1,1 @@
+"%JAVA_HOME%"\bin\java -Dfile.encoding=UTF-8 -jar JSBuilder2.jar -p ./build.jsb2 -d ./deploy -v >log.txt

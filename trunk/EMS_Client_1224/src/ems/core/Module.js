@@ -40,7 +40,7 @@ Ext.define('ems.core.Module', { // Controller
 		me.uiIdPrefix = me.$className.substring(0, me.$className.lastIndexOf('.')).replace(/\./g, '-').toLowerCase() + '-';
 	},
 	
-	init: function() {//debugger;
+	init: function() {
 		var me = this;
 		me.addEvents(
 			'beforeHandlerRequest'
@@ -52,7 +52,7 @@ Ext.define('ems.core.Module', { // Controller
 				me.actions = Ext.create(actionsClassName);
 			} catch (e) {
 				Ext.Error.raise({
-					sourceClass: Ext.getClassName(me),
+					sourceClass: me.$className,
 					sourceMethod: 'init',
 					msg: 'create action[' + actionsClassName + '] error: ' + e.message
                 });
@@ -141,7 +141,7 @@ Ext.define('ems.core.Module', { // Controller
 				me.ui = Ext.create(uiClassName, config);
 			} catch (e) {
 				Ext.Error.raise({
-					sourceClass: Ext.getClassName(me),
+					sourceClass: me.$className,
 					sourceMethod: 'createUI',
 					msg: 'create ui[' + uiClassName + '] error: ' + e.message
                 });
@@ -161,10 +161,7 @@ Ext.define('ems.core.Module', { // Controller
 			renderTo = (viewConfig.renderTo || me.ui.id); // || Ext.getBody()
 		delete viewConfig.renderTo;
 		
-		if (viewId.indexOf('.view.') == -1) {
-			viewId = (me.getModuleDir() + '.view.' + viewId);
-		};
-		
+		viewId = me._getViewId(viewId);
 		Ext.apply(viewConfig, {
 			id: viewId // TODO viewId conflict
 		});
@@ -174,7 +171,7 @@ Ext.define('ems.core.Module', { // Controller
 			refCmp.removeAll(true);
 		} else {
 			Ext.destroy(Ext.getCmp(viewId));
-		};
+		}
 		
 		var view = Ext.create(viewId, viewConfig);
 		refCmp.add(view);
@@ -190,6 +187,30 @@ Ext.define('ems.core.Module', { // Controller
 		return this.renderView(viewId, viewConfig, position);
 	},
 	
+	showWindow: function(viewId, viewConfig, windowConfig) {
+		var me = this,
+			viewConfig = Ext.apply({}, me._moduleUIConfig(), viewConfig),
+			win = Ext.create('Ext.window.Window', Ext.apply({
+				modal: true,
+				resizable: false
+			}, windowConfig, {
+				layout: 'fit',
+				items: Ext.create(me._getViewId(viewId), viewConfig)
+			}));
+		
+		return win.show();
+	},
+	SW: function(viewId, viewConfig, windowConfig) {
+		return this.showWindow(viewId, viewConfig, windowConfig);
+	},
+	
+	_getViewId: function(viewId) {
+		if (viewId.indexOf('.view.') == -1) {
+			viewId = (this.getModulePkg() + '.view.' + viewId);
+		}
+		
+		return viewId;
+	},
 	_moduleUIConfig: function() {
 		var me = this;
 		return {
@@ -256,19 +277,24 @@ Ext.define('ems.core.Module', { // Controller
 		return msg;
 	},
 	
-	getModuleDir: function() {
+	getModulePkg: function() {
 		var me = this,
 			cn = me.$className;
 			
 		return cn.substring(0, cn.lastIndexOf('.'));
 	},
 	
-	query: function(selector, root, multiRet) {
+	query: function(selector, root) {
 		var me = this,
-			root = root || me.ui,
-			rets = root.query(selector);
+			root = root || me.ui;
 		
-		return (multiRet === true ? rets : rets[0]);
+		return root.query(selector);
+	},
+	up: function(selector) {
+		return this.ui.up(selector);
+	},
+	down: function(selector) {
+		return this.ui.down(selector);
 	},
 	
 	getEl: function(id) {

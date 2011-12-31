@@ -8,13 +8,13 @@ Ext.define('ems.login.Login', {
 		me.callParent(arguments);
 		
 		me.RV('LoginFormUI', {
-			renderTo: me.query('#loginFormPanel')
+			renderTo: me.down('#loginFormPanel')
 		});
 	},
 	
 	login: function(params, request) {
 		var me = this,
-			loginForm = me.query('#loginForm').getForm();
+			loginForm = me.down('#loginForm').getForm();
 			
 		if (!loginForm.isValid()) {
 			return;

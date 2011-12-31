@@ -24,12 +24,12 @@ Ext.define('ems.core.UI', {
 	
 	uiConfig: Ext.emptyFn,
 	
-	initComponent: function() {//debugger;
+	initComponent: function() {
 		var me = this,
 			uiConfig = me.uiConfig();
 			
 		Ext.apply(me, uiConfig);
-        Ext.apply(this.initialConfig, uiConfig);
+        Ext.apply(me.initialConfig, uiConfig);
 		
 		me.callParent(arguments);
 	}

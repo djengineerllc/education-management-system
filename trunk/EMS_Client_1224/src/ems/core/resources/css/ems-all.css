@@ -26,21 +26,36 @@ background-image: url('images/logo.png');
 }
 
 .ems .icon-search {
-	background-image: url('images/woofunction-icons/search_button_16.png');
+	/*
+background-image: url('images/woofunction-icons/search_button_16.png');
+*/
+	background-image: url('images/icons/search_16.png');
+    display: block;
+}
+.ems .icon-reset {
+	/*
+background-image: url('images/woofunction-icons/search_button_16.png');
+*/
+	background-image: url('images/icons/reset_16.png');
     display: block;
 }
 
-.ems .icon-add, .ems .icon-new {
+.ems .icon-add, .ems .icon-new, .ems .icon-create {
     background-image: url('images/woofunction-icons/add_16.png');
     display: block;
 }
 
-.ems .icon-edit {
+.ems .icon-edit, .ems .icon-modify, .ems .icon-update {
 	background-image: url('images/icons/edit_16.png');
     display: block;
 }
 
 .ems .icon-close, .ems .icon-delete {
 	background-image: url('images/woofunction-icons/close_16.png');
+    display: block;
+}
+
+.ems .icon-read, .ems .icon-view {
+	background-image: url('images/icons/read_16.png');
     display: block;
 }

@@ -6,7 +6,7 @@ Ext.define('ems.biz.samples.xgridsample.XGridSampleUI', {
         return {
 			border: false,
 			frame: false,
-			layout:'anchor',
+			layout: 'anchor',
 			defaults: {
 				border: false,
 				frame: false,
