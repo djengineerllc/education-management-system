@@ -1,0 +1,7 @@
+{
+	nav: {
+		title1: 'Accordion Item 1',
+		title2: 'Accordion Item 2',
+		title3: 'Accordion Item 3' 
+	}
+}
