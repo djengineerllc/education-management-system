@@ -1,0 +1,959 @@
+{
+	"projectName" : "EMS - Education Management System",
+	"licenseText" : "EMS - Education Management System \nAmoy Team",
+	"deployDir" : "ems",
+	"resources" : [{
+				"src" : "index.html",
+				"dest" : "index.html",
+				"filters" : ".*"
+			}, {
+				"src" : "src/ems/core/resources/",
+				"dest" : "src/ems/core/resources/",
+				"filters" : ".*"
+			}, {
+				"src" : "lib/ext/resources/",
+				"dest" : "lib/ext/resources/",
+				"filters" : ".*"
+			}, {
+				"src" : "lib/ext/src/",
+				"dest" : "lib/ext/src/",
+				"filters" : ".*"
+			}],
+	"pkgs" : [{
+				"name" : "Bootstrap",
+				"isDebug" : false,
+				"file" : "src/ems/bootstrap.js",
+				"fileIncludes" : [{
+							"text" : "bootstrap.js",
+							"path" : "src/ems/"
+						}]
+			}, {
+				"name" : "Ems-Core",
+				"isDebug" : false,
+				"file" : "src/ems/core/Ems.js",
+				"fileIncludes" : [{
+							"text" : "Ems.js",
+							"path" : "src/ems/core/"
+						}]
+			}, {
+				"name" : "Ems-Core-Requires",
+				"isDebug" : false,
+				"file" : "src/ems/core/Requires.js",
+				"fileIncludes" : [{
+							"text" : "Observable.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Animate.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "HashMap.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Template.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "ComponentQuery.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Filter.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Sorter.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Floating.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "CSS.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Memento.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "IdGenerator.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Provider.js",
+							"path" : "lib/ext/src/state/"
+						}, {
+							"text" : "ElementLoader.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Layout.js",
+							"path" : "lib/ext/src/layout/"
+						}, {
+							"text" : "Component.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "Manager.js",
+							"path" : "lib/ext/src/state/"
+						}, {
+							"text" : "Stateful.js",
+							"path" : "lib/ext/src/state/"
+						}, {
+							"text" : "AbstractManager.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "PluginManager.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "ComponentManager.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "XTemplate.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "AbstractMixedCollection.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Sortable.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "MixedCollection.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "StoreManager.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "ComponentLoader.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Auto.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "AbstractComponent.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "AbstractPlugin.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Component.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "LoadMask.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Connection.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Ajax.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Association.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "ModelManager.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "SortTypes.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Errors.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Operation.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "validations.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "ResultSet.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Writer.js",
+							"path" : "lib/ext/src/data/writer/"
+						}, {
+							"text" : "AbstractContainer.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "ZIndexManager.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "None.js",
+							"path" : "lib/ext/src/layout/container/boxOverflow/"
+						}, {
+							"text" : "KeyMap.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "ClickRepeater.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Button.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "TextMetrics.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Scroller.js",
+							"path" : "lib/ext/src/layout/container/boxOverflow/"
+						}, {
+							"text" : "Offset.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "KeyNav.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Queue.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "Target.js",
+							"path" : "lib/ext/src/fx/target/"
+						}, {
+							"text" : "Sprite.js",
+							"path" : "lib/ext/src/fx/target/"
+						}, {
+							"text" : "CompositeSprite.js",
+							"path" : "lib/ext/src/fx/target/"
+						}, {
+							"text" : "Component.js",
+							"path" : "lib/ext/src/fx/target/"
+						}, {
+							"text" : "CubicBezier.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "Color.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "StatusProxy.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "Proxy.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "AbstractDock.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "Types.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Field.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Reader.js",
+							"path" : "lib/ext/src/data/reader/"
+						}, {
+							"text" : "Json.js",
+							"path" : "lib/ext/src/data/reader/"
+						}, {
+							"text" : "Json.js",
+							"path" : "lib/ext/src/data/writer/"
+						}, {
+							"text" : "Proxy.js",
+							"path" : "lib/ext/src/data/proxy/"
+						}, {
+							"text" : "Server.js",
+							"path" : "lib/ext/src/data/proxy/"
+						}, {
+							"text" : "Ajax.js",
+							"path" : "lib/ext/src/data/proxy/"
+						}, {
+							"text" : "Model.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Container.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Auto.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "AbstractContainer.js",
+							"path" : "lib/ext/src/container/"
+						}, {
+							"text" : "Container.js",
+							"path" : "lib/ext/src/container/"
+						}, {
+							"text" : "Fill.js",
+							"path" : "lib/ext/src/toolbar/"
+						}, {
+							"text" : "Item.js",
+							"path" : "lib/ext/src/toolbar/"
+						}, {
+							"text" : "Separator.js",
+							"path" : "lib/ext/src/toolbar/"
+						}, {
+							"text" : "Manager.js",
+							"path" : "lib/ext/src/menu/"
+						}, {
+							"text" : "Button.js",
+							"path" : "lib/ext/src/button/"
+						}, {
+							"text" : "Menu.js",
+							"path" : "lib/ext/src/layout/container/boxOverflow/"
+						}, {
+							"text" : "Region.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "DragDropManager.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "Box.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "HBox.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "VBox.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "FocusManager.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Toolbar.js",
+							"path" : "lib/ext/src/toolbar/"
+						}, {
+							"text" : "AbstractPanel.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "Header.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "Element.js",
+							"path" : "lib/ext/src/fx/target/"
+						}, {
+							"text" : "CompositeElement.js",
+							"path" : "lib/ext/src/fx/target/"
+						}, {
+							"text" : "Manager.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "Animator.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "Easing.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "Draw.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "PropertyHandler.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "Anim.js",
+							"path" : "lib/ext/src/fx/"
+						}, {
+							"text" : "DragDrop.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DD.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DDProxy.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DragSource.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DD.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "Dock.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "Panel.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "Tip.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "Tip.js",
+							"path" : "lib/ext/src/tip/"
+						}, {
+							"text" : "ToolTip.js",
+							"path" : "lib/ext/src/tip/"
+						}, {
+							"text" : "QuickTip.js",
+							"path" : "lib/ext/src/tip/"
+						}, {
+							"text" : "QuickTipManager.js",
+							"path" : "lib/ext/src/tip/"
+						}, {
+							"text" : "CompositeSprite.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "Draw.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "Surface.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "Component.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "AbstractStore.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Grouper.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Store.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "ArrayStore.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Batch.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Manager.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "Direct.js",
+							"path" : "lib/ext/src/data/proxy/"
+						}, {
+							"text" : "DirectStore.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Request.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Client.js",
+							"path" : "lib/ext/src/data/proxy/"
+						}, {
+							"text" : "Memory.js",
+							"path" : "lib/ext/src/data/proxy/"
+						}, {
+							"text" : "Array.js",
+							"path" : "lib/ext/src/data/reader/"
+						}, {
+							"text" : "Event.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "RemotingEvent.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "ExceptionEvent.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "Provider.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "JsonProvider.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "PollingProvider.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "RemotingMethod.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "Transaction.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "RemotingProvider.js",
+							"path" : "lib/ext/src/direct/"
+						}, {
+							"text" : "Matrix.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "SpriteDD.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "Sprite.js",
+							"path" : "lib/ext/src/draw/"
+						}, {
+							"text" : "Svg.js",
+							"path" : "lib/ext/src/draw/engine/"
+						}, {
+							"text" : "Vml.js",
+							"path" : "lib/ext/src/draw/engine/"
+						}, {
+							"text" : "AbstractFit.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Fit.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Point.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Layer.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "ProgressBar.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "ProgressBar.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "ShadowPool.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "Shadow.js",
+							"path" : "lib/ext/src/"
+						}, {
+							"text" : "DragTracker.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "ComponentDragger.js",
+							"path" : "lib/ext/src/util/"
+						}, {
+							"text" : "Labelable.js",
+							"path" : "lib/ext/src/form/"
+						}, {
+							"text" : "Field.js",
+							"path" : "lib/ext/src/form/field/"
+						}, {
+							"text" : "Field.js",
+							"path" : "lib/ext/src/layout/component/field/"
+						}, {
+							"text" : "VTypes.js",
+							"path" : "lib/ext/src/form/field/"
+						}, {
+							"text" : "FieldAncestor.js",
+							"path" : "lib/ext/src/form/"
+						}, {
+							"text" : "Action.js",
+							"path" : "lib/ext/src/form/action/"
+						}, {
+							"text" : "Load.js",
+							"path" : "lib/ext/src/form/action/"
+						}, {
+							"text" : "Submit.js",
+							"path" : "lib/ext/src/form/action/"
+						}, {
+							"text" : "Text.js",
+							"path" : "lib/ext/src/layout/component/field/"
+						}, {
+							"text" : "TextArea.js",
+							"path" : "lib/ext/src/layout/component/field/"
+						}, {
+							"text" : "Anchor.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Base.js",
+							"path" : "lib/ext/src/form/field/"
+						}, {
+							"text" : "Text.js",
+							"path" : "lib/ext/src/form/field/"
+						}, {
+							"text" : "TextArea.js",
+							"path" : "lib/ext/src/form/field/"
+						}, {
+							"text" : "Window.js",
+							"path" : "lib/ext/src/window/"
+						}, {
+							"text" : "MessageBox.js",
+							"path" : "lib/ext/src/window/"
+						}, {
+							"text" : "Basic.js",
+							"path" : "lib/ext/src/form/"
+						}, {
+							"text" : "Panel.js",
+							"path" : "lib/ext/src/form/"
+						}, {
+							"text" : "Item.js",
+							"path" : "lib/ext/src/menu/"
+						}, {
+							"text" : "CheckItem.js",
+							"path" : "lib/ext/src/menu/"
+						}, {
+							"text" : "KeyNav.js",
+							"path" : "lib/ext/src/menu/"
+						}, {
+							"text" : "Separator.js",
+							"path" : "lib/ext/src/menu/"
+						}, {
+							"text" : "Menu.js",
+							"path" : "lib/ext/src/menu/"
+						}, {
+							"text" : "Tool.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "ResizeTracker.js",
+							"path" : "lib/ext/src/resizer/"
+						}, {
+							"text" : "Resizer.js",
+							"path" : "lib/ext/src/resizer/"
+						}, {
+							"text" : "SplitterTracker.js",
+							"path" : "lib/ext/src/resizer/"
+						}, {
+							"text" : "Splitter.js",
+							"path" : "lib/ext/src/resizer/"
+						}, {
+							"text" : "Viewport.js",
+							"path" : "lib/ext/src/container/"
+						}, {
+							"text" : "DirectSubmit.js",
+							"path" : "lib/ext/src/form/action/"
+						}, {
+							"text" : "Module.js",
+							"path" : "src/ems/core/"
+						}, {
+							"text" : "Actions.js",
+							"path" : "src/ems/core/"
+						}, {
+							"text" : "UI.js",
+							"path" : "src/ems/core/"
+						}, {
+							"text" : "EmsUtils.js",
+							"path" : "src/ems/core/"
+						}, {
+							"text" : "EventBus.js",
+							"path" : "src/ems/core/"
+						}, {
+							"text" : "Requires.js",
+							"path" : "src/ems/core/"
+						}]
+			}, {
+				"name" : "Ems-System",
+				"isDebug" : false,
+				"file" : "src/ems/system/System.js",
+				"fileIncludes" : [{
+							"text" : "DicModel.js",
+							"path" : "src/ems/system/data/model/"
+						}, {
+							"text" : "DicStore.js",
+							"path" : "src/ems/system/data/store/"
+						}, {
+							"text" : "Dic.js",
+							"path" : "src/ems/system/"
+						}, {
+							"text" : "SystemActions.js",
+							"path" : "src/ems/system/"
+						}, {
+							"text" : "System.js",
+							"path" : "src/ems/system/"
+						}]
+			}, {
+				"name" : "Ems-Login",
+				"isDebug" : false,
+				"file" : "src/ems/login/Login.js",
+				"fileIncludes" : [{
+							"text" : "LoginFormUI.js",
+							"path" : "src/ems/login/view/"
+						}, {
+							"text" : "LoginActions.js",
+							"path" : "src/ems/login/"
+						}, {
+							"text" : "LoginUI.js",
+							"path" : "src/ems/login/"
+						}, {
+							"text" : "Login.js",
+							"path" : "src/ems/login/"
+						}]
+			}, {
+				"name" : "Ems-Main",
+				"isDebug" : false,
+				"file" : "src/ems/main/Main.js",
+				"fileIncludes" : [{
+							"text" : "Border.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "AbstractCard.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Card.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Tab.js",
+							"path" : "lib/ext/src/layout/component/"
+						}, {
+							"text" : "Tab.js",
+							"path" : "lib/ext/src/tab/"
+						}, {
+							"text" : "Bar.js",
+							"path" : "lib/ext/src/tab/"
+						}, {
+							"text" : "Tree.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "NodeInterface.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "NodeStore.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "TreeStore.js",
+							"path" : "lib/ext/src/data/"
+						}, {
+							"text" : "Accordion.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "Panel.js",
+							"path" : "lib/ext/src/tab/"
+						}, {
+							"text" : "TextItem.js",
+							"path" : "lib/ext/src/toolbar/"
+						}, {
+							"text" : "StatusBar.js",
+							"path" : "lib/ext/src/ux/statusbar/"
+						}, {
+							"text" : "Model.js",
+							"path" : "lib/ext/src/selection/"
+						}, {
+							"text" : "DataViewModel.js",
+							"path" : "lib/ext/src/selection/"
+						}, {
+							"text" : "RowModel.js",
+							"path" : "lib/ext/src/selection/"
+						}, {
+							"text" : "TreeModel.js",
+							"path" : "lib/ext/src/selection/"
+						}, {
+							"text" : "Scroller.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "LockingView.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "Lockable.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "TableChunker.js",
+							"path" : "lib/ext/src/view/"
+						}, {
+							"text" : "ColumnLayout.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "HeaderResizer.js",
+							"path" : "lib/ext/src/grid/plugin/"
+						}, {
+							"text" : "Registry.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "ScrollManager.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DDTarget.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DropTarget.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DropZone.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DropZone.js",
+							"path" : "lib/ext/src/grid/header/"
+						}, {
+							"text" : "DragZone.js",
+							"path" : "lib/ext/src/dd/"
+						}, {
+							"text" : "DragZone.js",
+							"path" : "lib/ext/src/grid/header/"
+						}, {
+							"text" : "HeaderReorderer.js",
+							"path" : "lib/ext/src/grid/plugin/"
+						}, {
+							"text" : "Container.js",
+							"path" : "lib/ext/src/grid/header/"
+						}, {
+							"text" : "Column.js",
+							"path" : "lib/ext/src/grid/column/"
+						}, {
+							"text" : "Column.js",
+							"path" : "lib/ext/src/tree/"
+						}, {
+							"text" : "AbstractView.js",
+							"path" : "lib/ext/src/view/"
+						}, {
+							"text" : "View.js",
+							"path" : "lib/ext/src/view/"
+						}, {
+							"text" : "Table.js",
+							"path" : "lib/ext/src/view/"
+						}, {
+							"text" : "View.js",
+							"path" : "lib/ext/src/tree/"
+						}, {
+							"text" : "Table.js",
+							"path" : "lib/ext/src/panel/"
+						}, {
+							"text" : "Panel.js",
+							"path" : "lib/ext/src/tree/"
+						}, {
+							"text" : "RowNumberer.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "CheckboxModel.js",
+							"path" : "lib/ext/src/selection/"
+						}, {
+							"text" : "Table.js",
+							"path" : "lib/ext/src/layout/container/"
+						}, {
+							"text" : "View.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "Panel.js",
+							"path" : "lib/ext/src/grid/"
+						}, {
+							"text" : "XGridSearchForm.js",
+							"path" : "src/ems/core/widget/plugin/"
+						}, {
+							"text" : "XGrid.js",
+							"path" : "src/ems/core/widget/"
+						}, {
+							"text" : "MenuModel.js",
+							"path" : "src/ems/main/data/model/"
+						}, {
+							"text" : "MenuStore.js",
+							"path" : "src/ems/main/data/store/"
+						}, {
+							"text" : "MainActions.js",
+							"path" : "src/ems/main/"
+						}, {
+							"text" : "MainUI.js",
+							"path" : "src/ems/main/"
+						}, {
+							"text" : "Main.js",
+							"path" : "src/ems/main/"
+						}]
+			}, {
+				"name" : "Ems-Biz-Samples-XGridSample",
+				"isDebug" : false,
+				"file" : "src/ems/biz/samples/xgridsample/XGridSample.js",
+				"fileIncludes" : [{
+							"text" : "XGridSample1ViewUI.js",
+							"path" : "src/ems/biz/samples/xgridsample/view/"
+						}, {
+							"text" : "XGridSample2ViewUI.js",
+							"path" : "src/ems/biz/samples/xgridsample/view/"
+						}, {
+							"text" : "XGridSampleActions.js",
+							"path" : "src/ems/biz/samples/xgridsample/"
+						}, {
+							"text" : "XGridSampleUI.js",
+							"path" : "src/ems/biz/samples/xgridsample/"
+						}, {
+							"text" : "XGridSample.js",
+							"path" : "src/ems/biz/samples/xgridsample/"
+						}]
+			}, {
+				"name" : "Ems-locale",
+				"isDebug" : false,
+				"file" : "src/ems/core/locale/ext-lang-zh_CN.js",
+				"fileIncludes" : [{
+							"text" : "ext-lang-zh_CN.js",
+							"path" : "src/ems/core/locale/"
+						}]
+			}, {
+				"name" : "Ext-Core",
+				"isDebug" : false,
+				"file" : "lib/ext/ext.js",
+				"fileIncludes" : [{
+							"text" : "Ext.js",
+							"path" : "lib/ext/src/core/src/"
+						}, {
+							"text" : "Version.js",
+							"path" : "lib/ext/src/core/src/version/"
+						}, {
+							"text" : "String.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "Number.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "Array.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "Function.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "Object.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "Date.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "Base.js",
+							"path" : "lib/ext/src/core/src/class/"
+						}, {
+							"text" : "Class.js",
+							"path" : "lib/ext/src/core/src/class/"
+						}, {
+							"text" : "ClassManager.js",
+							"path" : "lib/ext/src/core/src/class/"
+						}, {
+							"text" : "Loader.js",
+							"path" : "lib/ext/src/core/src/class/"
+						}, {
+							"text" : "Error.js",
+							"path" : "lib/ext/src/core/src/lang/"
+						}, {
+							"text" : "JSON.js",
+							"path" : "lib/ext/src/core/src/misc/"
+						}, {
+							"text" : "Ext-more.js",
+							"path" : "lib/ext/src/core/src/"
+						}, {
+							"text" : "Format.js",
+							"path" : "lib/ext/src/core/src/util/"
+						}, {
+							"text" : "TaskManager.js",
+							"path" : "lib/ext/src/core/src/util/"
+						}, {
+							"text" : "Support.js",
+							"path" : "lib/ext/src/core/src/"
+						}, {
+							"text" : "DomHelper.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "DomQuery.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.traversal.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.insertion.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.style.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.fx.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.anim.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.static.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "CompositeElementLite.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "DelayedTask.js",
+							"path" : "lib/ext/src/core/src/util/"
+						}, {
+							"text" : "Event.js",
+							"path" : "lib/ext/src/core/src/util/"
+						}, {
+							"text" : "EventManager.js",
+							"path" : "lib/ext/src/core/src/"
+						}, {
+							"text" : "EventObject.js",
+							"path" : "lib/ext/src/core/src/"
+						}, {
+							"text" : "Element.static-more.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element-more.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.alignment.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.position.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.scroll.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.fx-more.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "Element.keys.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "CompositeElementLite-more.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}, {
+							"text" : "CompositeElement.js",
+							"path" : "lib/ext/src/core/src/dom/"
+						}]
+			}]
+}

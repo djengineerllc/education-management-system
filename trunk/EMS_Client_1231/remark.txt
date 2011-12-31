@@ -1,0 +1,24 @@
+//		alert(this.uiEl.el);
+//		alert(this.queryEl('.wscls'))
+//		alert(this.uiEl.getComponent('workspace0'));
+//		alert(Ext.query('#workspace')[0].innerHTML)
+//		alert(Ext.get(Ext.query('#workspace')[0]).dom);
+//		alert(Ext.get('workspace').dom);
+//		alert(this.getEl('workspace'))
+
+
+{"tid":6,"action":"TestAction","method":"getBasicInfo","message":
+  "IllegalArgumentException: '{\"foo\":\"bar\",\"uid\":34}' is not a valid json text for the 'java.lang.Long' Java type",
+  "where":
+  "java.lang.IllegalArgumentException: '{\"foo\":\"bar\",\"uid\":34}' is not a valid json text for the 'java.lang.Long' Java type\r\n\tat com.softwarementors.extjs.djn.router.processor.standard.json.JsonRequestProcessor.checkJsonMethodParameterTypes(JsonRequestProcessor.java:354)\r\n\tat com.softwarementors.extjs.djn.router.processor.standard.json.JsonRequestProcessor.getIndividualRequestParameters(JsonRequestProcessor.java:247)\r\n\tat com.softwarementors.extjs.djn.router.processor.standard.json.JsonRequestProcessor.processIndividualRequest(JsonRequestProcessor.java:404)\r\n\tat com.softwarementors.extjs.djn.router.processor.standard.json.JsonRequestProcessor.processIndividualRequestsInThisThread(JsonRequestProcessor.java:143)\r\n\tat com.softwarementors.extjs.djn.router.processor.standard.json.JsonRequestProcessor.process(JsonRequestProcessor.java:126)\r\n\tat com.softwarementors.extjs.djn.router.RequestRouter.processJsonRequest(RequestRouter.java:83)\r\n\tat com.softwarementors.extjs.djn.servlet.DirectJNgineServlet.processRequest(DirectJNgineServlet.java:617)\r\n\tat com.softwarementors.extjs.djn.servlet.DirectJNgineServlet.doPost(DirectJNgineServlet.java:580)\r\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:710)\r\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:803)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)\r\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:228)\r\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)\r\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)\r\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)\r\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)\r\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:216)\r\n\tat org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)\r\n\tat org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:634)\r\n\tat org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:445)\r\n\tat java.lang.Thread.run(Unknown Source)\r\n",
+  "type":"exception"}
+
+  
+  {"tid":11,"action":"TestAction","method":"updateBasicInfo","result":{
+    "success":false,"errors":{"email":"already taken"},"debug_formPacket":{
+      "uid":"34","email":"aaron@extjs.com","company":"Ext JS, LLC","name":
+      "Aaron Conran","foo":"bar"}},"type":"rpc"}
+  
+  
+  s.destroyStore();
+//									s.destroy();
