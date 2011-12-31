@@ -21,7 +21,7 @@
         },
 		
 		loadCss: function(id, path) {
-			document.write('<link id=" + id + " rel="stylesheet" type="text/css" href="' + this.rootPath + path + this.cacheBuster() + '">');
+			document.write('<link id="' + id + '" rel="stylesheet" type="text/css" href="' + this.rootPath + path + this.cacheBuster() + '">');
 		},
 		
         loadScript: function(path) {

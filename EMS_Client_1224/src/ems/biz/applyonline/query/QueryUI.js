@@ -41,7 +41,7 @@ Ext.define('ems.biz.applyonline.query.QueryUI', {
 					fieldLabel: '性别',
 					name: 'stuSex'
 //					,value: 2
-					,valueKey: 'S2'
+					,valueKey: 'S1'
 				})
 				, {
 					xtype: 'datefield',
@@ -100,7 +100,7 @@ Ext.define('ems.biz.applyonline.query.QueryUI', {
 		        text: '电子邮件',
 				flex: 1
 			}],
-//			buttonAlign: 'center',
+			buttonAlign: 'center',
 			buttons: [{
 				text: 'New',
 				handler: me.onNew

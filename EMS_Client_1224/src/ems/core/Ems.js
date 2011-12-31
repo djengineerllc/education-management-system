@@ -108,7 +108,7 @@ Ems = ems.core.Ems = {
 			Ext.state.Manager.setProvider(Ext.create(cfg.stateProvider));
 		}
 		if (cfg.locale) {
-			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.locale + '.js', Ext.emptyFn);
+			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.locale + '.js', Ext.emptyFn, Ext.emptyFn, this, true);
 		}
 		if (cfg.requireModules) {
 			Ext.each(me.config.requireModules, function(moduleId) {
@@ -219,7 +219,7 @@ Ems = ems.core.Ems = {
 	requestModule: function(id, config, cb, scope) {
 		var me = this,
 			module = me.getModule(id);
-			
+		
 		if (!module) {
 			module = me.loadModule(id, config);
 			module.init();
@@ -289,9 +289,9 @@ Ems = ems.core.Ems = {
 	},
 	
 	DF: function(id, method, action) { // directFn // }, async) {
-		var me = this;
-		var module = me.getModule(id);
-		var remoteDirectFn = (action ? module.actions[action][method] : module.actions[method]);
+		var me = this,
+			module = me.getModule(id),
+			remoteDirectFn = (action ? module.actions[action][method] : module.actions[method]);
 		
 		var directFn = function() {
 			var args = Array.prototype.slice.call(arguments, 0), arg, p = [], cb, s, i;

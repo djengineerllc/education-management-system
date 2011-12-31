@@ -1,11 +1,14 @@
 Ext.define('ems.main.Main', {
 	extend: 'ems.core.Module',
 	requires: [
+		'Ext.layout.container.Border',
+		'Ext.tab.Panel'
 	],
 	
 	init: function() {
 		var me = this;
 		me.callParent(arguments);
+		
 		me.locale = { // TODO 资源加载器 国际化资源由Server提供 目前不需要国际化支持
 			nav: {
 				title1: '$Accordion Item 1',

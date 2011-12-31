@@ -4,6 +4,7 @@ Ext.define('ems.core.EmsUtils', {
 	
 	requires: [
 		'Ext.window.MessageBox'
+//		,'Ext.window.Window'
 	],
 	
 	showDialog: function(config) {
@@ -55,4 +56,8 @@ Ext.define('ems.core.EmsUtils', {
 		}, config);
 		return this.showDialog(config);
 	}
+	
+//	,showWindow: function(config) {
+//		return Ext.create('Ext.window.Window', config).show();
+//	}
 });

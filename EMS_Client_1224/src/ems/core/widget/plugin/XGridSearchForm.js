@@ -70,6 +70,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 	            }
 			}, {
 				text: '重置',
+				iconCls: 'icon-reset',
 				handler: function() {
 					var form = this.up('form').getForm();
 					form.reset();

@@ -2,6 +2,15 @@ Ext.define('ems.core.widget.XGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.xgrid',
 	
+	uses: [
+		'Ext.data.DirectStore',
+		'Ext.grid.RowNumberer',
+		'Ext.selection.CheckboxModel',
+		'Ext.toolbar.Paging',
+		'Ext.ux.RowExpander',
+		'ems.core.widget.plugin.XGridSearchForm'
+	],
+	
 	frame: false,
 	border: false,
 	columnLines: false,
@@ -33,7 +42,7 @@ Ext.define('ems.core.widget.XGrid', {
 			config.store = me._buildStore();
 		};
 		if (me.selModel == undefined && me.selMode != undefined) {
-			config.selModel = me._buildselModel();
+			config.selModel = me._buildSelModel();
 		};
 		if (me.plugins == undefined) {
 			config.plugins = me._buildPlugins();
@@ -41,7 +50,7 @@ Ext.define('ems.core.widget.XGrid', {
         Ext.applyIf(me, config);
 		
 		if (me.rowNumberer) {
-			me.columns = [{ xtype:'rownumberer' }].concat(me.columns || []);
+			me.columns = [Ext.create('Ext.grid.RowNumberer')].concat(me.columns || []);
 		};
         
         this.callParent(arguments);
@@ -105,7 +114,7 @@ Ext.define('ems.core.widget.XGrid', {
 //		}
 		return Ext.create('Ext.data.DirectStore', config);
 	},
-	_buildselModel: function() {
+	_buildSelModel: function() {
 		var me = this;
 		
 		var config = {

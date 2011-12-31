@@ -1,10 +1,17 @@
 Ext.define('ems.main.MainUI', {
 	extend: 'Ext.container.Viewport',
 	requires: [
-		'Ext.layout.BorderLayout',
+		'Ext.layout.container.Border',
+		'Ext.layout.container.Accordion',
 		'Ext.tab.Panel',
-		'Ext.ux.TabScrollerMenu',
-		'Ext.toolbar.TextItem'
+		'Ext.tree.Panel'
+//		,
+//		'Ext.ux.TabScrollerMenu',
+//		'Ext.toolbar.TextItem'
+	],
+	
+	uses: [
+		'Ext.ux.statusbar.StatusBar'
 	],
 	
 	moduleId: null,
@@ -14,12 +21,12 @@ Ext.define('ems.main.MainUI', {
 	MRA: null,
 	DF: null,
 	
-	initComponent: function() {//debugger;
+	initComponent: function() {
 		var me = this,
 			uiConfig = me.uiConfig();
 			
 		Ext.apply(me, uiConfig);
-        Ext.apply(this.initialConfig, uiConfig);
+		Ext.apply(this.initialConfig, uiConfig);
 		
 		me.callParent(arguments);
 	},
