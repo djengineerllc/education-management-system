@@ -3,67 +3,62 @@ package com.ems.system.client.vo;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.ems.common.util.BeanUtils;
-
 /**
  * @author Chiknin
  */
+@SuppressWarnings("unchecked")
 public class ExtFormVO extends ExtBaseVO {
 
 	private boolean success = true;
-	
+
 	private Map<String, String> errors;
+
+	private Object data;
 	
-	private Map<String, String> data;
+	private Map<String, String> props;
 	
 	public ExtFormVO() {
 	}
-	
-	public ExtFormVO(Map<String, String> data) {
+
+	public ExtFormVO(Object data) {
+		super();
 		this.data = data;
-	}
-	
-	public ExtFormVO(Object dataObj) {
-		this.setDataFormObject(dataObj);
 	}
 
 	public ExtFormVO addField(String name, Object value) {
 		if (data == null) {
 			data = new TreeMap<String, String>();
 		}
-		
-		data.put(name, (value != null ? value.toString() : ""));
-		
+
+		((Map<String, String>) data).put(name, value != null ? value.toString(): null);
+
 		return this;
 	}
-	public ExtFormVO setDataFormObject(Object dataObj) {
-		if (data == null) {
-			data = new TreeMap<String, String>();
-		}
-		
-		BeanUtils.copyBeanToMap(dataObj, data);
-		
-		return this;
-	}
-	
+
 	public ExtFormVO addError(String fieldName, String errorMsg) {
 		if (errors == null) {
 			success = false;
 			errors = new TreeMap<String, String>();
 		}
 		errors.put(fieldName, errorMsg);
-		
+
 		return this;
 	}
-	public ExtFormVO setErrorsFormObject(Object dataObj) {
-		if (errors == null) {
-			success = false;
-			errors = new TreeMap<String, String>();
+	
+	public ExtFormVO addProp(String fieldName, Object prop) {
+		if (props == null) {
+			props = new TreeMap<String, String>();
 		}
-		
-		BeanUtils.copyBeanToMap(dataObj, errors);
-		
+		props.put(fieldName, prop != null ? prop.toString(): null);
+
 		return this;
+	}
+
+	public static ExtFormVO success(Object dataObj) {
+		return new ExtFormVO(dataObj);
+	}
+	public static ExtFormVO success() {
+		return new ExtFormVO();
 	}
 
 	public boolean isSuccess() {
@@ -82,11 +77,19 @@ public class ExtFormVO extends ExtBaseVO {
 		this.errors = errors;
 	}
 
-	public Map<String, String> getData() {
+	public Object getData() {
 		return data;
 	}
 
-	public void setData(Map<String, String> data) {
+	public void setData(Object data) {
 		this.data = data;
+	}
+
+	public Map<String, String> getProps() {
+		return props;
+	}
+
+	public void setProps(Map<String, String> props) {
+		this.props = props;
 	}
 }

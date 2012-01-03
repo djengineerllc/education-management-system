@@ -25,7 +25,7 @@ import com.google.gson.JsonObject;
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils{
 	
-	public static Gson gson = new GsonBuilder().create();
+	public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").serializeNulls().create();
 	
 	public static <T> T toBeanFromJson(JsonObject jsonObj, Class<T> beanClass) {
 		return gson.fromJson(jsonObj, beanClass);
@@ -52,7 +52,7 @@ public class BeanUtils extends org.springframework.beans.BeanUtils{
 		return gson.toJson(bean);
 	}
 	
-	public static void copyBeanToMap(Object beanObj, Map<String, String> map) { // string
+	public static void copyBeanToMap(Object beanObj, Map<String, Object> map) { // string
 		BeanWrapper bean = new BeanWrapperImpl(beanObj);
 		
 		PropertyDescriptor[] pds = bean.getPropertyDescriptors();
@@ -63,11 +63,23 @@ public class BeanUtils extends org.springframework.beans.BeanUtils{
 			}
 			
 			Object value = bean.getPropertyValue(name);
-			if (value instanceof Date) {
-				value = DateUtil.formatFull((Date) value);
-			}
+//			if (value instanceof JsonSerializable) {
+//				value = toJsonFormBean(value);
+//			} else 
+//			if (value instanceof Date) {
+//				value = DateUtil.formatFull((Date) value);
+//			} 
+//			else if (value instanceof List) {
+//				List<String> newList = new ArrayList<String>();
+//				for (Object o : (List) value) {
+//					if (o instanceof JsonSerializable) {
+//						newList.add(o)
+//					}
+//				}
+//				value = toJsonFormBean(value);
+//			} else if (value )
 			
-			map.put(name, (value != null ? value.toString() : null));
+			map.put(name, value);
 		}
 	}
 	
@@ -164,12 +176,16 @@ public class BeanUtils extends org.springframework.beans.BeanUtils{
 		map.put("d3", "2001-10-10 21:01:12");
 		
 		Bean bean = BeanUtils.toBeanFromMap(map, Bean.class);
+		bean.setA(null);
 		System.out.println(ToStringBuilder.reflectionToString(bean));
 		
-		Map<String, String> map1 = new HashMap<String, String>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
 		BeanUtils.copyBeanToMap(bean, map1);
 		System.out.println(map1);
 		
+		System.out.println(toJsonFormBean(bean));
+		
+		System.out.println(toJsonFormBean(map1));
 //		System.out.println(BeanUtils.toJsonFormBean(map));
 //		List l = new ArrayList();
 //		l.add(map);

@@ -2,7 +2,9 @@ package com.ems.common.dao.impl;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
@@ -11,6 +13,7 @@ import org.hibernate.Session;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import com.ems.common.dao.ICommonDAO;
 
 import conf.hibernate.CodeType;
@@ -40,7 +43,17 @@ public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findAll(Class<T> clazz) {
-		return (List<T>) getHibernateTemplate().find("from " + clazz.getSimpleName());
+		return (List<T>) getHibernateTemplate().find("from " + clazz.getName());
+	}
+	
+	/**
+	 * 根据HQL语句查找实体
+	 * @param hql
+	 * @param values
+	 * @return List
+	 */
+	public List findByHql(String hql, Object... values){
+		return this.getHibernateTemplate().find(hql, values);
 	}
 
 	public void delete(Object obj) {
@@ -125,6 +138,14 @@ public class CommonDAO extends HibernateDaoSupport implements ICommonDAO{
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	public void merge(Object object) {
+		this.getHibernateTemplate().merge(object);
+	}
+
+	public void saveAll(Collection collection) {
+		this.getHibernateTemplate().saveOrUpdateAll(collection);
 	}
 	
 	

@@ -1,6 +1,5 @@
 package com.ems.system.client;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.fileupload.FileItem;
@@ -28,7 +27,7 @@ public class DirectCurdAction extends DirectAction {
 	 * @param id
 	 * @return
 	 */
-	public ExtFormVO read(String id) {
+	public ExtFormVO read(Integer id) {
 		throw new UnsupportedOperationException("未实现");
 	}
 	
@@ -57,7 +56,7 @@ public class DirectCurdAction extends DirectAction {
 	 * @param ids
 	 * @return
 	 */
-	public ExtFormVO delete(List<String> ids) {
+	public ExtFormVO delete(Integer[] ids) {
 		throw new UnsupportedOperationException("未实现");
 	}
 	
