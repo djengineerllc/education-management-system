@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.ems.common.dao.ICommonDAO;
 
@@ -18,7 +17,7 @@ import conf.hibernate.RoleBO;
  */
 public class AuthCache{
 	
-	private static Map<String, Set<MenuBO>> roleMenuMap = new HashMap<String, Set<MenuBO>>();
+	private static Map<String, List<MenuBO>> roleMenuMap = new HashMap<String, List<MenuBO>>();
 	
 	private static ICommonDAO commonDAO;
 	
@@ -30,12 +29,12 @@ public class AuthCache{
 		List<RoleBO> roleList = commonDAO.findAll(RoleBO.class);
 		for(Iterator<RoleBO> it = roleList.iterator(); it.hasNext();){
 			RoleBO roleBO = it.next();
-			roleMenuMap.put(roleBO.getRoleCd(), roleBO.getMenuSet());
+			roleMenuMap.put(roleBO.getRoleCd(), roleBO.getMenuList());
 		}
 		init = true;
 	}
 	
-	public static Set<MenuBO> getMenuSet(String roleCd){
+	public static List<MenuBO> getMenuList(String roleCd){
 		if(!init){
 			synchronized (AuthCache.class) {
 				if(!init){
