@@ -22,7 +22,7 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 		me.apis = me.getApis();
 		if (!me.apis) {
 			me.apis = {
-				load: me.DF('read'),
+				load: me.DF('read')
 			};
 			if (me.enableCreateAction) {
 				me.apis.c = {
