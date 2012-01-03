@@ -127,7 +127,7 @@ Ext.define('ems.main.MainUI', {
 				width: 180,
 				items: [{
 					layout: 'accordion',
-					menuId: 'root',
+					menuId: -1,
 					listeners: me.MRA('beforerender', 'loadMenu', {
 						panelConfig: {
 							xtype: 'treepanel',

@@ -24,7 +24,7 @@ Ext.define('ems.main.Main', {
 			p = r.p,
 			pc = p.panelConfig || {},
 			eo = r.eventSource,
-			menuId = eo.menuId || 'root';
+			menuId = eo.menuId || -1;
 		
 		me.A({
 			m: 'getMenu',
