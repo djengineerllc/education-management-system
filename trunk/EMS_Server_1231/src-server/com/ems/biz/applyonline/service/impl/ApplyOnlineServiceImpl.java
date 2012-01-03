@@ -52,6 +52,18 @@ public class ApplyOnlineServiceImpl implements IApplyOnlineService{
 		return this.commonDAO.findByHql(hql.toString());
 	}
 	
+	public ApplyOnlineInfo findApplyOnlineInfoById(Integer id) throws Exception{
+		return this.commonDAO.findById(ApplyOnlineInfo.class, id);
+	}
+	
+	public void updateApplyOnlineInfo(ApplyOnlineInfo applyOnlineInfo) throws Exception{
+		this.commonDAO.update(applyOnlineInfo);
+	}
+	
+	public void deleteApplyOnlineInfo(Integer id) throws Exception{
+		this.commonDAO.deleteById(ApplyOnlineInfo.class, id);
+	}
+	
 	
 	
 	/*------------get---set-----------------------*/

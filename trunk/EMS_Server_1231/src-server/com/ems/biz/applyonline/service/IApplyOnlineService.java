@@ -30,5 +30,28 @@ public interface IApplyOnlineService {
 	 * @throws Exception
 	 */
 	public List<ApplyOnlineInfo> findApplyInfo(QueryApplyInfo queryApplyInfo) throws Exception;
+	
+	/**
+	 * 根据主键查找网上申请信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ApplyOnlineInfo findApplyOnlineInfoById(Integer id) throws Exception;
+	
+	/**
+	 * 更新网上申请信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public void updateApplyOnlineInfo(ApplyOnlineInfo applyOnlineInfo) throws Exception;
+	
+	/**
+	 * 删除网上报名信息
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteApplyOnlineInfo(Integer id) throws Exception;
 
 }
