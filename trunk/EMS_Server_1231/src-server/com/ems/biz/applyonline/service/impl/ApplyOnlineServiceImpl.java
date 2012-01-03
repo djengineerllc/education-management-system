@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.ems.biz.applyonline.service.IApplyOnlineService;
 import com.ems.common.dao.ICommonDAO;
+import com.ems.common.exception.EMSException;
+import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.info.applyonline.QueryApplyInfo;
 import com.ems.common.util.StringUtils;
 
@@ -15,24 +17,24 @@ import conf.hibernate.Project;
 public class ApplyOnlineServiceImpl implements IApplyOnlineService{
 	private ICommonDAO commonDAO;
 	
-	public List<Project> findAllProject() throws Exception {
+	public List<Project> findAllProject() throws EMSException {
 		return this.commonDAO.findAll(Project.class);
 	}
 	
-	public void saveApplyInfo(ApplyOnlineInfo applyOnlineInfo)throws Exception{
+	public void saveApplyInfo(ApplyOnlineInfo applyOnlineInfo)throws EMSRollbackableException{
 		applyOnlineInfo.setCreateTime(new Date());
 		applyOnlineInfo.setApplyTime(new Date());
 		this.commonDAO.save(applyOnlineInfo);
 	}
 	
-	public List<ApplyOnlineInfo> findApplyInfo(QueryApplyInfo queryApplyInfo) throws Exception{
+	public List<ApplyOnlineInfo> findApplyInfo(QueryApplyInfo queryApplyInfo) throws EMSException{
 		if(queryApplyInfo == null){
-			throw new Exception("参数异常!");
+			throw new EMSException("参数异常!");
 		}
 		if(StringUtils.isNullBlank(queryApplyInfo.getStuName())
 				&& StringUtils.isNullBlank(queryApplyInfo.getStuSex())
 				&& StringUtils.isNullBlank(queryApplyInfo.getApplyTime())){
-			throw new Exception("查询条件不能都为空!");
+			throw new EMSException("查询条件不能都为空!");
 		}
 		StringBuffer hql = new StringBuffer();
 		hql.append(" from ApplyOnlineInfo where 1=1 ");
@@ -52,15 +54,15 @@ public class ApplyOnlineServiceImpl implements IApplyOnlineService{
 		return this.commonDAO.findByHql(hql.toString());
 	}
 	
-	public ApplyOnlineInfo findApplyOnlineInfoById(Integer id) throws Exception{
+	public ApplyOnlineInfo findApplyOnlineInfoById(Integer id) throws EMSException{
 		return this.commonDAO.findById(ApplyOnlineInfo.class, id);
 	}
 	
-	public void updateApplyOnlineInfo(ApplyOnlineInfo applyOnlineInfo) throws Exception{
+	public void updateApplyOnlineInfo(ApplyOnlineInfo applyOnlineInfo) throws EMSRollbackableException{
 		this.commonDAO.update(applyOnlineInfo);
 	}
 	
-	public void deleteApplyOnlineInfo(Integer id) throws Exception{
+	public void deleteApplyOnlineInfo(Integer id) throws EMSRollbackableException{
 		this.commonDAO.deleteById(ApplyOnlineInfo.class, id);
 	}
 	
