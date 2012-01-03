@@ -1,7 +1,7 @@
 package conf.hibernate;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -10,7 +10,6 @@ import java.util.Set;
  * @author MyEclipse Persistence Tools
  */
 
-@SuppressWarnings("serial")
 public class MenuBO implements java.io.Serializable {
 
 	private Integer id;
@@ -18,8 +17,16 @@ public class MenuBO implements java.io.Serializable {
 	private boolean leaf;
 	private String moduleId;
 	private String moduleName;
-	private MenuBO parentBO;
-	private Set<MenuBO> childMenuSet;
+	private Integer parentId;
+	public Integer getParentId() {
+		return parentId;
+	}
+
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+	private List<MenuBO> childMenuList;
 	
 	public MenuBO() {
 		super();
@@ -40,12 +47,16 @@ public class MenuBO implements java.io.Serializable {
 	}
 
 
-	public Set<MenuBO> getChildMenuSet() {
-		return childMenuSet;
+	public List<MenuBO> getChildMenuList() {
+		return childMenuList;
 	}
-	public void setChildMenuSet(Set<MenuBO> childMenuSet) {
-		this.childMenuSet = childMenuSet;
+
+
+	public void setChildMenuList(List<MenuBO> childMenuList) {
+		this.childMenuList = childMenuList;
 	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -76,20 +87,12 @@ public class MenuBO implements java.io.Serializable {
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
 	}
-	public MenuBO getParentBO() {
-		return parentBO;
-	}
-	public void setParentBO(MenuBO parentBO) {
-		this.parentBO = parentBO;
-	}
-	
-	public Set<MenuBO> addChild(MenuBO menuBO){
-		if(this.childMenuSet == null){
-			childMenuSet = new HashSet<MenuBO>();
+	public boolean addChild(MenuBO menuBO){
+		if(this.childMenuList == null){
+			childMenuList = new ArrayList<MenuBO>();
 		}
-		childMenuSet.add(menuBO);
-		menuBO.setParentBO(this);
-		return this.childMenuSet;
+//		menuBO.setParentBO(this);
+		return childMenuList.add(menuBO);
 	}
 	
 }

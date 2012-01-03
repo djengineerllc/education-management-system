@@ -23,9 +23,9 @@
 		<property name="passwordMail" type="java.lang.String">
 			<column name="passwordMail" />
 		</property>
-		<set name="roleSet" cascade="save-update" inverse="false" lazy="false" fetch="select" batch-size="10" table="ems_user_role">
+		<bag name="roleList" cascade="save-update" inverse="false" lazy="false" fetch="select" batch-size="10" table="ems_user_role">
 			<key column="fk_user_id" />
 			<many-to-many column="fk_role_id" class="conf.hibernate.RoleBO"/>
-		</set>
+		</bag>
 	</class>
 </hibernate-mapping>
