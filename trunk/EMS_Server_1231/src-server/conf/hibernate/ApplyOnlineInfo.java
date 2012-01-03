@@ -60,6 +60,7 @@ public class ApplyOnlineInfo implements java.io.Serializable {
 	private Date applyTime;
 	private Date createTime;
 	private Date updateTime;
+	private String bmNo;
 
 	// Constructors
 
@@ -535,6 +536,14 @@ public class ApplyOnlineInfo implements java.io.Serializable {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getBmNo() {
+		return bmNo;
+	}
+
+	public void setBmNo(String bmNo) {
+		this.bmNo = bmNo;
 	}
 
 }
