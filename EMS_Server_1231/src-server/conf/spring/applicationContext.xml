@@ -66,12 +66,12 @@ xsi:schemaLocation="
 	</bean>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="del*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="del*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
 			<tx:method name="get*" read-only="true"/>
 			<tx:method name="find*" read-only="true"/>
 			<tx:method name="query*" read-only="true"/>
