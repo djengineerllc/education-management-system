@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.log4j.Logger;
 import com.ems.biz.applyonline.service.IApplyOnlineService;
+import com.ems.common.exception.EMSException;
 import com.ems.common.model.info.applyonline.QueryApplyInfo;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectCurdAction;
@@ -22,75 +23,59 @@ public class QueryAction extends DirectCurdAction {
 	
 
 	@DirectMethod
-	public ExtPagingVO getStuInfo(JsonArray params) {
-		try{
-			ExtPagingVO extPagingVO = new ExtPagingVO();
-			QueryApplyInfo queryApplyInfo = BeanUtils.toBeanFromJsonFirst(params, QueryApplyInfo.class);
-			log.debug("queryApplyInfo==="+ToStringBuilder.reflectionToString(queryApplyInfo));
-			IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
-			List<ApplyOnlineInfo> result = applyOnlineService.findApplyInfo(queryApplyInfo);
-			if(result != null && result.size() > 0){
-				for(ApplyOnlineInfo applyOnlineInfo:result){
-					extPagingVO.addItem(applyOnlineInfo);
-				}
+	public ExtPagingVO getStuInfo(JsonArray params) throws EMSException {
+		ExtPagingVO extPagingVO = new ExtPagingVO();
+		QueryApplyInfo queryApplyInfo = BeanUtils.toBeanFromJsonFirst(params, QueryApplyInfo.class);
+		log.debug("queryApplyInfo==="+ToStringBuilder.reflectionToString(queryApplyInfo));
+		IApplyOnlineService applyOnlineService = this.getBean("applyOnlineService",IApplyOnlineService.class);
+		List<ApplyOnlineInfo> result = applyOnlineService.findApplyInfo(queryApplyInfo);
+		if(result != null && result.size() > 0){
+			for(ApplyOnlineInfo applyOnlineInfo:result){
+				extPagingVO.addItem(applyOnlineInfo);
 			}
-			return extPagingVO;
-		}catch(Exception e){
-			e.printStackTrace();
 		}
-		return null;
+		return extPagingVO;
 	}
 	
 	@DirectFormPostMethod
-	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
+	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) 
+	throws EMSException{
 		
 		return null;
 	}
 	
 	@DirectMethod
-	public ExtFormVO read(Integer id) {
+	public ExtFormVO read(Integer id) throws EMSException {
 		ExtFormVO extFormVO = new ExtFormVO();
 		log.debug("getFormData userId = " + id);
-		try{
-			IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
-			ApplyOnlineInfo applyOnlineInfo = applyOnlineService.findApplyOnlineInfoById(id);
-			extFormVO.setData(applyOnlineInfo);
-		}catch(Exception e){
-			throw new RuntimeException(e.getMessage());
-		}
+		IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
+		ApplyOnlineInfo applyOnlineInfo = applyOnlineService.findApplyOnlineInfoById(id);
+		extFormVO.setData(applyOnlineInfo);
 		return extFormVO;
 	}
 	
 	@DirectFormPostMethod
-	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
+	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) throws EMSException{
 		ExtFormVO result = new ExtFormVO();
 		String applyId = formParameters.get("id");
-		try{
-			IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
-			ApplyOnlineInfo applyOnlineInfo = applyOnlineService.findApplyOnlineInfoById(new Integer(applyId));
-			//applyOnlineInfo = BeanUtils.toBeanFromMap(formParameters,ApplyOnlineInfo.class);
-			applyOnlineInfo.setBmNo(formParameters.get("bmNo"));
-			applyOnlineInfo.setProjectName(formParameters.get("projectName"));
-			applyOnlineInfo.setZyName(formParameters.get("zyName"));
-			applyOnlineInfo.setMobile(formParameters.get("mobile"));
-			applyOnlineInfo.setEmail(formParameters.get("email"));
-			applyOnlineService.updateApplyOnlineInfo(applyOnlineInfo);
-		}catch(Exception e){
-			throw new RuntimeException(e.getMessage());
-		}
+		IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
+		ApplyOnlineInfo applyOnlineInfo = applyOnlineService.findApplyOnlineInfoById(new Integer(applyId));
+		//applyOnlineInfo = BeanUtils.toBeanFromMap(formParameters,ApplyOnlineInfo.class);
+		applyOnlineInfo.setBmNo(formParameters.get("bmNo"));
+		applyOnlineInfo.setProjectName(formParameters.get("projectName"));
+		applyOnlineInfo.setZyName(formParameters.get("zyName"));
+		applyOnlineInfo.setMobile(formParameters.get("mobile"));
+		applyOnlineInfo.setEmail(formParameters.get("email"));
+		applyOnlineService.updateApplyOnlineInfo(applyOnlineInfo);
 		return result;
 	}
 	
 	@DirectMethod
-	public ExtFormVO delete(Integer[] ids) {
-		try{
-			IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
-			for (Integer id : ids) {
-				applyOnlineService.deleteApplyOnlineInfo(id);
-			}
-			return new ExtFormVO();
-		}catch(Exception e){
-			throw new RuntimeException(e.getMessage());
+	public ExtFormVO delete(Integer[] ids)  throws EMSException {
+		IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
+		for (Integer id : ids) {
+			applyOnlineService.deleteApplyOnlineInfo(id);
 		}
+		return new ExtFormVO();
 	}
 }
