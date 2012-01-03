@@ -125,12 +125,6 @@ xsi:schemaLocation="
 	    </property>
 	</bean>
 	
-	<bean id="applyOnlineService" class="com.ems.biz.applyonline.service.impl.ApplyOnlineServiceImpl">
-		<property name="commonDAO">
-	          <ref bean="commonDAO"/>
-	    </property>
-	</bean>
-	
 	<bean id="loginService" class="com.ems.biz.auth.service.impl.LoginServiceImpl">
 		<property name="commonDAO">
 	          <ref bean="commonDAO"/>

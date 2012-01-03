@@ -1,6 +1,6 @@
 package conf.hibernate;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * EmsUser entity.
@@ -17,7 +17,7 @@ public class UserBO implements java.io.Serializable {
 	private String userName;
 	private String password;
 	private String passwordMail;
-	private Set<RoleBO> roleSet;
+	private List<RoleBO> roleList;
 	public Integer getId() {
 		return id;
 	}
@@ -48,12 +48,12 @@ public class UserBO implements java.io.Serializable {
 	public void setPasswordMail(String passwordMail) {
 		this.passwordMail = passwordMail;
 	}
-	public Set<RoleBO> getRoleSet() {
-		return roleSet;
+	public List<RoleBO> getRoleList() {
+		return roleList;
 	}
-	public void setRoleSet(Set<RoleBO> roleSet) {
-		this.roleSet = roleSet;
+	public void setRoleList(List<RoleBO> roleList) {
+		this.roleList = roleList;
 	}
-
+	
 
 }

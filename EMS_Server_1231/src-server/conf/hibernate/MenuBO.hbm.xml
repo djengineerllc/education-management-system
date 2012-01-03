@@ -22,11 +22,13 @@
         <property name="moduleName" type="java.lang.String">
             <column name="module_name" />
         </property>
-        <many-to-one name="parentBO" column="parent_id">
-        </many-to-one>
-        <set name="childMenuSet" cascade="save-update" inverse="false" lazy="false">
+         <property name="parentId" type="java.lang.Integer">
+            <column name="parent_id" />
+        </property>
+        <bag name="childMenuList" cascade="save-update" inverse="false" lazy="false">
         	<key column="parent_id"></key>
         	<one-to-many class="conf.hibernate.MenuBO"/>
-        </set>
+        </bag>
+         
     </class>
 </hibernate-mapping>
