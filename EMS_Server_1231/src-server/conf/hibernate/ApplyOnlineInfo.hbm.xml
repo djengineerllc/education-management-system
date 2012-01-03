@@ -157,5 +157,8 @@
         <property name="updateTime" type="java.util.Date">
             <column name="update_time" length="0" />
         </property>
+        <property name="bmNo" type="java.lang.String">
+            <column name="bm_no" length="50" />
+        </property>
     </class>
 </hibernate-mapping>
