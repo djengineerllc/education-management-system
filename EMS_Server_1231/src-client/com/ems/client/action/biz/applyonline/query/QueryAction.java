@@ -14,7 +14,6 @@ import com.ems.system.client.vo.ExtPagingVO;
 import com.google.gson.JsonArray;
 import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
-
 import conf.hibernate.ApplyOnlineInfo;
 
 public class QueryAction extends DirectCurdAction {
