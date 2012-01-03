@@ -3,7 +3,7 @@ package com.ems.client.action.biz.samples.common.vo;
 import java.io.Serializable;
 
 public class UserInfoVO implements Serializable {
-	
+	private Integer id;
 	private String userName;
 	private String sex;
 	private String birthday;
@@ -17,7 +17,20 @@ public class UserInfoVO implements Serializable {
 		this.birthday = birthday;
 		this.email = email;
 	}
+	public UserInfoVO(Integer id, String userName, String sex, String birthday, String email) {
+		this.id = id;
+		this.userName = userName;
+		this.sex = sex;
+		this.birthday = birthday;
+		this.email = email;
+	}
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getUserName() {
 		return userName;
 	}

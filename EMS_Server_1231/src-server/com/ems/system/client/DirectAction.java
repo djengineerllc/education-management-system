@@ -32,7 +32,6 @@ public class DirectAction {
 	
 	public <T extends DirectAction> T getAction(Class<T> actionClass) {
 		String actionName = this.getActionName(actionClass);
-		System.out.println(actionName);
 		Object action = this.getWebContext().getSessionScopedObject(actionName);
 		if (action == null) {
 			action = this.getWebContext().getApplicationScopedObject(actionName);

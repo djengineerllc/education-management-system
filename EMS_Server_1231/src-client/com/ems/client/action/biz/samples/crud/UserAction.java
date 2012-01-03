@@ -19,10 +19,12 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 
 public class UserAction extends DirectCurdAction {
 	
-	private static Map<String, UserInfoVO> users = new HashMap<String, UserInfoVO>();
+	private static Integer idCounter = 10;
+	
+	private static Map<Integer, UserInfoVO> users = new HashMap<Integer, UserInfoVO>();
 	static {
-		users.put("小萌", new UserInfoVO("小萌", "1", "2011-10-10", "xm@163.com"));
-		users.put("小乐", new UserInfoVO("小乐", "2", "2011-11-11", "xl@163.com"));
+		users.put(1, new UserInfoVO(1, "小萌", "1", "2011-10-10", "xm@163.com"));
+		users.put(2, new UserInfoVO(2, "小乐", "2", "2011-11-11", "xl@163.com"));
 	}
 	
 	@DirectMethod
@@ -31,13 +33,13 @@ public class UserAction extends DirectCurdAction {
 		
 		
 		List<UserInfoVO> userInfoVOList = new ArrayList<UserInfoVO>();
-		for (Map.Entry<String, UserInfoVO> user : users.entrySet()) {
+		for (Map.Entry<Integer, UserInfoVO> user : users.entrySet()) {
 			userInfoVOList.add(user.getValue());
 		}
 //		userInfoVOList.add(new UserInfoVO(queryInfoVO.getUserName(), queryInfoVO.getSex(), "2011-01-01", "xf@163.com"));
 		
-		return new ExtPagingVO("userName", userInfoVOList);
-//		throw new IllegalArgumentException("异常");
+		return new ExtPagingVO(userInfoVOList);
+//		throw new IllegalArgumentException("xf自定义异常");
 	}
 	
 	@DirectFormPostMethod
@@ -48,15 +50,17 @@ public class UserAction extends DirectCurdAction {
 		
 		if (users.containsKey(userInfoVO.getUserName())) {
 			result.addError("userName", String.format("用户名[%s]已重复", userInfoVO.getUserName()));
+			return result;
 		}
 		
-		users.put(userInfoVO.getUserName(), userInfoVO);
+		userInfoVO.setId(++idCounter);
+		users.put(userInfoVO.getId(), userInfoVO);
 		
 		return result;
 	}
 	
 	@DirectMethod
-	public ExtFormVO read(String id) {
+	public ExtFormVO read(Integer id) {
 		System.out.println("getFormData userId = " + id);
 		
 		UserInfoVO userInfoVO = users.get(id);
@@ -74,13 +78,22 @@ public class UserAction extends DirectCurdAction {
 	
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		return this.create(formParameters, fileFields);
+		UserInfoVO userInfoVO = BeanUtils.toBeanFromMap(formParameters, UserInfoVO.class);
+		
+		ExtFormVO result = new ExtFormVO();
+		
+		users.put(userInfoVO.getId(), userInfoVO);
+		
+		return result;
 	}
 	
 	@DirectMethod
-	public ExtFormVO delete(List<String> ids) {
-		System.out.println(ids);
-		throw new UnsupportedOperationException("未实现");
+	public ExtFormVO delete(Integer[] ids) {
+		for (Integer id : ids) {
+			users.remove(id);
+		}
+		
+		return new ExtFormVO();
 	}
 	
 //	@DirectMethod

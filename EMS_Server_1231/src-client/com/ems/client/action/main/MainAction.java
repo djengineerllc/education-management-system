@@ -22,7 +22,6 @@ public class MainAction extends DirectAction {
 			result.add(new MenuItemVO("02", "师资管理", false));
 			result.add(new MenuItemVO("03", "教室管理", false));
 			result.add(new MenuItemVO("04", "教材管理", false));
-			result.add(new MenuItemVO("05", "网上报名", false));
 		} else {
 			if ("00".equals(id)) {
 				result.add(new MenuItemVO("0001", "测试节点1", false));
@@ -34,10 +33,6 @@ public class MainAction extends DirectAction {
 			if ("0001".equals(id)) {
 				result.add(new MenuItemVO("000101", "测试节点1.1", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.1Title"));
 				result.add(new MenuItemVO("000102", "测试节点1.2", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.2Title"));
-			}
-			if ("05".equals(id)) {
-				result.add(new MenuItemVO("0501", "网上报名", "ems.biz.applyonline.apply.Apply", "网上报名"));
-				result.add(new MenuItemVO("0502", "查看报名信息", "ems.biz.applyonline.query.Query", "查看报名信息"));
 			}
 		}
 		return result;

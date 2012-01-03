@@ -93,6 +93,7 @@ xsi:schemaLocation="
 				<prop key="hibernate.transaction.factory_class">
 					org.hibernate.transaction.JDBCTransactionFactory
 				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">
 					org.hibernate.dialect.MySQLDialect 
 				</prop>
@@ -122,6 +123,15 @@ xsi:schemaLocation="
 		<property name="commonDAO">
 	          <ref bean="commonDAO"/>
 	    </property>
+	</bean>
+	
+	<bean id="AuthCache" class="com.ems.system.cache.AuthCache" init-method="init">
+		<property name="commonDAO">
+	          <ref bean="commonDAO"/>
+	    </property>
+	</bean>
+	
+	<bean id="commonDAOBS" class="com.ems.biz.common.service.impl.CommonDAOBS" parent="commonDAO">
 	</bean>
 	
 	<!-- 业务服务BS类  end -->

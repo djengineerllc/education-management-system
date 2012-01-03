@@ -1,6 +1,7 @@
 package com.ems.common.dao;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import conf.hibernate.CodeType;
@@ -12,6 +13,18 @@ public interface ICommonDAO {
 	 * 保存实体对象
 	 */
 	public void save(Object obj);
+	
+	/**
+	 * 保存集合对象
+	 * @param collection
+	 */
+	public void saveAll(Collection collection);
+	
+	/**
+	 * 延迟加载对象获取信息
+	 * @param object
+	 */
+	public void merge(Object object);
 	
 	/**
 	 * 更新实体
@@ -55,6 +68,14 @@ public interface ICommonDAO {
 	 * @return List
 	 */
 	public List findByHql(String hql);
+	
+	/**
+	 * 根据HQL语句查找实体
+	 * @param hql
+	 * @param valueParam
+	 * @return List
+	 */
+	public List findByHql(String hql, Object... valueParam);
 	
 	/**
 	 * 根据查询条件查询表中的记录

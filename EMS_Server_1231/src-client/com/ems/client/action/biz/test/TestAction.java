@@ -108,7 +108,7 @@ public class TestAction {
 		data.company = "Ext JS, LLC";
 		data.email = "aaron@extjs.com";
 		
-		result.setDataFormObject(data);
+//		result.setDataFormObject(data);
 		
 		return result;
 	}
@@ -171,7 +171,7 @@ public class TestAction {
 		data.name = "Aaron Conran";
 		data.company = "Ext JS, LLC";
 		data.email = "aaron@extjs.com";
-		result.setErrorsFormObject(data);
+//		result.setErrorsFormObject(data);
 		
 		return result;
 	}
