@@ -1,6 +1,6 @@
 package conf.hibernate;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * EmsRole entity.
@@ -16,7 +16,7 @@ public class RoleBO implements java.io.Serializable {
 	private String roleCd;
 	private String roleName;
 	
-	private Set<MenuBO> menuSet;
+	private List<MenuBO> menuList;
 
 	public Integer getId() {
 		return id;
@@ -42,12 +42,12 @@ public class RoleBO implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	public Set<MenuBO> getMenuSet() {
-		return menuSet;
+	public List<MenuBO> getMenuList() {
+		return menuList;
 	}
 
-	public void setMenuSet(Set<MenuBO> menuSet) {
-		this.menuSet = menuSet;
+	public void setMenuList(List<MenuBO> menuList) {
+		this.menuList = menuList;
 	}
 
 }
