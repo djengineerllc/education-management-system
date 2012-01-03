@@ -21,7 +21,7 @@ public class ApplyOnlineServiceImpl implements IApplyOnlineService{
 		return this.commonDAO.findAll(Project.class);
 	}
 	
-	public void saveApplyInfo(ApplyOnlineInfo applyOnlineInfo)throws EMSRollbackableException{
+	public void saveApplyInfo(ApplyOnlineInfo applyOnlineInfo) throws EMSRollbackableException{
 		applyOnlineInfo.setCreateTime(new Date());
 		applyOnlineInfo.setApplyTime(new Date());
 		this.commonDAO.save(applyOnlineInfo);
