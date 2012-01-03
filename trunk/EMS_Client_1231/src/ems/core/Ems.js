@@ -38,7 +38,7 @@ Ems = ems.core.Ems = {
 			enableLocale: true,
 			enableBuffer: 10,
 //			stateProvider: 'Ext.state.CookieProvider',
-			locale: 'zh_CN',
+			lang: 'zh_CN',
 			rootEl: Ext.getBody(),
 			viewportModuleId: 'ems.login.Login', //'ems.main.Main',
 			viewportModuleConfig: {},
@@ -107,8 +107,8 @@ Ems = ems.core.Ems = {
 		if (cfg.stateProvider) {
 			Ext.state.Manager.setProvider(Ext.create(cfg.stateProvider));
 		}
-		if (cfg.locale) {
-			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.locale + '.js', Ext.emptyFn, Ext.emptyFn, this, true);
+		if (cfg.lang) {
+			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.lang + '.js', Ext.emptyFn, Ext.emptyFn, this, true);
 		}
 		if (cfg.requireModules) {
 			Ext.each(me.config.requireModules, function(moduleId) {
@@ -181,6 +181,11 @@ Ems = ems.core.Ems = {
 		me.isStarted = false;
 	},
 	
+	updateLocale: function() {
+		if (this.config.lang) {
+			Ems.Locale.update();
+		}
+	},
 	
 	// -----------------------------------------------
 	// START: Global Mask
@@ -211,7 +216,6 @@ Ems = ems.core.Ems = {
 	// -----------------------------------------------
 	// END: Global Mask
 	// -----------------------------------------------
-	
 	
 	// -----------------------------------------------
 	// START: Module Management 

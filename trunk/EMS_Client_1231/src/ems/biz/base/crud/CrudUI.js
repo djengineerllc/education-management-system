@@ -19,18 +19,27 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 	constructor: function() {
 		var me = this;
 		me.callParent(arguments);
-		me.apis = me.getApis() || {
-			load: me.DF('read'),
-			c: {
-				submit: me.DF('create')
-			},
-			u: {
-				submit: me.DF('update')
-			},
-			d: {
-				submit: me.DF('delete')
+		me.apis = me.getApis();
+		if (!me.apis) {
+			me.apis = {
+				load: me.DF('read'),
+			};
+			if (me.enableCreateAction) {
+				me.apis.c = {
+					submit: me.DF('create')
+				}
 			}
-		};
+			if (me.enableUpdateAction) {
+				me.apis.u = {
+					submit: me.DF('update')
+				}
+			}
+			if (me.enableReadAction) {
+				me.apis.d = {
+					submit: me.DF('delete')
+				}
+			}
+		}
 	},
 	
 	initComponent: function() {
@@ -87,11 +96,14 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 	init: function() {
 		var me = this,
 			params = me.reqParams;
-		if (params) {
-			me.loadFormData({
-				params: params
-			});
-		}
+		
+//		if (me.bizAction == 'u' || me.bizAction == 'r') {
+			if (params) {
+				me.loadFormData({
+					params: params
+				});
+			}
+//		}
 		
 //		if (me.bizAction == 'c') {
 //			if (me.reqFormInitData) {
@@ -123,12 +135,16 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 			apis = me.apis,
 			submitApi = (apis[me.bizAction] && apis[me.bizAction].submit) || apis.submit;
 		
-		formPanel.api = {
-			submit: submitApi
-		};
-		form.api = {
-			submit: submitApi
-		};
-		form.submit(options);
+//		if (me.bizAction == 'd') {
+//			
+//		} else {
+			formPanel.api = {
+				submit: submitApi
+			};
+			form.api = {
+				submit: submitApi
+			};
+			form.submit(options);
+//		}
 	}
 });

@@ -12,12 +12,11 @@ Ext.define('ems.biz.samples.crud.UserUI', {
     uiConfig: function(){
         var me = this;
         return {
-            layout: 'anchor',
-            anchor: '100% 100%',
+			layout: 'fit',
             items: [{
-                anchor: '100% 100%',
+//				title: '用户信息列表',
                 xtype: 'xgrid',
-                selMode: 'single',
+                selMode: 'multi',
                 paging: true,
                 loadDF: me.DF('loadList'),
                 searchForm: {

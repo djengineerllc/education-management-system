@@ -76,16 +76,16 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 					form.reset();
 				}
 			}]
-			,dockedItems: [{
-				dock: 'top',
-				xtype: 'toolbar',
-				border: true,
-				items: [{
-					xtype: 'label',
-					baseCls: 'x-panel-header-text',
-					text: '学生消息列表'
-				}]
-			}
+//			,dockedItems: [
+//			{
+//				dock: 'top',
+//				xtype: 'toolbar',
+//				items: [{
+//					xtype: 'label',
+//					cls: 'xgrid-header-text',
+//					text: me.grid.title || '列表'
+//				}]
+//			}
 //			, {
 //				dock: 'bottom',
 //				xtype: 'toolbar',
@@ -96,7 +96,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 //					text: '查询结果'
 //				}]
 //			}
-			]
+//			]
 		}
 	},
 	

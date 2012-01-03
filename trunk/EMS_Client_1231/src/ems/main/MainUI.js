@@ -22,6 +22,8 @@ Ext.define('ems.main.MainUI', {
 	DF: null,
 	
 	initComponent: function() {
+		Ems.updateLocale();
+		
 		var me = this,
 			uiConfig = me.uiConfig();
 			
@@ -41,7 +43,7 @@ Ext.define('ems.main.MainUI', {
 			items: [{
 				region: 'north',
 				cls: 'ems-header',
-				height: 100,
+				height: 105,
 				layout: {
                     type: 'hbox',
                     align: 'stretch'
@@ -50,36 +52,70 @@ Ext.define('ems.main.MainUI', {
 					border: false
 				},
 				items: [{
-					cls: 'ems-logo',
-					width: 450
+					width: 430,
+					margins: '0 0 0 5',
+					cls: 'ems-logo'
 				}, {
 					flex: 1,
-					margins:'70 0 0 0',
-					html: '教务管理系统'
+					layout: {
+	                    type: 'vbox',
+						pack: 'end',
+	                    align: 'stretch'
+	                },
+					items: [{
+						border: false,
+						cls: 'ems-title',
+						height: 25,
+//						margins: '50 0 0 0',
+//						html: '教务管理系统2'
+					}]
 				}, {
-					margins:'5 5 0 0',
+					width: 170,
+					margins: '5 5 5 0',
 					items: [{
 						xtype: 'button',
-						text: '退出系统',
-						listeners: me.MRA('click', 'onLogout')
+						text: '切换角色',
+						iconCls: 'icon-roles',
+						margins: '5 5 5 0',
+						menu: [{
+							text: '系统管理员',
+							iconCls: 'icon-role-admin'
+						}, {
+							text: '教师',
+							iconCls: 'icon-role-teacher'
+						}, {
+							text: '学生',
+							iconCls: 'icon-role-student'
+						}]
+//						listeners: me.MRA('click', 'onSwitchRole')
 					}, {
 						xtype: 'button',
-						text: 'printAllScripts',
-						handler: function() {
-							var scripts = Ext.query('script');
-							Ext.each(scripts, function(scripts) {
-								var path = scripts.src;
-								if (path.indexOf('lib/ext') == -1) {
-									return;
-								}
-								
-								path = path.substring(path.indexOf('lib/ext'), path.indexOf('?_dc'));
-								var a = path.substring(0, path.lastIndexOf('\/'));
-								var b = path.substring(path.lastIndexOf('\/') + 1);
-								console.log(Ext.String.format('{"text" : "{0}", "path" : "{1}/"},',  b, a));
-							});
-						}
-					}]
+						text: '退出系统',
+						iconCls: 'icon-logout',
+						style: {
+							left: '5px'
+						},
+						listeners: me.MRA('click', 'onLogout')
+					}
+//					, {
+//						xtype: 'button',
+//						text: 'printAllScripts',
+//						handler: function() {
+//							var scripts = Ext.query('script');
+//							Ext.each(scripts, function(scripts) {
+//								var path = scripts.src;
+//								if (path.indexOf('lib/ext') == -1) {
+//									return;
+//								}
+//								
+//								path = path.substring(path.indexOf('lib/ext'), path.indexOf('?_dc'));
+//								var a = path.substring(0, path.lastIndexOf('\/'));
+//								var b = path.substring(path.lastIndexOf('\/') + 1);
+//								console.log(Ext.String.format('{"text" : "{0}", "path" : "{1}/"},',  b, a));
+//							});
+//						}
+//					}
+					]
 				}]
 			}, {
 				region: 'west',
@@ -141,8 +177,21 @@ Ext.define('ems.main.MainUI', {
 					Ext.create('Ext.ux.statusbar.StatusBar', {
 					border: false,
 					defaultText: '系统公告',
+					defaultIconCls: 'icon-speaker',
 //					statusAlign: 'right',
-		            items: ['-', {
+		            items: ['-',{
+						xtype: 'displayfield',
+						labelAlign: 'right',
+						labelWidth: 80,
+						fieldLabel: '当前用户',
+						value: 'admin'
+					}, '-', {
+						xtype: 'displayfield',
+						labelAlign: 'right',
+						labelWidth: 80,
+						fieldLabel: '当前角色',
+						value: '系统管理员'
+					},'-', {
 						xtype: 'tbtext',
 						id: 'clock',
 						listeners: {
@@ -153,7 +202,7 @@ Ext.define('ems.main.MainUI', {
 										var clock = Ext.getCmp('clock');
 										Ext.TaskManager.start({
 											run: function() {
-												clock.update(Ext.Date.format(new Date(), 'g:i:s A'));
+												clock.update(Ext.Date.format(new Date(), 'Y-m-d G:i:s'));
 											},
 											interval: 1000
 										});

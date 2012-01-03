@@ -22,9 +22,14 @@ Ext.define('ems.login.Login', {
 		
 		loginForm.submit({
 			success: function(form, action) {
-				me._loginInfo = action.result.data;
-				me.destroyUI();
-				Ems.RM('ems.main.Main');
+				if (form.selectRole) {
+					var userRoleCombo = me.query('#userRole');
+					
+				} else {
+					me._loginInfo = action.result.data;
+					me.destroyUI();
+					Ems.RM('ems.main.Main');
+				}
 			}
 		});
 	},

@@ -74,6 +74,7 @@ Ext.define('ems.core.Module', { // Controller
 		var me = this;
 		me.actions && me.actions.destroy();
 		if (me.ui) {
+//			me.ui.el.unmask();
 			Ext.destroy(me.ui);
 			me.ui = null;
 		}
@@ -120,15 +121,20 @@ Ext.define('ems.core.Module', { // Controller
 						title: '系统错误',
 						msg: Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
 					});
+					
+					return;
 				};
 				
 				cb.apply(s, arguments);
+				
+//				me.ui && me.ui.el && me.ui.el.unmask();
 			}).concat(s);
 		};
 //		if (async === false) {
 //			p.push(false); // 同步
 //		}
 		
+//		me.ui.el.mask('请求处理中，请稍后...');
 		m.apply(a, p);
 	},
 	

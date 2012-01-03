@@ -22,7 +22,7 @@ Ext.define('ems.biz.samples.crud.view.UserEditUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['userName'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,11 +32,14 @@ Ext.define('ems.biz.samples.crud.view.UserEditUI', {
 					anchor: '100%'
 				},
 				items: [{
+					xtype: 'hiddenfield',
+					name: 'id'
+				},{
 	                fieldLabel: '姓名',
 	                name: 'userName'
 	            },
 				Dic.radioGroup('Sex', {
-					fieldLabel: '性别2',
+					fieldLabel: '性别',
 					groupName: 'sex',
 					allowBlank: false
 				}), {

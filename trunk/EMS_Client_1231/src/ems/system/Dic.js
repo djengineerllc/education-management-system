@@ -11,6 +11,12 @@ Ext.define('ems.system.Dic', {
 		'ems.system.data.store.DicStore'
 	],
 	
+	uses: [
+		'Ext.form.CheckboxGroup',
+		'Ext.form.RadioGroup',
+		'Ext.form.field.Display'
+	],
+	
 	DIC_STORE_PREFIX: 'ems.dic.',
 	
 	getStore: function(dicType, config) {
@@ -66,11 +72,15 @@ Ext.define('ems.system.Dic', {
 		if (cb.value == undefined) {
 			var s = cb.store;
 			if (s.getCount() > 0) {
-				var value;
+				var record,
+					value;
 				if (cb.valueKey) {
-					value = cb.findRecord('key', cb.valueKey);
+					record = cb.findRecord('key', cb.valueKey);
 				} else {
-					cb = s.getAt(0).data[cb.valueField];
+					record = s.getAt(0);
+				}
+				if (record) {
+					value = record.data[cb.valueField];
 				}
 				
 				if (value) {
@@ -154,10 +164,7 @@ Ext.define('ems.system.Dic', {
 			});
 		});
 		fc.removeAll(true);
-		
-		if (items.length > 0) {
-			fc.add(items);
-		}
+		fc.add(items);
 	},
 
 	renderer: function(dicType) {
@@ -170,9 +177,40 @@ Ext.define('ems.system.Dic', {
 			var dicRecord = dicStore.findRecord('value', value);
 			if (dicRecord) {
 				return dicRecord.data.name;
-			};
+			}
 			
 			return '';
 		};
+	},
+	
+	displayfield: function(dicType, config) {
+		var me = this, 
+		displayField = Ext.apply(config, {
+			listeners: {
+				change: function(comp, newValue, oldValue, eOpts) {
+					if (newValue) {
+						var dicStore = me.getStore(dicType, { 
+								autoLoad: true 
+							}),
+							updateRawValue = Ext.bind(function(value) {
+								var record = dicStore.findRecord('value', value),
+									text = record.data['name'];
+//								this.rawOriginalValue = value;
+								this.setRawValue(this.valueToRaw(text));
+							}, this);
+							
+						if (dicStore.getCount() > 0) {
+							updateRawValue(newValue);
+						} else {
+							this.mon(dicStore, 'load', function(){
+								updateRawValue(newValue);
+							});
+						}
+					}
+				}
+			}
+		});
+			
+		return displayField;
 	}
 });
