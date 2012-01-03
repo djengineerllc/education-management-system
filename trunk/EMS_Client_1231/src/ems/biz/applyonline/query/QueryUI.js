@@ -5,6 +5,10 @@ Ext.define('ems.biz.applyonline.query.QueryUI', {
 		'ems.core.widget.XGrid'
 	],
 	isListUI: true,
+	enableCreateAction: false,
+	enableUpdateAction: true,
+	enableDeleteAction: true,
+	enableReadAction: true,
     uiConfig: function(){
         var me = this;
 		return {
@@ -82,15 +86,6 @@ Ext.define('ems.biz.applyonline.query.QueryUI', {
 				dataIndex: 'email',
 		        text: '电子邮件',
 				flex: 1
-			}],
-			buttonAlign: 'center',
-			buttons: [{
-				text: 'New',
-				handler: me.onNew
-			}, {
-				text: 'Modify'
-			}, {
-				text: 'Delete'
 			}]
 		}]
 		}
