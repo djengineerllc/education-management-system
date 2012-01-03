@@ -1,7 +1,7 @@
 Ext.define('ems.biz.base.crud.CrudModule', {
     extend: 'ems.core.Module',
     
-    submitButton: null,
+    submitButton: null, // create | update
     cancelButton: null,
     
     bizActionText: {
@@ -28,17 +28,14 @@ Ext.define('ems.biz.base.crud.CrudModule', {
                     if (!form.isValid()) {
                         return;
                     };
-                    
+					
+					win.el.mask('请求处理中，请稍候...');
                     viewPanel.submitFormData({
                         success: function(form, action){
-                            EU.showSuccessDialog({
-                                msg: Ext.String.format('{0}成功', me.bizActionText[viewPanel.bizAction])
-                            });
-                            
-                            win.close();
+							win.el.unmask();
+							me._onSuccess(viewPanel.bizAction);
+							win.close();
 							me.down('xgrid').store.load();
-                        },
-                        failure: function(form, action){
                         }
                     });
                 }
@@ -54,27 +51,49 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 		}
     },
     
-    getReqParams: function(bizAction){
+    getReqParams: function(bizAction, eventSource){
         var me = this,
 			sm = me.down('xgrid').getSelectionModel(), 
 			slts = sm.getSelection();
-        
-        if (bizAction != 'c') {
-            if (slts.length == 0) {
-                EU.showInfoDialog({
-                    msg: '请您选中记录后再进行此操作'
-                });
-                return false;
-            }
-            
-            return slts[0].data;
+		
+		if (bizAction != 'c') {
+			if (slts.length == 0) {
+				EU.showInfoDialog({
+					msg: Ext.String.format('请您选中记录后再进行{0}操作。', me.bizActionText[bizAction]),
+					animateTarget: eventSource.el
+				});
+				return false;
+			}
+			
+			if (bizAction == 'u' || bizAction == 'r') {
+				if (slts.length > 1) {
+					EU.showInfoDialog({
+						msg: Ext.String.format('请您只选中要进行{0}操作的一条记录。', me.bizActionText[bizAction]),
+						animateTarget: eventSource.el
+					});
+					return false;
+				} else {
+					return slts[0].raw;
+				}
+			}
+			if (bizAction == 'd') {
+				var ids = [];
+				Ext.each(slts, function(slt) {
+					ids.push(slt.raw[slt.store.idProperty]);
+				});
+				
+				return ids;
+			}
         }
+		
+		return null;
     },
     
     onCreate: function(params, request){
         var me = this, 
+			eo = request.eventSource,
 			bizAction = 'c', 
-			reqParams = me.getReqParams(bizAction);
+			reqParams = me.getReqParams(bizAction, eo);
         if (reqParams == false) {
             return;
         }
@@ -84,31 +103,36 @@ Ext.define('ems.biz.base.crud.CrudModule', {
             reqParams: reqParams
         }, {
             title: me.bizActionText[bizAction],
-            buttons: [me.submitButton, me.cancelButton]
+            buttons: [me.submitButton, me.cancelButton],
+			animateTarget: eo.el
         });
     },
     
     onRead: function(params, request){
         var me = this, 
+			eo = request.eventSource,
 			bizAction = 'r', 
-			reqParams = me.getReqParams(bizAction);
+			reqParams = me.getReqParams(bizAction, eo);
         if (reqParams == false) {
             return;
         }
-        
+		
         me.SW(me.readViewId, {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
             title: me.bizActionText[bizAction],
-            buttons: [me.cancelButton]
+            buttons: [me.cancelButton],
+			animateTarget: eo.el
+//			,modal: false
         });
     },
     
     onUpdate: function(params, request){
         var me = this, 
+			eo = request.eventSource,
 			bizAction = 'u', 
-			reqParams = me.getReqParams(bizAction);
+			reqParams = me.getReqParams(bizAction, eo);
         if (reqParams == false) {
             return;
         }
@@ -118,24 +142,50 @@ Ext.define('ems.biz.base.crud.CrudModule', {
             reqParams: reqParams
         }, {
             title: me.bizActionText[bizAction],
-            buttons: [me.submitButton, me.cancelButton]
+            buttons: [me.submitButton, me.cancelButton],
+			animateTarget: eo.el
         });
     },
     
     onDelete: function(params, request){
         var me = this, 
-			bizAction = 'd', 
-			reqParams = me.getReqParams(bizAction);
+			eo = request.eventSource,
+			bizAction = 'd',
+			reqParams = me.getReqParams(bizAction, eo);
         if (reqParams == false) {
             return;
         }
-        
-        me.SW(me.readViewId, {
-            bizAction: bizAction,
-            reqParams: reqParams
-        }, {
-            title: me.bizActionText[bizAction],
-            buttons: [me.submitButton, me.cancelButton]
-        });
-    }
+			
+		var dlg = EU.showConfirmDialog({
+			animateTarget: eo.el,
+			msg: '您确认删除选中的记录？',
+			callback: function(btnId, value) {
+				if (btnId == 'yes') {
+					me.A({
+						m: 'delete',
+						p: [reqParams],
+						cb: function(result, e) {
+							if (result.success) {
+								me._onSuccess(bizAction);
+								me.down('xgrid').store.load();
+							} else {
+								alert('删除失败'); // TODO 
+							}
+						}
+					})
+				}
+			}
+		});
+    },
+	
+	_onSuccess: function(bizAction) {
+		EU.showMsg('操作成功', Ext.String.format('{0}成功', this.bizActionText[bizAction]));
+//		EU.showSuccessDialog({
+//			msg: Ext.String.format('{0}成功', this.bizActionText[bizAction])
+//		});
+	},
+	
+	_onFailure: function() {
+		
+	}
 });

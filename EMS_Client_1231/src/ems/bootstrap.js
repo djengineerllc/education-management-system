@@ -56,14 +56,12 @@
 	
 	jsPaths = [
 //		'lib/ext/ext-debug.js',
-		'lib/ext/ext.js',
+//		'lib/ext/ext.js',
 //		'lib/ext/classes.js',
-//		'lib/ext/ext-all-dev.js',
+		'lib/ext/ext-all-dev.js',
 //		'lib/ext/ext-all.js',
 //		'src/ems/core/util/CheckLeaksUtil.js',
 //		'deploy/lib/ext/ext-all-min.js',
-		
-//		,'src/ems/core/locale/ext-lang-zh_CN.js'
 		
 		'src/ems/core/Ems.js'
 		

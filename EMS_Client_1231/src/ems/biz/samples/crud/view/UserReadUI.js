@@ -20,7 +20,7 @@ Ext.define('ems.biz.samples.crud.view.UserReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['userName'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -30,12 +30,21 @@ Ext.define('ems.biz.samples.crud.view.UserReadUI', {
 					anchor: '100%'
 				},
 				items: [{
+					xtype: 'hiddenfield',
+					name: 'id'
+				},{
 	                fieldLabel: '姓名',
 	                name: 'userName'
-	            },{
-	                fieldLabel: '性别',
+	            },
+//				{
+//	                fieldLabel: '性别',
+//	                name: 'sex'
+//	            }, 
+				Dic.displayfield('Sex', {
+					fieldLabel: '性别',
 	                name: 'sex'
-	            }, {
+				}), 
+				{
 	                fieldLabel: '生日',
 	                name: 'birthday'
 	            }, {

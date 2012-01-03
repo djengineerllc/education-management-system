@@ -33,12 +33,14 @@ Ext.define('ems.main.Main', {
 				Ext.each(result, function(item) {
 					var treePanel = Ext.merge({}, pc, {
 						store: Ext.create('ems.main.data.store.MenuStore', {
-							defaultRootId: item.id
+							defaultRootId: item.id,
+							autoLoad: false
 						})
 					});
 					item.items = [treePanel];
 					
-					eo.add(me._toMenuItem(item));
+					var menuItem = eo.add(me._toMenuItem(item));
+//					menuItem.on
 				}, me);
 			},
 			s: me
@@ -69,16 +71,29 @@ Ext.define('ems.main.Main', {
 		Ext.applyIf(workItemConfig, {
 			moduleConfig: (record.get ? (Ext.decode(record.get('moduleConfig') || '{}')) : null),
 			id: moduleId,
-			title: record.get ? record.get('moduleName') : null,
+			title: record.get ? (record.get('moduleName') ? record.get('moduleName') : record.get('text')) : '',
 			autoScroll: true
 		});
-		Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
-			workItemConfig.items = [module.ui];
-			workItem = workspace.add(workItemConfig); // add workItem(tab)
-			workItem.on('beforedestroy', me._doDestroyWorkItem, this);
-			
-			me.activeWorkItem(workItem, request);
-		}, me);
+//		Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
+//			workItemConfig.items = [module.ui];
+//			workItem = workspace.add(workItemConfig); // add workItem(tab)
+//			workItem.on('beforedestroy', me._doDestroyWorkItem, this);
+//			
+//			me.activeWorkItem(workItem, request);
+//		}, me);
+		
+		workItemConfig.items = [];
+		workItem = workspace.add(workItemConfig); // add workItem(tab)
+		workItem.on('beforedestroy', me._doDestroyWorkItem, me);
+		
+		workItem.tab.el.mask('加载中...');
+		Ext.defer(function() {
+			Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
+				workItem.add(module.ui);
+				me.activeWorkItem(workItem, request);
+				workItem.tab.el.unmask();
+			}, me);
+		}, 30, me);
 	},
 	_doDestroyWorkItem: function(workItem) {
 		var moduleId = workItem.moduleId;
@@ -147,5 +162,9 @@ Ext.define('ems.main.Main', {
 				}
 			}
 		});
-    }
+    },
+	
+	onSwitchRole: function(params, request) {
+		alert('切换角色'); // TODO 
+	}
 });

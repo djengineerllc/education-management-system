@@ -55,7 +55,25 @@ Ext.define('ems.core.EmsUtils', {
 			icon: 'ext-mb-success'
 		}, config);
 		return this.showDialog(config);
-	}
+	},
+	
+	showMsg: function(title, format){
+		var me = this;
+        if(!me.msgCt){
+            me.msgCt = Ext.DomHelper.insertFirst(document.body, {'class': 'global-message'}, true);
+			me.msgTpl = [
+				'<div class="msg">',
+					'<h3>{0}</h3>',
+					'<p>{1}</p>'
+			].join('');
+        }
+		
+        var text = Ext.String.format.apply(String, Array.prototype.slice.call(arguments, 1)),
+			msgHtml = Ext.String.format(me.msgTpl, title, text),
+			msg = Ext.DomHelper.append(me.msgCt, msgHtml, true);
+        msg.hide();
+        msg.slideIn('t').ghost("t", { delay: 1000, remove: true});
+    }
 	
 //	,showWindow: function(config) {
 //		return Ext.create('Ext.window.Window', config).show();
