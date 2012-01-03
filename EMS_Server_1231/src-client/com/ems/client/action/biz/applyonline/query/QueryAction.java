@@ -40,6 +40,10 @@ public class QueryAction extends DirectCurdAction {
 		}
 		return null;
 	}
+	@DirectFormPostMethod
+	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
+		return null;
+	}
 	
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
@@ -48,7 +52,7 @@ public class QueryAction extends DirectCurdAction {
 		try{
 			IApplyOnlineService applyOnlineService = (IApplyOnlineService)this.getBean("applyOnlineService");
 			ApplyOnlineInfo applyOnlineInfo = applyOnlineService.findApplyOnlineInfoById(id);
-			extFormVO.setDataFormObject(applyOnlineInfo);
+			extFormVO.setData(applyOnlineInfo);
 		}catch(Exception e){
 			throw new RuntimeException(e.getMessage());
 		}
