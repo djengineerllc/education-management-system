@@ -1,19 +1,20 @@
 package com.ems.client.action.login;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.fileupload.FileItem;
 
+import com.ems.biz.auth.service.ILoginService;
 import com.ems.client.action.login.vo.LoginInfoVO;
-import com.ems.client.action.login.vo.UserRoleVO;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
 import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
+
+import conf.hibernate.RoleBO;
+import conf.hibernate.UserBO;
 
 @ActionScope(scope=Scope.SESSION)
 public class LoginAction extends DirectAction {
@@ -27,31 +28,21 @@ public class LoginAction extends DirectAction {
 		
 		ExtFormVO result = new ExtFormVO();
 		
-		if (!"admin".equalsIgnoreCase(userName) && !"test".equalsIgnoreCase(userName)) {
-			result.addError("userName", "用户名不存在");
-			return result;
+		ILoginService loginService = (ILoginService)this.getBean("loginService");
+		try{
+			UserBO userBO = loginService.login(userName, password);
+			loginInfoVO = new LoginInfoVO();
+			loginInfoVO.setUserName(userBO.getUserName());
+//			loginInfoVO.setRoles(userBO.getRoleList());
+			if(userBO.getRoleList().size() == 1){
+				loginInfoVO.setCurrentRole(userBO.getRoleList().get(0));
+			}else{
+				result.addProp("selectRole", true);
+			}
+		}catch(Exception e){
+			result.addError("userName", e.getMessage());
 		}
-		
-		loginInfoVO = new LoginInfoVO();
-		loginInfoVO.setUserName(userName);
-		
-		if ("admin".equalsIgnoreCase(userName)) {
-			List<UserRoleVO> roles = new ArrayList<UserRoleVO>();
-			roles.add(new UserRoleVO(1, "admin"));
-			loginInfoVO.setRoles(roles);
-			loginInfoVO.setCurrentRole(roles.get(0));
-		}
-		
-		if ("test".equalsIgnoreCase(userName)) {
-			List<UserRoleVO> roles = new ArrayList<UserRoleVO>();
-			roles.add(new UserRoleVO(1, "admin"));
-			roles.add(new UserRoleVO(1, "student"));
-			roles.add(new UserRoleVO(1, "teacher"));
 			
-			loginInfoVO.setRoles(roles);
-			result.addProp("selectRole", true);
-		}
-		
 		result.setData(loginInfoVO);
 		
 		return result;
@@ -64,16 +55,14 @@ public class LoginAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtFormVO selectRole(String userName, String role) {
-		UserRoleVO currentRole = null;
-		for (UserRoleVO userRoleVO : loginInfoVO.getRoles()) {
-			if (userRoleVO.getName().equals(role)) {
-				currentRole = userRoleVO;
+		RoleBO currentRole = null;
+		for (RoleBO roleBO : loginInfoVO.getRoles()) {
+			if (roleBO.getRoleCd().equals(role)) {
+				currentRole = roleBO;
 				break;
 			}
 		}
-		
 		loginInfoVO.setCurrentRole(currentRole);
-		
 		return ExtFormVO.success(loginInfoVO);
 	}
 

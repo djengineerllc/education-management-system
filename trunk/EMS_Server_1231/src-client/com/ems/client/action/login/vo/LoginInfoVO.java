@@ -3,11 +3,13 @@ package com.ems.client.action.login.vo;
 import java.io.Serializable;
 import java.util.List;
 
+import conf.hibernate.RoleBO;
+
 public class LoginInfoVO implements Serializable {
 	
 	private String userName;
-	private UserRoleVO currentRole;
-	private List<UserRoleVO> roles; //Map<String, UserRoleVO> roles;
+	private RoleBO currentRole;
+	private List<RoleBO> roles; //Map<String, UserRoleVO> roles;
 	
 	public String getUserName() {
 		return userName;
@@ -15,22 +17,18 @@ public class LoginInfoVO implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public UserRoleVO getCurrentRole() {
+	public RoleBO getCurrentRole() {
 		return currentRole;
 	}
-	public void setCurrentRole(UserRoleVO currentRole) {
+	public void setCurrentRole(RoleBO currentRole) {
 		this.currentRole = currentRole;
 	}
-//	public Map<String, UserRoleVO> getRoles() {
-//		return roles;
-//	}
-//	public void setRoles(Map<String, UserRoleVO> roles) {
-//		this.roles = roles;
-//	}
-	public List<UserRoleVO> getRoles() {
+	public List<RoleBO> getRoles() {
 		return roles;
 	}
-	public void setRoles(List<UserRoleVO> roles) {
+	public void setRoles(List<RoleBO> roles) {
 		this.roles = roles;
 	}
+	
+	
 }
