@@ -1,0 +1,144 @@
+/*** START: Ext CSS  ****/
+.ems .x-panel-body-default {
+	background: #FAFAFA; /*#F7F7F7*/
+}
+
+.ems .x-tree-panel .x-grid-cell {
+	background: #FAFAFA;
+}
+
+.ems .x-message-box .ext-mb-info {
+	background-image: url('images/icons/msg_info_32.png');
+}
+
+.ems .x-message-box .ext-mb-warning {
+	background-image: url('images/icons/msg_warning_32.png');
+}
+
+.ems .x-message-box .ext-mb-question {
+	background-image: url('images/icons/msg_question_32.png');
+}
+
+.ems .x-message-box .ext-mb-error {
+	background-image: url('images/icons/msg_error_32.png');
+}
+
+.ems .x-message-box .ext-mb-success {
+	background: transparent no-repeat top left;
+	background-image: url('images/icons/msg_success_32.png');
+}
+
+/*** END: Ext CSS ****/
+
+/*** END: Ems Global Message ****/
+.ems .global-message {
+    position:absolute;
+    left:35%;
+    top:10px;
+    width:300px;
+    z-index:20000;
+}
+.ems .global-message .msg {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: #F6F6F6;
+    border: 2px solid #ccc;
+    margin-top: 2px;
+    padding: 10px 15px;
+    color: #555;
+}
+.ems .global-message .msg h3 {
+    margin: 0 0 8px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.ems .global-message .msg p {
+    margin: 0;
+}
+/*** END: Ems Global Message ****/
+
+.ems .xgrid-header-text {
+	color: #04408C;
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.ems .ems-header .ems-logo .x-panel-body {
+	background: transparent url('images/logo.png') no-repeat top left;
+}
+
+.ems .icon-users, .ems .icon-roles {
+	background: transparent url('images/icons/users_16.png') no-repeat top left;
+}
+
+.ems .icon-role-admin {
+	background: transparent url('images/icons/user_role_admin_16.png') no-repeat top left;
+}
+.ems .icon-role-teacher {
+	background: transparent url('images/icons/user_role_teacher_16.png') no-repeat top left;
+}
+.ems .icon-role-student {
+	background: transparent url('images/icons/user_role_student_16.png') no-repeat top left;
+}
+
+.ems .icon-logout {
+	background: transparent url('images/icons/logout_16.png') no-repeat top left;
+}
+
+.ems .icon-identity-card {
+	background-image: url('images/icons/identity_card_16.png');
+}
+
+.ems .icon-user {
+	background-image: url('images/icons/user_16.png');
+}
+
+.ems .icon-key {
+	background-image: url('images/icons/key_16.png');
+}
+
+.ems .icon-horn {
+	background-image: url('images/icons/horn_16.png');
+}
+
+.ems .icon-search {
+	background-image: url('images/icons/search_16.png');
+}
+.ems .icon-reset {
+	background-image: url('images/icons/reset_16.png');
+}
+
+.ems .icon-add, .ems .icon-new, .ems .icon-create {
+    background-image: url('images/woofunction-icons/add_16.png');
+}
+
+.ems .icon-edit, .ems .icon-modify, .ems .icon-update {
+	background-image: url('images/icons/edit_16.png');
+}
+
+.ems .icon-close, .ems .icon-delete {
+	background-image: url('images/woofunction-icons/close_16.png');
+}
+
+.ems .icon-read, .ems .icon-view {
+	background-image: url('images/icons/read_16.png');
+}
+
+.ems .icon-speaker {
+	padding-left: 25px;
+    background: transparent url('images/icons/speaker_16.png') no-repeat;
+}
+
+.ems .icon-print {
+	background-image: url('images/icons/print_16.png');
+}
+
+.ems .icon-batch-import {
+	background-image: url('images/icons/table_import_16.png');
+}
+
+.ems .icon-export-excel {
+	background-image: url('images/icons/export_excel_16.png');
+}
