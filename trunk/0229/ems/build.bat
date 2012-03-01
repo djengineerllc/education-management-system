@@ -1,0 +1,1 @@
+sencha build -p build.jsb3 -d ./deploy/ems -v >log.txt
