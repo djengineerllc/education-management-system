@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataTransformers>
+	<Constant name="XmlToPojo.Template.engine.objectFactory" value="new" />
+	<Constant name="XmlToPojo.Template.engine.className" value="com.ems.common.datatransformer.factory.object.template.digester.DigesterTemplateEngine" />
+	
+	<Constant name="XmlToPojo.Template.templateLoaderPath" value="conf/templates" />
+	<Constant name="XmlToPojo.Template.encoding" value="UTF-8" />
+</DataTransformers>

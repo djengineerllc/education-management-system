@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformers>
+	<DataTransformer name="DT_print_certificate_transcript">
+		<PojoToTemplate>
+			<Template file="/print/certificate/transcript.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+</DataTransformers>

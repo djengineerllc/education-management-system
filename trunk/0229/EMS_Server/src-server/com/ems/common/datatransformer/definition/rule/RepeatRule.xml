@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="Repeat">
+		<object-create-rule classname="com.ems.common.datatransformer.definition.RepeatDefinition"/>
+		<set-properties-rule />
+		<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/TextFieldRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/TextFieldGroupRule.xml" />
+		<include path="com/ems/common/datatransformer/definition/rule/TextFieldSetRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/ValidatorRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/HandlerRule.xml"/>
+		<set-next-rule methodname="setRepeat"/>
+	</pattern>
+</digester-rules>

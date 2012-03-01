@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataTransformers objectFactory="new">
+	<Import resource="com/ems/common/datatransformer/config/DataTransformerEnv.xml"/>
+	<Import resource="com/ems/common/datatransformer/config/DataTransformerEnv_PojoToTemplate.xml" />
+	<Import resource="com/ems/common/datatransformer/config/DataTransformerEnv_XmlToPojo.xml" />
+	
+	<Import resource="DataTransformerCommon.xml"/>
+	
+	<Import resource="conf/templates/excel/test_excel_export.xml" />
+	<Import resource="conf/templates/excel/test_excel_import.xml" />
+	
+	<Import resource="conf/templates/print/certificate/print_certificate.xml" />
+</DataTransformers>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformers>
+	<DataTransformer name="DT_test_excel_import">
+		<ExcelToPojo version="2003">
+			<Sheet mappingClass="java.util.HashMap">
+				<CellGroup name="dataList"
+					mappingClass="java.util.ArrayList" 
+					itemMappingClass="java.util.HashMap" row="1">
+					<Cell name="userName" column="0">
+					</Cell>
+					<Cell name="sex" column="1">
+					</Cell>
+					<Cell name="birthday" column="2">
+					</Cell>
+					<Cell name="email" column="3">
+					</Cell>
+				</CellGroup>
+			</Sheet>
+		</ExcelToPojo>
+	</DataTransformer>
+</DataTransformers>
