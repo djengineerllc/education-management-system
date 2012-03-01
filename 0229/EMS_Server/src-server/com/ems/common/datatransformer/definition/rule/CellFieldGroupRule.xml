@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="CellGroup">
+		<object-create-rule classname="com.ems.common.datatransformer.definition.CellFieldGroupDefinition" />
+		<set-properties-rule />
+		<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/CellFieldRule.xml"/>
+		<set-next-rule methodname="addCell" />
+	</pattern>
+</digester-rules>

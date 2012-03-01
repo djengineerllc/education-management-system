@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformers>
+	<DataTransformer name="DT_test_excel_export">
+		<PojoToExcel>
+			<Sheet sheetName="用户信息">
+				<Cell value="用户名" row="0" column="0">
+					<Handler ref="titleCellStyle" />
+				</Cell>
+				<Cell value="性别" row="0" column="1">
+					<Handler ref="titleCellStyle" />
+				</Cell>
+				<Cell value="生日" row="0" column="2">
+					<Handler ref="titleCellStyle" />
+				</Cell>
+	            <Cell name="emailTitle" row="0" column="3" description="电子邮件">
+	            	<Handler ref="titleCellStyle" />
+	            </Cell>
+				<CellGroup name="list" row="1">
+					<Cell name="userName" column="0">
+						<Handler ref="cellStyle" />
+					</Cell>
+					<Cell name="sex" column="1">
+						<Renderer ref="code" style="codeType:Sex;" />
+						<Handler ref="cellStyle" />
+					</Cell>
+					<Cell name="birthday" column="2">
+						<Renderer ref="dateFormat" style="oldPattern:yyyy-MM-dd;pattern:yyyy/MM/dd;" />
+						<Handler ref="cellStyle" />
+					</Cell>
+					<Cell name="email" column="3">
+						<Handler ref="cellStyle" />
+					</Cell>
+				</CellGroup>
+			</Sheet>
+		</PojoToExcel>
+	</DataTransformer>
+</DataTransformers>

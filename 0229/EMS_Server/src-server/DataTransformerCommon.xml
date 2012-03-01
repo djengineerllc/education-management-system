@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataTransformers>
+	<Renderers>
+		<Renderer name="pad" className="com.ems.common.datatransformer.renderer.PadRenderer" style="align:left;padChar: ;" />
+		<Renderer name="replace" className="com.ems.common.datatransformer.renderer.ReplaceRenderer" style="mode:all;" />
+		<Renderer name="trim" className="com.ems.common.datatransformer.renderer.TrimRenderer" />
+		<Renderer name="numberFormat" className="com.ems.common.datatransformer.renderer.NumberFormatRenderer" />
+		<Renderer name="dateFormat" className="com.ems.common.datatransformer.renderer.DateFormatRenderer" style="pattern:yyyy-MM-dd;" />
+		<Renderer name="code" className="com.ems.common.datatransformer.renderer.CodeRenderer" style="mode:getNameByValue;" />
+	</Renderers>
+	<Validators>
+		<Validator name="regex" className="com.ems.common.datatransformer.validator.RegexValidator" />
+		<Validator name="xsd" className="com.ems.common.datatransformer.validator.XsdValidator" />
+	</Validators>
+	<Handlers>
+		<Handler name="printToConsole" className="com.ems.common.datatransformer.handler.PrintToConsoleHandler" />
+		<Handler name="titleCellStyle" className="com.ems.common.datatransformer.handler.CellStyleHandler">
+			<Property name="alignment" value="1" />
+			<Property name="verticalAlignment" value="1" />
+			<Property name="borderTop" value="1" />
+			<Property name="borderRight" value="1" />
+			<Property name="borderBottom" value="1" />
+			<Property name="borderLeft" value="1" />
+			<Property name="fillPattern" value="1" />
+			<Property name="fillForegroundColor" value="44" />
+		</Handler>
+		<Handler name="cellStyle" className="com.ems.common.datatransformer.handler.CellStyleHandler">
+			<Property name="alignment" value="1" />
+			<Property name="verticalAlignment" value="1" />
+			<Property name="borderTop" value="1" />
+			<Property name="borderRight" value="1" />
+			<Property name="borderBottom" value="1" />
+			<Property name="borderLeft" value="1" />
+		</Handler>
+	</Handlers>
+</DataTransformers>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="DataTransformers">
+		<object-create-rule classname="com.ems.common.datatransformer.definition.DataTransformersDefinition" />
+		<set-properties-rule />
+		<pattern value="Import">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.ImportDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addImport" />
+		</pattern>
+		<pattern value="Constant">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.ConstantDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addConstant"/>
+		</pattern>
+		<pattern value="Handlers/Handler">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.HandlerDefinition" />
+			<set-properties-rule />
+			<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+			<set-next-rule methodname="addHandler" />
+		</pattern>
+		<pattern value="Renderers/Renderer">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.RendererDefinition" />
+			<set-properties-rule />
+			<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+			<set-next-rule methodname="addRenderer" />
+		</pattern>
+		<pattern value="Validators/Validator">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.ValidatorDefinition" />
+			<set-properties-rule />
+			<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+			<set-next-rule methodname="addValidator" />
+		</pattern>
+		<pattern value="TextFieldSet">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.TextFieldSetDefinition" />
+			<set-properties-rule />
+			<include path="com/ems/common/datatransformer/definition/rule/TextFieldRule.xml"/>
+			<include path="com/ems/common/datatransformer/definition/rule/TextFieldGroupRule.xml" />
+			<set-next-rule methodname="addDataFieldSet" />
+		</pattern>
+		<pattern value="CellSet">
+			<object-create-rule classname="com.ems.common.datatransformer.definition.CellFieldSetDefinition" />
+			<set-properties-rule />
+			<include path="com/ems/common/datatransformer/definition/rule/CellFieldRule.xml"/>
+			<include path="com/ems/common/datatransformer/definition/rule/CellFieldGroupRule.xml" />
+			<set-next-rule methodname="addDataFieldSet" />
+		</pattern>
+		<pattern value="DataTransformer">	
+			<object-create-rule classname="com.ems.common.datatransformer.definition.DataTransformerDefinition" />	
+			<set-properties-rule />
+			<pattern value="PojoToText">
+				<object-create-rule classname="com.ems.common.datatransformer.definition.parser.PojoToTextParserDefinition" />
+				<set-properties-rule />
+				<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+				<include path="com/ems/common/datatransformer/definition/rule/RepeatRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="TextToPojo">
+				<object-create-rule classname="com.ems.common.datatransformer.definition.parser.TextToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+				<include path="com/ems/common/datatransformer/definition/rule/RepeatRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="PojoToTemplate">
+				<object-create-rule classname="com.ems.common.datatransformer.definition.parser.PojoToTemplateParserDefinition" />
+				<set-properties-rule />
+				<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+				<include path="com/ems/common/datatransformer/definition/rule/TemplateRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="XmlToPojo">
+				<object-create-rule classname="com.ems.common.datatransformer.definition.parser.XmlToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+				<include path="com/ems/common/datatransformer/definition/rule/TemplateRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="ExcelToPojo">
+				<object-create-rule classname="com.ems.common.datatransformer.definition.parser.ExcelToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+				<include path="com/ems/common/datatransformer/definition/rule/SheetRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="PojoToExcel">
+				<object-create-rule classname="com.ems.common.datatransformer.definition.parser.PojoToExcelParserDefinition" />
+				<set-properties-rule />
+				<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+				<include path="com/ems/common/datatransformer/definition/rule/SheetRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+			<include path="com/ems/common/datatransformer/definition/rule/HandlerRule.xml"/>
+			<set-next-rule methodname="addDataTransformer" />
+		</pattern>
+	</pattern>
+</digester-rules>

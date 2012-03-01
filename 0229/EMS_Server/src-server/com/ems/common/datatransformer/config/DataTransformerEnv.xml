@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataTransformers>
+    <Constant name="Author" value="Chiknin"/>
+    
+    <Constant name="Env.ObjectFactoryRegistry" value="new,spring"/>
+    <Constant name="Env.ObjectFactoryRegistry.new.className" value="com.ems.common.datatransformer.objectfactory.impl.NewObjectFactory"/>
+    <Constant name="Env.ObjectFactoryRegistry.spring.className" value="com.ems.common.datatransformer.objectfactory.impl.SpringObjectFactory"/>
+    
+    <Constant name="Env.ParserDefinitionHandlerRegistry" value="PojoToText,TextToPojo,PojoToTemplate,XmlToPojo,ExcelToPojo,PojoToExcel"/>
+    <Constant name="Env.ParserDefinitionHandlerRegistry.PojoToText.className" value="com.ems.common.datatransformer.factory.object.PojoToTextTransformer"/>
+    <Constant name="Env.ParserDefinitionHandlerRegistry.TextToPojo.className" value="com.ems.common.datatransformer.factory.object.TextToPojoTransformer"/>
+    <Constant name="Env.ParserDefinitionHandlerRegistry.PojoToTemplate.className" value="com.ems.common.datatransformer.factory.object.PojoToTemplateTransformer"/>
+    <Constant name="Env.ParserDefinitionHandlerRegistry.XmlToPojo.className" value="com.ems.common.datatransformer.factory.object.XmlToPojoTransformer"/>
+    <Constant name="Env.ParserDefinitionHandlerRegistry.ExcelToPojo.className" value="com.ems.common.datatransformer.factory.object.ExcelToPojoTransformer"/>
+    <Constant name="Env.ParserDefinitionHandlerRegistry.PojoToExcel.className" value="com.ems.common.datatransformer.factory.object.PojoToExcelTransformer"/>
+</DataTransformers>

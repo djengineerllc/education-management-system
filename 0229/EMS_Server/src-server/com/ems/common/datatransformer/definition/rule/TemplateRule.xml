@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="Template">
+		<object-create-rule classname="com.ems.common.datatransformer.definition.TemplateDefinition"/>
+		<set-properties-rule />
+		<include path="com/ems/common/datatransformer/definition/rule/PropertyRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/ValidatorRule.xml"/>
+		<include path="com/ems/common/datatransformer/definition/rule/RendererRule.xml"/>
+		<set-next-rule methodname="setTemplate" />
+	</pattern>
+</digester-rules>
