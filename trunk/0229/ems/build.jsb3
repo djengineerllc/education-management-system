@@ -932,19 +932,15 @@
 			}],
 	"resources" : [{
 				"src" : "index.html",
-				"dest" : "index.html",
-				"filters" : ".*"
+				"dest" : "index.html"
 			}, {
 				"src" : "lib/ext/resources/",
-				"dest" : "lib/ext/resources/",
-				"filters" : ".*"
+				"dest" : "lib/ext/resources"
 			}, {
-				"src" : "lib/ext/",
-				"dest" : "lib/ext/",
-				"filters" : "ext.js"
+				"src" : "lib/ext/ext.js",
+				"dest" : "lib/ext/ext.js"
 			}, {
 				"src" : "src/ems/core/resources/",
-				"dest" : "src/ems/core/resources/",
-				"filters" : ".*"
+				"dest" : "src/ems/core/resources"
 			}]
 }
