@@ -9,6 +9,6 @@ Ext.define('ems.core.Requires', {
 		'ems.core.Actions', 
 		'ems.core.UI',
 		'ems.core.EventBus', 
-		'ems.core.EmsUtils',
+		'ems.core.EmsUtils'
 	]
 });

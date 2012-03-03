@@ -31,7 +31,7 @@ Ems = ems.core.Ems = {
 		var me = this;
 		me.config = Ext.applyIf(config || {}, {
 			appVersion: '1.0',
-			serverUrl: 'http://localhost/EMS_Server',
+			serverUrl: 'http://localhost/ES',
 			serverApiPath: '/apis',
 			ajaxTimeout: 60000,
 			enableQuickTips: true,
@@ -436,8 +436,6 @@ Ems = ems.core.Ems = {
 //			}
 //		});
 		
-		
-		
 		Ext.AbstractComponent.override({
 			destroy : function() {
 		        var me = this;
@@ -494,7 +492,9 @@ Ems = ems.core.Ems = {
 		    }
 		});
 		
-		
+//		Ext.ElementLoader.override({
+//			
+//		});
 		
 		Ext.form.Basic.override({
 //			waitTitle: '请稍候',

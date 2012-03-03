@@ -2,7 +2,8 @@ Ext.define('ems.main.Main', {
 	extend: 'ems.core.Module',
 	requires: [
 		'Ext.layout.container.Border',
-		'Ext.tab.Panel'
+		'Ext.tab.Panel',
+		'Ext.form.field.ComboBox'
 	],
 	
 	uses: [
@@ -10,6 +11,12 @@ Ext.define('ems.main.Main', {
 		'ems.main.data.store.MenuStore',
 		'ems.main.MainUI'
 	],
+	
+	constructor: function() {
+		var me = this;
+		me.overrideExtClassess();
+		me.callParent(arguments);
+	},
 	
 	init: function() {
 		var me = this;
@@ -172,5 +179,15 @@ Ext.define('ems.main.Main', {
 	
 	onSwitchRole: function(params, request) {
 		alert('切换角色'); // TODO 
+	},
+	
+	overrideExtClassess: function() {
+		Ext.form.field.ComboBox.override({
+			getSelectedIndex: function() {
+				var value = this.getValue(),
+					record = this.findRecord(this.valueField || this.displayField, value);
+				return this.store.indexOf(record);
+			}
+		});
 	}
 });

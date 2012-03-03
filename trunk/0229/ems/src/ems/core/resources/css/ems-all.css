@@ -142,3 +142,19 @@
 .ems .icon-export-excel {
 	background-image: url('images/icons/export_excel_16.png');
 }
+
+.ems .icon-cert {
+	background-image: url('images/icons/cert_16.png');
+}
+
+.ems .icon-stamp {
+	background-image: url('images/icons/stamp_16.png');
+}
+
+.ems .icon-arrow-up {
+	background-image: url('images/woofunction-icons/arrow_up_16.png');
+}
+
+.ems .icon-arrow-down {
+	background-image: url('images/woofunction-icons/arrow_down_16.png');
+}

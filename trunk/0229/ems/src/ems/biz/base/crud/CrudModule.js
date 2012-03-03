@@ -94,7 +94,11 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			}
         }
 		
-		return null;
+		var sltRaws = [];
+		Ext.each(slts, function(slt) {
+			sltRaws.push(slt.raw);
+		});
+		return sltRaws;
     },
     
     onCreate: function(params, request){
@@ -102,7 +106,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			eo = request.eventSource,
 			bizAction = 'c', 
 			reqParams = me.getReqParams(bizAction, eo);
-        if (reqParams == false) {
+        if (reqParams === false) {
             return;
         }
         
@@ -121,7 +125,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			eo = request.eventSource,
 			bizAction = 'r', 
 			reqParams = me.getReqParams(bizAction, eo);
-        if (reqParams == false) {
+        if (reqParams === false) {
             return;
         }
 		
@@ -141,7 +145,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			eo = request.eventSource,
 			bizAction = 'u', 
 			reqParams = me.getReqParams(bizAction, eo);
-        if (reqParams == false) {
+        if (reqParams === false) {
             return;
         }
         
@@ -160,13 +164,13 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			eo = request.eventSource,
 			bizAction = 'd',
 			reqParams = me.getReqParams(bizAction, eo);
-        if (reqParams == false) {
+        if (reqParams === false) {
             return;
         }
 			
 		var dlg = EU.showConfirmDialog({
 			animateTarget: eo.el,
-			msg: '您确认删除选中的记录？',
+			msg: Ext.String.format('您确认删除选中的记录({0}条)？', reqParams.length),
 			callback: function(btnId, value) {
 				if (btnId == 'yes') {
 					me.A({
@@ -187,7 +191,9 @@ Ext.define('ems.biz.base.crud.CrudModule', {
     },
 	
 	onBatchImport: function(params, request){
-		var me = this;
+		var me = this,
+			eo = request.eventSource;
+		
 		me.SW('UserBatchImportUI', {
 //            bizAction: bizAction,
 //            reqParams: reqParams
@@ -202,8 +208,8 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			maximizable: true,
 //			constrain: me.ui.getTargetEl(),
 //			constrainTo: me.ui.getTargetEl(),
-            buttons: [me.cancelButton]//,
-//			animateTarget: eo.el
+            buttons: [me.cancelButton],
+			animateTarget: eo.el
         });
 	},
 	
