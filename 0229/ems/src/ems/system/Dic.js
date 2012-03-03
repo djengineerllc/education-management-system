@@ -25,7 +25,7 @@ Ext.define('ems.system.Dic', {
 			storeId = (me.DIC_STORE_PREFIX + dicType),
 			dicStore = Ext.data.StoreManager.lookup(storeId);
 		if (!dicStore) {
-			var data = Ems.syncDirectRequest('ems.system.System', 'getDicData', ['Sex']).result;
+			var data = Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: dicType}]).result;
 			dicStore = Ext.create('ems.system.data.store.DicStore', {
 				storeId: storeId,
 			});
@@ -33,6 +33,17 @@ Ext.define('ems.system.Dic', {
 		}
 		
 		return dicStore;
+	},
+	
+	localComboBox: function(config) {
+		return Ext.create('Ext.form.field.ComboBox', Ext.applyIf(config || {}, {
+			queryMode: 'local',
+			forceSelection: false,
+			editable: false,
+			valueField: 'value',
+			displayField: 'name',
+			store: Ext.create('ems.system.data.store.DicStore')
+		}));
 	},
 	
 	comboBox: function(dicType, config) {
@@ -135,25 +146,33 @@ Ext.define('ems.system.Dic', {
 				return dicRecord.data.name;
 			}
 			
-			return '';
+			return value;
 		};
 	},
 	
 	displayfield: function(dicType, config) {
 		var me = this, 
-		displayField = Ext.apply(config, {
+		displayField = Ext.create('Ext.form.field.Display', Ext.apply(config, {
 			listeners: {
 				change: function(comp, newValue, oldValue, eOpts) {
 					if (newValue) {
 						var dicStore = me.getStore(dicType),
-							record = dicStore.findRecord('value', newValue),
-							text = record.data['name'];
-							this.setRawValue(this.valueToRaw(text));
+							record = dicStore.findRecord('value', newValue);
+						if (record) {
+							this.setRawValue(this.valueToRaw(record.data['name'] || newValue));
+						}
 					}
 				}
 			}
-		});
-			
+		}));
+		if (config.value) {
+			var dicStore = me.getStore(dicType),
+				record = dicStore.findRecord('value', config.value);
+			if (record) {
+				displayField.setRawValue(displayField.valueToRaw(record.data['name'] || config.value));
+			}
+		}
+		
 		return displayField;
 	}
 });

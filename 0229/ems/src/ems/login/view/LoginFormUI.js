@@ -27,7 +27,7 @@ Ext.define('ems.login.view.LoginFormUI', {
 //					iconCls: 'icon-user',
 					itemId: 'userName',
 					name: 'userName',
-					fieldLabel: '用户名',
+					fieldLabel: '用户',
 					value: 'admin'
 				}, {
 					xtype: 'textfield',

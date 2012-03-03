@@ -24,9 +24,10 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 		me.callParent(arguments);
 		me.apis = me.getApis();
 		if (!me.apis) {
-			me.apis = {
-				load: me.DF('read'),
-			};
+			me.apis = {};
+			if (me.enableCreateAction || me.enableUpdateAction || me.enableDeleteAction || me.enableReadAction) {
+				me.apis.load = me.DF('read');
+			}
 			if (me.enableCreateAction) {
 				me.apis.c = {
 					submit: me.DF('create')
@@ -37,7 +38,7 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 					submit: me.DF('update')
 				}
 			}
-			if (me.enableReadAction) {
+			if (me.enableDeleteAction) {
 				me.apis.d = {
 					submit: me.DF('delete')
 				}
