@@ -3,9 +3,11 @@ package com.ems.client.action.biz.certificate.common.vo;
 import com.ems.system.client.vo.ExtGridVO;
 
 public class CertQueryVO extends ExtGridVO {
+	
 	private String stuNo;
 	private String stuGrade;
 	private String stuClass;
+	
 	public String getStuNo() {
 		return stuNo;
 	}

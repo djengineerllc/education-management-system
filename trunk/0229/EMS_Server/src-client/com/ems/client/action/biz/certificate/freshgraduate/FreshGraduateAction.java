@@ -1,4 +1,4 @@
-package com.ems.client.action.biz.certificate.studentship;
+package com.ems.client.action.biz.certificate.freshgraduate;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +20,7 @@ import com.ems.system.client.vo.ExtPagingVO;
 import com.google.gson.JsonArray;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 
-public class StudentshipAction extends DirectCrudAction {
-	
+public class FreshGraduateAction extends DirectCrudAction {
 	private static Map<Integer, StudentInfoVO> studentInfos = new HashMap<Integer, StudentInfoVO>();
 	static {
 		studentInfos.put(1, new StudentInfoVO(1, "0001", "小祝", "1", "2001", "2011A", "101", "10101", "1"));
@@ -47,7 +46,7 @@ public class StudentshipAction extends DirectCrudAction {
 		String stuNo = request.getParameter("stuNo");
 		Object rootVO = studentInfos.get(Integer.valueOf(stuNo));
 		
-		String data = (String) DataTransformerHelper.transform("DT_print_certificate_studentship", rootVO);
+		String data = (String) DataTransformerHelper.transform("DT_print_certificate_freshgraduate", rootVO);
 		
 		this.writeToResponse(response, data.getBytes("UTF-8"));
 	}

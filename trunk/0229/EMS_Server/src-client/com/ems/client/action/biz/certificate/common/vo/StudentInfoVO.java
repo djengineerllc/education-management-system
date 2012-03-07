@@ -3,6 +3,7 @@ package com.ems.client.action.biz.certificate.common.vo;
 import java.io.Serializable;
 
 public class StudentInfoVO implements Serializable {
+	
 	private Integer stuId;
 	private String stuNo;
 	private String stuName;
