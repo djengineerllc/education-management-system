@@ -39,6 +39,9 @@ public class MainAction extends DirectAction {
 			if ("05".equals(id)) {
 				result.add(new MenuItemVO("0501", "在学证明", "ems.biz.certificate.studentship.Studentship", "在学证明"));
 				result.add(new MenuItemVO("0502", "成绩证明", "ems.biz.certificate.transcript.Transcript", "成绩证明"));
+				result.add(new MenuItemVO("0503", "预毕业证明", "ems.biz.certificate.freshgraduate.FreshGraduate", "预毕业证明"));
+				result.add(new MenuItemVO("0504", "毕业证明", "ems.biz.certificate.graduate.Graduate", "毕业证明"));
+				result.add(new MenuItemVO("0505", "就读证明", "ems.biz.certificate.study.Study", "就读证明"));
 			}
 		}
 		
