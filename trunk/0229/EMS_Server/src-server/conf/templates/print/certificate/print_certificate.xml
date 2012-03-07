@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DataTransformers>
-	<DataTransformer name="DT_print_certificate_transcript">
+	<DataTransformer name="DT_print_certificate_studentship" description="在学证明">
+		<PojoToTemplate>
+			<Template file="/print/certificate/studentship.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_certificate_transcript" description="成绩证明">
 		<PojoToTemplate>
 			<Template file="/print/certificate/transcript.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_certificate_freshgraduate" description="预毕业证明">
+		<PojoToTemplate>
+			<Template file="/print/certificate/freshgraduate.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_certificate_graduate" description="毕业证明">
+		<PojoToTemplate>
+			<Template file="/print/certificate/graduate.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_certificate_study" description="就读证明">
+		<PojoToTemplate>
+			<Template file="/print/certificate/study.ftl">
 				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
 			</Template>
 		</PojoToTemplate>
