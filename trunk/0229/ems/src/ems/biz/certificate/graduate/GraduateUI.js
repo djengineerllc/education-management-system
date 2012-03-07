@@ -1,4 +1,4 @@
-Ext.define('ems.biz.certificate.studentship.StudentshipUI', {
+Ext.define('ems.biz.certificate.graduate.GraduateUI', {
     extend: 'ems.biz.base.crud.CrudUI',
     
     requires: ['ems.core.widget.XGrid'],
