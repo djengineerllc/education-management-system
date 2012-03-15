@@ -18,11 +18,11 @@ public class MainAction extends DirectAction {
 
 		if ("root".equals(id)) { // StringUtils.isEmpty(id) ||
 			result.add(new MenuItemVO("00", "实例", false));
-			result.add(new MenuItemVO("01", "学籍管理", false));
-			result.add(new MenuItemVO("02", "师资管理", false));
-			result.add(new MenuItemVO("03", "教室管理", false));
-			result.add(new MenuItemVO("04", "教材管理", false));
-			result.add(new MenuItemVO("05", "打印证明", false));
+			//result.add(new MenuItemVO("01", "学籍管理", false));
+			//result.add(new MenuItemVO("02", "师资管理", false));
+			//result.add(new MenuItemVO("03", "教室管理", false));
+			//result.add(new MenuItemVO("04", "教材管理", false));
+			result.add(new MenuItemVO("05", "基础信息管理", false));
 		} else {
 			if ("00".equals(id)) {
 				result.add(new MenuItemVO("0001", "测试节点1", false));
@@ -35,13 +35,16 @@ public class MainAction extends DirectAction {
 				result.add(new MenuItemVO("000101", "测试节点1.1", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.1Title"));
 				result.add(new MenuItemVO("000102", "测试节点1.2", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.2Title"));
 			}
-			
 			if ("05".equals(id)) {
-				result.add(new MenuItemVO("0501", "在学证明", "ems.biz.certificate.studentship.Studentship", "在学证明"));
-				result.add(new MenuItemVO("0502", "成绩证明", "ems.biz.certificate.transcript.Transcript", "成绩证明"));
-				result.add(new MenuItemVO("0503", "预毕业证明", "ems.biz.certificate.freshgraduate.FreshGraduate", "预毕业证明"));
-				result.add(new MenuItemVO("0504", "毕业证明", "ems.biz.certificate.graduate.Graduate", "毕业证明"));
-				result.add(new MenuItemVO("0505", "就读证明", "ems.biz.certificate.study.Study", "就读证明"));
+				result.add(new MenuItemVO("0501", "用户管理", "ems.biz.basicInfo.gradeManager.Grade", "用户管理"));
+				result.add(new MenuItemVO("0502", "年级管理", "ems.biz.basicInfo.gradeManager.Grade", "年级管理"));
+				result.add(new MenuItemVO("0503", "学期管理", "ems.biz.basicInfo.termManager.Term", "学期管理"));
+				result.add(new MenuItemVO("0504", "班级管理", "ems.biz.basicInfo.classManager.Class", "班级管理"));
+				result.add(new MenuItemVO("0505", "项目管理", "ems.biz.basicInfo.projectManager.Project", "项目管理"));
+				result.add(new MenuItemVO("0506", "专业管理", "ems.biz.basicInfo.professManager.Profess", "专业管理"));
+				result.add(new MenuItemVO("0507", "课程管理", "ems.biz.basicInfo.subjectManager.Subject", "课程管理"));
+				result.add(new MenuItemVO("0508", "教室管理", "ems.biz.basicInfo.roomManager.Room", "教室管理"));
+				result.add(new MenuItemVO("0509", "教材管理", "ems.biz.basicInfo.bookManager.Book", "教材管理"));
 			}
 		}
 		
