@@ -2,13 +2,18 @@ package com.ems.client.action.biz.basicInfo.gradeManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
+
+import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.client.action.biz.samples.common.vo.GradeVO;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.util.BeanUtils;
@@ -21,26 +26,25 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.Grade;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class GradeAction extends DirectAction {
 	
 	private Logger logger = Logger.getLogger(this.getClass()); 
-	private static Integer idCounter = 10;
-	
-	private static Map<Integer, GradeVO> grade = new HashMap<Integer, GradeVO>();
-	static {
-		grade.put(1, new GradeVO(1, "2006级"));
-		grade.put(2, new GradeVO(2, "2007级"));
-		grade.put(3, new GradeVO(3, "2008级"));
-		grade.put(4, new GradeVO(4, "2009级"));
-	}
+	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
 	
 	@DirectMethod
 	public ExtPagingVO loadGrade(JsonArray params) {
 		try{
 			List<GradeVO> gradeVOList = new ArrayList<GradeVO>();
-			for (Map.Entry<Integer, GradeVO> user : grade.entrySet()) {
-				gradeVOList.add(user.getValue());
+			GradeVO gradeVO = null;
+			List<Grade> gradeList = basicInfoService.getAll(Grade.class);
+			for (Grade grade_ : gradeList) {
+				gradeVO = new GradeVO();
+				gradeVO.setGradeId(grade_.getId());
+				gradeVO.setGradeName(grade_.getGradeName());
+				gradeVOList.add(gradeVO);
 			}
 			return new ExtPagingVO(gradeVOList);
 		}catch(Exception e){
@@ -52,36 +56,50 @@ public class GradeAction extends DirectAction {
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		GradeVO gradeVO = BeanUtils.toBeanFromMap(formParameters, GradeVO.class);
-		
 		ExtFormVO result = new ExtFormVO();
-		
-		if (grade.containsKey(gradeVO.getGradeName())) {
-			result.addError("gradeName", String.format("年级[%s]已重复", gradeVO.getGradeName()));
-			return result;
+		List<Grade> gradeList = basicInfoService.getAll(Grade.class);
+		for(Grade grade_:gradeList){
+			if (grade_.getGradeName().equalsIgnoreCase(gradeVO.getGradeName())) {
+				result.addError("gradeName", String.format("年级[%s]已重复", gradeVO.getGradeName()));
+				return result;
+			}
 		}
-		
-		gradeVO.setGradeId(++idCounter);
-		grade.put(gradeVO.getGradeId(), gradeVO);
+		Grade grade = new Grade();
+		grade.setGradeName(gradeVO.getGradeName());
+		grade.setCreateTime(new Date());
+		basicInfoService.save(grade);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer gradeId) {
 		System.out.println("getFormData gradeId = " + gradeId);
-		GradeVO gradeVO = grade.get(gradeId);
+		Grade grade = null;
+		GradeVO gradeVO = null;
+		if(gradeId != null){
+			grade = this.basicInfoService.findById(Grade.class, gradeId);
+			gradeVO = new GradeVO();
+			gradeVO.setGradeId(grade.getId());
+			gradeVO.setGradeName(grade.getGradeName());
+		}
 		return new ExtFormVO(gradeVO);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		GradeVO gradeVO = BeanUtils.toBeanFromMap(formParameters, GradeVO.class);
 		ExtFormVO result = new ExtFormVO();
-		grade.put(gradeVO.getGradeId(),gradeVO);
+		Grade grade = this.basicInfoService.findById(Grade.class, gradeVO.getGradeId());
+		grade.setGradeName(gradeVO.getGradeName());
+		grade.setUpdateTime(new Date());
+		this.basicInfoService.update(grade);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
+		Grade grade = null;
 		for (Integer id : ids) {
-			grade.remove(id);
+			grade = this.basicInfoService.findById(Grade.class, id);
+			this.basicInfoService.delete(grade);
 		}
 		return new ExtFormVO();
 	}

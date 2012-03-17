@@ -1,0 +1,4 @@
+Ext.namespace("ems.biz.basicInfo.classManager.ClassActions");
+ems.biz.basicInfo.classManager.ClassActions.PROVIDER_BASE_URL=window.location.protocol+"//"+window.location.host+"/ES/djn/directprovider";
+ems.biz.basicInfo.classManager.ClassActions.POLLING_URLS={};
+ems.biz.basicInfo.classManager.ClassActions.REMOTING_API={url:ems.biz.basicInfo.classManager.ClassActions.PROVIDER_BASE_URL,type:"remoting",actions:{ClassAction:[{name:"update",len:1,formHandler:true},{name:"exportExcel",len:2,formHandler:false},{name:"delete",len:1,formHandler:false},{name:"read",len:1,formHandler:false},{name:"loadClass",len:1,formHandler:false},{name:"create",len:1,formHandler:true},{name:"batchImport",len:1,formHandler:true},{name:"downloadExcelTemplate",len:2,formHandler:false}]}};
