@@ -1,5 +1,7 @@
 package conf.hibernate;
 
+import java.util.Date;
+
 /**
  * Grade entity. @author MyEclipse Persistence Tools
  */
@@ -10,6 +12,8 @@ public class Grade implements java.io.Serializable {
 
 	private Integer id;
 	private String gradeName;
+	private Date createTime;
+	private Date updateTime;
 
 	// Constructors
 
@@ -38,6 +42,22 @@ public class Grade implements java.io.Serializable {
 
 	public void setGradeName(String gradeName) {
 		this.gradeName = gradeName;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 }
