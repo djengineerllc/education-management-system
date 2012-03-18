@@ -21,7 +21,7 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['classId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,7 +32,7 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassReadUI', {
 				},
 				items: [{
 					fieldLabel: '班级ID',
-	                name: 'classId'
+	                name: 'id'
 				},{
 	                fieldLabel: '班级名',
 	                name: 'className'

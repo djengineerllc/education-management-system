@@ -26,7 +26,7 @@ Ext.define('ems.biz.basicInfo.classManager.ClassUI', {
                     }]
                 },
                 columns: [{
-                    dataIndex: 'classId',
+                    dataIndex: 'id',
                     text: '班级ID',
                     flex: 1
                 }, {

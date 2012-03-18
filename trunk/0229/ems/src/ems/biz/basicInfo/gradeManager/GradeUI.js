@@ -26,7 +26,7 @@ Ext.define('ems.biz.basicInfo.gradeManager.GradeUI', {
                     }]
                 },
                 columns: [{
-                    dataIndex: 'gradeId',
+                    dataIndex: 'id',
                     text: '年级ID',
                     flex: 1
                 }, {

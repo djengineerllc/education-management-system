@@ -92,7 +92,7 @@ Ext.define('ems.biz.basicInfo.gradeManager.view.GradeBatchImportUI', {
 				margin: '0 0 3 0',
 				height: 200,
                 columns: [{
-                    dataIndex: 'gradeId',
+                    dataIndex: 'id',
                     text: '年级ID',
                     flex: 1
                 }, {
@@ -110,7 +110,7 @@ Ext.define('ems.biz.basicInfo.gradeManager.view.GradeBatchImportUI', {
 //				hidden: true,
 				height: 200,
                 columns: [{
-                    dataIndex: 'gradeId',
+                    dataIndex: 'id',
                     text: '年级ID',
                     flex: 1
                 }, {

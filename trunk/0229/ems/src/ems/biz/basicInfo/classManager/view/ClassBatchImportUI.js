@@ -110,7 +110,7 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassBatchImportUI', {
 //				hidden: true,
 				height: 200,
                 columns: [{
-                    dataIndex: 'classId',
+                    dataIndex: 'id',
                     text: '班级ID',
                     flex: 1
                 }, {
