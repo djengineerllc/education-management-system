@@ -65,7 +65,7 @@ Ext.define('ems.main.MainUI', {
 					items: [{
 						border: false,
 						cls: 'ems-title',
-						height: 25,
+						height: 25
 //						margins: '50 0 0 0',
 //						html: '教务管理系统2'
 					}]
