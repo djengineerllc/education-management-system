@@ -13,6 +13,8 @@ Ems = ems.core.Ems = {
 	
 	isStarted: false,
 	
+//	systemTime: new Date(),
+	
 	config: null,
 	
 	eventBus: null,
@@ -93,6 +95,10 @@ Ems = ems.core.Ems = {
 		
 		me.overrideExtClassess();
 		
+		if (cfg.lang) {
+			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.lang + '.js', Ext.emptyFn, Ext.emptyFn, this, true);
+			this.updateLocale();
+		}
 		if (cfg.appVersion) {
 			Ext.Ajax.defaultHeaders = {
 				appVersion: cfg.appVersion
@@ -110,9 +116,7 @@ Ems = ems.core.Ems = {
 		if (cfg.stateProvider) {
 			Ext.state.Manager.setProvider(Ext.create(cfg.stateProvider));
 		}
-		if (cfg.lang) {
-			Ext.Loader.loadScriptFile('src/ems/core/locale/ext-lang-' + cfg.lang + '.js', Ext.emptyFn, Ext.emptyFn, this, true);
-		}
+		
 		if (cfg.requireModules) {
 			Ext.each(me.config.requireModules, function(moduleId) {
 				me.RM(moduleId);
@@ -367,7 +371,7 @@ Ems = ems.core.Ems = {
 	// -----------------------------------------------
 	
 	getSDRTransId: (function() {
-		var sdrTransId = 10000000;
+		var sdrTransId = 100000000;
 		return function() {
 			return sdrTransId++;
 		}
