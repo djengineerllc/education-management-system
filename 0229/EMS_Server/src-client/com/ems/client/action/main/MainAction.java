@@ -22,6 +22,7 @@ public class MainAction extends DirectAction {
 			//result.add(new MenuItemVO("02", "师资管理", false));
 			//result.add(new MenuItemVO("03", "教室管理", false));
 			//result.add(new MenuItemVO("04", "教材管理", false));
+			result.add(new MenuItemVO("03", "排课管理", false));
 			result.add(new MenuItemVO("05", "基础信息管理", false));
 			result.add(new MenuItemVO("06", "打印证明", false));
 		} else {
@@ -35,6 +36,10 @@ public class MainAction extends DirectAction {
 			if ("0001".equals(id)) {
 				result.add(new MenuItemVO("000101", "测试节点1.1", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.1Title"));
 				result.add(new MenuItemVO("000102", "测试节点1.2", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.2Title"));
+			}
+			if ("03".equals(id)) {
+				result.add(new MenuItemVO("0301", "手工排课", "ems.biz.course.manualplan.ManualPlan", "手工排课"));
+				result.add(new MenuItemVO("0302", "自动排课", "ems.biz.course.autoplan.AutoPlan", "手工排课"));
 			}
 			if ("05".equals(id)) {
 				result.add(new MenuItemVO("0501", "用户管理", "ems.biz.basicInfo.gradeManager.Grade", "用户管理"));
