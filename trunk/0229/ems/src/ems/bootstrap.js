@@ -9,10 +9,6 @@
 //}
 
 (function() {
-	window.onbeforeunload = function() {
-		return '';
-	}
-	
 	PRODUCT_MODE = false;
 	
 	Bootstrap = {
@@ -59,6 +55,8 @@
 	
 	var jsPaths = [];
 	if (PRODUCT_MODE == true) {
+		window.onbeforeunload = function() { return ''; };
+		
 		jsPaths = [
 			'lib/ext/ext-all.js'
 		];
