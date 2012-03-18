@@ -181,9 +181,6 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		if (stuComboBox.getStore().getCount() > 1) {
 			prevBtn.setDisabled(stuComboSltIdx > 0 ? false : true);
 			nextBtn.setDisabled(stuComboSltIdx < (stuComboBox.getStore().getCount() - 1) ? false : true);
-		} else {
-			prevBtn.hide();
-			nextBtn.hide();
 		}
 		
 		me.down('#certContentPanel').el.load({
@@ -216,10 +213,8 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 			sltStudents = me.reqParams,
 			termComboBox = me.down('#termComboBox'),
 			printer = EU.printer(sltStudents, function(sltStudent, addPageFn) {
-				Ext.Ajax.request({
+				Ems.Ajax({
 					url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printCert'),
-					loadMask: true,
-					scripts: true,
 					async: false,
 					params: {
 						term: termComboBox.getValue(),

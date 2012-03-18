@@ -28,6 +28,16 @@ Ext.define('ems.biz.certificate.study.view.PrintCertUI', {
 		);
 		me.up().setTitle(title); // 标题
 		
+		if (sltStudents.length <= 1) {
+			var prevBtn = me.down('#prevBtn'),
+				nextBtn = me.down('#nextBtn'),
+				batchPrintBtn = me.down('#batchPrintBtn');
+				
+			prevBtn.hide();
+			nextBtn.hide();
+			batchPrintBtn.hide();
+		}
+		
 		queryInfoForm.setValues({
 			stuNo: initData.stuNo
 		});
@@ -114,6 +124,16 @@ Ext.define('ems.biz.certificate.study.view.PrintCertUI', {
 							scope: me
 						}
 					}
+				},'->',{
+					text: '批量打印',
+					itemId: 'batchPrintBtn',
+					iconCls: 'icon-print',
+					listeners: {
+						click: {
+							fn: me.execBatchPrint,
+							scope: me
+						}
+					}
 				}]
 			}, {
 				region: 'center',
@@ -139,9 +159,6 @@ Ext.define('ems.biz.certificate.study.view.PrintCertUI', {
 		if (stuComboBox.getStore().getCount() > 1) {
 			prevBtn.setDisabled(stuComboSltIdx > 0 ? false : true);
 			nextBtn.setDisabled(stuComboSltIdx < (stuComboBox.getStore().getCount() - 1) ? false : true);
-		} else {
-			prevBtn.hide();
-			nextBtn.hide();
 		}
 		
 		me.down('#certContentPanel').el.load({
@@ -167,5 +184,25 @@ Ext.define('ems.biz.certificate.study.view.PrintCertUI', {
 		var me = this,
 			certContentPanel = me.down('#certContentPanel');
 		EU.printHtml(certContentPanel.el.dom.innerHTML);
+	},
+	
+	execBatchPrint: function() {
+		var me = this,
+			sltStudents = me.reqParams,
+			printer = EU.printer(sltStudents, function(sltStudent, addPageFn) {
+				Ems.Ajax({
+					url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printCert'),
+					async: false,
+					params: {
+						stuNo: sltStudent.stuNo
+					},
+					success: function(response) {
+						var text = response.responseText;
+						Ext.callback(addPageFn, this, [text]);
+					}
+				});
+			});
+			
+		printer.print();
 	}
 });
