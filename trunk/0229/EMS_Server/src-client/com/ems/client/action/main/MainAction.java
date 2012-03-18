@@ -23,6 +23,7 @@ public class MainAction extends DirectAction {
 			//result.add(new MenuItemVO("03", "教室管理", false));
 			//result.add(new MenuItemVO("04", "教材管理", false));
 			result.add(new MenuItemVO("05", "基础信息管理", false));
+			result.add(new MenuItemVO("06", "打印证明", false));
 		} else {
 			if ("00".equals(id)) {
 				result.add(new MenuItemVO("0001", "测试节点1", false));
@@ -45,6 +46,13 @@ public class MainAction extends DirectAction {
 				result.add(new MenuItemVO("0507", "课程管理", "ems.biz.basicInfo.subjectManager.Subject", "课程管理"));
 				result.add(new MenuItemVO("0508", "教室管理", "ems.biz.basicInfo.roomManager.Room", "教室管理"));
 				result.add(new MenuItemVO("0509", "教材管理", "ems.biz.basicInfo.bookManager.Book", "教材管理"));
+			}
+			else if ("06".equals(id)) {
+				result.add(new MenuItemVO("0601", "成绩证明", "ems.biz.certificate.transcript.Transcript", "成绩证明"));
+				result.add(new MenuItemVO("0602", "在学证明", "ems.biz.certificate.studentship.Studentship", "在学证明"));
+				result.add(new MenuItemVO("0603", "预毕业证明", "ems.biz.certificate.freshgraduate.FreshGraduate", "预毕业证明"));
+				result.add(new MenuItemVO("0604", "毕业证明", "ems.biz.certificate.graduate.Graduate", "毕业证明"));
+				result.add(new MenuItemVO("0605", "就读证明", "ems.biz.certificate.study.Study", "就读证明"));
 			}
 		}
 		
