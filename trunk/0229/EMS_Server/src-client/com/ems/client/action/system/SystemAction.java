@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.client.action.login.LoginAction;
 import com.ems.client.action.login.vo.LoginInfoVO;
 import com.ems.common.model.vo.DicVO;
@@ -14,8 +15,12 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.Grade;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class SystemAction extends DirectAction {
+	
+	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
 	
 	@DirectMethod
 	public Date getSystemTime() {
@@ -29,9 +34,10 @@ public class SystemAction extends DirectAction {
 		
 		List<DicVO> dicVOList = new ArrayList<DicVO>();
 		if ("Grade".equals(dicType)) {
-//			dicVOList.add(new DicVO(9, "Grade", "", "", "请选择"));
-			dicVOList.add(new DicVO(10, "Grade", "2011", "2011", "2011级"));
-			dicVOList.add(new DicVO(11, "Grade", "2012", "2012", "2012级"));
+			List<Grade> grades = basicInfoService.getAll(Grade.class);
+			for(Grade grade:grades){
+				dicVOList.add(new DicVO(grade.getId(), "Grade", grade.getId()+"", grade.getId()+"", grade.getGradeName()));
+			}
 		} else if ("Class".equals(dicType)) {
 			if ("2011".equals(queryInfo.getGroup())) {
 				dicVOList.add(new DicVO(20, "Class", "2011A", "2011A", "2011A班"));

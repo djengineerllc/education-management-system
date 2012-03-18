@@ -2,22 +2,23 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class GradeVO {
 	
-	private Integer gradeId;
+	private Integer id;
 	private String gradeName;
 	public GradeVO() {
 	}
 	public GradeVO(String gradeName){
 		this.gradeName = gradeName;
 	}
-	public GradeVO(Integer gradeId,String gradeName){
-		this.gradeId = gradeId;
+	public GradeVO(Integer id,String gradeName){
+		this.id = id;
 		this.gradeName = gradeName;
 	}
-	public Integer getGradeId() {
-		return gradeId;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setGradeId(Integer gradeId) {
-		this.gradeId = gradeId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getGradeName() {
 		return gradeName;
