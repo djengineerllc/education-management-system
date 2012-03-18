@@ -14,7 +14,9 @@
 <div style="height:60px;"></div>
 
 <div style="text-align:left">To whom it may concern,</div>
+<div style="text-align:left">
 This is to certify that Mingling Chen, female, born on January 4th, 1991, who entered SQA-HND Centre of the International College of Xiamen University in September 2008, has fulfilled the HND Course of Business with Accounting and completed all the courses. The HND Certificates are expected to be posted to the candidate from Glasgow in June 2011 when the unit results are processed by SQA.  
+</div>
 <div style="height:8px;"></div>
 <div style="text-align:right">Scottish Qualification Authority Approved Center</div>
 <div style="text-align:right">The International College of Xiamen University (China P.R)</div>
