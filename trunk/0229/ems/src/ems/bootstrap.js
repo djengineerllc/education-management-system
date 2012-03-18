@@ -9,6 +9,9 @@
 //}
 
 (function() {
+	window.onbeforeunload = function() {
+		return '';
+	}
 	
 	PRODUCT_MODE = false;
 	
