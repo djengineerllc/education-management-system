@@ -42,7 +42,7 @@ public class GradeAction extends DirectAction {
 			List<Grade> gradeList = basicInfoService.getAll(Grade.class);
 			for (Grade grade_ : gradeList) {
 				gradeVO = new GradeVO();
-				gradeVO.setGradeId(grade_.getId());
+				gradeVO.setId(grade_.getId());
 				gradeVO.setGradeName(grade_.getGradeName());
 				gradeVOList.add(gradeVO);
 			}
@@ -78,7 +78,7 @@ public class GradeAction extends DirectAction {
 		if(gradeId != null){
 			grade = this.basicInfoService.findById(Grade.class, gradeId);
 			gradeVO = new GradeVO();
-			gradeVO.setGradeId(grade.getId());
+			gradeVO.setId(grade.getId());
 			gradeVO.setGradeName(grade.getGradeName());
 		}
 		return new ExtFormVO(gradeVO);
@@ -87,7 +87,7 @@ public class GradeAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		GradeVO gradeVO = BeanUtils.toBeanFromMap(formParameters, GradeVO.class);
 		ExtFormVO result = new ExtFormVO();
-		Grade grade = this.basicInfoService.findById(Grade.class, gradeVO.getGradeId());
+		Grade grade = this.basicInfoService.findById(Grade.class, gradeVO.getId());
 		grade.setGradeName(gradeVO.getGradeName());
 		grade.setUpdateTime(new Date());
 		this.basicInfoService.update(grade);

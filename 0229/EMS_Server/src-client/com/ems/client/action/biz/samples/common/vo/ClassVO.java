@@ -1,37 +1,39 @@
 package com.ems.client.action.biz.samples.common.vo;
 
 public class ClassVO {
-	private Integer classId;
+	private Integer id;
 	private Integer gradeId;
 	private String className;
 	private String gradeName;
+	private Integer studentNum;
 	
 	public ClassVO() {
 		super();
 	}
-	public ClassVO(Integer classId, Integer gradeId) {
+	public ClassVO(Integer id, Integer gradeId) {
 		super();
-		this.classId = classId;
+		this.id = id;
 		this.gradeId = gradeId;
 	}
-	public ClassVO(Integer classId) {
+	public ClassVO(Integer id) {
 		super();
-		this.classId = classId;
+		this.id = id;
 	}
 	
-	public ClassVO(Integer classId, Integer gradeId, String className,
+	public ClassVO(Integer id, Integer gradeId, String className,
 			String gradeName) {
 		super();
-		this.classId = classId;
+		this.id = id;
 		this.gradeId = gradeId;
 		this.className = className;
 		this.gradeName = gradeName;
 	}
-	public Integer getClassId() {
-		return classId;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setClassId(Integer classId) {
-		this.classId = classId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Integer getGradeId() {
 		return gradeId;
@@ -50,6 +52,12 @@ public class ClassVO {
 	}
 	public void setGradeName(String gradeName) {
 		this.gradeName = gradeName;
+	}
+	public Integer getStudentNum() {
+		return studentNum;
+	}
+	public void setStudentNum(Integer studentNum) {
+		this.studentNum = studentNum;
 	}
 	
 }
