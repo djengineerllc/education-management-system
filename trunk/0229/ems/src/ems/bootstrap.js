@@ -13,7 +13,6 @@
 	PRODUCT_MODE = false;
 	
 	Bootstrap = {
-		
         rootPath: '',
 
         cacheBuster: function() {
@@ -55,19 +54,25 @@
 //	Bootstrap.loadCss('css-ext', 'lib/ext/resources/css/ext-all-gray.css');
 	Bootstrap.loadCss('css-ems', 'src/ems/core/resources/css/ems-all.css');
 	
-	jsPaths = [
-		'lib/ext/ext-debug.js',
-//		'lib/ext/ext.js',
-//		'lib/ext/classes.js',
-//		'lib/ext/ext-all-dev.js',
-//		'lib/ext/ext-all.js',
-//		'src/ems/core/util/CheckLeaksUtil.js',
-//		'deploy/lib/ext/ext-all-min.js',
-		
-		'src/ems/core/Ems.js'
-		
-//		,'build/build/src/ems/core/Ems.js'
-	];
+	var jsPaths = [];
+	if (PRODUCT_MODE == true) {
+		jsPaths = [
+			'lib/ext/ext-all.js'
+		];
+	} else {
+		jsPaths = [
+			'lib/ext/ext-debug.js'
+	//		'lib/ext/ext.js',
+	//		'lib/ext/classes.js',
+	//		'lib/ext/ext-all-dev.js',
+	//		'lib/ext/ext-all.js',
+	//		'src/ems/core/util/CheckLeaksUtil.js',
+	//		'deploy/lib/ext/ext-all-min.js',
+	//		,'build/build/src/ems/core/Ems.js'
+		];
+	}
+	jsPaths.push('src/ems/core/Ems.js');
+	
 	for (var i = 0; i < jsPaths.length; i++) {
 		Bootstrap.loadScript(jsPaths[i]);
 	}
