@@ -25,10 +25,6 @@
 
 package com.softwarementors.extjs.djn.router.processor;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.softwarementors.extjs.djn.StringUtils;
 
 public abstract class ResponseData {
@@ -49,11 +45,11 @@ public abstract class ResponseData {
 	}
 	
 	// START: add by chiknin
-	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private String systemTime = df.format(new Date());
-
-	public String getSystemTime() {
-		return systemTime;
-	}
+//	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//	private String systemTime = df.format(new Date());
+//
+//	public String getSystemTime() {
+//		return systemTime;
+//	}
 	// END: add by chiknin
 }
