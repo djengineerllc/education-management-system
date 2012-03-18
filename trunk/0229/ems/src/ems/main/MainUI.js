@@ -70,25 +70,27 @@ Ext.define('ems.main.MainUI', {
 //						html: '教务管理系统2'
 					}]
 				}, {
-					width: 170,
+					width: 85,
 					margins: '5 5 5 0',
-					items: [{
-						xtype: 'button',
-						text: '切换角色',
-						iconCls: 'icon-roles',
-						margins: '5 5 5 0',
-						menu: [{
-							text: '系统管理员',
-							iconCls: 'icon-role-admin'
-						}, {
-							text: '教师',
-							iconCls: 'icon-role-teacher'
-						}, {
-							text: '学生',
-							iconCls: 'icon-role-student'
-						}]
-//						listeners: me.MRA('click', 'onSwitchRole')
-					}, {
+					items: [
+//					{
+//						xtype: 'button',
+//						text: '切换角色',
+//						iconCls: 'icon-roles',
+//						margins: '5 5 5 0',
+//						menu: [{
+//							text: '系统管理员',
+//							iconCls: 'icon-role-admin'
+//						}, {
+//							text: '教师',
+//							iconCls: 'icon-role-teacher'
+//						}, {
+//							text: '学生',
+//							iconCls: 'icon-role-student'
+//						}]
+////						listeners: me.MRA('click', 'onSwitchRole')
+//					}, 
+					{
 						xtype: 'button',
 						text: '退出系统',
 						iconCls: 'icon-logout',
