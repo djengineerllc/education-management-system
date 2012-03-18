@@ -43,7 +43,7 @@ Ext.define('ems.main.MainUI', {
 			items: [{
 				region: 'north',
 				cls: 'ems-header',
-				height: 105,
+				height: 55,
 				layout: {
                     type: 'hbox',
                     align: 'stretch'
@@ -52,7 +52,7 @@ Ext.define('ems.main.MainUI', {
 					border: false
 				},
 				items: [{
-					width: 650,
+					width: 200,
 					margins: '0 0 0 5',
 					cls: 'ems-logo'
 				}, {
@@ -65,9 +65,9 @@ Ext.define('ems.main.MainUI', {
 					items: [{
 						border: false,
 						cls: 'ems-title',
-						height: 25
+						height: 25,
 //						margins: '50 0 0 0',
-//						html: '教务管理系统2'
+						html: '您好 admin 同学， 学号 xxxxx | 年级 xxx | 班级 xxx | 项目 xxx | 专业 xxxx'
 					}]
 				}, {
 					width: 85,
@@ -179,21 +179,21 @@ Ext.define('ems.main.MainUI', {
 					Ext.create('Ext.ux.statusbar.StatusBar', {
 					border: false,
 					defaultText: '系统公告',
-					defaultIconCls: 'icon-speaker',
+					defaultIconCls: 'icon-speaker'
 //					statusAlign: 'right',
-		            items: ['-',{
-						xtype: 'displayfield',
-						labelAlign: 'right',
-						labelWidth: 80,
-						fieldLabel: '当前用户',
-						value: 'admin'
-					}, {
-						xtype: 'displayfield',
-						labelAlign: 'right',
-						labelWidth: 80,
-						fieldLabel: '当前角色',
-						value: '系统管理员'
-					}
+//		            items: ['-',{
+//						xtype: 'displayfield',
+//						labelAlign: 'right',
+//						labelWidth: 80,
+//						fieldLabel: '当前用户',
+//						value: 'admin'
+//					}, {
+//						xtype: 'displayfield',
+//						labelAlign: 'right',
+//						labelWidth: 80,
+//						fieldLabel: '当前角色',
+//						value: '系统管理员'
+//					}
 //					,'-', {
 //						xtype: 'tbtext',
 //						id: 'clock',
@@ -214,7 +214,7 @@ Ext.define('ems.main.MainUI', {
 //							}
 //						}
 //					}
-					]
+//					]
 	            })]
 			}]
 		};
