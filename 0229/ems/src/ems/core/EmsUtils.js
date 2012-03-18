@@ -8,12 +8,28 @@ Ext.define('ems.core.EmsUtils', {
 	],
 	
 	showDialog: function(config) {
-		return Ext.MessageBox.show(config); 
+		return Ext.MessageBox.show(config || {}); 
 //		Ext.apply(config || {}, {
 //			autoHeight: true,
 //			autoWidth: true,
 //			autoScroll: true
 //		})).doLayout();
+	},
+	
+	showProgress: function(config) {
+		return this.showDialog(Ext.applyIf(config || {}, {
+			title: Ems.config.waitMsg,
+            progress: true,
+            closable: false
+		}));
+	},
+	updateProgress: function(currValue, totalValue) {
+        if (arguments.length == 0) {
+            Ext.MessageBox.hide();
+        } else {
+            var i = currValue / totalValue;
+            Ext.MessageBox.updateProgress(i, '完成 ' + Math.round(100*i)+'%');
+        }
 	},
 	
 	showInfoDialog: function(config) {
@@ -117,5 +133,27 @@ Ext.define('ems.core.EmsUtils', {
 				body: content
 			});
 		me.print(html);
+	},
+	
+	printer: function(pageArgs, pageFn) {
+		return {
+			PAGE_SEPARATOR: '<div style="page-break-after: always;"></div>',
+			pages: [],
+			
+			addPage: function(page) {
+				this.pages.push(page);
+			},
+			
+			print: function() {
+				EU.showProgress();
+				Ext.each(pageArgs, function(pageArg, index) {
+					Ext.callback(pageFn, this, [pageArg, Ext.bind(this.addPage, this)]);
+					EU.updateProgress(index + 1, pageArgs.length);
+				}, this);
+				EU.updateProgress();
+				
+				EU.printHtml(this.pages.join(this.PAGE_SEPARATOR));
+			}
+		};
 	}
 });
