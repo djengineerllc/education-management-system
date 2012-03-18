@@ -419,6 +419,19 @@ Ems = ems.core.Ems = {
 		return url;
 	},
 	
+	Ajax: function(options) {
+		return Ext.Ajax.request(Ext.applyIf(options || {}, {
+			loadMask: true,
+			scripts: true,
+			failure: function(response, opts) {
+				EU.showErrorDialog({
+					title: '系统异常',
+					msg: response.responseText //Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
+				});
+			}
+		}));
+	},
+	
 	overrideExtClassess: function() {
 		
 //		Ext.Ajax.self.override({
