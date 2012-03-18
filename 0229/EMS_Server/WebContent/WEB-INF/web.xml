@@ -47,7 +47,7 @@
 
 		<init-param>
 			<param-name>contextPath</param-name>
-			<param-value>/ES</param-value>
+			<param-value>/EMS_Server</param-value>
 		</init-param>
 
 		<init-param>
