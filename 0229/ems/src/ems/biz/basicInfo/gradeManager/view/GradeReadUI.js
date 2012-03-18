@@ -21,7 +21,7 @@ Ext.define('ems.biz.basicInfo.gradeManager.view.GradeReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['gradeId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,7 +32,7 @@ Ext.define('ems.biz.basicInfo.gradeManager.view.GradeReadUI', {
 				},
 				items: [{
 					fieldLabel: '年级ID',
-	                name: 'gradeId'
+	                name: 'id'
 				},{
 	                fieldLabel: '年级名',
 	                name: 'gradeName'

@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassEditUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['classId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -34,14 +34,14 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassEditUI', {
 				},
 				items: [{
 					xtype: 'hiddenfield',
-					name: 'classId'
+					name: 'id'
 				},{
 	                fieldLabel: '班级名',
 	                name: 'className'
-	            },Dic.comboBox('gradeNameCode', {
+	            },Dic.comboBox('Grade', {
 					fieldLabel: '年级名',
-					name: 'gradeName',
-					valueKey: 'g1'
+					name: 'gradeName'
+					//valueKey: 'g1'
 				})]
 			}]
 		};
