@@ -140,8 +140,9 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 			}, {
 				region: 'center',
 				itemId: 'certContentPanel',
-				margins: '3 3 3 3',
+				margins: '2 2 2 2',
 				autoScroll: true,
+				border: false,
 				style: {
 					overflowY: 'auto'
 				}
