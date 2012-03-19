@@ -9,6 +9,13 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 	normalPlanUIViewId: 'NormalPlanUI',
 	autoPlanUIViewId: 'AutoPlanUI',
 	
+	submitButton: {
+        text: '提交',
+        handler: function() {
+        	
+        }
+    },
+	
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -28,7 +35,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             return;
         }
 		
-        me.SW(me.printCertViewId, {
+        me.SW(me.normalPlanUIViewId, {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
@@ -39,7 +46,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 			minHeight: 200,
 			resizable: true,
 			maximizable: true,
-            buttons: [me.cancelButton],
+            buttons: [me.submitButton, me.cancelButton],
 			animateTarget: eo.el
         });
 	},
