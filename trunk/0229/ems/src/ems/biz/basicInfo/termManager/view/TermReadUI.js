@@ -21,7 +21,7 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['termId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,11 +32,14 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermReadUI', {
 				},
 				items: [{
 					fieldLabel: '学期ID',
-	                name: 'termId'
+	                name: 'id'
 				},{
 	                fieldLabel: '学期名',
 	                name: 'termName'
-	            }]
+	            },{
+                    fieldLabel: '是否当前学期',
+                    name: 'isCurrentTerm'
+                }]
 			}]
 		};
 	}

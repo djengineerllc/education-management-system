@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermEditUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['termId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -34,11 +34,14 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermEditUI', {
 				},
 				items: [{
 					xtype: 'hiddenfield',
-					name: 'termId'
+					name: 'id'
 				},{
 	                fieldLabel: '学期名',
 	                name: 'termName'
-	            }]
+	            },Dic.radioGroup('Indicator', {
+					fieldLabel: '是否当前学期',
+					groupName: 'isCurrentTerm'
+				})]
 			}]
 		};
 	}

@@ -26,12 +26,16 @@ Ext.define('ems.biz.basicInfo.termManager.TermUI', {
                     }]
                 },
                 columns: [{
-                    dataIndex: 'termId',
+                    dataIndex: 'id',
                     text: '学期ID',
                     flex: 1
                 }, {
                     dataIndex: 'termName',
                     text: '学期名',
+                    flex: 1
+                },{
+                    dataIndex: 'isCurrentTerm',
+                    text: '是否当前学期',
                     flex: 1
                 }]
             }]

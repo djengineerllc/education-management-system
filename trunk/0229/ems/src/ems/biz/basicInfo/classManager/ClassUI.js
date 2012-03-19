@@ -29,13 +29,17 @@ Ext.define('ems.biz.basicInfo.classManager.ClassUI', {
                     dataIndex: 'id',
                     text: '班级ID',
                     flex: 1
-                }, {
+                },{
+                    dataIndex: 'gradeName',
+                    text: '年级',
+                    flex: 1
+                },{
                     dataIndex: 'className',
                     text: '班级名',
                     flex: 1
                 },{
-                    dataIndex: 'gradeName',
-                    text: '年级名',
+                    dataIndex: 'studentNum',
+                    text: '班级人数',
                     flex: 1
                 }]
             }]
