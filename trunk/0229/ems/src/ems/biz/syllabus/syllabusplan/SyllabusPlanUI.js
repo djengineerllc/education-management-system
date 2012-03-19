@@ -18,13 +18,14 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
 			layout: 'fit',
             items: [{
                 xtype: 'xgrid',
-                selMode: 'multi',
+                selMode: 'single',
                 paging: true,
                 loadDF: me.DF('loadList'),
                 searchForm: {
                     items: [
                     	Dic.comboBox('Team', {
                     		fieldLabel: '学期',
+                    		labelWidth: 30,
                     		itemId: 'termComboBox',
                     		name: 'term',
                     		valueKey: '2012B'
@@ -37,7 +38,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
                     flex: 1
                 },{
                     dataIndex: 'syllabusState',
-                    text: '是否排课',
+                    text: '已排课',
                     flex: 1,
                     renderer: Dic.renderer('Indicator')
                 }],
