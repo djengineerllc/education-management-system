@@ -34,11 +34,14 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassReadUI', {
 					fieldLabel: '班级ID',
 	                name: 'id'
 				},{
+	                fieldLabel: '年级名',
+	                name: 'gradeName'
+	            },{
 	                fieldLabel: '班级名',
 	                name: 'className'
 	            },{
-	                fieldLabel: '年级名',
-	                name: 'gradeName'
+	                fieldLabel: '班级人数',
+	                name: 'studentNum'
 	            }]
 			}]
 		};

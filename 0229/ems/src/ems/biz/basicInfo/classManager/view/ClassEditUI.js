@@ -35,14 +35,17 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassEditUI', {
 				items: [{
 					xtype: 'hiddenfield',
 					name: 'id'
-				},{
+				},Dic.comboBox('Grade', {
+					fieldLabel: '年级名',
+					name: 'gradeId'
+					//valueKey: 'g1'
+				}),{
 	                fieldLabel: '班级名',
 	                name: 'className'
-	            },Dic.comboBox('Grade', {
-					fieldLabel: '年级名',
-					name: 'gradeName'
-					//valueKey: 'g1'
-				})]
+	            },{
+	                fieldLabel: '班级人数',
+	                name: 'studentNum'
+	            }]
 			}]
 		};
 	}
