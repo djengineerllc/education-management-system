@@ -41,10 +41,11 @@ public interface ICommonDAO {
 	/**
 	 * 功能：查询表中所有的记录
 	 * @param clazz 该表映射的类
+	 * @param orderBy 排序字符串  不用排序则用NULL
 	 * @return 返回所有记录
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findAll(Class<T> clazz);
+	public <T> List<T> findAll(Class<T> clazz,String orderBy);
 	
 	/**
 	 * 根据ID查找实体

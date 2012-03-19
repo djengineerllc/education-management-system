@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.login.LoginActions');
 
-ems.login.LoginActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.login.LoginActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.login.LoginActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.login.LoginActions.REMOTING_API = {
   url: ems.login.LoginActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    LoginAction: [
+    ems_login_LoginActions_LoginAction: [
       {
         name: 'selectRole'/*(String, String) => com.ems.system.client.vo.ExtFormVO */,
         len: 2,

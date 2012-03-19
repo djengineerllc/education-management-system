@@ -65,14 +65,14 @@ public class ProfessAction extends DirectAction {
 		
 		ExtFormVO result = new ExtFormVO();
 		
-		if (profess.containsKey(professVO.getProfessId())) {
+		if (profess.containsKey(professVO.getId())) {
 			result.addError("professName", String.format("专业[%s]已重复", professVO.getProfessName()));
 			return result;
 		}
 		
-		professVO.setProfessId(++idCounter);
+		professVO.setId(++idCounter);
 		professVO.setProjectId(++idCounter);
-		profess.put(professVO.getProfessId(), professVO);
+		profess.put(professVO.getId(), professVO);
 		return result;
 	}
 	@DirectMethod
@@ -85,7 +85,7 @@ public class ProfessAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ProfessVO professVO = BeanUtils.toBeanFromMap(formParameters, ProfessVO.class);
 		ExtFormVO result = new ExtFormVO();
-		profess.put(professVO.getProfessId(),professVO);
+		profess.put(professVO.getId(),professVO);
 		return result;
 	}
 	

@@ -13,13 +13,9 @@ public class ClassBO implements java.io.Serializable {
 	private Integer id;
 	private String className;
 	private Integer gradeId;
-	private String status;
 	private Date createTime;
 	private Date updateTime;
 	private Integer studentNum;
-	
-	public final static String status_0 = "0";//无效
-	public final static String status_1 = "1";//有效
 
 	// Constructors
 
@@ -28,10 +24,9 @@ public class ClassBO implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ClassBO(String className, Integer gradeId, String status) {
+	public ClassBO(String className, Integer gradeId) {
 		this.className = className;
 		this.gradeId = gradeId;
-		this.status = status;
 	}
 
 	// Property accessors
@@ -58,14 +53,6 @@ public class ClassBO implements java.io.Serializable {
 
 	public void setGradeId(Integer gradeId) {
 		this.gradeId = gradeId;
-	}
-
-	public String getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public Date getCreateTime() {

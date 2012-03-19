@@ -62,8 +62,8 @@ public class ProjectAction extends DirectAction {
 			return result;
 		}
 		
-		projectVO.setProjectId(++idCounter);
-		project.put(projectVO.getProjectId(), projectVO);
+		projectVO.setId(++idCounter);
+		project.put(projectVO.getId(), projectVO);
 		return result;
 	}
 	@DirectMethod
@@ -76,7 +76,7 @@ public class ProjectAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ProjectVO projectVO = BeanUtils.toBeanFromMap(formParameters, ProjectVO.class);
 		ExtFormVO result = new ExtFormVO();
-		project.put(projectVO.getProjectId(),projectVO);
+		project.put(projectVO.getId(),projectVO);
 		return result;
 	}
 	

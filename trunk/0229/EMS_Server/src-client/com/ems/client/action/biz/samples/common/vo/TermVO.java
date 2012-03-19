@@ -2,17 +2,17 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class TermVO {
 	
-	private Integer termId;
+	private Integer id;
 	private String termName;
 	private String isCurrentTerm;
 	
-	public TermVO(Integer termId) {
+	public TermVO(Integer id) {
 		super();
-		this.termId = termId;
+		this.id = id;
 	}
-	public TermVO(Integer termId, String termName, String isCurrentTerm) {
+	public TermVO(Integer id, String termName, String isCurrentTerm) {
 		super();
-		this.termId = termId;
+		this.id = id;
 		this.termName = termName;
 		this.isCurrentTerm = isCurrentTerm;
 	}
@@ -20,16 +20,17 @@ public class TermVO {
 		super();
 	}
 	
-	public TermVO(Integer termId, String termName) {
+	public TermVO(Integer id, String termName) {
 		super();
-		this.termId = termId;
+		this.id = id;
 		this.termName = termName;
 	}
-	public Integer getTermId() {
-		return termId;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setTermId(Integer termId) {
-		this.termId = termId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getTermName() {
 		return termName;

@@ -65,8 +65,8 @@ public class SubjectAction extends DirectAction {
 			return result;
 		}
 		
-		subjectVO.setSubjectId(++idCounter);
-		subject.put(subjectVO.getSubjectId(), subjectVO);
+		subjectVO.setId(++idCounter);
+		subject.put(subjectVO.getId(), subjectVO);
 		return result;
 	}
 	@DirectMethod
@@ -79,7 +79,7 @@ public class SubjectAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		SubjectVO subjectVO = BeanUtils.toBeanFromMap(formParameters, SubjectVO.class);
 		ExtFormVO result = new ExtFormVO();
-		subject.put(subjectVO.getSubjectId(),subjectVO);
+		subject.put(subjectVO.getId(),subjectVO);
 		return result;
 	}
 	

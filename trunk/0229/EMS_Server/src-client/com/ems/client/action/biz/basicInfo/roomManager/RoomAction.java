@@ -67,8 +67,8 @@ public class RoomAction extends DirectAction {
 			return result;
 		}
 		
-		roomVO.setRoomId(++idCounter);
-		room.put(roomVO.getRoomId(), roomVO);
+		roomVO.setId(++idCounter);
+		room.put(roomVO.getId(), roomVO);
 		return result;
 	}
 	@DirectMethod
@@ -81,7 +81,7 @@ public class RoomAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
 		ExtFormVO result = new ExtFormVO();
-		room.put(roomVO.getRoomId(),roomVO);
+		room.put(roomVO.getId(),roomVO);
 		return result;
 	}
 	

@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.certificate.transcript.TranscriptActions');
 
-ems.biz.certificate.transcript.TranscriptActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.certificate.transcript.TranscriptActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.certificate.transcript.TranscriptActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.certificate.transcript.TranscriptActions.REMOTING_API = {
   url: ems.biz.certificate.transcript.TranscriptActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    TranscriptAction: [
+    ems_biz_certificate_transcript_TranscriptActions_TranscriptAction: [
       {
         name: 'printCert'/*(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) => void */,
         len: 2,

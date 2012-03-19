@@ -39,7 +39,7 @@ public class GradeAction extends DirectAction {
 		try{
 			List<GradeVO> gradeVOList = new ArrayList<GradeVO>();
 			GradeVO gradeVO = null;
-			List<Grade> gradeList = basicInfoService.getAll(Grade.class);
+			List<Grade> gradeList = basicInfoService.getAll(Grade.class,"id desc");
 			for (Grade grade_ : gradeList) {
 				gradeVO = new GradeVO();
 				gradeVO.setId(grade_.getId());
@@ -57,7 +57,7 @@ public class GradeAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		GradeVO gradeVO = BeanUtils.toBeanFromMap(formParameters, GradeVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<Grade> gradeList = basicInfoService.getAll(Grade.class);
+		List<Grade> gradeList = basicInfoService.getAll(Grade.class,"id desc");
 		for(Grade grade_:gradeList){
 			if (grade_.getGradeName().equalsIgnoreCase(gradeVO.getGradeName())) {
 				result.addError("gradeName", String.format("年级[%s]已重复", gradeVO.getGradeName()));

@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.basicInfo.bookManager.BookActions');
 
-ems.biz.basicInfo.bookManager.BookActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.basicInfo.bookManager.BookActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.basicInfo.bookManager.BookActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.basicInfo.bookManager.BookActions.REMOTING_API = {
   url: ems.biz.basicInfo.bookManager.BookActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    BookAction: [
+    ems_biz_basicInfo_bookManager_BookActions_BookAction: [
       {
         name: 'loadBook'/*(com.google.gson.JsonArray) => com.ems.system.client.vo.ExtPagingVO */,
         len: 1,

@@ -34,11 +34,14 @@ public class SystemAction extends DirectAction {
 		
 		List<DicVO> dicVOList = new ArrayList<DicVO>();
 		if ("Grade".equals(dicType)) {
-			List<Grade> grades = basicInfoService.getAll(Grade.class);
+			List<Grade> grades = basicInfoService.getAll(Grade.class,"id desc");
 			for(Grade grade:grades){
 				dicVOList.add(new DicVO(grade.getId(), "Grade", grade.getId()+"", grade.getId()+"", grade.getGradeName()));
 			}
-		} else if ("Class".equals(dicType)) {
+		} else if("Indicator".equals(dicType)){
+			dicVOList.add(new DicVO(1, "Indicator", "1", "1", "是"));
+			dicVOList.add(new DicVO(0, "Indicator", "0", "0", "否"));
+		}else if ("Class".equals(dicType)) {
 			if ("2011".equals(queryInfo.getGroup())) {
 				dicVOList.add(new DicVO(20, "Class", "2011A", "2011A", "2011A班"));
 				dicVOList.add(new DicVO(21, "Class", "2011B", "2011B", "2011B班"));	

@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.basicInfo.professManager.ProfessActions');
 
-ems.biz.basicInfo.professManager.ProfessActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.basicInfo.professManager.ProfessActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.basicInfo.professManager.ProfessActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.basicInfo.professManager.ProfessActions.REMOTING_API = {
   url: ems.biz.basicInfo.professManager.ProfessActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    ProfessAction: [
+    ems_biz_basicInfo_professManager_ProfessActions_ProfessAction: [
       {
         name: 'update'/*() => com.ems.system.client.vo.ExtFormVO -- FORM HANDLER */,
         len: 1,

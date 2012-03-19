@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.basicInfo.gradeManager.GradeActions');
 
-ems.biz.basicInfo.gradeManager.GradeActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.basicInfo.gradeManager.GradeActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.basicInfo.gradeManager.GradeActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.basicInfo.gradeManager.GradeActions.REMOTING_API = {
   url: ems.biz.basicInfo.gradeManager.GradeActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    GradeAction: [
+    ems_biz_basicInfo_gradeManager_GradeActions_GradeAction: [
       {
         name: 'update'/*() => com.ems.system.client.vo.ExtFormVO -- FORM HANDLER */,
         len: 1,

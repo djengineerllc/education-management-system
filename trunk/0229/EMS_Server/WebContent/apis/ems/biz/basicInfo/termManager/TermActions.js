@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.basicInfo.termManager.TermActions');
 
-ems.biz.basicInfo.termManager.TermActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.basicInfo.termManager.TermActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.basicInfo.termManager.TermActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.basicInfo.termManager.TermActions.REMOTING_API = {
   url: ems.biz.basicInfo.termManager.TermActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    TermAction: [
+    ems_biz_basicInfo_termManager_TermActions_TermAction: [
       {
         name: 'update'/*() => com.ems.system.client.vo.ExtFormVO -- FORM HANDLER */,
         len: 1,

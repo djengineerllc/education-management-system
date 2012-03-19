@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.basicInfo.subjectManager.SubjectActions');
 
-ems.biz.basicInfo.subjectManager.SubjectActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.basicInfo.subjectManager.SubjectActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.basicInfo.subjectManager.SubjectActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.basicInfo.subjectManager.SubjectActions.REMOTING_API = {
   url: ems.biz.basicInfo.subjectManager.SubjectActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    SubjectAction: [
+    ems_biz_basicInfo_subjectManager_SubjectActions_SubjectAction: [
       {
         name: 'update'/*() => com.ems.system.client.vo.ExtFormVO -- FORM HANDLER */,
         len: 1,
