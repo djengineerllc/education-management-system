@@ -60,6 +60,9 @@ public class SystemAction extends DirectAction {
 		} else if ("Team".equals(dicType)) {
 			dicVOList.add(new DicVO(71, "Team", "2012A", "2012A", "2012年第一学期"));
 			dicVOList.add(new DicVO(72, "Team", "2012B", "2012B", "2012年第二学期"));
+		} else if ("Indicator".equals(dicType)) {
+			dicVOList.add(new DicVO(81, "Indicator", "S1", "1", "是"));
+			dicVOList.add(new DicVO(82, "Indicator", "S2", "2", "否"));
 		}
 		
 		return dicVOList;
