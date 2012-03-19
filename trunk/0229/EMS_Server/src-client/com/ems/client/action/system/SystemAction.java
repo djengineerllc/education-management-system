@@ -57,6 +57,9 @@ public class SystemAction extends DirectAction {
 			dicVOList.add(new DicVO(52, "Professional", "S10102", "10102", "专业02"));
 		} else if ("StudentStatus".equals(dicType)) {
 			dicVOList.add(new DicVO(61, "StudentStatus", "S1", "1", "在读"));
+		} else if ("Team".equals(dicType)) {
+			dicVOList.add(new DicVO(71, "Team", "2012A", "2012A", "2012年第一学期"));
+			dicVOList.add(new DicVO(72, "Team", "2012B", "2012B", "2012年第二学期"));
 		}
 		
 		return dicVOList;
