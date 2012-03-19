@@ -38,7 +38,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
                     flex: 1
                 },{
                     dataIndex: 'syllabusState',
-                    text: '已排课',
+                    text: '是否已排课',
                     flex: 1,
                     renderer: Dic.renderer('Indicator')
                 }],
