@@ -40,8 +40,12 @@ private static Log logger = LogFactory.getLog(CommonDAO.class);
 	 * @return 返回所有记录
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findAll(Class<T> clazz) {
-		return (List<T>) getHibernateTemplate().find("from " + clazz.getName());
+	public <T> List<T> findAll(Class<T> clazz,String orderBy) {
+		StringBuffer hql = new StringBuffer("from " + clazz.getName());;
+		if(orderBy != null && !"".equals(orderBy)){
+			hql.append(" order by ").append(orderBy);
+		}
+		return (List<T>) getHibernateTemplate().find(hql.toString());
 	}
 	
 	/**

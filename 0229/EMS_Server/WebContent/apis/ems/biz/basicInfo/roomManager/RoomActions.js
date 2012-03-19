@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.basicInfo.roomManager.RoomActions');
 
-ems.biz.basicInfo.roomManager.RoomActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.basicInfo.roomManager.RoomActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.basicInfo.roomManager.RoomActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.basicInfo.roomManager.RoomActions.REMOTING_API = {
   url: ems.biz.basicInfo.roomManager.RoomActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    RoomAction: [
+    ems_biz_basicInfo_roomManager_RoomActions_RoomAction: [
       {
         name: 'update'/*() => com.ems.system.client.vo.ExtFormVO -- FORM HANDLER */,
         len: 1,

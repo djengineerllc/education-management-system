@@ -8,6 +8,9 @@ import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 
+import conf.hibernate.ClassBO;
+import conf.hibernate.Grade;
+
 public class BasicInfoService implements IBasicInfoService {
 	
 	private ICommonDAO commonDAO;
@@ -21,8 +24,8 @@ public class BasicInfoService implements IBasicInfoService {
 		return this.commonDAO.findById(entityClass, id);
 	}
 
-	public <T> List<T> getAll(Class<T> clazz) throws EMSException {
-		return this.commonDAO.findAll(clazz);
+	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException {
+		return this.commonDAO.findAll(clazz,orderBy);
 	}
 	
 	public void delete(Object obj) throws EMSRollbackableException {

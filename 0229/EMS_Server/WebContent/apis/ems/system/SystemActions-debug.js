@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.system.SystemActions');
 
-ems.system.SystemActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.system.SystemActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.system.SystemActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.system.SystemActions.REMOTING_API = {
   url: ems.system.SystemActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    SystemAction: [
+    ems_system_SystemActions_SystemAction: [
       {
         name: 'getDicData'/*(com.google.gson.JsonArray) => java.util.List */,
         len: 1,

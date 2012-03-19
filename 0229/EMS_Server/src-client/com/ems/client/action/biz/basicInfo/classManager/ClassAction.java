@@ -40,18 +40,19 @@ public class ClassAction extends DirectAction  {
 		try{
 			List<ClassVO> classVOList = new ArrayList<ClassVO>();
 			ClassVO classVO = null;
-			List<ClassBO> classes = basicInfoService.getAll(ClassBO.class);
+			List<ClassBO> classes = basicInfoService.getAll(ClassBO.class, " id desc ");
 			for(ClassBO classBO : classes){
 				classVO = new ClassVO();
 				classVO.setId(classBO.getId());
 				classVO.setClassName(classBO.getClassName());
 				classVO.setGradeId(classBO.getGradeId());
 				classVO.setGradeName(basicInfoService.findById(Grade.class, classBO.getGradeId()).getGradeName());
+				classVO.setStudentNum(classBO.getStudentNum());
 				classVOList.add(classVO);
 			}
 			return new ExtPagingVO(classVOList);
 		}catch(Exception e){
-			logger.error("loadGrade--error--",e);
+			logger.error("loadClass--error--",e);
 			throw new IllegalArgumentException(e.getMessage());
 		}
 	}
@@ -60,7 +61,7 @@ public class ClassAction extends DirectAction  {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ClassVO classVO = BeanUtils.toBeanFromMap(formParameters, ClassVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<ClassBO> classes = basicInfoService.getAll(ClassBO.class);
+		List<ClassBO> classes = basicInfoService.getAll(ClassBO.class, " id desc ");
 		for(ClassBO classBO_ : classes){
 			if (classBO_.getClassName().equals(classVO.getClassName())
 					&& classBO_.getGradeId() == classVO.getGradeId()) {
@@ -71,7 +72,7 @@ public class ClassAction extends DirectAction  {
 		ClassBO classBO = new ClassBO();
 		classBO.setClassName(classVO.getClassName());
 		classBO.setGradeId(classVO.getGradeId());
-		classBO.setStatus(ClassBO.status_1);
+		classBO.setStudentNum(classVO.getStudentNum());
 		classBO.setCreateTime(new Date());
 		this.basicInfoService.save(classBO);
 		return result;
@@ -88,6 +89,7 @@ public class ClassAction extends DirectAction  {
 			classVO.setClassName(classBO.getClassName());
 			classVO.setGradeId(classBO.getGradeId());
 			classVO.setGradeName(basicInfoService.findById(Grade.class, classBO.getGradeId()).getGradeName());
+			classVO.setStudentNum(classBO.getStudentNum());
 		}
 		return new ExtFormVO(classVO);
 	}
@@ -98,6 +100,7 @@ public class ClassAction extends DirectAction  {
 		ClassBO classBO = this.basicInfoService.findById(ClassBO.class, classVO.getId());
 		classBO.setClassName(classVO.getClassName());
 		classBO.setGradeId(classVO.getGradeId());
+		classBO.setStudentNum(classVO.getStudentNum());
 		classBO.setUpdateTime(new Date());
 		this.basicInfoService.update(classBO);
 		return result;
@@ -107,9 +110,7 @@ public class ClassAction extends DirectAction  {
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
 			ClassBO classBO = basicInfoService.findById(ClassBO.class, id);
-			classBO.setStatus(ClassBO.status_0);
-			classBO.setUpdateTime(new Date());
-			this.basicInfoService.update(classBO);
+			this.basicInfoService.delete(classBO);
 		}
 		return new ExtFormVO();
 	}

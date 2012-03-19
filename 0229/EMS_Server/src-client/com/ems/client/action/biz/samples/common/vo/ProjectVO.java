@@ -2,27 +2,27 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class ProjectVO {
 	
-	private Integer projectId;
+	private Integer id;
 	private String projectName;
 	
 	
-	public ProjectVO(Integer projectId) {
+	public ProjectVO(Integer id) {
 		super();
-		this.projectId = projectId;
+		this.id = id;
 	}
-	public ProjectVO(Integer projectId, String projectName) {
+	public ProjectVO(Integer id, String projectName) {
 		super();
-		this.projectId = projectId;
+		this.id = id;
 		this.projectName = projectName;
 	}
 	public ProjectVO() {
 		super();
 	}
-	public Integer getProjectId() {
-		return projectId;
+	public Integer getId() {
+		return id;
 	}
-	public void setProjectId(Integer projectId) {
-		this.projectId = projectId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getProjectName() {
 		return projectName;
@@ -30,7 +30,4 @@ public class ProjectVO {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	
-	
-
 }

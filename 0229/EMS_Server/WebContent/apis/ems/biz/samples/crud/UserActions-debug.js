@@ -9,7 +9,7 @@
 
 Ext.namespace( 'ems.biz.samples.crud.UserActions');
 
-ems.biz.samples.crud.UserActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/ES/' + 'djn/directprovider';
+ems.biz.samples.crud.UserActions.PROVIDER_BASE_URL=window.location.protocol + '//' + window.location.host + '/EMS_Server/' + 'djn/directprovider';
 
 ems.biz.samples.crud.UserActions.POLLING_URLS = {
 }
@@ -18,7 +18,7 @@ ems.biz.samples.crud.UserActions.REMOTING_API = {
   url: ems.biz.samples.crud.UserActions.PROVIDER_BASE_URL,
   type: 'remoting',
   actions: {
-    UserAction: [
+    ems_biz_samples_crud_UserActions_UserAction: [
       {
         name: 'update'/*() => com.ems.system.client.vo.ExtFormVO -- FORM HANDLER */,
         len: 1,

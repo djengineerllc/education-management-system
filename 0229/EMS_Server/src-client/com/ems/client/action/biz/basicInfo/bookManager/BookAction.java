@@ -65,8 +65,8 @@ public class BookAction extends DirectAction  {
 			return result;
 		}
 		
-		bookVO.setBookId(++idCounter);
-		book.put(bookVO.getBookId(), bookVO);
+		bookVO.setId(++idCounter);
+		book.put(bookVO.getId(), bookVO);
 		return result;
 	}
 	@DirectMethod
@@ -79,7 +79,7 @@ public class BookAction extends DirectAction  {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
 		ExtFormVO result = new ExtFormVO();
-		book.put(bookVO.getBookId(),bookVO);
+		book.put(bookVO.getId(),bookVO);
 		return result;
 	}
 	

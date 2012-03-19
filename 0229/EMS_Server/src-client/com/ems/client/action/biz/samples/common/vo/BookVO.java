@@ -2,7 +2,7 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class BookVO {
 	
-	private Integer bookId;
+	private Integer id;
 	private String bookName;
 	private String publishName;
 	private String author;
@@ -12,28 +12,31 @@ public class BookVO {
 		super();
 	}
 	
-	public BookVO(Integer bookId, String bookName) {
+	public BookVO(Integer id, String bookName) {
 		super();
-		this.bookId = bookId;
+		this.id = id;
 		this.bookName = bookName;
 	}
 
 
-	public BookVO(Integer bookId, String bookName, String publishName,
+	public BookVO(Integer id, String bookName, String publishName,
 			String author, String isbnNo) {
 		super();
-		this.bookId = bookId;
+		this.id = id;
 		this.bookName = bookName;
 		this.publishName = publishName;
 		this.author = author;
 		this.isbnNo = isbnNo;
 	}
-	public Integer getBookId() {
-		return bookId;
+	
+	public Integer getId() {
+		return id;
 	}
-	public void setBookId(Integer bookId) {
-		this.bookId = bookId;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
 	public String getBookName() {
 		return bookName;
 	}

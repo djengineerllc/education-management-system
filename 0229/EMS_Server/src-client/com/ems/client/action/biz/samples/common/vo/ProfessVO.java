@@ -2,7 +2,7 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class ProfessVO {
 	
-	private Integer professId;
+	private Integer id;
 	private String professName;
 	private Integer projectId;
 	private String projectName;
@@ -12,35 +12,38 @@ public class ProfessVO {
 	}
 	
 	
-	public ProfessVO(Integer professId, String professName) {
+	public ProfessVO(Integer id, String professName) {
 		super();
-		this.professId = professId;
+		this.id = id;
 		this.professName = professName;
 	}
 
 
-	public ProfessVO(Integer professId, String professName, Integer projectId,
+	public ProfessVO(Integer id, String professName, Integer projectId,
 			String projectName) {
 		super();
-		this.professId = professId;
+		this.id = id;
 		this.professName = professName;
 		this.projectId = projectId;
 		this.projectName = projectName;
 	}
 	
 
-	public ProfessVO(Integer professId, Integer projectId) {
+	public ProfessVO(Integer id, Integer projectId) {
 		super();
-		this.professId = professId;
+		this.id = id;
 		this.projectId = projectId;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
 
-	public Integer getProfessId() {
-		return professId;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public void setProfessId(Integer professId) {
-		this.professId = professId;
-	}
+
 	public String getProfessName() {
 		return professName;
 	}

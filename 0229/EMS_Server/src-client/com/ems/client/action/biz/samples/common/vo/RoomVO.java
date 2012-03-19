@@ -2,7 +2,7 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class RoomVO {
 	
-	private Integer roomId;
+	private Integer id;
 	private String roomName;
 	private String termName;
 	private Integer roomSize;
@@ -15,17 +15,17 @@ public class RoomVO {
 		super();
 	}
 
-	public RoomVO(Integer roomId, String roomName) {
+	public RoomVO(Integer id, String roomName) {
 		super();
-		this.roomId = roomId;
+		this.id = id;
 		this.roomName = roomName;
 	}
 	
 	
-	public RoomVO(Integer roomId, String roomName, String termName,
+	public RoomVO(Integer id, String roomName, String termName,
 			Integer roomSize, String roomStatus, String roomComment) {
 		super();
-		this.roomId = roomId;
+		this.id = id;
 		this.roomName = roomName;
 		this.termName = termName;
 		this.roomSize = roomSize;
@@ -34,12 +34,14 @@ public class RoomVO {
 	}
 
 
-	public Integer getRoomId() {
-		return roomId;
+	public Integer getId() {
+		return id;
 	}
-	public void setRoomId(Integer roomId) {
-		this.roomId = roomId;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
 	public String getRoomName() {
 		return roomName;
 	}

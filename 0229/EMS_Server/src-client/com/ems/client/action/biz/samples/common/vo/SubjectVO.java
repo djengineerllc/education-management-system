@@ -2,7 +2,7 @@ package com.ems.client.action.biz.samples.common.vo;
 
 public class SubjectVO {
 	
-	private Integer subjectId;
+	private Integer id;
 	private String subjectNo;
 	private String subjectCnName;
 	private String subjectEnName;
@@ -14,10 +14,10 @@ public class SubjectVO {
 	}
 	
 	
-	public SubjectVO(Integer subjectId, String subjectNo, String subjectCnName,
+	public SubjectVO(Integer id, String subjectNo, String subjectCnName,
 			String subjectEnName, Double subjectScore, Double subjectTime) {
 		super();
-		this.subjectId = subjectId;
+		this.id = id;
 		this.subjectNo = subjectNo;
 		this.subjectCnName = subjectCnName;
 		this.subjectEnName = subjectEnName;
@@ -37,12 +37,14 @@ public class SubjectVO {
 	}
 
 
-	public Integer getSubjectId() {
-		return subjectId;
+	public Integer getId() {
+		return id;
 	}
-	public void setSubjectId(Integer subjectId) {
-		this.subjectId = subjectId;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
 	public String getSubjectNo() {
 		return subjectNo;
 	}
