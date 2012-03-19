@@ -1,0 +1,98 @@
+{
+	text : ".",
+	children : [{
+				lesson : '12节',
+				expanded : true,
+				iconCls : 'task-folder',
+				children : [{
+							classCode : '09BA',
+							expanded : true,
+							iconCls : 'task-folder',
+							children : [{
+								lesson : '12节',
+							classCode : '09BA',
+								oeInd : '单',
+								monCourse : '1',
+								monTeacher : '1',
+								monRoom : '1',
+								tueCourse : '2',
+								tueTeacher : '2',
+								tueRoom : '2',
+								webCourse : '3',
+								webTeacher : '3',
+								webRoom : '3',
+								thuCourse : '',
+								thuTeacher : '',
+								thuRoom : '',
+								friCourse : '',
+								friTeacher : '',
+								friRoom : '',
+								iconCls : 'task',
+								leaf : true
+							}, {
+								oeInd : '双',
+								iconCls : 'task',
+								leaf : true
+							}]
+						}, {
+							classCode : '09DC',
+							expanded : true,
+							iconCls : 'task-folder',
+							children : [{
+								oeInd : '单',
+								iconCls : 'task',
+								leaf : true
+							}, {
+								oeInd : '双',
+								iconCls : 'task',
+								leaf : true
+							}]
+						}]
+			},{
+				lesson : '34节',
+				expanded : true,
+				iconCls : 'task-folder',
+				children : [{
+							classCode : '09BA',
+							expanded : true,
+							iconCls : 'task-folder',
+							children : [{
+								oeInd : '单',
+								monCourse : '1',
+								monTeacher : '1',
+								monRoom : '1',
+								tueCourse : '2',
+								tueTeacher : '2',
+								tueRoom : '2',
+								webCourse : '3',
+								webTeacher : '3',
+								webRoom : '3',
+								thuCourse : '',
+								thuTeacher : '',
+								thuRoom : '',
+								friCourse : '',
+								friTeacher : '',
+								friRoom : '',
+								iconCls : 'task',
+								leaf : true
+							}, {
+								oeInd : '双',
+								iconCls : 'task',
+								leaf : true
+							}]
+						}, {
+							classCode : '09DC',
+							expanded : true,
+							iconCls : 'task-folder',
+							children : [{
+								oeInd : '单',
+								iconCls : 'task',
+								leaf : true
+							}, {
+								oeInd : '双',
+								iconCls : 'task',
+								leaf : true
+							}]
+						}]
+			}]
+}
