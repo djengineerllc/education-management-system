@@ -280,7 +280,7 @@ Ext.define('ems.core.Module', { // Controller
 		};
 		
 		if (params) {
-			msg = String.format(msg, params);
+			msg = Ext.String.format(msg, params);
 		};
 		
 		return msg;
