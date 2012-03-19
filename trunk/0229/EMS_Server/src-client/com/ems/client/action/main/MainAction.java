@@ -38,8 +38,10 @@ public class MainAction extends DirectAction {
 				result.add(new MenuItemVO("000102", "测试节点1.2", "ems.biz.samples.dialogsample.DialogSample", "测试节点1.2Title"));
 			}
 			if ("03".equals(id)) {
-				result.add(new MenuItemVO("0301", "手工排课", "ems.biz.course.manualplan.ManualPlan", "手工排课"));
-				result.add(new MenuItemVO("0302", "自动排课", "ems.biz.course.autoplan.AutoPlan", "手工排课"));
+				result.add(new MenuItemVO("0301", "排课(一览表)", "ems.biz.syllabus.syllabusplan.SyllabusPlan", "排课(一览表)"));
+				result.add(new MenuItemVO("0302", "教师分表", "ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacher", "教师分表"));
+				result.add(new MenuItemVO("0303", "班级分表", "ems.biz.syllabus.syllabusbyclass.SyllabusByClass", "班级分表"));
+				result.add(new MenuItemVO("0304", "课程分表", "ems.biz.syllabus.syllabusbycourse.SyllabusByCourse", "课程分表"));
 			}
 			if ("05".equals(id)) {
 				result.add(new MenuItemVO("0501", "用户管理", "ems.biz.basicInfo.gradeManager.Grade", "用户管理"));
