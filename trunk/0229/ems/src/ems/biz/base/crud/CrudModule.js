@@ -93,7 +93,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 				return ids;
 			}
         }
-		
+		//TODO slt.data 可以获取更新后的数据
 		var sltRaws = [];
 		Ext.each(slts, function(slt) {
 			sltRaws.push(slt.raw);
