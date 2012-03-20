@@ -9,12 +9,13 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 	normalPlanUIViewId: 'NormalPlanUI',
 	autoPlanUIViewId: 'AutoPlanUI',
 	
-	submitButton: {
-        text: '提交',
-        handler: function() {
-        	
-        }
-    },
+//	submitButton: {
+//        text: '提交',
+//        handler: function() {
+//        	alert(this.up('grid'))
+//        	debugger;
+//        }
+//    },
 	
     init: function() {
         var me = this;
@@ -46,7 +47,17 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 			minHeight: 200,
 			resizable: true,
 			maximizable: true,
-            buttons: [me.submitButton, me.cancelButton],
+            buttons: [{
+		        text: '提交',
+		        handler: function() {
+		        	var g = this.up('window').down('grid');
+		        	var datas = [];
+					Ext.each(g.getStore().getRange(), function(record) {
+						datas.push(record.data);
+					});
+		        	alert(Ext.encode(datas));
+		        }
+		    }, me.cancelButton],
 			animateTarget: eo.el
         });
 	},

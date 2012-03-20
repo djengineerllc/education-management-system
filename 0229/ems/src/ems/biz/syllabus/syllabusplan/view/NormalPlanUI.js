@@ -3,7 +3,8 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	requires: [
 		'Ext.tree.Panel',
-		'ems.biz.syllabus.data.store.SyllabusStore'
+		'ems.biz.syllabus.data.store.SyllabusStore',
+		'Ext.ux.grid.RowspanView'
 	],
 	
 	init: function() {
@@ -19,6 +20,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	uiConfig: function(){
 		var me = this;
+		
 		return {
 			layout: 'border',
 			defaults: {
@@ -26,30 +28,76 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			},
 			items: [{
 				region: 'north',
-				height: 65,
-				border: false
+				height: 100,
+				border: false,
+				xtype: 'tabpanel',
+			    activeTab: 0,
+			    tabPosition: 'bottom',
+			    defaults: {
+			    	border: false
+			    },
+			    items: [{
+		            title: '课程',
+		            plugins: Ext.create('Ext.ux.PanelFieldDragZone'),
+		            items: [{
+			            xtype: 'textfield',
+			            value: '大学语文',
+			            ddSource: 'course'
+			        },{
+			            xtype: 'textfield',
+			            value: '高数',
+			            ddSource: 'course'
+			        }]
+		        }, {
+		            title: '教师',
+		            plugins: Ext.create('Ext.ux.PanelFieldDragZone'),
+		            items: [{
+			            xtype: 'textfield',
+			            value: '小红老师',
+			            ddSource: 'teacher'
+			        },{
+			            xtype: 'textfield',
+			            value: '小白老师',
+			            ddSource: 'teacher'
+			        }]
+		        }, {
+		            title: '教室',
+		            plugins: Ext.create('Ext.ux.PanelFieldDragZone'),
+		            items: [{
+			            xtype: 'textfield',
+			            value: '大教室',
+			            ddSource: 'room'
+			        },{
+			            xtype: 'textfield',
+			            value: '小教室',
+			            ddSource: 'room'
+			        }]
+		        }]
 			}, {
 				region: 'center',
 				border: false,
-				xtype: 'treepanel',
-		        useArrows: true,
-		        rootVisible: false,
-//		        plugins: [
-//		        	Ext.create('Ext.grid.plugin.CellEditing')
-//		        ],
-		        store: Ext.create('ems.biz.syllabus.data.store.SyllabusStore', {
+				xtype: 'xgrid',
+				rowNumberer: false,
+				stripeRows: true,
+				sortableColumns: false,
+				cls: 'rowspan-grid',
+				viewType: 'gridrowspanview',
+				store: Ext.create('ems.biz.syllabus.data.store.SyllabusStore', {
 					autoLoad: true
 				}),
-		        multiSelect: true,
-		        singleExpand: false,
-		        columns: [{
-		            xtype: 'treecolumn',
+				plugins: [
+					Ext.create('Ext.ux.CellFieldDropZone')
+				],
+				columns: [{
 		            text: '课时',
-		            dataIndex: 'lesson'
+		            dataIndex: 'lesson',
+		            width: 50,
+		            rowspan: 4
 		        },{
-		           text: '班级',
+		        	text: '班级',
 		            dataIndex: 'classCode',
-		            width: 50
+		            width: 70,
+		            rowspan: 2
 		        },{
 					text: '单双',
 		            dataIndex: 'oeInd',
@@ -60,77 +108,95 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'monCourse',
-						editor: {
-			                xtype: 'textfield'
-			            }
+						ddTarget: 'course',
+						renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+							if (value) {
+								
+							}
+							return value + ' x';
+						}
 		            }, {
 		                text: '教师',
 		                width: 70,
-						dataIndex: 'monTeacher'
+						dataIndex: 'monTeacher',
+						ddTarget: 'teacher'
 		            }, {
 		                text: '教室',
 		                width: 70,
-						dataIndex: 'monRoom'
+						dataIndex: 'monRoom',
+						ddTarget: 'room'
 		            }]	
 				},{
 					text: '周二',
 		            columns: [{
 		                text: '课程',
 		                width: 120,
-						dataIndex: 'tueCourse'
+						dataIndex: 'tueCourse',
+						ddTarget: 'course'
 		            }, {
 		                text: '教师',
 		                width: 70,
-						dataIndex: 'tueTeacher'
+						dataIndex: 'tueTeacher',
+						ddTarget: 'teacher'
 		            }, {
 		                text: '教室',
 		                width: 70,
-						dataIndex: 'tueRoom'
+						dataIndex: 'tueRoom',
+						ddTarget: 'room'
 		            }]	
 				},{
 					text: '周三',
 		            columns: [{
 		                text: '课程',
 		                width: 120,
-						dataIndex: 'webCourse'
+						dataIndex: 'webCourse',
+						ddTarget: 'course'
 		            }, {
 		                text: '教师',
 		                width: 70,
-						dataIndex: 'webTeacher'
+						dataIndex: 'webTeacher',
+						ddTarget: 'teacher'
 		            }, {
 		                text: '教室',
 		                width: 70,
-						dataIndex: 'webRoom'
+						dataIndex: 'webRoom',
+						ddTarget: 'room'
 		            }]	
 				},{
 					text: '周四',
 		            columns: [{
 		                text: '课程',
 		                width: 120,
-						dataIndex: 'thuCourse'
+						dataIndex: 'thuCourse',
+						ddTarget: 'course'
 		            }, {
 		                text: '教师',
 		                width: 70,
-						dataIndex: 'thuTeacher'
+						dataIndex: 'thuTeacher',
+						ddTarget: 'teacher'
 		            }, {
 		                text: '教室',
 		                width: 70,
-						dataIndex: 'thuRoom'
+						dataIndex: 'thuRoom',
+						ddTarget: 'room'
 		            }]	
 				},{
 					text: '周五',
 		            columns: [{
 		                text: '课程',
 		                width: 120,
-						dataIndex: 'friCourse'
+						dataIndex: 'friCourse',
+						ddTarget: 'course'
 		            }, {
 		                text: '教师',
 		                width: 70,
-						dataIndex: 'friTeacher'	
+						dataIndex: 'friTeacher',
+						ddTarget: 'teacher'
 		            }, {
 		                text: '教室',
 		                width: 70,
-						dataIndex: 'friRoom'
+						dataIndex: 'friRoom',
+						ddTarget: 'room'
 		            }]	
 				}]
 			}]
