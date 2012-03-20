@@ -27,7 +27,7 @@ Ext.define('ems.system.Dic', {
 		if (!dicStore) {
 			var data = Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: dicType}]).result;
 			dicStore = Ext.create('ems.system.data.store.DicStore', {
-				storeId: storeId,
+				storeId: storeId
 			});
 			dicStore.loadData(data);
 		}
