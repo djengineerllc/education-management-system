@@ -13,7 +13,7 @@ Ext.define('ems.core.widget.CellFieldDropZone', {
             grid.getView().on({
                 render: function(v) {
                     me.view = v;
-                    Ext.ux.CellFieldDropZone.superclass.constructor.call(me, me.view.el);
+                    ems.core.widget.CellFieldDropZone.superclass.constructor.call(me, me.view.el);
                 },
                 single: true
             });
