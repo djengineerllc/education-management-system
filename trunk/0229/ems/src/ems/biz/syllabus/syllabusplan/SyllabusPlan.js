@@ -48,6 +48,11 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 			resizable: true,
 			maximizable: true,
             buttons: [{
+            	xtype: 'textfield',
+            	cls: 'help-info-left',
+            	width: 160,
+            	html: '双击单元格清空数据'
+            }, {
 		        text: '提交',
 		        handler: function() {
 		        	var g = this.up('window').down('grid');
