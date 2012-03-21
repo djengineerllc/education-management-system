@@ -26,7 +26,7 @@ Ext.define('ems.biz.basicInfo.projectManager.ProjectUI', {
                     }]
                 },
                 columns: [{
-                    dataIndex: 'projectId',
+                    dataIndex: 'id',
                     text: '项目ID',
                     flex: 1
                 }, {
