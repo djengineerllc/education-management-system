@@ -228,6 +228,12 @@ Ext.define('ems.core.Module', { // Controller
 			locVal: Ext.bind(me.locVal, me),
 			renderView: Ext.bind(me.renderView, me),
 			DF: Ext.bind(me.DF, me),
+			MR: function(method, params) {
+				return me.MR({
+					m: method,
+					p: params
+				});
+			},
 			MRA: function(event, method, params) {
 				return me.MRA(event, {
 					m: method,
