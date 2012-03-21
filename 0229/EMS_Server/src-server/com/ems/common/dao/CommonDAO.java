@@ -74,6 +74,7 @@ private static Log logger = LogFactory.getLog(CommonDAO.class);
 		return this.getHibernateTemplate().find(hql);
 	}
 	
+	
 	/**
 	 * 根据查询条件查询表中的记录
 	 * @param clazz 该表映射的类
