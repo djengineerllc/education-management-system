@@ -6,10 +6,10 @@ Ext.define('ems.core.widget.PanelFieldDragZone', {
 
     init: function(panel) {
         if (panel.nodeType) {
-            Ext.ux.PanelFieldDragZone.superclass.init.apply(this, arguments);
+            ems.core.widget.PanelFieldDragZone.superclass.init.apply(this, arguments);
         } else {
             if (panel.rendered) {
-                Ext.ux.PanelFieldDragZone.superclass.constructor.call(this, panel.getEl());
+                ems.core.widget.PanelFieldDragZone.superclass.constructor.call(this, panel.getEl());
                 var i = Ext.fly(panel.getEl()).select('input');
                 i.unselectable();
             } else {
