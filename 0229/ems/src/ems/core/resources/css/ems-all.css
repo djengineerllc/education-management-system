@@ -10,25 +10,25 @@
 .ems .x-message-box .ext-mb-info {
 	background-image: url('images/icons/msg_info_32.png');
 }
-
 .ems .x-message-box .ext-mb-warning {
 	background-image: url('images/icons/msg_warning_32.png');
 }
-
 .ems .x-message-box .ext-mb-question {
 	background-image: url('images/icons/msg_question_32.png');
 }
-
 .ems .x-message-box .ext-mb-error {
 	background-image: url('images/icons/msg_error_32.png');
 }
-
 .ems .x-message-box .ext-mb-success {
 	background: transparent no-repeat top left;
 	background-image: url('images/icons/msg_success_32.png');
 }
 
-/*rowspan grid合并行效果*/
+.ems .x-drop-target-active {
+	background: #DFEDFF;
+    border: 1px solid #6593cf;
+}
+
 .ems .rowspan-grid .x-grid3-body .x-grid3-row {
     border:none;
     cursor:default;
@@ -58,6 +58,44 @@
 .ems .rowspan-grid .x-grid3-body .rowspan {
     border-bottom: 1px solid #ccc;
 }
+
+
+.ems .iconbrowser-view {
+}
+.ems .iconbrowser-view .icon-browser {
+    padding: 3px;
+    text-align: center;
+}
+.ems .iconbrowser-view .icon-browser-wrap {
+	float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 5px;
+}
+.ems .iconbrowser-view .icon-browser-wrap span {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+.ems .iconbrowser-view .x-view-over {
+    border: 1px solid #dddddd;
+    background-color: #efefef;
+    padding: 4px;
+    cursor: pointer;
+}
+.ems .iconbrowser-view .x-item-selected {
+    background: #DFEDFF;
+    border: 1px solid #6593cf;
+    padding: 4px;
+    cursor: pointer;
+}
+.ems .iconbrowser-view .x-item-selected .icon-browser {
+    background: transparent;
+}
+.ems .iconbrowser-view .x-item-selected span {
+    color:#1A4D8F;
+}
+
 
 /*** END: Ext CSS ****/
 
