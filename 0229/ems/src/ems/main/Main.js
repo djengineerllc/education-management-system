@@ -189,5 +189,30 @@ Ext.define('ems.main.Main', {
 				return this.store.indexOf(record);
 			}
 		});
+		
+		Ext.panel.Table.override({
+			getColumn: function(columnIndex) { // TODO array
+				var me = this, i = -1, column, col, col_i, subCol, subCol_i;
+	        	for (col_i in me.columns) {
+	        		col = me.columns[col_i];
+	        		if (col.headerCounter > 0) {
+	        			for (subCol_i in col.items.items) {
+	        				subCol = col.items.items[subCol_i];
+	        				if (++i == columnIndex) {
+	        					column = subCol;
+	        					break;
+	        				}
+	        			}
+	        		} else {
+	        			if (++i == columnIndex) {
+	        				column = col;
+	    					break;
+	    				}
+	        		}
+	        	}
+	        	
+	        	return column;
+			}
+		});
 	}
 });
