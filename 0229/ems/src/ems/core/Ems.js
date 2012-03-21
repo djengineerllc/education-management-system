@@ -60,7 +60,7 @@ Ems = ems.core.Ems = {
 			requireModules: [
 				'ems.system.System'
 			],
-			waitMsg: '请求处理中，请稍候...'
+			waitMsg: '请求处理中, 请稍候...'
 		});
 		
 		Ext.Loader.setConfig(config.extLoaderConfig);
@@ -377,7 +377,7 @@ Ems = ems.core.Ems = {
 		}
 	})(),
 	
-	syncDirectRequest: function(moduleId, method, data, action) {
+	syncDirectRequest: function(moduleId, method, data, action) { // TODO need suppot http get
 		var me = this,
 			module = me.getModule(moduleId),
 			request = {
