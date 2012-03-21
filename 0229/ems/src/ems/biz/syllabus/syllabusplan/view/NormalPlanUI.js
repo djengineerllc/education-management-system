@@ -3,8 +3,9 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	requires: [
 		'Ext.tree.Panel',
-		'ems.biz.syllabus.data.store.SyllabusStore',
-		'Ext.ux.grid.RowspanView'
+		'Ext.ux.grid.RowspanView',
+		'ems.core.widget.IconBrowser',
+		'ems.biz.syllabus.data.store.SyllabusStore'
 	],
 	
 	init: function() {
@@ -20,58 +21,85 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	uiConfig: function(){
 		var me = this;
-		
 		return {
 			layout: 'border',
+			border: false,
 			defaults: {
 				padding: 1
 			},
 			items: [{
 				region: 'north',
-				height: 100,
-				border: false,
+				height: 85,
+				border: true,
 				xtype: 'tabpanel',
 			    activeTab: 0,
-			    tabPosition: 'bottom',
+//			    tabPosition: 'bottom',
 			    defaults: {
-			    	border: false
+			    	border: false,
+			    	autoScroll: true
 			    },
+//			    listeners: {
+//			    	render: function(comp) {
+//			    		Ext.each(comp.tabBar.items.items, function(item) {
+//			    			item.on('activate', function(itemComp) {
+//			    				debugger;
+//			    				itemComp.getEl().createChild({
+//			                        tag: 'a',
+//			                        href: '#',
+//			                        innerHTML: 'xxxxxxx'
+//			                    })
+//			                    
+//			    			});
+//			    			item.on('deactivate', function(itemComp) {
+////			    				if (itemComp.getActive()) {
+//			    					alert(itemComp.getText())
+////			    				}
+//			    			});
+//			    		});
+//			    	}
+//			    },
 			    items: [{
 		            title: '课程',
-		            plugins: Ext.create('Ext.ux.PanelFieldDragZone'),
-		            items: [{
-			            xtype: 'textfield',
-			            value: '大学语文',
-			            ddSource: 'course'
-			        },{
-			            xtype: 'textfield',
-			            value: '高数',
-			            ddSource: 'course'
-			        }]
+		            items: {
+			    		xtype: 'iconbrowser',
+			    		ddSource: 'course',
+			    		dataIndex: 'name',
+			    		store: Dic.getStore('Sex'),
+			    		prepareData: function(data) {
+			                Ext.apply(data, {
+			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
+			                });
+			                return data;
+			            }
+			    	}
 		        }, {
 		            title: '教师',
-		            plugins: Ext.create('Ext.ux.PanelFieldDragZone'),
-		            items: [{
-			            xtype: 'textfield',
-			            value: '小红老师',
-			            ddSource: 'teacher'
-			        },{
-			            xtype: 'textfield',
-			            value: '小白老师',
-			            ddSource: 'teacher'
-			        }]
+		            items: {
+			    		xtype: 'iconbrowser',
+			    		ddSource: 'teacher',
+			    		dataIndex: 'name',
+			    		store: Dic.getStore('Class'),
+			    		prepareData: function(data) {
+			                Ext.apply(data, {
+			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
+			                });
+			                return data;
+			            }
+			    	}
 		        }, {
 		            title: '教室',
-		            plugins: Ext.create('Ext.ux.PanelFieldDragZone'),
-		            items: [{
-			            xtype: 'textfield',
-			            value: '大教室',
-			            ddSource: 'room'
-			        },{
-			            xtype: 'textfield',
-			            value: '小教室',
-			            ddSource: 'room'
-			        }]
+		            items: {
+			    		xtype: 'iconbrowser',
+			    		ddSource: 'room',
+			    		dataIndex: 'name',
+			    		store: Dic.getStore('Grade'),
+			    		prepareData: function(data) {
+			                Ext.apply(data, {
+			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
+			                });
+			                return data;
+			            }
+			    	}
 		        }]
 			}, {
 				region: 'center',
@@ -86,7 +114,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 					autoLoad: true
 				}),
 				plugins: [
-					Ext.create('Ext.ux.CellFieldDropZone')
+					Ext.create('ems.core.widget.CellFieldDropZone')
 				],
 				columns: [{
 		            text: '课时',
