@@ -92,7 +92,7 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectBatchImportUI', {
 				margin: '0 0 3 0',
 				height: 200,
                 columns: [{
-                    dataIndex: 'projectId',
+                    dataIndex: 'id',
                     text: '项目ID',
                     flex: 1
                 }, {
@@ -110,7 +110,7 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectBatchImportUI', {
 //				hidden: true,
 				height: 200,
                 columns: [{
-                    dataIndex: 'projectId',
+                    dataIndex: 'id',
                     text: '项目ID',
                     flex: 1
                 }, {

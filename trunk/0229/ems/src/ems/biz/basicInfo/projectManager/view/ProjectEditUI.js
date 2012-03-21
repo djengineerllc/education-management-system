@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectEditUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['projectId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -34,7 +34,7 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectEditUI', {
 				},
 				items: [{
 					xtype: 'hiddenfield',
-					name: 'projectId'
+					name: 'id'
 				},{
 	                fieldLabel: '项目名',
 	                name: 'projectName'
