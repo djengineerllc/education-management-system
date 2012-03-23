@@ -26,7 +26,7 @@ Ext.define('ems.core.widget.IconBrowser', {
 			comp.dragZone = Ext.create('Ext.dd.DragZone', comp.getEl(), {
 				hasOuterHandles: true,
 				getDragData: function(e) {
-					var sourceEl = e.getTarget(comp.itemSelector), d, data;
+					var sourceEl = e.getTarget(comp.itemSelector, comp.getEl()), d, data;
 					if (sourceEl) {
 						d = sourceEl.cloneNode(true);
 						d.id = Ext.id();
