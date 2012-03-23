@@ -126,6 +126,10 @@
 }
 /*** END: Ems Global Message ****/
 
+.ems .x-grid-cell-rowspan {
+	background: #FFFFFF !important;
+}
+
 .ems .xgrid-header-text {
 	color: #04408C;
 	font-size: 12px;
@@ -231,9 +235,6 @@
 .ems .icon-plan {
 	background-image: url('images/icons/plan_16.png')
 }
-
-
-
 
 .ems .help-info-left {
 	padding-left: 20px;
