@@ -3,7 +3,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	requires: [
 		'Ext.tree.Panel',
-		'Ext.ux.grid.RowspanView',
+		'ems.core.widget.GridSpanView',
 		'ems.core.widget.IconBrowser',
 		'ems.biz.syllabus.data.store.SyllabusStore'
 	],
@@ -38,10 +38,18 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    	border: false,
 			    	autoScroll: true
 			    },
-//			    listeners: {
+			    listeners: {
+//			    	tabchange: function(tabCnt, card, preCard) {
+//			    		card.tab.btnWrap.createChild({
+//	                        tag: 'a',
+//	                        href: '#',
+//	                        innerHTML: 'xx'
+//	                    });
+//			    		debugger;
+//			    	}
 //			    	render: function(comp) {
 //			    		Ext.each(comp.tabBar.items.items, function(item) {
-//			    			item.on('activate', function(itemComp) {
+//			    			item.on('tabchange', function(itemComp) {
 //			    				debugger;
 //			    				itemComp.getEl().createChild({
 //			                        tag: 'a',
@@ -57,7 +65,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 //			    			});
 //			    		});
 //			    	}
-//			    },
+			    },
 			    items: [{
 		            title: '课程',
 		            items: {
@@ -109,7 +117,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				stripeRows: true,
 				sortableColumns: false,
 				cls: 'rowspan-grid',
-				viewType: 'gridrowspanview',
+				viewType: 'gridspanview',
 				store: Ext.create('ems.biz.syllabus.data.store.SyllabusStore', {
 					autoLoad: true
 				}),
@@ -120,12 +128,12 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            text: '课时',
 		            dataIndex: 'lesson',
 		            width: 50,
-		            rowspan: 4
+		            rowSpan: 4
 		        },{
 		        	text: '班级',
 		            dataIndex: 'classCode',
 		            width: 70,
-		            rowspan: 2
+		            rowSpan: 2
 		        },{
 					text: '单双',
 		            dataIndex: 'oeInd',
