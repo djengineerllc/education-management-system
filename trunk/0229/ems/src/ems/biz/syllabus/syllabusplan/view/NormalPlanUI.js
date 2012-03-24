@@ -60,7 +60,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		
 			    		preCard.filterInputValue = filterInput.getValue();
 			    		filterInput.setValue(card.filterInputValue || '');
-			    		filterInput.focus();
+			    		filterInput.getEl().focus();
 			    	}
 			    },
 			    items: [{
