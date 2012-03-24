@@ -3,11 +3,13 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 	
 	bizActionText: {
         normalPlan: '手动排课',
-        autoPlan: '自动排课'
+        autoPlan: '自动排课',
+        viewSyllabusPlan: '查看一览表'
     },
 	
 	normalPlanUIViewId: 'NormalPlanUI',
 	autoPlanUIViewId: 'AutoPlanUI',
+	viewSyllabusPlan: 'ViewSyllbusPlanUI',
 	
 //	submitButton: {
 //        text: '提交',
@@ -77,5 +79,30 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
         if (reqParams === false) {
             return;
         }
+	},
+	
+	onViewSyllabusPlan: function(params, request) {
+		var me = this, 
+			eo = request.eventSource,
+			bizAction = 'viewSyllabusPlan',
+			reqParams = me.getReqParams(bizAction, eo);
+        if (reqParams === false) {
+            return;
+        }
+		
+        me.SW(me.normalPlanUIViewId, {
+            bizAction: bizAction,
+            reqParams: reqParams
+        }, {
+			title: '课程安排一览表',
+			width: 850,
+			minWidth: 600,
+			height: 500,
+			minHeight: 200,
+			resizable: true,
+			maximizable: true,
+            buttons: [me.cancelButton],
+			animateTarget: eo.el
+        });
 	}
 });
