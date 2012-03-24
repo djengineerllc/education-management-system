@@ -43,12 +43,6 @@ Ext.define('ems.biz.certificate.graduate.view.PrintCertUI', {
 		});
 	},
 	
-	afterRender: function() {
-		var me = this;
-		me.callParent(arguments);
-		me.init();
-	},
-	
 	uiConfig: function(){
 		var me = this;
 		return {

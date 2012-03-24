@@ -59,12 +59,6 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		termComboBox.on('change', me.updateCertInfo, me);
 	},
 	
-	afterRender: function() {
-		var me = this;
-		me.callParent(arguments);
-		me.init();
-	},
-	
 	uiConfig: function(){
 		var me = this;
 		return {
