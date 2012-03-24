@@ -1,10 +1,10 @@
 /*** START: Ext CSS  ****/
 .ems .x-panel-body-default {
-	background: #FAFAFA; /*#F7F7F7*/
+	background: #fafafa; /*#F7F7F7*/
 }
 
 .ems .x-tree-panel .x-grid-cell {
-	background: #FAFAFA;
+	background: #fafafa;
 }
 
 .ems .x-message-box .ext-mb-info {
@@ -25,40 +25,9 @@
 }
 
 .ems .x-drop-target-active {
-	background: #DFEDFF;
+	background: #dfedff;
     border: 1px solid #6593cf;
 }
-
-.ems .rowspan-grid .x-grid3-body .x-grid3-row {
-    border:none;
-    cursor:default;
-    width:100%;
-}
-.ems .rowspan-grid .x-grid3-header .x-grid3-cell{
-    /*border-left: 2px solid transparent;*//*ie6的transparent下显示黑色?*/
-    border-left: 2px solid #fff;
-}
-.ems .rowspan-grid .x-grid3-body .x-grid3-row{
-    overflow: hidden;
-    border-right: 1px solid #ccc;
-}
-.ems .rowspan-grid .x-grid3-body .x-grid3-cell {
-    border: 1px solid #ccc;
-    border-top:none;
-    border-right:none;
-}
-.ems .rowspan-grid .x-grid3-body .x-grid3-cell-first {
-    /*border-left: 1px solid transparent;*/
-    border-left: 1px solid #fff;
-}
-.ems .rowspan-grid .x-grid3-body .rowspan-unborder {
-    /*border-bottom:1px solid transparent;*/
-    border-bottom:1px solid #fff;
-}
-.ems .rowspan-grid .x-grid3-body .rowspan {
-    border-bottom: 1px solid #ccc;
-}
-
 
 .ems .iconbrowser-view {
 }
@@ -84,7 +53,7 @@
     cursor: pointer;
 }
 .ems .iconbrowser-view .x-item-selected {
-    background: #DFEDFF;
+    background: #dfedff;
     border: 1px solid #6593cf;
     padding: 4px;
     cursor: pointer;
@@ -110,7 +79,7 @@
 .ems .global-message .msg {
     border-radius: 8px;
     -moz-border-radius: 8px;
-    background: #F6F6F6;
+    background: #f6f6f6;
     border: 2px solid #ccc;
     margin-top: 2px;
     padding: 10px 15px;
