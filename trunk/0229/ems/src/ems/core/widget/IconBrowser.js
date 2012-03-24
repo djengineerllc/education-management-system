@@ -5,6 +5,7 @@ Ext.define('ems.core.widget.IconBrowser', {
 	cls: 'iconbrowser-view',
 	
 	singleSelect: true,
+	trackOver: true,
 	overItemCls: 'x-view-over',
 	itemSelector: 'div.icon-browser-wrap',
 	tpl: [
