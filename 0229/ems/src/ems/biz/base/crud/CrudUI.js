@@ -116,13 +116,7 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 		}
 	},
 	
-	afterRender: function() {
-		var me = this;
-		me.callParent(arguments);
-		me.init();
-	},
-	
-	init: function() {
+	initData: function() {
 		var me = this,
 			params = me.reqParams;
 		
