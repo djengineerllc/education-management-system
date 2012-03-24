@@ -48,8 +48,8 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
 					listeners: me.MRA('click', 'onNormalPlan')
 				}, {
 					text: '查看一览表',
-					iconCls: 'icon-view'//,
-//					listeners: me.MRA('click', 'onNormalPlan')
+					iconCls: 'icon-view',
+					listeners: me.MRA('click', 'onViewSyllabusPlan')
 				}]
             }]
         }
