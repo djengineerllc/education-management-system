@@ -1,7 +1,7 @@
 Ext.define('ems.biz.certificate.study.view.PrintCertUI', {
 	extend: 'ems.core.UI',
 	
-	init: function() {
+	initData: function() {
 		var me = this,
 			sltStudents = me.reqParams,
 			title,
