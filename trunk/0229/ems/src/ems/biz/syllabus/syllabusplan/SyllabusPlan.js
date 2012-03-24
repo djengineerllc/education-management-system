@@ -9,7 +9,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 	
 	normalPlanUIViewId: 'NormalPlanUI',
 	autoPlanUIViewId: 'AutoPlanUI',
-	viewSyllabusPlan: 'ViewSyllbusPlanUI',
+	viewSyllabusPlanUIViewId: 'ViewSyllbusPlanUI',
 	
 //	submitButton: {
 //        text: '提交',
@@ -90,7 +90,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             return;
         }
 		
-        me.SW(me.normalPlanUIViewId, {
+        me.SW(me.viewSyllabusPlanUIViewId, {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
