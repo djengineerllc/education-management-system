@@ -9,13 +9,16 @@
 //}
 
 (function() {
-	PRODUCT_MODE = false;
-	
+	var bootstrap = document.getElementById('bootstrap'),
+		bootstrapConfig = eval('({' + (bootstrap.attributes['config'].value || '') + '})');
+		
 	Bootstrap = {
         rootPath: '',
-
+        
+        config: bootstrapConfig,
+		
         cacheBuster: function() {
-            return ((PRODUCT_MODE == false) ? ('?' + (new Date()).getTime()) : '');
+            return ((this.config.productMode == false) ? ('?' + (new Date()).getTime()) : '');
         },
 		
 		loadCss: function(id, path) {
@@ -54,7 +57,7 @@
 	Bootstrap.loadCss('css-ems', 'src/ems/core/resources/css/ems-all.css');
 	
 	var jsPaths = [];
-	if (PRODUCT_MODE == true) {
+	if (Bootstrap.config.productMode == true) {
 		window.onbeforeunload = function() { return ''; };
 		
 		jsPaths = [
