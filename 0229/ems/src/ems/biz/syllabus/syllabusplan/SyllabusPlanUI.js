@@ -46,6 +46,10 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
 					text: '手动排课',
 					iconCls: 'icon-plan',
 					listeners: me.MRA('click', 'onNormalPlan')
+				}, {
+					text: '查看一览表',
+					iconCls: 'icon-view'//,
+//					listeners: me.MRA('click', 'onNormalPlan')
 				}]
             }]
         }
