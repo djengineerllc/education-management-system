@@ -50,17 +50,19 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             buttons: [{
             	xtype: 'textfield',
             	cls: 'help-info-left',
-            	width: 160,
-            	html: '双击单元格清空数据'
+            	width: 350,
+            	html: '1. 拖动[课程/教师/教室]到对应表格列    2. 双击单元格清空数据'
             }, {
 		        text: '提交',
 		        handler: function() {
-		        	var g = this.up('window').down('grid');
-		        	var datas = [];
-					Ext.each(g.getStore().getRange(), function(record) {
+		        	var g = this.up('window').down('grid'),
+		        		s = g.getStore(),
+		        		datas = [];
+		    		
+					Ext.each(s.getUpdatedRecords(), function(record) {
 						datas.push(record.data);
 					});
-		        	alert(Ext.encode(datas));
+					alert(Ext.encode(datas));
 		        }
 		    }, me.cancelButton],
 			animateTarget: eo.el
