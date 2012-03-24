@@ -27,6 +27,13 @@ Ext.define('ems.core.widget.CellFieldDropZone', {
 			grid.on('render', me.init, me, {single: true});
 		}
 	},
+	destroy: function() {
+		var me = this;
+		
+		delete me.grid;
+		delete me.view;
+		me.callParent(arguments);
+	},
 	
 	containerScroll: true,
 	
@@ -82,6 +89,8 @@ Ext.define('ems.core.widget.CellFieldDropZone', {
 	onNodeDrop: function(target, dd, e, dragData) {
 		if (this.dropOK) {
 			target.record.set(target.fieldName, dragData.value);
+			target.record.dirty = true;
+			target.record.phantom = false;
 			return true;
 		}
 	}
