@@ -8,15 +8,9 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		'ems.biz.syllabus.data.store.SyllabusStore'
 	],
 	
-	init: function() {
+	initData: function() {
 		var me = this,
 			sltTeams = me.reqParams;
-	},
-	
-	afterRender: function() {
-		var me = this;
-		me.callParent(arguments);
-		me.init();
 	},
 	
 	uiConfig: function(){
