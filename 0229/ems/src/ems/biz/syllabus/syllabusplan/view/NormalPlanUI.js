@@ -39,32 +39,29 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    	autoScroll: true
 			    },
 			    listeners: {
-//			    	tabchange: function(tabCnt, card, preCard) {
-//			    		card.tab.btnWrap.createChild({
-//	                        tag: 'a',
-//	                        href: '#',
-//	                        innerHTML: 'xx'
-//	                    });
-//			    		debugger;
-//			    	}
-//			    	render: function(comp) {
-//			    		Ext.each(comp.tabBar.items.items, function(item) {
-//			    			item.on('tabchange', function(itemComp) {
-//			    				debugger;
-//			    				itemComp.getEl().createChild({
-//			                        tag: 'a',
-//			                        href: '#',
-//			                        innerHTML: 'xxxxxxx'
-//			                    })
-//			                    
-//			    			});
-//			    			item.on('deactivate', function(itemComp) {
-////			    				if (itemComp.getActive()) {
-//			    					alert(itemComp.getText())
-////			    				}
-//			    			});
-//			    		});
-//			    	}
+			    	afterrender: function(comp) {
+			    		var filterEl = Ext.createWidget('textfield', {
+			    			itemId: 'filterInput',
+			    			cls: 'input-filter',
+			    			emptyText: '关键字',
+			    			height: 18,
+			    			width: 100,
+			    			listeners: {
+			    				change: function(input) {
+			    					var iconBrowser = comp.getActiveTab().down('iconbrowser');
+			    					iconBrowser.filter(iconBrowser.dataFilter, this.getValue());
+			    				}
+			    			}
+			    		});
+			    		comp.tabBar.add(filterEl);
+			    	},
+			    	tabchange: function(comp, card, preCard) {
+			    		var filterInput = comp.down('#filterInput');
+			    		
+			    		preCard.filterInputValue = filterInput.getValue();
+			    		filterInput.setValue(card.filterInputValue || '');
+			    		filterInput.focus();
+			    	}
 			    },
 			    items: [{
 		            title: '课程',
@@ -72,6 +69,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		xtype: 'iconbrowser',
 			    		ddSource: 'course',
 			    		dataIndex: 'name',
+			    		dataFilter: 'name',
 			    		store: Dic.getStore('Sex'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
@@ -86,6 +84,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		xtype: 'iconbrowser',
 			    		ddSource: 'teacher',
 			    		dataIndex: 'name',
+			    		dataFilter: 'name',
 			    		store: Dic.getStore('Class'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
@@ -100,6 +99,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		xtype: 'iconbrowser',
 			    		ddSource: 'room',
 			    		dataIndex: 'name',
+			    		dataFilter: 'name',
 			    		store: Dic.getStore('Grade'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
@@ -144,13 +144,13 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'monCourse',
-						ddTarget: 'course',
-						renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-							if (value) {
-								
-							}
-							return value + ' x';
-						}
+						ddTarget: 'course'
+//						,renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+//							if (value) {
+//								
+//							}
+//							return value + ' x';
+//						}
 		            }, {
 		                text: '教师',
 		                width: 70,
