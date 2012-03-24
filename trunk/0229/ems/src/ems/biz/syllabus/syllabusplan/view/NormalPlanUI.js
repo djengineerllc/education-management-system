@@ -34,7 +34,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    },
 			    listeners: {
 			    	afterrender: function(comp) {
-			    		var filterEl = Ext.createWidget('textfield', {
+			    		var filterInput = Ext.createWidget('textfield', {
 			    			itemId: 'filterInput',
 			    			cls: 'input-filter',
 			    			emptyText: '关键字',
@@ -47,14 +47,14 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    				}
 			    			}
 			    		});
-			    		comp.tabBar.add(filterEl);
+			    		comp.tabBar.add(filterInput);
 			    	},
 			    	tabchange: function(comp, card, preCard) {
 			    		var filterInput = comp.down('#filterInput');
 			    		
 			    		preCard.filterInputValue = filterInput.getValue();
 			    		filterInput.setValue(card.filterInputValue || '');
-			    		filterInput.focus(false, 10);
+//			    		filterInput.focus(false, 10);
 			    	}
 			    },
 			    items: [{
