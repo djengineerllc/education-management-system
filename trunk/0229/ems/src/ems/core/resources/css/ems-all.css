@@ -236,9 +236,31 @@
 	background-image: url('images/icons/plan_16.png')
 }
 
+.ems .icon-filter {
+	background-image: url('images/icons/filter_16.png')
+}
+
+
+
 .ems .help-info-left {
 	padding-left: 20px;
 	height: 16px;
     background: transparent url('images/icons/info_16.png') top left no-repeat;
 	left: 0 !important;
+}
+
+.ems .input-filter { /*.x-form-item-body
+	position: absolute;
+	clear:left;
+	float: right;
+	left: 0 !important; */
+	padding-top: 1px;
+	padding-left: 10px;
+}
+.ems .input-filter .x-form-item-body .x-form-text {
+	padding-left: 20px;
+	background: #FFFFFF url('images/icons/filter_16.png') left no-repeat;
+	border: none;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
 }
