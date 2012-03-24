@@ -24,6 +24,8 @@ Ext.define('ems.core.UI', {
 	
 	uiConfig: Ext.emptyFn,
 	
+	initData: Ext.emptyFn,
+	
 	initComponent: function() {
 		var me = this,
 			uiConfig = me.uiConfig();
@@ -32,6 +34,12 @@ Ext.define('ems.core.UI', {
         Ext.apply(me.initialConfig, uiConfig);
 		
 		me.callParent(arguments);
+	},
+	
+	afterRender: function() {
+		var me = this;
+		me.callParent(arguments);
+		me.initData();
 	},
 	
 	destroy: function() {
