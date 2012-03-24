@@ -178,6 +178,8 @@ Ext.define('ems.biz.certificate.graduate.view.PrintCertUI', {
 		var me = this,
 			certContentPanel = me.down('#certContentPanel');
 		EU.printHtml(certContentPanel.el.dom.innerHTML);
+		
+		return false;
 	},
 	
 	execBatchPrint: function() {
