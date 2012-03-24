@@ -200,6 +200,8 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		var me = this,
 			certContentPanel = me.down('#certContentPanel');
 		EU.printHtml(certContentPanel.el.dom.innerHTML);
+		
+		return false;
 	},
 	
 	execBatchPrint: function() {
