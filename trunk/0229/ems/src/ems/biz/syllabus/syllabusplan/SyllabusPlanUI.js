@@ -21,17 +21,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
                 selMode: 'single',
                 paging: true,
                 loadDF: me.DF('loadList'),
-                searchForm: {
-                    items: [
-                    	Dic.comboBox('Team', {
-                    		fieldLabel: '学期',
-                    		labelWidth: 30,
-                    		itemId: 'termComboBox',
-                    		name: 'term',
-                    		valueKey: '2012B'
-                    	})
-                   ]
+                storeConfig: {
+                	autoLoad: true
                 },
+//                searchForm: {
+//                    items: [
+//                    	Dic.comboBox('Team', {
+//                    		fieldLabel: '学期',
+//                    		labelWidth: 30,
+//                    		itemId: 'termComboBox',
+//                    		name: 'term',
+//                    		valueKey: '2012B'
+//                    	})
+//                   ]
+//                },
                 columns: [{
                     dataIndex: 'teamName',
                     text: '学期名称',
