@@ -50,8 +50,8 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             buttons: [{
             	xtype: 'textfield',
             	cls: 'help-info-left',
-            	width: 350,
-            	html: '1. 拖动[课程/教师/教室]到对应表格列    2. 双击单元格清空数据'
+            	width: 400,
+            	html: '1. 拖动[课程/教师/教室]到对应表格列进行排课    2. 双击单元格清空数据'
             }, {
 		        text: '提交',
 		        handler: function() {
