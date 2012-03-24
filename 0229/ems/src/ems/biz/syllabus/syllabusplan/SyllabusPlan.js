@@ -94,7 +94,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
-			title: '一览表',
+			title: '课程安排一览表',
 			width: 850,
 			minWidth: 600,
 			height: 500,
