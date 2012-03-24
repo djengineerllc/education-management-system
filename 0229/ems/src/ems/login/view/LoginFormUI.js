@@ -1,5 +1,12 @@
 Ext.define('ems.login.view.LoginFormUI', {
     extend: 'ems.core.UI',
+    
+    initData: function() {
+    	var me = this,
+    		userNameInput = me.down('#userName');
+    	
+    	userNameInput.focus(false, 0);
+    },
 	
 	uiConfig: function(){
 		var me = this;
