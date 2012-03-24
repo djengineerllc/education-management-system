@@ -54,7 +54,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		
 			    		preCard.filterInputValue = filterInput.getValue();
 			    		filterInput.setValue(card.filterInputValue || '');
-			    		filterInput.getEl().focus();
+			    		filterInput.focus(false, 10);
 			    	}
 			    },
 			    items: [{
