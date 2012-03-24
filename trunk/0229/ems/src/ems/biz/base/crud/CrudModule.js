@@ -214,6 +214,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 	},
 	
 	onPrint: function(params, request){
+		return false;
 	},
 	
 	onExportExcel: function(params, request){
