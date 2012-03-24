@@ -53,19 +53,13 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
 								}
 							},
 							width: 80
-						}), {
-							xtype: 'combobox',
-							fieldLabel: '班级',
+						}), 
+						Dic.localComboBox({
 							itemId: 'stuClassId',
 	                        name: 'stuClass',
 							emptyText: '请选择年级',
-							queryMode: 'local',
-							forceSelection: false,
-							editable: false,
-							valueField: 'value',
-							displayField: 'name',
 							width: 100
-						}]
+						})]
 					},
 					{
 						fieldLabel: '学号',
