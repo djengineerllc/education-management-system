@@ -1,7 +1,7 @@
 Ext.define('ems.biz.certificate.freshgraduate.view.PrintCertUI', {
 	extend: 'ems.core.UI',
 	
-	init: function() {
+	initData: function() {
 		var me = this,
 			sltStudents = me.reqParams,
 			title,
@@ -41,12 +41,6 @@ Ext.define('ems.biz.certificate.freshgraduate.view.PrintCertUI', {
 		queryInfoForm.setValues({
 			stuNo: initData.stuNo
 		});
-	},
-	
-	afterRender: function() {
-		var me = this;
-		me.callParent(arguments);
-		me.init();
 	},
 	
 	uiConfig: function(){
