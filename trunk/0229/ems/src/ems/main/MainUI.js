@@ -22,8 +22,6 @@ Ext.define('ems.main.MainUI', {
 	DF: null,
 	
 	initComponent: function() {
-		Ems.updateLocale();
-		
 		var me = this,
 			uiConfig = me.uiConfig();
 			
