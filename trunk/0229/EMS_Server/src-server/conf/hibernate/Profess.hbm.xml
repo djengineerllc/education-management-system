@@ -16,5 +16,11 @@
         <property name="projectId" type="java.lang.Integer">
             <column name="project_id" />
         </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="create_time"/>
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="update_time"/>
+        </property>
     </class>
 </hibernate-mapping>

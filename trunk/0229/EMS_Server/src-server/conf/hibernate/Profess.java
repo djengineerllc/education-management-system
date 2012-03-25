@@ -1,5 +1,7 @@
 package conf.hibernate;
 
+import java.util.Date;
+
 /**
  * Profess entity. @author MyEclipse Persistence Tools
  */
@@ -11,6 +13,8 @@ public class Profess implements java.io.Serializable {
 	private Integer id;
 	private String professName;
 	private Integer projectId;
+	private Date createTime;
+	private Date updateTime;
 
 	// Constructors
 
@@ -50,4 +54,19 @@ public class Profess implements java.io.Serializable {
 		this.projectId = projectId;
 	}
 
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 }
