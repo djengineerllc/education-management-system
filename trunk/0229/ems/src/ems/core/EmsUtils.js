@@ -129,7 +129,7 @@ Ext.define('ems.core.EmsUtils', {
 		var me = this,
 			html = me.printHtmlTpl.apply({
 				title: title,
-				head: '<style type="text/css">*{color: #000 !important;}a{text-decoration: none !important;}</style>',
+//				head: '<style type="text/css">*{color: #000 !important;}a{text-decoration: none !important;}</style>',
 				body: content
 			});
 		me.print(html);
