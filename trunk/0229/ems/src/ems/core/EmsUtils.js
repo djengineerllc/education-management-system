@@ -8,7 +8,9 @@ Ext.define('ems.core.EmsUtils', {
 	],
 	
 	showDialog: function(config) {
-		return Ext.MessageBox.show(config || {}); 
+		return Ext.MessageBox.show(config || {
+			width: 350
+		}); 
 //		Ext.apply(config || {}, {
 //			autoHeight: true,
 //			autoWidth: true,
