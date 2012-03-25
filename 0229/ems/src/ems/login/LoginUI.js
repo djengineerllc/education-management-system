@@ -2,8 +2,6 @@ Ext.define('ems.login.LoginUI', {
 	extend: 'Ext.container.Viewport',
     
 	initComponent: function() {
-		Ems.updateLocale();
-		
 		var me = this,
 			uiConfig = me.uiConfig();
 			
