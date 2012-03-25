@@ -29,12 +29,58 @@ Ext.define('ems.biz.syllabus.syllabusbyclass.SyllabusByClassUI', {
                 		itemId: 'termComboBox',
                 		name: 'term',
                 		valueKey: '2012B'
-                	})]
+                	}), {
+						xtype: 'fieldcontainer',
+		                fieldLabel: '班级',
+		                combineErrors: true,
+		                layout: {
+							type: 'hbox',
+							align: 'middle'
+						},
+		                defaults: {
+		                    hideLabel: true
+		                },
+						width: 290,
+		                items: [
+						Dic.comboBox('Grade', {
+	                        fieldLabel: '年级',
+	                        name: 'stuGrade',
+							hideLabel: true,
+							emptyText: '年级',
+							value: '',
+							listeners: {
+								change: function(comp, newValue, oldValue, eOpts) {
+									var data = newValue ? Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: 'Class', group: newValue}]).result : [],
+										stuClassCombo = me.down('#stuClassId');
+										
+									stuClassCombo.setValue(null);
+									stuClassCombo.emptyText = data.length > 0 ? '班级' : '请选择年级';
+									stuClassCombo.applyEmptyText();
+									stuClassCombo.store.loadData(data);
+								}
+							},
+							width: 80
+						}), 
+						Dic.localComboBox({
+							itemId: 'stuClassId',
+	                        name: 'stuClass',
+							emptyText: '请选择年级',
+							width: 100
+						})]
+					}]
                 },
                 columns: [{
-                    dataIndex: 'stuGrade',
-                    text: '班级',
-                    renderer: Dic.renderer('Class'),
+                    dataIndex: 'id',
+                    text: '班级ID',
+                    hidden: true,
+                    flex: 1
+                },{
+                    dataIndex: 'gradeName',
+                    text: '年级',
+                    flex: 1
+                },{
+                    dataIndex: 'className',
+                    text: '班级名',
                     flex: 1
                 }],
 				tbarButtons: [{
