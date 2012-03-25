@@ -266,6 +266,11 @@ Ems.Locale = {
         if (Ext.form && Ext.form.Labelable) {
         	Ext.form.Labelable.prototype.labelAlign = 'right';
         }
+        if (Ext.MessageBox) {
+        	Ext.each(Ext.MessageBox.msgButtons, function(msgButton) {
+        		msgButton.setText(Ext.MessageBox.buttonText[msgButton.itemId]);
+        	});
+        }
          // END: add by chiknin
     }
 };
