@@ -29,12 +29,34 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.SyllabusByCourseUI', {
                 		itemId: 'termComboBox',
                 		name: 'term',
                 		valueKey: '2012B'
-                	})]
+                	}), {
+                		fieldLabel: '课程名',
+                		name: 'subjectName'
+                	}]
                 },
                 columns: [{
-                    dataIndex: 'stuGrade',
-                    text: '班级',
-                    renderer: Dic.renderer('Class'),
+                    dataIndex: 'subjectId',
+                    text: '课程ID',
+                    flex: 1
+                }, {
+                    dataIndex: 'subjectNo',
+                    text: '课程编号',
+                    flex: 1
+                }, {
+                    dataIndex: 'subjectCnName',
+                    text: '课程中文名',
+                    flex: 1
+                },{
+                    dataIndex: 'subjectEnName',
+                    text: '课程英文名',
+                    flex: 1
+                },{
+                    dataIndex: 'subjectScore',
+                    text: '学分',
+                    flex: 1
+                },{
+                    dataIndex: 'subjectTime',
+                    text: '课时',
                     flex: 1
                 }],
 				tbarButtons: [{
