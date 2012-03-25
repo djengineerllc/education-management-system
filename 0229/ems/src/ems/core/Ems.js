@@ -175,7 +175,7 @@ Ems = ems.core.Ems = {
 	
 	updateLocale: function() {
 		if (this.config.lang) {
-			Ems.Locale.update();
+			Ext.defer(Ems.Locale.update, 10);
 		}
 	},
 	
@@ -308,6 +308,8 @@ Ems = ems.core.Ems = {
 	loadModule : function(id, config) {
 		var module = Ext.create(id, config);
 		this.registerModule(module);
+		
+		this.updateLocale();
 		
 		return module;
     },
