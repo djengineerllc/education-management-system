@@ -37,6 +37,7 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.SyllabusByCourseUI', {
                 columns: [{
                     dataIndex: 'subjectId',
                     text: '课程ID',
+                    hidden: true,
                     flex: 1
                 }, {
                     dataIndex: 'subjectNo',

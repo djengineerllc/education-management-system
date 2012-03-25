@@ -29,12 +29,22 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                 		itemId: 'termComboBox',
                 		name: 'term',
                 		valueKey: '2012B'
-                	})]
+                	}), {
+                		fieldLabel: '教师名',
+                		name: 'teacherName'
+                	}]
                 },
                 columns: [{
-                    dataIndex: 'stuGrade',
-                    text: '班级',
-                    renderer: Dic.renderer('Class'),
+                	dataIndex: 'teacherName',
+                    text: '教师名',
+                    flex: 1
+                }, {
+                	dataIndex: 'teacherTel',
+                    text: '电话',
+                    flex: 1
+                }, {
+                	dataIndex: 'teacherEmail',
+                    text: 'E-Mail',
                     flex: 1
                 }],
 				tbarButtons: [{
