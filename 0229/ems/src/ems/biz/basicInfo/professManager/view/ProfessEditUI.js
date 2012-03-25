@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessEditUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['professId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -34,14 +34,11 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessEditUI', {
 				},
 				items: [{
 					xtype: 'hiddenfield',
-					name: 'professId'
-				},{
-					xtype: 'hiddenfield',
+					name: 'id'
+				},Dic.comboBox('Project', {
+					fieldLabel: '项目名',
 					name: 'projectId'
-				}, {
-	                fieldLabel: '项目名',
-	                name: 'projectName'
-	            },{
+				}),{
 	                fieldLabel: '专业名',
 	                name: 'professName'
 	            }]

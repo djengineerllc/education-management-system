@@ -20,29 +20,29 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                 paging: true,
                 loadDF: me.DF('loadProfess'),
                 searchForm: {
-                    items: [{
-                        fieldLabel: '项目名',
-                        name: 'projectName'
-                    },{
+                    items: [Dic.comboBox('Project', {
+					fieldLabel: '项目名',
+					name: 'projectId'
+				}),{
                         fieldLabel: '专业名',
                         name: 'professName'
                     }]
                 },
                 columns: [{
+                    dataIndex: 'id',
+                    text: '专业ID',
+                    flex: 1
+                },{
+                    dataIndex: 'professName',
+                    text: '专业名称',
+                    flex: 1
+                },{
                     dataIndex: 'projectId',
                     text: '项目ID',
                     flex: 1
                 }, {
                     dataIndex: 'projectName',
                     text: '项目名',
-                    flex: 1
-                },{
-                    dataIndex: 'professId',
-                    text: '专业ID',
-                    flex: 1
-                },{
-                    dataIndex: 'professName',
-                    text: '专业名称',
                     flex: 1
                 }]
             }]
