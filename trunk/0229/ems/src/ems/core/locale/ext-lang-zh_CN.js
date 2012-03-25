@@ -17,8 +17,10 @@
 Ext.ns('Ems.Locale')
 Ems.Locale = {
     update: function(){
+    	var loadingText = Ems.config.waitMsg;
+    	
         if (Ext.Updater) {
-            Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">加载中...</div>';
+            Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">' + loadingText+ '</div>';
         }
         
         if (Ext.view && Ext.view.View) {
@@ -38,7 +40,7 @@ Ems.Locale = {
         }
         
         if (Ext.LoadMask) {
-            Ext.LoadMask.prototype.msg = "加载中...";
+            Ext.LoadMask.prototype.msg = loadingText;
         }
         
         if (Ext.Date) {
@@ -140,7 +142,7 @@ Ems.Locale = {
                 valueNotFoundText: undefined
             });
             Ext.apply(Ext.form.field.ComboBox.prototype.defaultListConfig, {
-                loadingText: "加载中..."
+                loadingText: loadingText
             });
         }
         
@@ -256,5 +258,14 @@ Ems.Locale = {
                 collapsibleSplitTip: "拖动来改变尺寸. 双击隐藏."
             });
         }
+        
+        // START: add by chiknin
+        if (Ext.view && Ext.view.AbstractView) {
+        	Ext.view.AbstractView.prototype.loadingText = loadingText;
+        }
+        if (Ext.form && Ext.form.Labelable) {
+        	Ext.form.Labelable.prototype.labelAlign = 'right';
+        }
+         // END: add by chiknin
     }
 };
