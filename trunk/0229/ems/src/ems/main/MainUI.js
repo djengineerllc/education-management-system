@@ -119,6 +119,7 @@ Ext.define('ems.main.MainUI', {
 				}]
 			}, {
 				region: 'west',
+				cls: 'ems-menu',
 				layout: 'fit',
 				title: "功能菜单",
 				collapsible: true,
