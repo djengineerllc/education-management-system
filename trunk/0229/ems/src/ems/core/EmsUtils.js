@@ -88,7 +88,7 @@ Ext.define('ems.core.EmsUtils', {
 			msgHtml = Ext.String.format(me.msgTpl, title, text),
 			msg = Ext.DomHelper.append(me.msgCt, msgHtml, true);
         msg.hide();
-        msg.slideIn('t').ghost("t", { delay: 3500, remove: true});
+        msg.slideIn('t').ghost("t", { delay: 3000, remove: true});
     },
 	
 //	,showWindow: function(config) {
