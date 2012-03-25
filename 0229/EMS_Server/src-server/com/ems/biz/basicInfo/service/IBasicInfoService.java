@@ -3,10 +3,12 @@ package com.ems.biz.basicInfo.service;
 import java.io.Serializable;
 import java.util.List;
 
+import com.ems.client.action.biz.samples.common.vo.ProfessVO;
 import com.ems.client.action.biz.samples.common.vo.ProjectVO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 
+import conf.hibernate.Profess;
 import conf.hibernate.Project;
 
 public interface IBasicInfoService {
@@ -24,8 +26,21 @@ public interface IBasicInfoService {
 	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException;
 	
 	public <T>T findById(Class<T> entityClass,Serializable id) throws EMSException;
-	
+	/**
+	 * 查找项目信息
+	 * @param projectVO
+	 * @return
+	 * @throws EMSException
+	 */
 	public List<Project> findProjectByVO(ProjectVO projectVO) throws EMSException;
+	
+	/**
+	 * 查找专业信息
+	 * @param projectVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<Profess> findProfessByVO(ProfessVO professVO) throws EMSException;
 	
 	public void delete(Object obj) throws EMSRollbackableException;
 	

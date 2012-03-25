@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.client.action.biz.samples.common.vo.ProfessVO;
 import com.ems.client.action.biz.samples.common.vo.ProjectVO;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.util.StringUtils;
 
+import conf.hibernate.Profess;
 import conf.hibernate.Project;
 
 public class BasicInfoService implements IBasicInfoService {
@@ -34,6 +36,20 @@ public class BasicInfoService implements IBasicInfoService {
 			valueParam.add("%"+projectVO.getProjectName()+"%");
 		}
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
+	}
+	
+	public List<Profess> findProfessByVO(ProfessVO professVO) throws EMSException{
+		StringBuffer hql = new StringBuffer(" from Profess where 1=1 ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(professVO.getProjectId())){
+			hql.append(" and projectId = ? "); 
+			valueParam.add(professVO.getProjectId());
+		}
+		if(!StringUtils.isNullBlank(professVO.getProfessName())){
+			hql.append(" and professName like ? "); 
+			valueParam.add("%"+professVO.getProfessName()+"%");
+		}
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 
 	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException {

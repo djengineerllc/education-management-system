@@ -16,7 +16,7 @@
         <property name="projectComment" type="java.lang.String">
             <column name="project_comment" length="65535" />
         </property>
-         <property name="createTime" type="java.util.Date">
+        <property name="createTime" type="java.util.Date">
             <column name="create_time"/>
         </property>
         <property name="updateTime" type="java.util.Date">

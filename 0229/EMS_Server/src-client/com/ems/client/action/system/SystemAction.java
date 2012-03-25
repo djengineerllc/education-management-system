@@ -16,6 +16,7 @@ import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
 import conf.hibernate.Grade;
+import conf.hibernate.Project;
 
 @ActionScope(scope=Scope.APPLICATION)
 public class SystemAction extends DirectAction {
@@ -33,7 +34,12 @@ public class SystemAction extends DirectAction {
 		String dicType = queryInfo.getType();
 		
 		List<DicVO> dicVOList = new ArrayList<DicVO>();
-		if ("Grade".equals(dicType)) {
+		if("Project".equals(dicType)){
+			List<Project> projects = basicInfoService.getAll(Project.class,"id desc");
+			for(Project project:projects){
+				dicVOList.add(new DicVO(project.getId(), "Project", project.getId()+"", project.getId()+"", project.getProjectName()));
+			}
+		}else if ("Grade".equals(dicType)) {
 			List<Grade> grades = basicInfoService.getAll(Grade.class,"id desc");
 			for(Grade grade:grades){
 				dicVOList.add(new DicVO(grade.getId(), "Grade", grade.getId()+"", grade.getId()+"", grade.getGradeName()));

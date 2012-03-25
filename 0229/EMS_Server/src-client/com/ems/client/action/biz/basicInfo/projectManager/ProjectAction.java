@@ -20,8 +20,13 @@ import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
-
 import conf.hibernate.Project;
+
+/**
+ * 项目管理
+ * @author zhuchaole
+ *
+ */
 
 @ActionScope(scope=Scope.APPLICATION)
 public class ProjectAction extends DirectAction {
