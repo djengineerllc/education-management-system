@@ -111,6 +111,12 @@
 	background: transparent url('images/ticoxu_logo.png') no-repeat left;
 }
 
+.ems .ems-menu .x-grid-view .x-grid-row .x-grid-cell-inner {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	height: 24px;
+}
+
 .ems .icon-users, .ems .icon-roles {
 	background: transparent url('images/icons/users_16.png') no-repeat top left;
 }
