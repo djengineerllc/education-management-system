@@ -271,6 +271,6 @@ Ems.Locale = {
         		msgButton.setText(Ext.MessageBox.buttonText[msgButton.itemId]);
         	});
         }
-         // END: add by chiknin
+        // END: add by chiknin
     }
 };
