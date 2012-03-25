@@ -75,6 +75,7 @@
 	//		,'build/build/src/ems/core/Ems.js'
 		];
 	}
+//	jsPaths.push('lib/ext/locale/ext-lang-zh_CN.js');
 	jsPaths.push('src/ems/core/Ems.js');
 	
 	for (var i = 0; i < jsPaths.length; i++) {
