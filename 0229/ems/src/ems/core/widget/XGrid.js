@@ -17,7 +17,7 @@ Ext.define('ems.core.widget.XGrid', {
 		
 	rowNumberer: true,
 	
-	loadDF: Ext.emptyFn,
+	loadDF: null,
 	
 	searchForm: null,
 	
@@ -39,19 +39,27 @@ Ext.define('ems.core.widget.XGrid', {
 			config = me._defaultXGridConfig();
 		
 		if (me.store == undefined) {
+			if (me.loadDF == null) {
+				Ext.Error.raise({
+					sourceClass: me.$className,
+					sourceMethod: 'initComponent',
+					msg: 'function loadDF be not null'
+                });
+			}
+			
 			config.store = me._buildStore();
-		};
+		}
 		if (me.selModel == undefined && me.selMode != undefined) {
 			config.selModel = me._buildSelModel();
-		};
+		}
 		if (me.plugins == undefined) {
 			config.plugins = me._buildPlugins();
-		};
+		}
         Ext.applyIf(me, config);
 		
 		if (me.rowNumberer) {
 			me.columns = [Ext.create('Ext.grid.RowNumberer')].concat(me.columns || []);
-		};
+		}
         
         this.callParent(arguments);
 		
@@ -61,7 +69,7 @@ Ext.define('ems.core.widget.XGrid', {
 				store: config.store,
 				displayInfo: true
 			}));
-		};
+		}
     },
 	onDestroy: function() {
 		this.callParent(arguments);
@@ -85,7 +93,7 @@ Ext.define('ems.core.widget.XGrid', {
 			}, me);
 			if (field.dateFormat == undefined && col.format != undefined) {
 				field['dateFormat'] = col.format;
-			};
+			}
 			
 			fields.push(field);
 		}, me);
@@ -137,14 +145,14 @@ Ext.define('ems.core.widget.XGrid', {
 					ptype: me.editingMode
 				}, me.editingConfig)
 			);
-		};
+		}
 		if (me.expandRowBodyTpl != undefined) {
 			plugins.push(
 				Ext.create('Ext.ux.RowExpander', {
 					rowBodyTpl : me.expandRowBodyTpl
 				})
 			);
-		};
+		}
 		
 		return plugins;
 	},
