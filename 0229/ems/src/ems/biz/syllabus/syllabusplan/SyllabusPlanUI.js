@@ -36,8 +36,13 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
 //                   ]
 //                },
                 columns: [{
+                    dataIndex: 'teamId',
+                    text: '学期ID',
+                    hidden: true,
+                    flex: 1
+                },{
                     dataIndex: 'teamName',
-                    text: '学期名称',
+                    text: '学期名',
                     flex: 1
                 },{
                     dataIndex: 'syllabusState',
