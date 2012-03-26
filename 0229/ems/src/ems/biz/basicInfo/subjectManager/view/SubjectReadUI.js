@@ -21,7 +21,7 @@ Ext.define('ems.biz.basicInfo.subjectManager.view.SubjectReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['subjectId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,7 +32,7 @@ Ext.define('ems.biz.basicInfo.subjectManager.view.SubjectReadUI', {
 				},
 				items: [{
 					fieldLabel: '课程ID',
-	                name: 'subjectId'
+	                name: 'id'
 				},{
 					fieldLabel: '课程编号',
 					name: 'subjectNo'
