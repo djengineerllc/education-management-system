@@ -20,10 +20,10 @@ public class SyllabusByClassAction extends DirectCrudAction {
 		
 		List items = new ArrayList();
 		
-		Map<String, Object> item = new HashMap<String, Object>();
-		item.put("teamName", "2012年第一学期");
-		item.put("syllabusState", "2");
-		items.add(item);
+//		Map<String, Object> item = new HashMap<String, Object>();
+//		item.put("teamName", "2012年第一学期");
+//		item.put("syllabusState", "2");
+//		items.add(item);
 		
 		return new ExtPagingVO(items);
 	}
