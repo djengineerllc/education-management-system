@@ -12,7 +12,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		var me = this,
 			sltTeam = me.reqParams[0],
 			syllabusPlanGrid = me.down('#syllabusPlanGrid');
-		debugger;
+		
 		syllabusPlanGrid.store.load({
 			params: {
 				teamId: sltTeam.teamId
