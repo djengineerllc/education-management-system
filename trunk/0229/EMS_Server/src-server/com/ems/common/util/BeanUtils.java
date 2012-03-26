@@ -3,10 +3,13 @@ package com.ems.common.util;
 import java.beans.PropertyDescriptor;
 import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.beans.BeanWrapper;
@@ -25,7 +28,7 @@ import com.google.gson.JsonObject;
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils{
 	
-	public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").serializeNulls().create();
+	public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create(); // serializeNulls()
 	
 	public static <T> T toBeanFromJson(JsonObject jsonObj, Class<T> beanClass) {
 		return gson.fromJson(jsonObj, beanClass);
@@ -43,6 +46,39 @@ public class BeanUtils extends org.springframework.beans.BeanUtils{
 		List<T> beans = toBeanFromJson(jsonArray, beanClass);
 		if (beans.size() > 0) {
 			return beans.get(0);
+		}
+		
+		return null;
+	}
+	
+	public static Map<String, String> toMapFromJson(JsonObject jsonObj) {
+		if (jsonObj == null) {
+			return Collections.EMPTY_MAP;
+		}
+		
+		Map<String, String> result = new HashMap<String, String>();
+		for (Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+			result.put(entry.getKey(), entry.getValue().getAsString());
+		}
+		
+		return result;
+	}
+	public static List<Map<String, String>> toMapFromJson(JsonArray jsonArray) {
+		if (jsonArray == null) {
+			return Collections.EMPTY_LIST;
+		}
+		
+		List<Map<String, String>> result = new ArrayList<Map<String,String>>();
+		for (JsonElement jsonEl : jsonArray) {
+			result.add(toMapFromJson(jsonEl.getAsJsonObject()));
+		}
+		
+		return result;
+	}
+	public static Map<String, String> toMapFromJsonFirst(JsonArray jsonArray) {
+		List<Map<String, String>> list = toMapFromJson(jsonArray);
+		if (list.size() > 0) {
+			return list.get(0);
 		}
 		
 		return null;
