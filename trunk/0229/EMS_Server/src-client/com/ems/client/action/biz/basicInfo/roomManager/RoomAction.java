@@ -2,7 +2,7 @@ package com.ems.client.action.biz.basicInfo.roomManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
-import com.ems.client.action.biz.samples.common.vo.ProjectVO;
+import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.client.action.biz.samples.common.vo.RoomVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -24,30 +24,38 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.Room;
+import conf.hibernate.Term;
+
+/**
+ * 教室管理
+ * @author zhuchaole
+ *
+ */
+
 @ActionScope(scope=Scope.APPLICATION)
 public class RoomAction extends DirectAction {
 
 
 	
 	private Logger logger = Logger.getLogger(this.getClass()); 
-	private static Integer idCounter = 10;
-	
-	private static Map<Integer, RoomVO> room = new HashMap<Integer, RoomVO>();
-	static {
-		room.put(1, new RoomVO(1, "北楼101","2011-2012学期",50,"再用",""));
-		room.put(2, new RoomVO(2, "北楼102","2011-2012学期",50,"再用",""));
-		room.put(3, new RoomVO(3, "北楼201","2011-2012学期",50,"再用",""));
-		room.put(4, new RoomVO(4, "北楼202","2011-2012学期",50,"再用",""));
-		room.put(5, new RoomVO(5, "多媒体楼501","2011-2012学期",100,"再用","计算机专业专用"));
-		room.put(6, new RoomVO(6, "多媒体楼502","2011-2012学期",100,"再用","计算机专业专用"));
-	}
+	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
 	
 	@DirectMethod
 	public ExtPagingVO loadRoom(JsonArray params) {
 		try{
 			List<RoomVO> roomVOList = new ArrayList<RoomVO>();
-			for (Map.Entry<Integer, RoomVO> user : room.entrySet()) {
-				roomVOList.add(user.getValue());
+			RoomVO roomVO_qry = BeanUtils.toBeanFromJsonFirst(params, RoomVO.class);
+			List<Room> rooms = this.basicInfoService.findRoomByVO(roomVO_qry);
+			for(Room room_:rooms){
+				RoomVO roomVO = new RoomVO();
+				roomVO.setId(room_.getId());
+				roomVO.setRoomName(room_.getRoomName());
+				roomVO.setRoomSize(room_.getRoomSize());
+				roomVO.setTermId(room_.getTermId());
+				roomVO.setTermName(this.basicInfoService.findById(Term.class,room_.getTermId()).getTermName());
+				roomVO.setRoomStatus(room_.getRoomStatus());
+				roomVOList.add(roomVO);
 			}
 			return new ExtPagingVO(roomVOList);
 		}catch(Exception e){
@@ -59,36 +67,56 @@ public class RoomAction extends DirectAction {
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
-		
 		ExtFormVO result = new ExtFormVO();
-		
-		if (room.containsKey(roomVO.getRoomName())) {
-			result.addError("RoomName", String.format("教室[%s]已重复", roomVO.getRoomName()));
-			return result;
+		List<Room> rooms = this.basicInfoService.getAll(Room.class, null);
+		for(Room room_ : rooms){
+			if (room_.getRoomName().equals(roomVO.getRoomName())) {
+				result.addError("RoomName", String.format("教室[%s]已重复", roomVO.getRoomName()));
+				return result;
+			}
 		}
-		
-		roomVO.setId(++idCounter);
-		room.put(roomVO.getId(), roomVO);
+		Room room = new Room();
+		room.setRoomName(roomVO.getRoomName());
+		room.setRoomSize(roomVO.getRoomSize());
+		room.setRoomStatus(roomVO.getRoomStatus());
+		room.setTermId(roomVO.getTermId());
+		room.setCreateTime(new Date());
+		this.basicInfoService.save(room);
 		return result;
 	}
 	@DirectMethod
-	public ExtFormVO read(Integer roomId) {
-		System.out.println("getFormData gradeId = " + roomId);
-		RoomVO roomVO = room.get(roomId);
+	public ExtFormVO read(Integer id) {
+		System.out.println("getFormData id = " + id);
+		RoomVO roomVO = null;
+		Room room = null;
+		if(id != null){
+			room = this.basicInfoService.findById(Room.class, id);
+			roomVO = new RoomVO();
+			roomVO.setId(room.getId());
+			roomVO.setRoomName(room.getRoomName());
+			roomVO.setRoomSize(room.getRoomSize());
+			roomVO.setRoomStatus(room.getRoomStatus());
+			roomVO.setTermId(room.getTermId());
+			roomVO.setTermName(this.basicInfoService.findById(Term.class, room.getTermId()).getTermName());
+		}
 		return new ExtFormVO(roomVO);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
 		ExtFormVO result = new ExtFormVO();
-		room.put(roomVO.getId(),roomVO);
+		Room room = this.basicInfoService.findById(Room.class, roomVO.getId());
+		room.setRoomName(roomVO.getRoomName());
+		room.setRoomSize(roomVO.getRoomSize());
+		room.setRoomStatus(roomVO.getRoomStatus());
+		room.setTermId(roomVO.getTermId());
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			room.remove(id);
+			this.basicInfoService.delete(this.basicInfoService.findById(Room.class, id));
 		}
 		return new ExtFormVO();
 	}

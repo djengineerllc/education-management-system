@@ -5,11 +5,15 @@ import java.util.List;
 
 import com.ems.client.action.biz.samples.common.vo.ProfessVO;
 import com.ems.client.action.biz.samples.common.vo.ProjectVO;
+import com.ems.client.action.biz.samples.common.vo.RoomVO;
+import com.ems.client.action.biz.samples.common.vo.SubjectVO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 
 import conf.hibernate.Profess;
 import conf.hibernate.Project;
+import conf.hibernate.Room;
+import conf.hibernate.Subject;
 
 public interface IBasicInfoService {
 	
@@ -41,6 +45,22 @@ public interface IBasicInfoService {
 	 * @throws EMSException
 	 */
 	public List<Profess> findProfessByVO(ProfessVO professVO) throws EMSException;
+	
+	/**
+	 * 查找课程信息
+	 * @param projectVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<Subject> findSubjectByVO(SubjectVO subjectVO) throws EMSException;
+	
+	/**
+	 * 查找教室信息
+	 * @param projectVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<Room> findRoomByVO(RoomVO roomVO) throws EMSException;
 	
 	public void delete(Object obj) throws EMSRollbackableException;
 	
