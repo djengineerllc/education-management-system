@@ -123,7 +123,7 @@ Ext.define('ems.core.Module', { // Controller
 					});
 				};
 				
-				cb.apply(s, arguments);
+				cb.apply(s, [result, e]);
 				
 //				me.ui && me.ui.el && me.ui.el.unmask();
 			}).concat(s);
