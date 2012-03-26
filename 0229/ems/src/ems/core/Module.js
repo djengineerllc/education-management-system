@@ -95,8 +95,8 @@ Ext.define('ems.core.Module', { // Controller
 		return Ems.MRA(event, this.id, request);
 	},
 	
-	A: function(require) {
-		Ems.A(this.id, require);
+	A: function(request) {
+		Ems.A(this.id, request);
 	},
 	
 	DF: function(method, action) {
