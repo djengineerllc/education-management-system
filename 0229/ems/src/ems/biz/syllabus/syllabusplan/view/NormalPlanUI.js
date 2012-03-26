@@ -163,7 +163,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                width: 70,
 						dataIndex: 'monRoom',
 						ddTarget: 'room'
-		            }]	
+		            }]
 				},{
 					text: '周二',
 		            columns: [{
