@@ -28,7 +28,7 @@ import com.google.gson.JsonObject;
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils{
 	
-	public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create(); // serializeNulls()
+	public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").serializeNulls().create();
 	
 	public static <T> T toBeanFromJson(JsonObject jsonObj, Class<T> beanClass) {
 		return gson.fromJson(jsonObj, beanClass);
