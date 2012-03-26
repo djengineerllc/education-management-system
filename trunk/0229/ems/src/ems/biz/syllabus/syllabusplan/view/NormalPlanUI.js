@@ -10,7 +10,14 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	initData: function() {
 		var me = this,
-			sltTeams = me.reqParams;
+			sltTeam = me.reqParams[0],
+			syllabusPlanGrid = me.down('#syllabusPlanGrid');
+		debugger;
+		syllabusPlanGrid.store.load({
+			params: {
+				teamId: sltTeam.teamId
+			}
+		});
 	},
 	
 	uiConfig: function(){
@@ -107,18 +114,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				region: 'center',
 				border: false,
 				xtype: 'xgrid',
+				itemId: 'syllabusPlanGrid',
 				rowNumberer: false,
 				stripeRows: true,
 				sortableColumns: false,
-				cls: 'rowspan-grid',
 				viewType: 'gridspanview',
-				store: Ext.create('ems.biz.syllabus.data.store.SyllabusStore', {
-					autoLoad: true
-				}),
+				loadDF: me.DF('loadSyllabusPlanDetail'),
 				plugins: [
 					Ext.create('ems.core.widget.CellFieldDropZone')
 				],
 				columns: [{
+					text: 'ID',
+		            dataIndex: 'id',
+		            hidden: true
+				},{
 		            text: '课时',
 		            dataIndex: 'lesson',
 		            width: 50,
