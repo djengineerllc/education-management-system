@@ -21,12 +21,15 @@ Ext.define('ems.biz.basicInfo.subjectManager.SubjectUI', {
                 loadDF: me.DF('loadSubject'),
                 searchForm: {
                     items: [{
-                        fieldLabel: '课程名',
-                        name: 'subjectName'
+                        fieldLabel: '课程中文名',
+                        name: 'subjectCnName'
+                    },{
+                        fieldLabel: '课程英文名',
+                        name: 'subjectEnName'
                     }]
                 },
                 columns: [{
-                    dataIndex: 'subjectId',
+                    dataIndex: 'id',
                     text: '课程ID',
                     flex: 1
                 }, {
