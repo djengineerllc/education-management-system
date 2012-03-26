@@ -7,6 +7,8 @@ import java.util.List;
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.client.action.biz.samples.common.vo.ProfessVO;
 import com.ems.client.action.biz.samples.common.vo.ProjectVO;
+import com.ems.client.action.biz.samples.common.vo.RoomVO;
+import com.ems.client.action.biz.samples.common.vo.SubjectVO;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
@@ -14,6 +16,8 @@ import com.ems.common.util.StringUtils;
 
 import conf.hibernate.Profess;
 import conf.hibernate.Project;
+import conf.hibernate.Room;
+import conf.hibernate.Subject;
 
 public class BasicInfoService implements IBasicInfoService {
 	
@@ -48,6 +52,30 @@ public class BasicInfoService implements IBasicInfoService {
 		if(!StringUtils.isNullBlank(professVO.getProfessName())){
 			hql.append(" and professName like ? "); 
 			valueParam.add("%"+professVO.getProfessName()+"%");
+		}
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+	}
+	
+	public List<Subject> findSubjectByVO(SubjectVO subjectVO) throws EMSException{
+		StringBuffer hql = new StringBuffer(" from Subject where 1=1 ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(subjectVO.getSubjectCnName())){
+			hql.append(" and subjectName like ? "); 
+			valueParam.add("%"+subjectVO.getSubjectCnName()+"%");
+		}
+		if(!StringUtils.isNullBlank(subjectVO.getSubjectEnName())){
+			hql.append(" and subjectEngName like ? "); 
+			valueParam.add("%"+subjectVO.getSubjectEnName()+"%");
+		}
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+	}
+	
+	public List<Room> findRoomByVO(RoomVO roomVO) throws EMSException{
+		StringBuffer hql = new StringBuffer(" from Room where 1=1 ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(roomVO.getRoomName())){
+			hql.append(" and roomName like ? "); 
+			valueParam.add("%"+roomVO.getRoomName()+"%");
 		}
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}

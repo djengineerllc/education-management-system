@@ -7,7 +7,7 @@ public class SubjectVO {
 	private String subjectCnName;
 	private String subjectEnName;
 	private Double subjectScore;
-	private Double subjectTime;
+	private Integer subjectTime;
 	
 	public SubjectVO() {
 		super();
@@ -15,7 +15,7 @@ public class SubjectVO {
 	
 	
 	public SubjectVO(Integer id, String subjectNo, String subjectCnName,
-			String subjectEnName, Double subjectScore, Double subjectTime) {
+			String subjectEnName, Double subjectScore, Integer subjectTime) {
 		super();
 		this.id = id;
 		this.subjectNo = subjectNo;
@@ -27,7 +27,7 @@ public class SubjectVO {
 	
 
 	public SubjectVO(String subjectNo, String subjectCnName,
-			String subjectEnName, Double subjectScore, Double subjectTime) {
+			String subjectEnName, Double subjectScore, Integer subjectTime) {
 		super();
 		this.subjectNo = subjectNo;
 		this.subjectCnName = subjectCnName;
@@ -69,10 +69,14 @@ public class SubjectVO {
 	public void setSubjectScore(Double subjectScore) {
 		this.subjectScore = subjectScore;
 	}
-	public Double getSubjectTime() {
+
+
+	public Integer getSubjectTime() {
 		return subjectTime;
 	}
-	public void setSubjectTime(Double subjectTime) {
+
+
+	public void setSubjectTime(Integer subjectTime) {
 		this.subjectTime = subjectTime;
 	}
 	

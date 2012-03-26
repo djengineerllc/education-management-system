@@ -4,8 +4,9 @@ public class RoomVO {
 	
 	private Integer id;
 	private String roomName;
+	private Integer termId;
 	private String termName;
-	private Integer roomSize;
+	private String roomSize;
 	private String roomStatus;
 	private String roomComment;
 	
@@ -23,7 +24,7 @@ public class RoomVO {
 	
 	
 	public RoomVO(Integer id, String roomName, String termName,
-			Integer roomSize, String roomStatus, String roomComment) {
+			String roomSize, String roomStatus, String roomComment) {
 		super();
 		this.id = id;
 		this.roomName = roomName;
@@ -54,12 +55,15 @@ public class RoomVO {
 	public void setTermName(String termName) {
 		this.termName = termName;
 	}
-	public Integer getRoomSize() {
+	
+	public String getRoomSize() {
 		return roomSize;
 	}
-	public void setRoomSize(Integer roomSize) {
+
+	public void setRoomSize(String roomSize) {
 		this.roomSize = roomSize;
 	}
+
 	public String getRoomStatus() {
 		return roomStatus;
 	}
@@ -71,6 +75,14 @@ public class RoomVO {
 	}
 	public void setRoomComment(String roomComment) {
 		this.roomComment = roomComment;
+	}
+
+	public Integer getTermId() {
+		return termId;
+	}
+
+	public void setTermId(Integer termId) {
+		this.termId = termId;
 	}
 	
 }
