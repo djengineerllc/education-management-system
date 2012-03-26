@@ -106,7 +106,7 @@ Ext.define('ems.main.Main', {
 				me.activeWorkItem(workItem, request);
 				Ems.unmask();
 			}, me);
-		}, 30, me); // 120
+		}, 50, me); // 120
 	},
 	_doDestroyWorkItem: function(workItem) {
 		var moduleId = workItem.moduleId;
