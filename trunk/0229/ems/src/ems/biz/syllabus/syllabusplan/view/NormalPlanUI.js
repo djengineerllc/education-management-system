@@ -4,8 +4,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	requires: [
 		'Ext.tree.Panel',
 		'ems.core.widget.GridSpanView',
-		'ems.core.widget.IconBrowser',
-		'ems.biz.syllabus.data.store.SyllabusStore'
+		'ems.core.widget.IconBrowser'
 	],
 	
 	initData: function() {
