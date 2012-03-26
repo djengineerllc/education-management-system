@@ -57,15 +57,27 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             }, {
 		        text: '提交',
 		        handler: function() {
-		        	var g = this.up('window').down('grid'),
-		        		s = g.getStore(),
-		        		datas = [];
-		    		
+			    	var g = this.up('window').down('grid'),
+			    		s = g.getStore(),
+			    		data = [];
+					
 					Ext.each(s.getUpdatedRecords(), function(record) {
-						datas.push(record.data);
+						data.push(record.data);
 					});
-					alert(Ext.encode(datas));
-		        }
+					
+					me.A({
+						m: 'submitSyllabusPlanDetail',
+						p: [data], 
+						cb: function(result, e) {
+							alert(1)
+							if (result.errors) {
+								EU.showInfoDialog({
+									msg: result.errors
+								})
+							}
+						}
+					})
+			    }
 		    }, me.cancelButton],
 			animateTarget: eo.el
         });
