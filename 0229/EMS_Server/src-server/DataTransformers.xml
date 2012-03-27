@@ -10,4 +10,5 @@
 	<Import resource="conf/templates/excel/test_excel_import.xml" />
 	
 	<Import resource="conf/templates/print/certificate/print_certificate.xml" />
+	<Import resource="conf/templates/print/syllabus/print_syllabus.xml" />
 </DataTransformers>
