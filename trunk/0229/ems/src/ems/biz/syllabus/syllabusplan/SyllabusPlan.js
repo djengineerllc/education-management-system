@@ -69,7 +69,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 						m: 'submitSyllabusPlanDetail',
 						p: [data], 
 						cb: function(result, e) {
-							alert(1)
 							if (result.errors) {
 								EU.showInfoDialog({
 									msg: result.errors
