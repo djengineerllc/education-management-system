@@ -55,6 +55,7 @@ public class RoomAction extends DirectAction {
 				roomVO.setTermId(room_.getTermId());
 				roomVO.setTermName(this.basicInfoService.findById(Term.class,room_.getTermId()).getTermName());
 				roomVO.setRoomStatus(room_.getRoomStatus());
+				roomVO.setRoomComment(room_.getRoomComment());
 				roomVOList.add(roomVO);
 			}
 			return new ExtPagingVO(roomVOList);
@@ -80,6 +81,7 @@ public class RoomAction extends DirectAction {
 		room.setRoomSize(roomVO.getRoomSize());
 		room.setRoomStatus(roomVO.getRoomStatus());
 		room.setTermId(roomVO.getTermId());
+		room.setRoomComment(roomVO.getRoomComment());
 		room.setCreateTime(new Date());
 		this.basicInfoService.save(room);
 		return result;
@@ -97,6 +99,7 @@ public class RoomAction extends DirectAction {
 			roomVO.setRoomSize(room.getRoomSize());
 			roomVO.setRoomStatus(room.getRoomStatus());
 			roomVO.setTermId(room.getTermId());
+			roomVO.setRoomComment(room.getRoomComment());
 			roomVO.setTermName(this.basicInfoService.findById(Term.class, room.getTermId()).getTermName());
 		}
 		return new ExtFormVO(roomVO);
@@ -109,7 +112,9 @@ public class RoomAction extends DirectAction {
 		room.setRoomName(roomVO.getRoomName());
 		room.setRoomSize(roomVO.getRoomSize());
 		room.setRoomStatus(roomVO.getRoomStatus());
+		room.setRoomComment(roomVO.getRoomComment());
 		room.setTermId(roomVO.getTermId());
+		this.basicInfoService.update(room);
 		return result;
 	}
 	

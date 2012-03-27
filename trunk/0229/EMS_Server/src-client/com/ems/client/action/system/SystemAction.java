@@ -17,6 +17,7 @@ import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
 import conf.hibernate.Grade;
 import conf.hibernate.Project;
+import conf.hibernate.Term;
 
 @ActionScope(scope=Scope.APPLICATION)
 public class SystemAction extends DirectAction {
@@ -34,7 +35,12 @@ public class SystemAction extends DirectAction {
 		String dicType = queryInfo.getType();
 		
 		List<DicVO> dicVOList = new ArrayList<DicVO>();
-		if("Project".equals(dicType)){
+		if("Term".equals(dicType)){
+			List<Term> terms = basicInfoService.getAll(Term.class," isCurrentTerm desc,id desc ");
+			for(Term term:terms){
+				dicVOList.add(new DicVO(term.getId(), "Term", term.getId()+"", term.getId()+"", term.getTermName()));
+			}
+		}else if("Project".equals(dicType)){
 			List<Project> projects = basicInfoService.getAll(Project.class,"id desc");
 			for(Project project:projects){
 				dicVOList.add(new DicVO(project.getId(), "Project", project.getId()+"", project.getId()+"", project.getProjectName()));
