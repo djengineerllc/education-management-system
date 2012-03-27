@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomEditUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['roomId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -34,14 +34,14 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomEditUI', {
 				},
 				items: [{
 					xtype: 'hiddenfield',
-					name: 'roomId'
+					name: 'id'
 				},{
 	                fieldLabel: '教室名',
 	                name: 'roomName'
-	            },{
-	                fieldLabel: '学期',
-	                name: 'termName'
-	            },{
+	            },Dic.comboBox('Term', {
+					fieldLabel: '学期',
+					name: 'termId'
+				}),{
 	                fieldLabel: '教室人数',
 	                name: 'roomSize'
 	            },{

@@ -23,10 +23,19 @@ Ext.define('ems.biz.basicInfo.bookManager.BookUI', {
                     items: [{
                         fieldLabel: '教材名',
                         name: 'bookName'
+                    },{
+                        fieldLabel: '出版社',
+                        name: 'publishName'
+                    },{
+                        fieldLabel: '作者',
+                        name: 'author'
+                    },{
+                        fieldLabel: 'ISBN',
+                        name: 'isbnNo'
                     }]
                 },
                 columns: [{
-                    dataIndex: 'bookId',
+                    dataIndex: 'id',
                     text: '教材ID',
                     flex: 1
                 }, {

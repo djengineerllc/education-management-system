@@ -20,10 +20,11 @@ Ext.define('ems.biz.basicInfo.roomManager.RoomUI', {
                 paging: true,
                 loadDF: me.DF('loadRoom'),
                 searchForm: {
-                    items: [{
-                        fieldLabel: '学期',
-                        name: 'termName'
-                    },{
+                    items: [Dic.comboBox('Term', {
+					fieldLabel: '学期',
+					name: 'termId',
+					value:-1
+				}),{
                         fieldLabel: '教室',
                         name: 'roomName'
                     }]

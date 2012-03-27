@@ -21,7 +21,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['roomId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,7 +32,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomReadUI', {
 				},
 				items: [{
 					fieldLabel: '教室ID',
-	                name: 'roomId'
+	                name: 'id'
 				},{
 	                fieldLabel: '教室名',
 	                name: 'roomName'
