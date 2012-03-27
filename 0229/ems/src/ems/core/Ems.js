@@ -373,7 +373,7 @@ Ems = ems.core.Ems = {
 	// -----------------------------------------------
 	
 	getSDRTransId: (function() {
-		var sdrTransId = 100000000;
+		var sdrTransId = 1000000;
 		return function() {
 			return sdrTransId++;
 		}
@@ -418,9 +418,10 @@ Ems = ems.core.Ems = {
 			module = me.getModule(moduleId),
 			streamUrl = module.actions.getProviderBaseUrl() + '/stream/',
 			url =  streamUrl + '?' + Ext.urlEncode(Ext.applyIf({
+					tid: me.getSDRTransId(),
 					action: action || module.actions.mixinRemoteActionName,
 					method: method
-				}, data || {}));
+				}, data));
 		
 		return url;
 	},
@@ -454,6 +455,15 @@ Ems = ems.core.Ems = {
 //				return this.callOverridden([options]);
 //			}
 //		});
+		
+		Ext.ElementLoader.override({
+			failure: function(elLoader, response, opts) {
+				EU.showErrorDialog({
+					title: '系统异常',
+					msg: '系统异常, 请联系管理员.'
+				});
+			}
+		});
 		
 		Ext.AbstractComponent.override({
 			destroy : function() {
