@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformers>
+	<DataTransformer name="DT_print_syllabusplan" description="课程一览表">
+		<PojoToTemplate>
+			<Template file="/print/syllabus/syllabusplan.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_syllabusbyteacher" description="教师分表">
+		<PojoToTemplate>
+			<Template file="/print/syllabus/syllabusbyteacher.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_syllabusbyclass" description="班级分表">
+		<PojoToTemplate>
+			<Template file="/print/syllabus/syllabusbyclass.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	<DataTransformer name="DT_print_syllabusbycourse" description="课程分表">
+		<PojoToTemplate>
+			<Template file="/print/syllabus/syllabusbycourse.ftl">
+				<Renderer ref="replace" style="regex:\r|\n|\t;replacement:;"/>
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+</DataTransformers>
