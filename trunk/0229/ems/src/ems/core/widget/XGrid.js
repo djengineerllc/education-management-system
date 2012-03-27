@@ -39,13 +39,13 @@ Ext.define('ems.core.widget.XGrid', {
 			config = me._defaultXGridConfig();
 		
 		if (me.store == undefined) {
-			if (me.loadDF == null) {
-				Ext.Error.raise({
-					sourceClass: me.$className,
-					sourceMethod: 'initComponent',
-					msg: 'function loadDF be not null'
-                });
-			}
+//			if (me.loadDF == null) {
+//				Ext.Error.raise({
+//					sourceClass: me.$className,
+//					sourceMethod: 'initComponent',
+//					msg: 'function loadDF be not null'
+//                });
+//			}
 			
 			config.store = me._buildStore();
 		}
