@@ -22,7 +22,8 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                 searchForm: {
                     items: [Dic.comboBox('Project', {
 					fieldLabel: '项目名',
-					name: 'projectId'
+					name: 'projectId',
+					value:-1
 				}),{
                         fieldLabel: '专业名',
                         name: 'professName'

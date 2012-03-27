@@ -21,7 +21,7 @@ Ext.define('ems.biz.basicInfo.bookManager.view.BookReadUI', {
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
-				paramOrder: ['bookId'],
+				paramOrder: ['id'],
 				fieldDefaults: {
 					labelWidth: 60,
 					labelAlign: 'right'
@@ -32,7 +32,7 @@ Ext.define('ems.biz.basicInfo.bookManager.view.BookReadUI', {
 				},
 				items: [{
 					fieldLabel: '教材ID',
-	                name: 'bookId'
+	                name: 'id'
 				},{
 	                fieldLabel: '教材名称',
 	                name: 'bookName'
