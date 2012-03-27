@@ -3,6 +3,7 @@ package com.ems.biz.basicInfo.service;
 import java.io.Serializable;
 import java.util.List;
 
+import com.ems.client.action.biz.samples.common.vo.BookVO;
 import com.ems.client.action.biz.samples.common.vo.ProfessVO;
 import com.ems.client.action.biz.samples.common.vo.ProjectVO;
 import com.ems.client.action.biz.samples.common.vo.RoomVO;
@@ -10,6 +11,7 @@ import com.ems.client.action.biz.samples.common.vo.SubjectVO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 
+import conf.hibernate.Book;
 import conf.hibernate.Profess;
 import conf.hibernate.Project;
 import conf.hibernate.Room;
@@ -61,6 +63,14 @@ public interface IBasicInfoService {
 	 * @throws EMSException
 	 */
 	public List<Room> findRoomByVO(RoomVO roomVO) throws EMSException;
+	
+	/**
+	 * 查找教材信息
+	 * @param projectVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<Book> findBookByVO(BookVO bookVO) throws EMSException;
 	
 	public void delete(Object obj) throws EMSRollbackableException;
 	

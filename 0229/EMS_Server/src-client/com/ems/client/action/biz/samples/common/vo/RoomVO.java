@@ -1,5 +1,7 @@
 package com.ems.client.action.biz.samples.common.vo;
 
+import com.ems.common.util.StringUtils;
+
 public class RoomVO {
 	
 	private Integer id;

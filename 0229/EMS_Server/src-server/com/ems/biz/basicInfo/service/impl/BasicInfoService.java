@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.client.action.biz.samples.common.vo.BookVO;
 import com.ems.client.action.biz.samples.common.vo.ProfessVO;
 import com.ems.client.action.biz.samples.common.vo.ProjectVO;
 import com.ems.client.action.biz.samples.common.vo.RoomVO;
@@ -14,6 +15,7 @@ import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.util.StringUtils;
 
+import conf.hibernate.Book;
 import conf.hibernate.Profess;
 import conf.hibernate.Project;
 import conf.hibernate.Room;
@@ -45,7 +47,7 @@ public class BasicInfoService implements IBasicInfoService {
 	public List<Profess> findProfessByVO(ProfessVO professVO) throws EMSException{
 		StringBuffer hql = new StringBuffer(" from Profess where 1=1 ");
 		List<Object> valueParam = new ArrayList<Object>();
-		if(!StringUtils.isNullBlank(professVO.getProjectId())){
+		if(professVO.getProjectId() != -1){
 			hql.append(" and projectId = ? "); 
 			valueParam.add(professVO.getProjectId());
 		}
@@ -76,6 +78,32 @@ public class BasicInfoService implements IBasicInfoService {
 		if(!StringUtils.isNullBlank(roomVO.getRoomName())){
 			hql.append(" and roomName like ? "); 
 			valueParam.add("%"+roomVO.getRoomName()+"%");
+		}
+		if(roomVO.getTermId() != -1){
+			hql.append(" and termId = ? "); 
+			valueParam.add(roomVO.getTermId());
+		}
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+	}
+	
+	public List<Book> findBookByVO(BookVO bookVO) throws EMSException{
+		StringBuffer hql = new StringBuffer(" from Book where 1=1 ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(bookVO.getBookName())){
+			hql.append(" and bookName like ? "); 
+			valueParam.add("%"+bookVO.getBookName()+"%");
+		}
+		if(!StringUtils.isNullBlank(bookVO.getAuthor())){
+			hql.append(" and author like ? "); 
+			valueParam.add("%"+bookVO.getAuthor()+"%");
+		}
+		if(!StringUtils.isNullBlank(bookVO.getIsbnNo())){
+			hql.append(" and isbnNo = ? "); 
+			valueParam.add(bookVO.getIsbnNo());
+		}
+		if(!StringUtils.isNullBlank(bookVO.getPublishName())){
+			hql.append(" and publishName like ? "); 
+			valueParam.add("%"+bookVO.getPublishName()+"%");
 		}
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}

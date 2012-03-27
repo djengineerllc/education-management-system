@@ -2,7 +2,7 @@ package com.ems.client.action.biz.basicInfo.bookManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
+import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.client.action.biz.samples.common.vo.BookVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -23,6 +24,8 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.Book;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class BookAction extends DirectAction  {
 	
@@ -30,22 +33,23 @@ public class BookAction extends DirectAction  {
 
 	
 	private Logger logger = Logger.getLogger(this.getClass()); 
-	private static Integer idCounter = 10;
-	
-	private static Map<Integer, BookVO> book = new HashMap<Integer, BookVO>();
-	static {
-		book.put(1, new BookVO(1, "雅思1","人民教育出版社","Jordan","ISBN001"));
-		book.put(2, new BookVO(2, "雅思2","人民教育出版社","David","ISBN002"));
-		book.put(3, new BookVO(3, "雅思3","人民教育出版社","Kober","ISBN003"));
-		book.put(4, new BookVO(4, "雅思4","人民教育出版社","James","ISBN004"));
-	}
+	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
 	
 	@DirectMethod
 	public ExtPagingVO loadBook(JsonArray params) {
 		try{
 			List<BookVO> bookVOList = new ArrayList<BookVO>();
-			for (Map.Entry<Integer, BookVO> user : book.entrySet()) {
-				bookVOList.add(user.getValue());
+			BookVO bookVO_qry = BeanUtils.toBeanFromJsonFirst(params, BookVO.class);
+			BookVO bookVO = null;
+			List<Book> books = this.basicInfoService.findBookByVO(bookVO_qry);
+			for(Book book : books){
+				bookVO = new BookVO();
+				bookVO.setId(book.getId());
+				bookVO.setBookName(book.getBookName());
+				bookVO.setIsbnNo(book.getIsbnNo());
+				bookVO.setPublishName(book.getPublishName());
+				bookVO.setAuthor(book.getAuthor());
+				bookVOList.add(bookVO);
 			}
 			return new ExtPagingVO(bookVOList);
 		}catch(Exception e){
@@ -57,36 +61,57 @@ public class BookAction extends DirectAction  {
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
-		
 		ExtFormVO result = new ExtFormVO();
-		
-		if (book.containsKey(bookVO.getBookName())) {
-			result.addError("BookName", String.format("教材[%s]已重复", bookVO.getBookName()));
-			return result;
+		List<Book> books = this.basicInfoService.getAll(Book.class, " id desc ");
+		for(Book book_:books){
+			if(book_.getBookName().equals(bookVO.getBookName())) {
+				result.addError("BookName", String.format("教材[%s]已重复", bookVO.getBookName()));
+				return result;
+			}
 		}
-		
-		bookVO.setId(++idCounter);
-		book.put(bookVO.getId(), bookVO);
+		Book book = new Book();
+		book.setBookName(bookVO.getBookName());
+		book.setAuthor(bookVO.getAuthor());
+		book.setIsbnNo(bookVO.getIsbnNo());
+		book.setPublishName(bookVO.getPublishName());
+		book.setCreateTime(new Date());
+		this.basicInfoService.save(book);
 		return result;
 	}
 	@DirectMethod
-	public ExtFormVO read(Integer bookId) {
-		System.out.println("getFormData bookId = " + bookId);
-		BookVO bookVO = book.get(bookId);
+	public ExtFormVO read(Integer id) {
+		System.out.println("getFormData bookId = " + id);
+		BookVO bookVO = null;
+		Book book = null;
+		if(id != null){
+			book = this.basicInfoService.findById(Book.class, id);
+			bookVO = new BookVO();
+			bookVO.setId(id);
+			bookVO.setBookName(book.getBookName());
+			bookVO.setAuthor(book.getAuthor());
+			bookVO.setIsbnNo(book.getIsbnNo());
+			bookVO.setPublishName(book.getPublishName());
+		}
 		return new ExtFormVO(bookVO);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
 		ExtFormVO result = new ExtFormVO();
-		book.put(bookVO.getId(),bookVO);
+		Book book = this.basicInfoService.findById(Book.class, bookVO.getId());
+		book.setBookName(bookVO.getBookName());
+		book.setAuthor(bookVO.getAuthor());
+		book.setIsbnNo(bookVO.getIsbnNo());
+		book.setPublishName(bookVO.getPublishName());
+		book.setUpdateTime(new Date());
+		this.basicInfoService.update(book);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			book.remove(id);
+			this.basicInfoService.delete(this.basicInfoService.findById(Book.class, id));
 		}
 		return new ExtFormVO();
 	}
