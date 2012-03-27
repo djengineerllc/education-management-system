@@ -1,9 +1,17 @@
-Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllbusPlanUI', {
+Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllabusPlanUI', {
 	extend: 'ems.core.UI',
 	
 	initData: function() {
 		var me = this,
-			sltTeams = me.reqParams;
+			sltTeam = me.reqParams[0],
+			contentPanel = me.down('#contentPanel');
+		
+		contentPanel.el.load({
+			url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printSyllbusPlan'),
+			loadMask: true,
+			scripts: true,
+			params: sltTeam
+		});
 	},
 	
 	uiConfig: function(){
@@ -36,8 +44,8 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllbusPlanUI', {
 	
 	execPrint: function() {
 		var me = this,
-			certContentPanel = me.down('#contentPanel');
-		EU.printHtml(certContentPanel.el.dom.innerHTML);
+			contentPanel = me.down('#contentPanel');
+		EU.printHtml(contentPanel.el.dom.innerHTML);
 		
 		return false;
 	}
