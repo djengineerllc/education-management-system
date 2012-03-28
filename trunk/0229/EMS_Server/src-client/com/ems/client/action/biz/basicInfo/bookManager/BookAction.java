@@ -1,8 +1,6 @@
 package com.ems.client.action.biz.basicInfo.bookManager;
 
-import java.awt.print.Book;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -75,7 +73,7 @@ public class BookAction extends DirectAction  {
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(Book.class, id));
+			this.basicInfoService.delete(this.basicInfoService.findById(BookBO.class, id));
 		}
 		return new ExtFormVO();
 	}
