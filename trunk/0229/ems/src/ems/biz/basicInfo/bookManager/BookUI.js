@@ -4,17 +4,12 @@ Ext.define('ems.biz.basicInfo.bookManager.BookUI', {
     requires: ['ems.core.widget.XGrid'],
 	
 	isListUI: true,
-//	enableCreateAction: true,
-//	enableUpdateAction: true,
-//	enableDeleteAction: true,
-//	enableReadAction: true,
     
     uiConfig: function(){
         var me = this;
         return {
 			layout: 'fit',
             items: [{
-//				title: '教材信息列表',
                 xtype: 'xgrid',
                 selMode: 'multi',
                 paging: true,
