@@ -9,6 +9,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 			termComboBox = me.down('#termComboBox'),
 			stuComboData = [],
 			stuComboBox = me.down('#stuComboBox'),
+			apprResultComboBox = me.down('#apprResultComboBox'),
 			queryInfoForm = me.down('#queryInfoForm').getForm(),
 			initData;
 		
@@ -57,6 +58,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		});
 		
 		termComboBox.on('change', me.updateCertInfo, me);
+		apprResultComboBox.on('change', me.updateCertInfo, me);
 	},
 	
 	uiConfig: function(){
@@ -105,6 +107,13 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 								scope: me
 							}
 						}
+					}),
+					Dic.comboBox('Sex', {
+						fieldLabel: '成绩评估结果',
+						labelWidth: 80,
+						itemId: 'apprResultComboBox',
+                        name: 'apprResult',
+						width: 160
 					})
 	            ],
 				bbar: [{

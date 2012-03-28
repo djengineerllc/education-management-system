@@ -46,7 +46,7 @@ Ems = ems.core.Ems = {
 			viewportModuleConfig: {},
 			extLoaderConfig: {
 				enabled: true,
-				disableCaching: Bootstrap.config.productMode == false,
+				disableCaching: config.productMode === false,
 				disableCachingParam: '_dc',
 		        paths: {
 		            'Ext': 'lib/ext/src',

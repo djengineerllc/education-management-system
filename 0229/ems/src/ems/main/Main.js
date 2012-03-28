@@ -85,7 +85,10 @@ Ext.define('ems.main.Main', {
 			moduleConfig: (record.get ? (Ext.decode(record.get('moduleConfig') || '{}')) : null),
 			id: moduleId,
 			title: record.get ? (record.get('moduleName') ? record.get('moduleName') : record.get('text')) : '',
-			autoScroll: true
+			autoScroll: true,
+			tabConfig: {
+				minWidth: 90
+			}
 		});
 //		Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
 //			workItemConfig.items = [module.ui];
@@ -296,6 +299,24 @@ Ext.define('ems.main.Main', {
 	        	}
 	        	
 	        	return column;
+			},
+			
+			getUpdatedData: function() {
+				var me = this,
+					s = me.store,
+					data = [], r;
+					
+				Ext.each(s.getUpdatedRecords(), function(record) {
+					r = {};
+					for (var r_f in record.data) {
+						if (!Ext.isEmpty(record.data[r_f])) {
+							r[r_f] = record.data[r_f];
+						}
+					}
+					data.push(r);
+				});
+				
+				return data;
 			}
 		});
 	}

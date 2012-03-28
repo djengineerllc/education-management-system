@@ -24,6 +24,7 @@ Ext.define('ems.biz.certificate.study.StudyUI', {
                 searchForm: {
                     items: [{
 						xtype: 'fieldcontainer',
+						labelCls: Ext.baseCSSPrefix + 'form-item-label field-container-label',
 		                fieldLabel: '班级',
 		                combineErrors: true,
 		                layout: {

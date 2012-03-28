@@ -5,8 +5,7 @@ Ext.define('ems.main.MainUI', {
 		'Ext.layout.container.Accordion',
 		'Ext.tab.Panel',
 		'Ext.tree.Panel'
-//		,
-//		'Ext.ux.TabScrollerMenu',
+//		,'Ext.ux.TabScrollerMenu',
 //		'Ext.toolbar.TextItem'
 	],
 	
@@ -65,7 +64,7 @@ Ext.define('ems.main.MainUI', {
 						cls: 'ems-title',
 						height: 25,
 //						margins: '50 0 0 0',
-						html: '您好 admin 同学， 学号 xxxxx | 年级 xxx | 班级 xxx | 项目 xxx | 专业 xxxx'
+						html: Session.getWelcomeText()
 					}]
 				}, {
 					width: 85,
@@ -159,7 +158,7 @@ Ext.define('ems.main.MainUI', {
 					activeTab: 0,
 					id: 'workspace',
 //					maskOnDisable: true,
-//					cls: 'wscls',
+					cls: 'ems-workspace',
 //					plugins: [{
 //						ptype: 'tabscrollermenu',
 //						maxText: 1,
@@ -177,6 +176,7 @@ Ext.define('ems.main.MainUI', {
 				items: [
 					Ext.create('Ext.ux.statusbar.StatusBar', {
 					border: false,
+					cls: 'ems-status-bar',
 					defaultText: '系统公告',
 					defaultIconCls: 'icon-speaker'
 //					statusAlign: 'right',

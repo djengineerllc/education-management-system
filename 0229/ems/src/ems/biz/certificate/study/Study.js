@@ -5,8 +5,6 @@ Ext.define('ems.biz.certificate.study.Study', {
         printCert: '打印证明'
     },
 	
-	printCertViewId: 'PrintCertUI',
-	
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -26,7 +24,7 @@ Ext.define('ems.biz.certificate.study.Study', {
             return;
         }
 		
-        me.SW(me.printCertViewId, {
+        me.SW('PrintCertUI', {
             bizAction: bizAction,
             reqParams: reqParams
         }, {

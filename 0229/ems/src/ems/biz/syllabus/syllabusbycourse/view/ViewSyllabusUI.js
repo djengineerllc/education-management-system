@@ -3,7 +3,7 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.view.ViewSyllabusUI', {
 	
 	initData: function() {
 		var me = this,
-			sltClasses = me.reqParams;
+			sltCourses = me.reqParams;
 	},
 	
 	uiConfig: function(){

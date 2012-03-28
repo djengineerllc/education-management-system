@@ -50,7 +50,25 @@ Ext.define('ems.system.Dic', {
 	
 	comboBox: function(dicType, config) {
 		var me = this, 
-			dicStore = me.getStore(dicType);
+			dicStore = me.getStore(dicType),
+			hdrOpt = config && config.headerOption;
+		
+		if (hdrOpt != undefined && hdrOpt !== false) {
+			var hdrOptData = Ext.isObject(hdrOpt) ? hdrOpt : {value: '', name: '全部'}, 
+				records = dicStore.getRange(), 
+				data = [hdrOptData];
+				
+			Ext.each(records, function(record) {
+				data.push(record.data);
+			});
+			
+			dicStore = Ext.create('ems.system.data.store.DicStore', {
+				autoDestroy: true
+			});
+			dicStore.loadData(data);
+			
+			delete config.headerOption;
+		}
 		
 		var config = Ext.apply(config || {}, {
 			queryMode: 'local',
@@ -74,7 +92,7 @@ Ext.define('ems.system.Dic', {
 					value = record.data[comboBox.valueField];
 				}
 				
-				if (value) {
+				if (value != undefined) {
 					comboBox.originalValue = value;
 					comboBox.setValue(value);
 				}

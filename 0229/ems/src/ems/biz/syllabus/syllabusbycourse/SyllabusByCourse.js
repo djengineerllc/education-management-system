@@ -5,8 +5,6 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.SyllabusByCourse', {
         viewSyllabus: '查看'
     },
 	
-	viewSyllabus: 'ViewSyllabusUI',
-	
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -26,7 +24,7 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.SyllabusByCourse', {
             return;
         }
 		
-        me.SW(me.viewSyllabusPlanUIViewId, {
+        me.SW('ViewSyllabusUI', {
             bizAction: bizAction,
             reqParams: reqParams
         }, {

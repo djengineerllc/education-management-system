@@ -11,7 +11,10 @@
 (function() {
 	var bootstrap = document.getElementById('bootstrap'),
 		bootstrapConfig = eval('({' + (bootstrap.attributes['config'].value || '') + '})');
-		
+//	if (bootstrapConfig.productMode == undefined && window.location.protocol === 'file:') {
+//		bootstrapConfig.productMode = false;
+//	}
+	
 	Bootstrap = {
         rootPath: '',
         
@@ -31,13 +34,13 @@
 		
 		startup: function(onStarted) {
 			var me = this;
-			Ems.startup({
-				onStarted: function() {
-					onStarted && onStarted.apply(this);
-					window.unload = me.shutdown;
-//					Bootstrap.hookWindowBeforeUnload();
-				}
-			});
+			me.config.onStarted = function() {
+				onStarted && onStarted.apply(this);
+				window.unload = me.shutdown;
+//				Bootstrap.hookWindowBeforeUnload();
+			};
+			
+			Ems.startup(me.config);
 		},
 		
 		shutdown: function() {

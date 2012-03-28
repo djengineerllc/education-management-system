@@ -24,6 +24,15 @@
 	background-image: url('images/icons/msg_success_32.png');
 }
 
+.ems .x-tab-bar .x-tab-bar-body {
+	border-top: 0px !important;
+	border-left: 0px !important;
+	border-right: 0px !important;
+}
+.ems .x-tab-bar .x-tab-bar-strip {
+	border: 0px !important;
+}
+
 .ems .x-drop-target-active {
 	background: #dfedff;
     border: 1px solid #6593cf;
@@ -107,6 +116,12 @@
 	padding-bottom: 3px;
 }
 
+.ems .ems-header .x-panel-body.x-box-layout-ct {
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom-width: 1px;
+}
 .ems .ems-header .ems-logo .x-panel-body {
 	background: transparent url('images/ticoxu_logo.png') no-repeat left;
 }
@@ -115,6 +130,14 @@
 	padding-top: 2px;
 	padding-bottom: 2px;
 	height: 24px;
+}
+
+.ems .ems-workspace .x-panel-body {
+	border-top: 0px;
+}
+
+.ems .ems-status-bar {
+	border: 0px;
 }
 
 .ems .icon-users, .ems .icon-roles {
@@ -238,4 +261,15 @@
 	border: none;
 	border-radius: 8px;
 	-moz-border-radius: 8px;
+}
+
+.ems .x-container .x-form-item-label.field-container-label {
+	text-align: right;
+	padding-top: 6px;
+}
+
+.ems .icon-browser-tab-panel .x-panel-body {
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
 }

@@ -25,6 +25,7 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
                     items: [{
 						xtype: 'fieldcontainer',
 		                fieldLabel: '班级',
+		                labelCls: Ext.baseCSSPrefix + 'form-item-label field-container-label',
 		                combineErrors: true,
 		                layout: {
 							type: 'hbox',
@@ -68,14 +69,18 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
 					}]
                 },
                 columns: [{
+                	dataIndex: 'id',
+                    text: 'ID',
+                    hidden: true
+                }, {
                     dataIndex: 'stuGrade',
                     text: '年级',
                     flex: 1
-                },{
+                }, {
                     dataIndex: 'stuClass',
                     text: '班级',
                     flex: 1
-                },{
+                }, {
                     dataIndex: 'stuNo',
                     text: '学号',
                     flex: 1
