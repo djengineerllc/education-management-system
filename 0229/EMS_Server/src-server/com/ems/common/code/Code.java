@@ -378,11 +378,11 @@ public class Code implements InitializingBean {
 		ApplicationContext appCtx = new ClassPathXmlApplicationContext("conf/spring/AC.xml");
 		
 		List<CodeTableBO> codes = Code.getCodes("Sex");
-		System.out.println(codes.size());
 		
-		System.out.println(ToStringBuilder.reflectionToString(Code.getCode("Sex", "S1")));
-		System.out.println(Code.getName("Sex", "S1"));
-		System.out.println(Code.getValue("Sex", "S1"));
-		System.out.println(Code.getNameByValue("Sex", "1"));
+		if (codes != null) {
+			for (CodeTableBO code : codes) {
+				System.out.println(ToStringBuilder.reflectionToString(code));
+			}
+		}
 	}
 }

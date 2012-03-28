@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.ems.common.code.ICodeCollector;
-import com.ems.common.dao.ICommonDAO;
 
 import conf.hibernate.CodeTableBO;
 
@@ -43,13 +42,13 @@ public class HqlCodeCollector implements ICodeCollector {
 
 		return codeBOList;
 	}
-
+	
 	public List<CodeTableBO> collect(String codeType) {
 		String hql = codeHqlMap.get(codeType);
 		if (StringUtils.isEmpty(hql)) {
 			return Collections.EMPTY_LIST;
 		}
-
+		
 		try {
 			List<CodeTableBO> codeBOList = hibernateTemplate.find(hql);
 			if (codeBOList != null && codeBOList.size() > 0) {
