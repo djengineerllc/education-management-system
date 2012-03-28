@@ -19,7 +19,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import com.ems.common.code.cache.ICache;
 import com.ems.common.code.externalcode.HqlCodeCollector;
 
-import conf.hibernate.CodeTypeBO;
+import conf.hibernate.CodeTableBO;
 
 /**
  * <p> Title: 表码管理 </p>
@@ -65,13 +65,13 @@ public class Code implements InitializingBean {
 		synchronized (codesCache) {
 			codesCache.remove(codeType);
 			
-			List<CodeTypeBO> codeBOList = null;
+			List<CodeTableBO> codeBOList = null;
 			if (singleCodeCollectors.containsKey(codeType)) {
 				codeBOList = singleCodeCollectors.get(codeType).collect();
 			} else if (hqlCodeCollector != null && hqlCodeCollector.hasCodeType(codeType)) {
 				codeBOList = hqlCodeCollector.collect(codeType);
 			} else {
-				codeBOList = new ArrayList<CodeTypeBO>();
+				codeBOList = new ArrayList<CodeTableBO>();
 //				codeBOList = hibernateTemplate.find("FROM CodeTypeBO bo WHERE bo.status = '1' AND bo.codeType = ? ORDER BY bo.codeType,bo.ordinal ASC", codeType);
 			}
 			if (codeBOList != null && codeBOList.size() > 0) {
@@ -86,11 +86,11 @@ public class Code implements InitializingBean {
 	 * @param codeType 代码类型
 	 * @return 代码列表
 	 */
-	public static List<CodeTypeBO> getCodes(String codeType) {
-		List<CodeTypeBO> codeBOList = (List<CodeTypeBO>) codesCache.get(codeType);
+	public static List<CodeTableBO> getCodes(String codeType) {
+		List<CodeTableBO> codeBOList = (List<CodeTableBO>) codesCache.get(codeType);
 		if (codeBOList == null) {
 			refresh(codeType);
-			codeBOList = (List<CodeTypeBO>) codesCache.get(codeType);
+			codeBOList = (List<CodeTableBO>) codesCache.get(codeType);
 		}
 
 		return codeBOList;
@@ -102,10 +102,10 @@ public class Code implements InitializingBean {
 	 * @param key 代码键
 	 * @return 代码
 	 */
-	public static CodeTypeBO getCode(String codeType, String key) {
-		List<CodeTypeBO> codeBOList = getCodes(codeType);
+	public static CodeTableBO getCode(String codeType, String key) {
+		List<CodeTableBO> codeBOList = getCodes(codeType);
 		if (codeBOList != null && codeBOList.size() > 0) {
-			for (CodeTypeBO codeBO : codeBOList) {
+			for (CodeTableBO codeBO : codeBOList) {
 				if (codeBO.getCodeKey().equals(key)) {
 					return codeBO;
 				}
@@ -121,14 +121,14 @@ public class Code implements InitializingBean {
 	 * @param value 代码值
 	 * @return 代码
 	 */
-	public static CodeTypeBO getCodeByValue(String codeType, String value) {
+	public static CodeTableBO getCodeByValue(String codeType, String value) {
 		if (StringUtils.isEmpty(value)) {
 			return null;
 		}
 
-		List<CodeTypeBO> codeBOList = getCodes(codeType);
+		List<CodeTableBO> codeBOList = getCodes(codeType);
 		if (codeBOList != null && codeBOList.size() > 0) {
-			for (CodeTypeBO codeBO : codeBOList) {
+			for (CodeTableBO codeBO : codeBOList) {
 				if (codeBO.getCodeValue().equals(value)) {
 					return codeBO;
 				}
@@ -149,9 +149,9 @@ public class Code implements InitializingBean {
 			return null;
 		}
 
-		List<CodeTypeBO> codeBOList = getCodes(codeType);
+		List<CodeTableBO> codeBOList = getCodes(codeType);
 		if (codeBOList != null && codeBOList.size() > 0) {
-			for (CodeTypeBO codeBO : codeBOList) {
+			for (CodeTableBO codeBO : codeBOList) {
 				if (codeBO.getCodeValue().equals(value)) {
 					return codeBO.getCodeGroup();
 				}
@@ -167,10 +167,10 @@ public class Code implements InitializingBean {
 	 * @return 代码列表转换后的Map
 	 */
 	public static Map<String, String> getCodesToMap_KV(String codeType, String... groups) {
-		List<CodeTypeBO> codeList = getCodes(codeType, groups);
+		List<CodeTableBO> codeList = getCodes(codeType, groups);
 		if (codeList != null && codeList.size() > 0) {
 			Map<String, String> codeMap = new HashMap<String, String>();
-			for (CodeTypeBO code : codeList) {
+			for (CodeTableBO code : codeList) {
 				codeMap.put(code.getCodeKey(), code.getCodeValue());
 			}
 
@@ -186,15 +186,15 @@ public class Code implements InitializingBean {
 	 * @param groups 代码组别列表
 	 * @return 代码列表
 	 */
-	public static List<CodeTypeBO> getCodes(String codeType, String... groups) {
+	public static List<CodeTableBO> getCodes(String codeType, String... groups) {
 		if (groups == null || groups[0] == null) {
 			return getCodes(codeType);
 		}
 
-		List<CodeTypeBO> codeBOList = getCodes(codeType);
+		List<CodeTableBO> codeBOList = getCodes(codeType);
 		if (codeBOList != null && codeBOList.size() > 0) {
-			List<CodeTypeBO> result = new ArrayList<CodeTypeBO>();
-			for (CodeTypeBO codeBO : codeBOList) {
+			List<CodeTableBO> result = new ArrayList<CodeTableBO>();
+			for (CodeTableBO codeBO : codeBOList) {
 				String[] codeGroups = StringUtils.split(codeBO.getCodeGroup(), CODE_GROUP_SEPARATOR);
 				if (codeGroups == null || codeGroups.length == 0) {
 					continue;
@@ -221,7 +221,7 @@ public class Code implements InitializingBean {
 	 * @return 代码值
 	 */
 	public static String getValue(String codeType, String key) {
-		CodeTypeBO codeBO = getCode(codeType, key);
+		CodeTableBO codeBO = getCode(codeType, key);
 		if (codeBO != null) {
 			return codeBO.getCodeValue();
 		}
@@ -236,9 +236,9 @@ public class Code implements InitializingBean {
 	 * @return 代码值
 	 */
 	public static String getValueByName(String codeType, String name) {
-		List<CodeTypeBO> codeBOList = getCodes(codeType);
+		List<CodeTableBO> codeBOList = getCodes(codeType);
 		if (codeBOList != null && codeBOList.size() > 0) {
-			for (CodeTypeBO code : codeBOList) {
+			for (CodeTableBO code : codeBOList) {
 				if (StringUtils.equals(name, code.getCodeName())) {
 					return code.getCodeValue();
 				}
@@ -254,7 +254,7 @@ public class Code implements InitializingBean {
 	 * @return 首个代码值
 	 */
 	public static String getValueOfFirstCodes(String codeType) {
-		List<CodeTypeBO> codes = getCodes(codeType);
+		List<CodeTableBO> codes = getCodes(codeType);
 		if (codes != null && codes.size() > 0) {
 			return codes.get(0).getCodeValue();
 		}
@@ -269,7 +269,7 @@ public class Code implements InitializingBean {
 	 * @return 代码名称
 	 */
 	public static String getName(String codeType, String key) {
-		CodeTypeBO codeBO = getCode(codeType, key);
+		CodeTableBO codeBO = getCode(codeType, key);
 		if (codeBO != null) {
 			return codeBO.getCodeName();
 		}
@@ -284,7 +284,7 @@ public class Code implements InitializingBean {
 	 * @return 代码名称
 	 */
 	public static String getNameByValue(String codeType, String value) {
-		CodeTypeBO codeBO = getCodeByValue(codeType, value);
+		CodeTableBO codeBO = getCodeByValue(codeType, value);
 		if (codeBO != null) {
 			return codeBO.getCodeName();
 		}
@@ -321,9 +321,9 @@ public class Code implements InitializingBean {
 		logger.info("开始加载代码表");
 		codesCache.removeAll();
 
-		List<CodeTypeBO> codeBOList = new ArrayList<CodeTypeBO>();
+		List<CodeTableBO> codeBOList = new ArrayList<CodeTableBO>();
 		
-		CodeTypeBO code1 = new CodeTypeBO();
+		CodeTableBO code1 = new CodeTableBO();
 		code1.setId(1);
 		code1.setCodeType("Sex");
 		code1.setCodeKey("S1");
@@ -331,7 +331,7 @@ public class Code implements InitializingBean {
 		code1.setCodeName("男");
 		codeBOList.add(code1);
 		
-		CodeTypeBO code2 = new CodeTypeBO();
+		CodeTableBO code2 = new CodeTableBO();
 		code2.setId(1);
 		code2.setCodeType("Sex");
 		code2.setCodeKey("S2");
@@ -342,20 +342,20 @@ public class Code implements InitializingBean {
 //		List<CodeTypeBO> codeBOList = hibernateTemplate.find("FROM CodeTypeBO bo WHERE bo.status = '1' ORDER BY bo.codeType,bo.ordinal ASC");
 
 		if (hqlCodeCollector != null) {
-			List<CodeTypeBO> hqlCodeBOList = hqlCodeCollector.collect();
+			List<CodeTableBO> hqlCodeBOList = hqlCodeCollector.collect();
 			if (hqlCodeBOList != null && hqlCodeBOList.size() > 0) {
 				codeBOList.addAll(hqlCodeBOList);
 			}
 		}
 
-		for (CodeTypeBO codeMBO : codeBOList) {
+		for (CodeTableBO codeMBO : codeBOList) {
 			String codeType = codeMBO.getCodeType();
 			codesCache.get(codeType);
-			List<CodeTypeBO> codes = (List<CodeTypeBO>) codesCache.get(codeType);
+			List<CodeTableBO> codes = (List<CodeTableBO>) codesCache.get(codeType);
 			if (codes != null) {
 				codes.add(codeMBO);
 			} else {
-				codes = new ArrayList<CodeTypeBO>();
+				codes = new ArrayList<CodeTableBO>();
 				codes.add(codeMBO);
 				codesCache.put(codeType, codes);
 				logger.info("加载代码[" + codeType + "]成功");
@@ -394,9 +394,9 @@ public class Code implements InitializingBean {
 	}
 	
 	public static void main(String[] args) {
-		ApplicationContext appCtx = new ClassPathXmlApplicationContext("conf/spring/applicationContext.xml");
+		ApplicationContext appCtx = new ClassPathXmlApplicationContext("conf/spring/AC.xml");
 		
-		List<CodeTypeBO> codes = Code.getCodes("Sex");
+		List<CodeTableBO> codes = Code.getCodes("Sex");
 		System.out.println(codes.size());
 		
 		System.out.println(ToStringBuilder.reflectionToString(Code.getCode("Sex", "S1")));
