@@ -11,6 +11,7 @@ public class ClassBO extends BaseBO {
 	private Integer gradeId;
 	private String className;
 	private Integer studentNum;
+	
 	public Integer getGradeId() {
 		return gradeId;
 	}
