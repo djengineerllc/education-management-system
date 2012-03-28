@@ -29,20 +29,18 @@ public class CodeTableBO implements java.io.Serializable {
 	public CodeTableBO(String codeKey) {
 		this.codeKey = codeKey;
 	}
-
-	/** full constructor */
-	public CodeTableBO(String codeType, String codeKey, String codeValue,
-			String codeName, String codeDesc, String codeGroup, Integer ordinal,
-			String canModifyInd, String status) {
-		this.codeType = codeType;
-		this.codeKey = codeKey;
+	
+	public CodeTableBO(String codeValue, String codeName) {
+		this.codeKey = codeValue;
 		this.codeValue = codeValue;
 		this.codeName = codeName;
-		this.codeDesc = codeDesc;
+	}
+	
+	public CodeTableBO(String codeValue, String codeName, String codeGroup) {
+		this.codeKey = codeValue;
+		this.codeValue = codeValue;
+		this.codeName = codeName;
 		this.codeGroup = codeGroup;
-		this.ordinal = ordinal;
-		this.canModifyInd = canModifyInd;
-		this.status = status;
 	}
 
 	// Property accessors
