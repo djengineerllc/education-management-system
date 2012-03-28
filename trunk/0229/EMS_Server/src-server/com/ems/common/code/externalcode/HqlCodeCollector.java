@@ -7,8 +7,10 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.ems.common.code.ICodeCollector;
+import com.ems.common.dao.ICommonDAO;
 
 import conf.hibernate.CodeTableBO;
 
@@ -22,7 +24,7 @@ public class HqlCodeCollector implements ICodeCollector {
 
 	private static final Logger logger = Logger.getLogger(HqlCodeCollector.class);
 
-//	private ICommonDAO commonDAO;
+	private HibernateTemplate hibernateTemplate;
 
 	private Map<String, String> codeHqlMap;
 
@@ -48,29 +50,29 @@ public class HqlCodeCollector implements ICodeCollector {
 			return Collections.EMPTY_LIST;
 		}
 
-//		try {
-//			List<CodeTypeBO> codeBOList = commonDAO.findByHql(hql);
-//			if (codeBOList != null && codeBOList.size() > 0) {
-//				for (CodeTypeBO codeBO : codeBOList) {
-//					codeBO.setCodeType(codeType);
-//				}
-//				return codeBOList;
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			logger.error(e.getMessage(), e);
-//		}
+		try {
+			List<CodeTableBO> codeBOList = hibernateTemplate.find(hql);
+			if (codeBOList != null && codeBOList.size() > 0) {
+				for (CodeTableBO codeBO : codeBOList) {
+					codeBO.setCodeType(codeType);
+				}
+				return codeBOList;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+		}
 
-		return null;
+		return Collections.EMPTY_LIST;
 	}
 
 	public boolean hasCodeType(String codeType) {
 		return codeHqlMap.containsKey(codeType);
 	}
 
-//	public void setCommonDAO(ICommonDAO commonDAO) {
-//		this.commonDAO = commonDAO;
-//	}
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
 
 	public Map<String, String> getCodeHqlMap() {
 		return codeHqlMap;
