@@ -70,7 +70,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		ddSource: 'course',
 			    		dataIndex: 'name',
 			    		dataFilter: 'name',
-			    		store: Dic.getStore('Sex'),
+			    		store: Dic.getStore('Course'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
 			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
@@ -86,7 +86,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		ddSource: 'teacher',
 			    		dataIndex: 'name',
 			    		dataFilter: 'name',
-			    		store: Dic.getStore('Class'),
+			    		store: Dic.getStore('Sex'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
 			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
@@ -102,7 +102,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		ddSource: 'room',
 			    		dataIndex: 'name',
 			    		dataFilter: 'name',
-			    		store: Dic.getStore('Grade'),
+			    		store: Dic.getStore('Room'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
 			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
