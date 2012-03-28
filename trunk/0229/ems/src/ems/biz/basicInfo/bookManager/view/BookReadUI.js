@@ -1,21 +1,11 @@
 Ext.define('ems.biz.basicInfo.bookManager.view.BookReadUI', {
     extend: 'ems.biz.base.crud.CrudUI',
 	
-//	getApis: function(){
-//		var me = this;
-//		return {
-//			load: me.DF('loadUser'),
-//			d: {
-//				submit: me.DF('submitUser')
-//			}
-//		}
-//	},
-	
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 230,
+			height: 130,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
