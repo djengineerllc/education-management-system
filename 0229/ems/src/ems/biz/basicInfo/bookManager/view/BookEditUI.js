@@ -1,20 +1,6 @@
 Ext.define('ems.biz.basicInfo.bookManager.view.BookEditUI', {
 	extend: 'ems.biz.base.crud.CrudUI',
 	
-//	getApis: function(){
-//		var me = this;
-//		return {
-//			load: me.DF('loadUser'),
-//			submit:  me.DF('submitUser')
-////			c: {
-////				submit: 'submitUser'
-////			},
-////			u: {
-////				submit: 'submitUser'
-////			}
-//		}
-//	},
-	
 	uiConfig: function() {
 		var me = this;
 		return {
