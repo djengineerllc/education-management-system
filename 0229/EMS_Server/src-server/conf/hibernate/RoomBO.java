@@ -8,23 +8,23 @@ import com.ems.common.model.bo.BaseBO;
 
 public class RoomBO extends BaseBO {
 
-	private String roomName;
 	private Integer termId;
+	private String roomName;
 	private String roomSize;
 	private String roomStatus;
 	private String roomComment;
 	
-	public String getRoomName() {
-		return roomName;
-	}
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
-	}
 	public Integer getTermId() {
 		return termId;
 	}
 	public void setTermId(Integer termId) {
 		this.termId = termId;
+	}
+	public String getRoomName() {
+		return roomName;
+	}
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 	public String getRoomSize() {
 		return roomSize;
