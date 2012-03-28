@@ -3,7 +3,15 @@ Ext.define('ems.biz.syllabus.syllabusbyclass.view.ViewSyllabusUI', {
 	
 	initData: function() {
 		var me = this,
-			sltClasses = me.reqParams;
+			sltClasses = me.reqParams,
+			contentPanel = me.down('#contentPanel');
+		
+		contentPanel.el.load({
+			url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printSyllbusPlan'),
+			loadMask: true,
+			scripts: true,
+			params: sltClasses
+		});
 	},
 	
 	uiConfig: function(){

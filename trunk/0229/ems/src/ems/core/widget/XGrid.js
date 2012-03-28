@@ -77,9 +77,26 @@ Ext.define('ems.core.widget.XGrid', {
 //		this.store = null;
 	},
 	
+	getAllColumn: function() {
+		var me = this, col_i, col, subCol_i, allCol = [];
+       	for (col_i in me.columns) {
+       		col = me.columns[col_i];
+       		
+       		if (Ext.isArray(col.columns)) {
+       			for (subCol_i in col.columns) {
+       				allCol.push(col.columns[subCol_i]);
+       			}
+       		} else {
+       			allCol.push(col);
+       		}
+       	}
+       	
+       	return allCol;
+	},
+	
 	_buildStore: function() {
 		var me = this,
-			cols = me.columns,
+			cols = me.getAllColumn(),//me.columns,
 			fields = [];
 		
 		Ext.each(cols, function(col) {

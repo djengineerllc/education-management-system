@@ -9,7 +9,7 @@ Ext.define('ems.core.EmsUtils', {
 	
 	showDialog: function(config) {
 		return Ext.MessageBox.show(config || {
-			width: 350
+			width: 360
 		}); 
 //		Ext.apply(config || {}, {
 //			autoHeight: true,
@@ -131,7 +131,11 @@ Ext.define('ems.core.EmsUtils', {
 		var me = this,
 			html = me.printHtmlTpl.apply({
 				title: title,
-//				head: '<style type="text/css">*{color: #000 !important;}a{text-decoration: none !important;}</style>',
+				head: '<style type="text/css">' + 
+						'*{color: #000 !important;}' + 
+						'a{text-decoration: none !important;}' + 
+						'body{color:black;font-size:12px;font-family:tahoma, arial, verdana, sans-serif}' +
+					  '</style>',
 				body: content
 			});
 		me.print(html);

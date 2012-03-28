@@ -25,6 +25,7 @@ Ext.define('ems.biz.certificate.freshgraduate.FreshGraduateUI', {
                     items: [{
 						xtype: 'fieldcontainer',
 		                fieldLabel: '班级',
+		                labelCls: Ext.baseCSSPrefix + 'form-item-label field-container-label',
 		                combineErrors: true,
 		                layout: {
 							type: 'hbox',

@@ -71,16 +71,18 @@ Ext.define('ems.biz.syllabus.syllabusbyclass.SyllabusByClassUI', {
                 },
                 columns: [{
                     dataIndex: 'id',
-                    text: '班级ID',
+                    text: 'ID',
                     hidden: true,
                     flex: 1
                 },{
-                    dataIndex: 'gradeName',
+                    dataIndex: 'gradeId',
                     text: '年级',
+                    renderer: Dic.renderer('Grade'),
                     flex: 1
                 },{
-                    dataIndex: 'className',
+                    dataIndex: 'id',
                     text: '班级名',
+                    renderer: Dic.renderer('Class'),
                     flex: 1
                 }],
 				tbarButtons: [{

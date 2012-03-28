@@ -28,7 +28,8 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                 		labelWidth: 30,
                 		itemId: 'termComboBox',
                 		name: 'term',
-                		valueKey: '2012B'
+//                		valueKey: '2012B',
+                		headerOption: true
                 	}), {
                 		fieldLabel: '教师名',
                 		name: 'teacherName'

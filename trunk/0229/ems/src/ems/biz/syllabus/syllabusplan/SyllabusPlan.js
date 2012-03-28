@@ -58,13 +58,8 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 		        text: '提交',
 		        handler: function() {
 			    	var g = this.up('window').down('grid'),
-			    		s = g.getStore(),
-			    		data = [];
-					
-					Ext.each(s.getUpdatedRecords(), function(record) {
-						data.push(record.data);
-					});
-					
+			    		data = g.getUpdatedData();
+			    	
 					me.A({
 						m: 'submitSyllabusPlanDetail',
 						p: [data], 

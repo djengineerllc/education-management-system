@@ -13,9 +13,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			syllabusPlanGrid = me.down('#syllabusPlanGrid');
 		
 		syllabusPlanGrid.store.load({
-			params: {
-				teamId: sltTeam.teamId
-			}
+			params: sltTeam
 		});
 	},
 	
@@ -32,6 +30,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				height: 85,
 				border: true,
 				xtype: 'tabpanel',
+				cls: 'icon-browser-tab-panel',
 			    activeTab: 0,
 //			    tabPosition: 'bottom',
 			    defaults: {
@@ -67,6 +66,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            title: '课程',
 		            items: {
 			    		xtype: 'iconbrowser',
+			    		border: false,
 			    		ddSource: 'course',
 			    		dataIndex: 'name',
 			    		dataFilter: 'name',
@@ -82,6 +82,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            title: '教师',
 		            items: {
 			    		xtype: 'iconbrowser',
+			    		border: false,
 			    		ddSource: 'teacher',
 			    		dataIndex: 'name',
 			    		dataFilter: 'name',
@@ -97,6 +98,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            title: '教室',
 		            items: {
 			    		xtype: 'iconbrowser',
+			    		border: false,
 			    		ddSource: 'room',
 			    		dataIndex: 'name',
 			    		dataFilter: 'name',

@@ -1,6 +1,10 @@
 Ext.define('ems.login.Login', {
 	extend: 'ems.core.Module',
 	
+	requires: [
+		'ems.login.Session'
+	],
+	
 	_loginInfo: null,
 	
 	init: function() {
@@ -23,11 +27,11 @@ Ext.define('ems.login.Login', {
 		loginForm.submit({
 			success: function(form, action) {
 				var result = action.result;
-				me._loginInfo = result.data;
+				Session.setLoginInfo(result.data);
 				
 				if (result.props && result.props.selectRole) {
 					me.RV('SelectRoleFormUI', {
-						loginInfo: me._loginInfo
+						loginInfo: Session.getLoginInfo()
 					});
 					EU.showMsg('登陆成功', '请您选择登录系统的角色');
 				} else {
@@ -48,7 +52,7 @@ Ext.define('ems.login.Login', {
 		me.A({
 			m: 'logout',
 			cb: function(result, e) {
-				me._loginInfo = null;
+				Session.setLoginInfo(null);
 				Ems.requestViewportModule();
 //				window.location.reload();
 			}
@@ -72,7 +76,7 @@ Ext.define('ems.login.Login', {
 			],
 			cb: function(result, e) {
 				if (result.success) {
-					me._loginInfo = result.data;
+					Session.setLoginInfo(result.data);
 					me.destroyUI();
 					Ems.RM('ems.main.Main');
 				}
@@ -82,9 +86,5 @@ Ext.define('ems.login.Login', {
 	
 	gotoLogin: function(params, request) {
 		this.RV('LoginFormUI');
-	},
-	
-	getLoginInfo: function(params, request) {
-		return this._loginInfo;
 	}
 });
