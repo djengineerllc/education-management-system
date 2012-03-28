@@ -1,5 +1,6 @@
 package com.ems.client.action.biz.basicInfo.bookManager;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +14,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
-import com.ems.client.action.biz.samples.common.vo.BookVO;
+import com.ems.common.model.vo.BookVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -24,7 +25,7 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
-import conf.hibernate.Book;
+import conf.hibernate.BookBO;
 
 @ActionScope(scope=Scope.APPLICATION)
 public class BookAction extends DirectAction  {
@@ -41,8 +42,8 @@ public class BookAction extends DirectAction  {
 			List<BookVO> bookVOList = new ArrayList<BookVO>();
 			BookVO bookVO_qry = BeanUtils.toBeanFromJsonFirst(params, BookVO.class);
 			BookVO bookVO = null;
-			List<Book> books = this.basicInfoService.findBookByVO(bookVO_qry);
-			for(Book book : books){
+			List<BookBO> books = this.basicInfoService.findBookByVO(bookVO_qry);
+			for(BookBO book : books){
 				bookVO = new BookVO();
 				bookVO.setId(book.getId());
 				bookVO.setBookName(book.getBookName());
@@ -62,14 +63,14 @@ public class BookAction extends DirectAction  {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<Book> books = this.basicInfoService.getAll(Book.class, " id desc ");
-		for(Book book_:books){
+		List<BookBO> books = this.basicInfoService.getAll(BookBO.class, " id desc ");
+		for(BookBO book_:books){
 			if(book_.getBookName().equals(bookVO.getBookName())) {
 				result.addError("BookName", String.format("教材[%s]已重复", bookVO.getBookName()));
 				return result;
 			}
 		}
-		Book book = new Book();
+		BookBO book = new BookBO();
 		book.setBookName(bookVO.getBookName());
 		book.setAuthor(bookVO.getAuthor());
 		book.setIsbnNo(bookVO.getIsbnNo());
@@ -82,9 +83,9 @@ public class BookAction extends DirectAction  {
 	public ExtFormVO read(Integer id) {
 		System.out.println("getFormData bookId = " + id);
 		BookVO bookVO = null;
-		Book book = null;
+		BookBO book = null;
 		if(id != null){
-			book = this.basicInfoService.findById(Book.class, id);
+			book = this.basicInfoService.findById(BookBO.class, id);
 			bookVO = new BookVO();
 			bookVO.setId(id);
 			bookVO.setBookName(book.getBookName());
@@ -98,7 +99,7 @@ public class BookAction extends DirectAction  {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
 		ExtFormVO result = new ExtFormVO();
-		Book book = this.basicInfoService.findById(Book.class, bookVO.getId());
+		BookBO book = this.basicInfoService.findById(BookBO.class, bookVO.getId());
 		book.setBookName(bookVO.getBookName());
 		book.setAuthor(bookVO.getAuthor());
 		book.setIsbnNo(bookVO.getIsbnNo());
