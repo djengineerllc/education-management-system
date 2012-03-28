@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.ems.common.code.ISingleCodeCollector;
 
-import conf.hibernate.CodeTypeBO;
+import conf.hibernate.CodeTableBO;
 
 /**
  * @author Chiknin
@@ -18,7 +18,7 @@ public class ProductCodeCollector implements ISingleCodeCollector {
 		return CODE_KEY;
 	}
 
-	public List<CodeTypeBO> collect() {
+	public List<CodeTableBO> collect() {
 		return Collections.EMPTY_LIST;
 	}
 //	@SuppressWarnings("unchecked")

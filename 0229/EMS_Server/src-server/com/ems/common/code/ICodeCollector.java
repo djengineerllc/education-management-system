@@ -2,11 +2,11 @@ package com.ems.common.code;
 
 import java.util.List;
 
-import conf.hibernate.CodeTypeBO;
+import conf.hibernate.CodeTableBO;
 
 /**
  * @author Chiknin
  */
 public interface ICodeCollector {
-	public List<CodeTypeBO> collect();
+	public List<CodeTableBO> collect();
 }

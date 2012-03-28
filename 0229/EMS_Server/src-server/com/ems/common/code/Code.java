@@ -71,8 +71,7 @@ public class Code implements InitializingBean {
 			} else if (hqlCodeCollector != null && hqlCodeCollector.hasCodeType(codeType)) {
 				codeBOList = hqlCodeCollector.collect(codeType);
 			} else {
-				codeBOList = new ArrayList<CodeTableBO>();
-//				codeBOList = hibernateTemplate.find("FROM CodeTypeBO bo WHERE bo.status = '1' AND bo.codeType = ? ORDER BY bo.codeType,bo.ordinal ASC", codeType);
+				codeBOList = hibernateTemplate.find("FROM CodeTableBO bo WHERE bo.status = '1' AND bo.codeType = ? ORDER BY bo.codeType,bo.ordinal ASC", codeType);
 			}
 			if (codeBOList != null && codeBOList.size() > 0) {
 				codesCache.put(codeType, codeBOList);
@@ -321,25 +320,7 @@ public class Code implements InitializingBean {
 		logger.info("开始加载代码表");
 		codesCache.removeAll();
 
-		List<CodeTableBO> codeBOList = new ArrayList<CodeTableBO>();
-		
-		CodeTableBO code1 = new CodeTableBO();
-		code1.setId(1);
-		code1.setCodeType("Sex");
-		code1.setCodeKey("S1");
-		code1.setCodeValue("1");
-		code1.setCodeName("男");
-		codeBOList.add(code1);
-		
-		CodeTableBO code2 = new CodeTableBO();
-		code2.setId(1);
-		code2.setCodeType("Sex");
-		code2.setCodeKey("S2");
-		code2.setCodeValue("2");
-		code2.setCodeName("女");
-		codeBOList.add(code2);
-		
-//		List<CodeTypeBO> codeBOList = hibernateTemplate.find("FROM CodeTypeBO bo WHERE bo.status = '1' ORDER BY bo.codeType,bo.ordinal ASC");
+		List<CodeTableBO> codeBOList = hibernateTemplate.find("FROM CodeTableBO bo WHERE bo.status = '1' ORDER BY bo.codeType,bo.ordinal ASC");
 
 		if (hqlCodeCollector != null) {
 			List<CodeTableBO> hqlCodeBOList = hqlCodeCollector.collect();
