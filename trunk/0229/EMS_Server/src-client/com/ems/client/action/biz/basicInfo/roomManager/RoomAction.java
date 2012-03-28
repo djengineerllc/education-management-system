@@ -13,7 +13,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
-import com.ems.client.action.biz.samples.common.vo.RoomVO;
+import com.ems.common.model.vo.RoomVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -24,8 +24,8 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
-import conf.hibernate.Room;
-import conf.hibernate.Term;
+import conf.hibernate.RoomBO;
+import conf.hibernate.TermBO;
 
 /**
  * 教室管理
@@ -46,14 +46,14 @@ public class RoomAction extends DirectAction {
 		try{
 			List<RoomVO> roomVOList = new ArrayList<RoomVO>();
 			RoomVO roomVO_qry = BeanUtils.toBeanFromJsonFirst(params, RoomVO.class);
-			List<Room> rooms = this.basicInfoService.findRoomByVO(roomVO_qry);
-			for(Room room_:rooms){
+			List<RoomBO> rooms = this.basicInfoService.findRoomByVO(roomVO_qry);
+			for(RoomBO room_:rooms){
 				RoomVO roomVO = new RoomVO();
 				roomVO.setId(room_.getId());
 				roomVO.setRoomName(room_.getRoomName());
 				roomVO.setRoomSize(room_.getRoomSize());
 				roomVO.setTermId(room_.getTermId());
-				roomVO.setTermName(this.basicInfoService.findById(Term.class,room_.getTermId()).getTermName());
+				roomVO.setTermName(this.basicInfoService.findById(TermBO.class,room_.getTermId()).getTermName());
 				roomVO.setRoomStatus(room_.getRoomStatus());
 				roomVO.setRoomComment(room_.getRoomComment());
 				roomVOList.add(roomVO);
@@ -69,14 +69,14 @@ public class RoomAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<Room> rooms = this.basicInfoService.getAll(Room.class, null);
-		for(Room room_ : rooms){
+		List<RoomBO> rooms = this.basicInfoService.getAll(RoomBO.class, null);
+		for(RoomBO room_ : rooms){
 			if (room_.getRoomName().equals(roomVO.getRoomName())) {
 				result.addError("RoomName", String.format("教室[%s]已重复", roomVO.getRoomName()));
 				return result;
 			}
 		}
-		Room room = new Room();
+		RoomBO room = new RoomBO();
 		room.setRoomName(roomVO.getRoomName());
 		room.setRoomSize(roomVO.getRoomSize());
 		room.setRoomStatus(roomVO.getRoomStatus());
@@ -90,9 +90,9 @@ public class RoomAction extends DirectAction {
 	public ExtFormVO read(Integer id) {
 		System.out.println("getFormData id = " + id);
 		RoomVO roomVO = null;
-		Room room = null;
+		RoomBO room = null;
 		if(id != null){
-			room = this.basicInfoService.findById(Room.class, id);
+			room = this.basicInfoService.findById(RoomBO.class, id);
 			roomVO = new RoomVO();
 			roomVO.setId(room.getId());
 			roomVO.setRoomName(room.getRoomName());
@@ -100,7 +100,7 @@ public class RoomAction extends DirectAction {
 			roomVO.setRoomStatus(room.getRoomStatus());
 			roomVO.setTermId(room.getTermId());
 			roomVO.setRoomComment(room.getRoomComment());
-			roomVO.setTermName(this.basicInfoService.findById(Term.class, room.getTermId()).getTermName());
+			roomVO.setTermName(this.basicInfoService.findById(TermBO.class, room.getTermId()).getTermName());
 		}
 		return new ExtFormVO(roomVO);
 	}
@@ -108,7 +108,7 @@ public class RoomAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
 		ExtFormVO result = new ExtFormVO();
-		Room room = this.basicInfoService.findById(Room.class, roomVO.getId());
+		RoomBO room = this.basicInfoService.findById(RoomBO.class, roomVO.getId());
 		room.setRoomName(roomVO.getRoomName());
 		room.setRoomSize(roomVO.getRoomSize());
 		room.setRoomStatus(roomVO.getRoomStatus());
@@ -121,7 +121,7 @@ public class RoomAction extends DirectAction {
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(Room.class, id));
+			this.basicInfoService.delete(this.basicInfoService.findById(RoomBO.class, id));
 		}
 		return new ExtFormVO();
 	}

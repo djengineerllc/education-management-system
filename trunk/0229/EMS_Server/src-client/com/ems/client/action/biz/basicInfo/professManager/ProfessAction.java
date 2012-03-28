@@ -13,8 +13,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
-import com.ems.client.action.biz.samples.common.vo.ProfessVO;
-import com.ems.client.action.biz.samples.common.vo.ProjectVO;
+import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -25,8 +24,8 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
-import conf.hibernate.Profess;
-import conf.hibernate.Project;
+import conf.hibernate.ProfessBO;
+import conf.hibernate.ProjectBO;
 
 /**
  * 专业管理
@@ -45,14 +44,14 @@ public class ProfessAction extends DirectAction {
 		try{
 			List<ProfessVO> professVOList = new ArrayList<ProfessVO>();
 			ProfessVO professVO_qry = BeanUtils.toBeanFromJsonFirst(params, ProfessVO.class);
-			List<Profess> professes = basicInfoService.findProfessByVO(professVO_qry);
+			List<ProfessBO> professes = basicInfoService.findProfessByVO(professVO_qry);
 			ProfessVO professVO = null;
-			for(Profess profess : professes){
+			for(ProfessBO profess : professes){
 				professVO = new ProfessVO();
 				professVO.setId(profess.getId());
 				professVO.setProfessName(profess.getProfessName());
 				professVO.setProjectId(profess.getProjectId());
-				professVO.setProjectName(basicInfoService.findById(Project.class, profess.getProjectId()).getProjectName());
+				professVO.setProjectName(basicInfoService.findById(ProjectBO.class, profess.getProjectId()).getProjectName());
 				professVOList.add(professVO);
 			}
 			return new ExtPagingVO(professVOList);
@@ -66,14 +65,14 @@ public class ProfessAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ProfessVO professVO = BeanUtils.toBeanFromMap(formParameters, ProfessVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<Profess> professes = this.basicInfoService.getAll(Profess.class, null);
-		for(Profess profess_ :professes ){
+		List<ProfessBO> professes = this.basicInfoService.getAll(ProfessBO.class, null);
+		for(ProfessBO profess_ :professes ){
 			if (profess_.getProfessName().equals(professVO.getProfessName())) {
 				result.addError("professName", String.format("专业[%s]已重复", professVO.getProfessName()));
 				return result;
 			}
 		}
-		Profess profess = new Profess();
+		ProfessBO profess = new ProfessBO();
 		profess.setProfessName(professVO.getProfessName());
 		profess.setProjectId(professVO.getProjectId());
 		profess.setCreateTime(new Date());
@@ -85,12 +84,12 @@ public class ProfessAction extends DirectAction {
 		System.out.println("getFormData gradeId = " + id);
 		ProfessVO professVO = null;
 		if(id != null){
-			Profess profess = this.basicInfoService.findById(Profess.class, id);
+			ProfessBO profess = this.basicInfoService.findById(ProfessBO.class, id);
 			professVO = new ProfessVO();
 			professVO.setId(profess.getId());
 			professVO.setProfessName(profess.getProfessName());
 			professVO.setProjectId(profess.getProjectId());
-			professVO.setProjectName(this.basicInfoService.findById(Project.class, profess.getProjectId()).getProjectName());
+			professVO.setProjectName(this.basicInfoService.findById(ProjectBO.class, profess.getProjectId()).getProjectName());
 		}
 		return new ExtFormVO(professVO);
 	}
@@ -98,7 +97,7 @@ public class ProfessAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ProfessVO professVO = BeanUtils.toBeanFromMap(formParameters, ProfessVO.class);
 		ExtFormVO result = new ExtFormVO();
-		Profess profess = this.basicInfoService.findById(Profess.class, professVO.getId());
+		ProfessBO profess = this.basicInfoService.findById(ProfessBO.class, professVO.getId());
 		profess.setProfessName(professVO.getProfessName());
 		profess.setProjectId(professVO.getProjectId());
 		profess.setUpdateTime(new Date());
@@ -109,7 +108,7 @@ public class ProfessAction extends DirectAction {
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(Profess.class, id));
+			this.basicInfoService.delete(this.basicInfoService.findById(ProfessBO.class, id));
 		}
 		return new ExtFormVO();
 	}

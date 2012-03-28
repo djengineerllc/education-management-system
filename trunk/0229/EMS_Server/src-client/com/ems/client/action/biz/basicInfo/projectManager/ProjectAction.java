@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
+
 import com.ems.biz.basicInfo.service.IBasicInfoService;
-import com.ems.client.action.biz.samples.common.vo.ProjectVO;
+import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -20,7 +23,8 @@ import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
-import conf.hibernate.Project;
+
+import conf.hibernate.ProjectBO;
 
 /**
  * 项目管理
@@ -39,10 +43,10 @@ public class ProjectAction extends DirectAction {
 	public ExtPagingVO loadProject(JsonArray params) {
 		try{
 			ProjectVO projectVO_qry = BeanUtils.toBeanFromJsonFirst(params, ProjectVO.class);
-			List<Project> projects = basicInfoService.findProjectByVO(projectVO_qry);
+			List<ProjectBO> projects = basicInfoService.findProjectByVO(projectVO_qry);
 			List<ProjectVO> projectVOList = new ArrayList<ProjectVO>();
 			ProjectVO projectVO = null;
-			for(Project project : projects){
+			for(ProjectBO project : projects){
 				projectVO = new ProjectVO();
 				projectVO.setId(project.getId());
 				projectVO.setProjectName(project.getProjectName());
@@ -60,14 +64,14 @@ public class ProjectAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ProjectVO projectVO = BeanUtils.toBeanFromMap(formParameters, ProjectVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<Project> projects = basicInfoService.getAll(Project.class, null);
-		for(Project project_:projects){
+		List<ProjectBO> projects = basicInfoService.getAll(ProjectBO.class, null);
+		for(ProjectBO project_:projects){
 			if (project_.getProjectName().equals(projectVO.getProjectName())) {
 				result.addError("ProjectName", String.format("项目[%s]已重复", projectVO.getProjectName()));
 				return result;
 			}
 		}
-		Project project = new Project();
+		ProjectBO project = new ProjectBO();
 		project.setProjectName(projectVO.getProjectName());
 		project.setProjectComment(projectVO.getProjectComment());
 		project.setCreateTime(new Date());
@@ -78,9 +82,9 @@ public class ProjectAction extends DirectAction {
 	public ExtFormVO read(Integer id) {
 		System.out.println("getFormData getId = " + id);
 		ProjectVO projectVO = null;
-		Project project = null;
+		ProjectBO project = null;
 		if(id != null){
-			project = this.basicInfoService.findById(Project.class, id);
+			project = this.basicInfoService.findById(ProjectBO.class, id);
 			projectVO = new ProjectVO();
 			projectVO.setId(id);
 			projectVO.setProjectName(project.getProjectName());
@@ -92,7 +96,7 @@ public class ProjectAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		ProjectVO projectVO = BeanUtils.toBeanFromMap(formParameters, ProjectVO.class);
 		ExtFormVO result = new ExtFormVO();
-		Project project = this.basicInfoService.findById(Project.class, projectVO.getId());
+		ProjectBO project = this.basicInfoService.findById(ProjectBO.class, projectVO.getId());
 		project.setProjectName(projectVO.getProjectName());
 		project.setProjectComment(projectVO.getProjectComment());
 		project.setUpdateTime(new Date());
@@ -103,7 +107,7 @@ public class ProjectAction extends DirectAction {
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(Project.class, id));
+			this.basicInfoService.delete(this.basicInfoService.findById(ProjectBO.class, id));
 		}
 		return new ExtFormVO();
 	}

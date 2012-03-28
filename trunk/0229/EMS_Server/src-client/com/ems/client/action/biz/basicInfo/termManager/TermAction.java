@@ -13,7 +13,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
-import com.ems.client.action.biz.samples.common.vo.TermVO;
+import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -24,7 +24,7 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
-import conf.hibernate.Term;
+import conf.hibernate.TermBO;
 
 @ActionScope(scope=Scope.APPLICATION)
 public class TermAction extends DirectAction {
@@ -38,8 +38,8 @@ public class TermAction extends DirectAction {
 		try{
 			List<TermVO> termVOList = new ArrayList<TermVO>();
 			TermVO termVO = null;
-			List<Term> terms = this.basicInfoService.getAll(Term.class, " id desc ");
-			for(Term term:terms){
+			List<TermBO> terms = this.basicInfoService.getAll(TermBO.class, " id desc ");
+			for(TermBO term:terms){
 				termVO = new TermVO();
 				termVO.setId(term.getId());
 				termVO.setTermName(term.getTermName());
@@ -57,14 +57,14 @@ public class TermAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		TermVO termVO = BeanUtils.toBeanFromMap(formParameters, TermVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<Term> terms = this.basicInfoService.getAll(Term.class, " id desc ");
-		for(Term term:terms){
+		List<TermBO> terms = this.basicInfoService.getAll(TermBO.class, " id desc ");
+		for(TermBO term:terms){
 			if(term.getTermName().equals(termVO.getTermName())){
 				result.addError("termName", String.format("学期[%s]已重复", termVO.getTermName()));
 				return result;
 			}
 		}
-		Term termBO = new Term();
+		TermBO termBO = new TermBO();
 		termBO.setTermName(termVO.getTermName());
 		termBO.setIsCurrentTerm(termVO.getIsCurrentTerm());
 		termBO.setCreateTime(new Date());
@@ -75,9 +75,9 @@ public class TermAction extends DirectAction {
 	public ExtFormVO read(Integer id) {
 		System.out.println("getFormData termId = " + id);
 		TermVO termVO = null;
-		Term termBO = null;
+		TermBO termBO = null;
 		if(id != null){
-			termBO = this.basicInfoService.findById(Term.class, id);
+			termBO = this.basicInfoService.findById(TermBO.class, id);
 			termVO = new TermVO();
 			termVO.setId(id);
 			termVO.setTermName(termBO.getTermName());
@@ -89,7 +89,7 @@ public class TermAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		TermVO termVO = BeanUtils.toBeanFromMap(formParameters, TermVO.class);
 		ExtFormVO result = new ExtFormVO();
-		Term term = this.basicInfoService.findById(Term.class, termVO.getId());
+		TermBO term = this.basicInfoService.findById(TermBO.class, termVO.getId());
 		term.setTermName(termVO.getTermName());
 		term.setIsCurrentTerm(termVO.getIsCurrentTerm());
 		term.setUpdateTime(new Date());
@@ -100,7 +100,7 @@ public class TermAction extends DirectAction {
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(Term.class, id));
+			this.basicInfoService.delete(this.basicInfoService.findById(TermBO.class, id));
 		}
 		return new ExtFormVO();
 	}
