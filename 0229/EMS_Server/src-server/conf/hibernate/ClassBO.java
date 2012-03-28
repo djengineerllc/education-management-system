@@ -1,82 +1,32 @@
 package conf.hibernate;
 
-import java.util.Date;
+import com.ems.common.model.bo.BaseBO;
 
 /**
  * Class entity. @author MyEclipse Persistence Tools
  */
 
-public class ClassBO implements java.io.Serializable {
+public class ClassBO extends BaseBO {
 
-	// Fields
-
-	private Integer id;
-	private String className;
 	private Integer gradeId;
-	private Date createTime;
-	private Date updateTime;
+	private String className;
 	private Integer studentNum;
-
-	// Constructors
-
-	/** default constructor */
-	public ClassBO() {
-	}
-
-	/** full constructor */
-	public ClassBO(String className, Integer gradeId) {
-		this.className = className;
-		this.gradeId = gradeId;
-	}
-
-	// Property accessors
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getClassName() {
-		return this.className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
-	}
-
 	public Integer getGradeId() {
-		return this.gradeId;
+		return gradeId;
 	}
-
 	public void setGradeId(Integer gradeId) {
 		this.gradeId = gradeId;
 	}
-
-	public Date getCreateTime() {
-		return createTime;
+	public String getClassName() {
+		return className;
 	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setClassName(String className) {
+		this.className = className;
 	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
 	public Integer getStudentNum() {
 		return studentNum;
 	}
-
 	public void setStudentNum(Integer studentNum) {
 		this.studentNum = studentNum;
 	}
-
 }
