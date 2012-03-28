@@ -1,3 +1,4 @@
+<div style="height:6px;"></div>
 <div style="text-align:center">在学证明</div>
 <div style="height:12px;"></div>
 <div style="text-indent: 2em">
