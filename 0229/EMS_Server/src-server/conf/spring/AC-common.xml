@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:context="http://www.springframework.org/schema/context" 
+xsi:schemaLocation="
+ 	http://www.springframework.org/schema/beans  
+ 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ 	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean class="com.ems.common.datatransformer.helper.DataTransformerHelper">
+		<property name="dataTransformerFactory">
+			<bean class="com.ems.common.datatransformer.factory.DataTransformerFactory" />
+		</property>
+	</bean>
+	
+	<!-- START: Code Manager -->
+	<bean id="hqlCodeCollector" class="com.ems.common.code.externalcode.HqlCodeCollector">
+		<property name="codeHqlMap">
+			<map>
+				<!--
+				<entry key="Currency" value="SELECT new CodeTypeBO(x.a, x.b) FROM XXX x" />
+				-->
+			</map>
+		</property>
+	</bean>
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+	</bean>
+	<bean id="codesCacheBean" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="ehCacheManager" />
+		<property name="cacheName" value="codesCache" />
+	</bean>
+	<bean id="codesCache" class="com.ems.common.code.cache.impl.EhCacheImpl">
+		<property name="cache" ref="codesCacheBean" />
+	</bean>
+	<bean id="code" class="com.ems.common.code.Code">
+		<property name="codesCache" ref="codesCache" />
+		<property name="hqlCodeCollector" ref="hqlCodeCollector" />
+		<property name="singleCodeCollectorList">
+			<list>
+				<bean class="com.ems.common.code.externalcode.ProductCodeCollector">
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- START: Code Manager -->
+	
+	<bean id="basicInfoService" class="com.ems.biz.basicInfo.service.impl.BasicInfoService">
+		<property name="commonDAO">
+			<ref bean="commonDAO"/>
+		</property>
+	</bean>
+	
+	<bean id="commonDAO" class="com.ems.common.dao.CommonDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate"/>
+		</property>
+	</bean>
+</beans>
