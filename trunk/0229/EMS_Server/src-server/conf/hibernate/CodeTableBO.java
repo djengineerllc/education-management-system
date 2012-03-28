@@ -4,7 +4,7 @@ package conf.hibernate;
  * CodeType entity. @author MyEclipse Persistence Tools
  */
 
-public class CodeTypeBO implements java.io.Serializable {
+public class CodeTableBO implements java.io.Serializable {
 
 	// Fields
 
@@ -13,7 +13,7 @@ public class CodeTypeBO implements java.io.Serializable {
 	private String codeKey;
 	private String codeValue;
 	private String codeName;
-	private String codeDes;
+	private String codeDesc;
 	private String codeGroup;
 	private Integer ordinal;
 	private String canModifyInd;
@@ -22,23 +22,23 @@ public class CodeTypeBO implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public CodeTypeBO() {
+	public CodeTableBO() {
 	}
 
 	/** minimal constructor */
-	public CodeTypeBO(String codeKey) {
+	public CodeTableBO(String codeKey) {
 		this.codeKey = codeKey;
 	}
 
 	/** full constructor */
-	public CodeTypeBO(String codeType, String codeKey, String codeValue,
-			String codeName, String codeDes, String codeGroup, Integer ordinal,
+	public CodeTableBO(String codeType, String codeKey, String codeValue,
+			String codeName, String codeDesc, String codeGroup, Integer ordinal,
 			String canModifyInd, String status) {
 		this.codeType = codeType;
 		this.codeKey = codeKey;
 		this.codeValue = codeValue;
 		this.codeName = codeName;
-		this.codeDes = codeDes;
+		this.codeDesc = codeDesc;
 		this.codeGroup = codeGroup;
 		this.ordinal = ordinal;
 		this.canModifyInd = canModifyInd;
@@ -87,12 +87,12 @@ public class CodeTypeBO implements java.io.Serializable {
 		this.codeName = codeName;
 	}
 
-	public String getCodeDes() {
-		return this.codeDes;
+	public String getCodeDesc() {
+		return this.codeDesc;
 	}
 
-	public void setCodeDes(String codeDes) {
-		this.codeDes = codeDes;
+	public void setCodeDesc(String codeDesc) {
+		this.codeDesc = codeDesc;
 	}
 
 	public String getCodeGroup() {

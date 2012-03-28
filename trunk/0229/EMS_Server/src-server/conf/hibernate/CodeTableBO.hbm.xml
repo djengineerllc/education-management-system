@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="conf.hibernate">
+    <class name="CodeTableBO" table="code_table">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="codeType" type="java.lang.String">
+            <column name="code_type" />
+        </property>
+        <property name="codeKey" type="java.lang.String">
+            <column name="code_key" />
+        </property>
+        <property name="codeValue" type="java.lang.String">
+            <column name="code_value" />
+        </property>
+        <property name="codeName" type="java.lang.String">
+            <column name="code_name" />
+        </property>
+        <property name="codeDesc" type="java.lang.String">
+            <column name="code_desc" />
+        </property>
+        <property name="codeGroup" type="java.lang.String">
+            <column name="code_group" />
+        </property>
+        <property name="ordinal" type="java.lang.Integer">
+            <column name="ordinal" />
+        </property>
+        <property name="canModifyInd" type="java.lang.String">
+            <column name="can_modify_ind" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>
