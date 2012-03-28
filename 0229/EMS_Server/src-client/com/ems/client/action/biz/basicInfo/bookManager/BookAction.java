@@ -2,7 +2,6 @@ package com.ems.client.action.biz.basicInfo.bookManager;
 
 import java.awt.print.Book;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.model.vo.BookVO;
@@ -30,82 +28,47 @@ import conf.hibernate.BookBO;
 @ActionScope(scope=Scope.APPLICATION)
 public class BookAction extends DirectAction  {
 	
-
-
-	
-	private Logger logger = Logger.getLogger(this.getClass()); 
 	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
 	
 	@DirectMethod
 	public ExtPagingVO loadBook(JsonArray params) {
-		try{
-			List<BookVO> bookVOList = new ArrayList<BookVO>();
-			BookVO bookVO_qry = BeanUtils.toBeanFromJsonFirst(params, BookVO.class);
-			BookVO bookVO = null;
-			List<BookBO> books = this.basicInfoService.findBookByVO(bookVO_qry);
-			for(BookBO book : books){
-				bookVO = new BookVO();
-				bookVO.setId(book.getId());
-				bookVO.setBookName(book.getBookName());
-				bookVO.setIsbnNo(book.getIsbnNo());
-				bookVO.setPublishName(book.getPublishName());
-				bookVO.setAuthor(book.getAuthor());
-				bookVOList.add(bookVO);
-			}
-			return new ExtPagingVO(bookVOList);
-		}catch(Exception e){
-			logger.error("loadBook--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
-		}
+		BookVO bookVO_qry = BeanUtils.toBeanFromJsonFirst(params, BookVO.class);
+		
+		List<BookBO> books = this.basicInfoService.findBookByVO(bookVO_qry);
+		
+		return new ExtPagingVO(books);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
+		BookBO bookBO = BeanUtils.toBeanFromMap(formParameters, BookBO.class);
+		
 		ExtFormVO result = new ExtFormVO();
 		List<BookBO> books = this.basicInfoService.getAll(BookBO.class, " id desc ");
 		for(BookBO book_:books){
-			if(book_.getBookName().equals(bookVO.getBookName())) {
-				result.addError("BookName", String.format("教材[%s]已重复", bookVO.getBookName()));
+			if(book_.getBookName().equals(bookBO.getBookName())) {
+				result.addError("BookName", String.format("教材[%s]已重复", bookBO.getBookName()));
 				return result;
 			}
 		}
-		BookBO book = new BookBO();
-		book.setBookName(bookVO.getBookName());
-		book.setAuthor(bookVO.getAuthor());
-		book.setIsbnNo(bookVO.getIsbnNo());
-		book.setPublishName(bookVO.getPublishName());
-		book.setCreateTime(new Date());
-		this.basicInfoService.save(book);
+		this.basicInfoService.save(bookBO);
+		
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		System.out.println("getFormData bookId = " + id);
-		BookVO bookVO = null;
-		BookBO book = null;
+		BookBO bookBO = null;
 		if(id != null){
-			book = this.basicInfoService.findById(BookBO.class, id);
-			bookVO = new BookVO();
-			bookVO.setId(id);
-			bookVO.setBookName(book.getBookName());
-			bookVO.setAuthor(book.getAuthor());
-			bookVO.setIsbnNo(book.getIsbnNo());
-			bookVO.setPublishName(book.getPublishName());
+			bookBO = this.basicInfoService.findById(BookBO.class, id);
 		}
-		return new ExtFormVO(bookVO);
+		
+		return new ExtFormVO(bookBO);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		BookVO bookVO = BeanUtils.toBeanFromMap(formParameters, BookVO.class);
+		BookBO bookBO = BeanUtils.toBeanFromMap(formParameters, BookBO.class);
 		ExtFormVO result = new ExtFormVO();
-		BookBO book = this.basicInfoService.findById(BookBO.class, bookVO.getId());
-		book.setBookName(bookVO.getBookName());
-		book.setAuthor(bookVO.getAuthor());
-		book.setIsbnNo(bookVO.getIsbnNo());
-		book.setPublishName(bookVO.getPublishName());
-		book.setUpdateTime(new Date());
-		this.basicInfoService.update(book);
+		this.basicInfoService.update(bookBO);
 		return result;
 	}
 	
@@ -129,8 +92,4 @@ public class BookAction extends DirectAction  {
 		ExtFormVO formVO = new ExtFormVO();
 		return formVO;
 	}
-
-
-
-
 }
