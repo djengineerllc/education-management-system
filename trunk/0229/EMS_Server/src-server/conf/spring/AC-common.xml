@@ -22,11 +22,14 @@ xsi:schemaLocation="
 	
 	<!-- START: Code Manager -->
 	<bean id="hqlCodeCollector" class="com.ems.common.code.externalcode.HqlCodeCollector">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 		<property name="codeHqlMap">
 			<map>
-				<!--
-				<entry key="Currency" value="SELECT new CodeTypeBO(x.a, x.b) FROM XXX x" />
-				-->
+				<entry key="Grade" value="SELECT new CodeTableBO(bo.id, bo.gradeName) FROM GradeBO bo ORDER BY bo.id DESC" />
+				<entry key="Class" value="SELECT new CodeTableBO(bo.id, bo.className, bo.gradeId) FROM ClassBO bo ORDER BY bo.gradeId, bo.id DESC" />
+				<entry key="Project" value="SELECT new CodeTableBO(bo.id, bo.projectName) FROM ProjectBO bo ORDER BY bo.id DESC" />
+				<entry key="Professional" value="SELECT new CodeTableBO(bo.id, bo.professName, bo.projectId) FROM ProfessBO bo ORDER BY bo.projectId,bo.id DESC" />
+				<entry key="Term" value="SELECT new CodeTableBO(bo.id, bo.termName) FROM TermBO bo ORDER BY bo.id DESC" />
 			</map>
 		</property>
 	</bean>
