@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.ems.common.code.ICodeCollector;
 
-import conf.hibernate.CodeTypeBO;
+import conf.hibernate.CodeTableBO;
 
 /**
  * 根据SQL获取Code
@@ -26,14 +26,14 @@ public class HqlCodeCollector implements ICodeCollector {
 
 	private Map<String, String> codeHqlMap;
 
-	public List<CodeTypeBO> collect() {
+	public List<CodeTableBO> collect() {
 		if (codeHqlMap == null || codeHqlMap.size() == 0) {
 			return null;
 		}
 
-		List<CodeTypeBO> codeBOList = new ArrayList<CodeTypeBO>();
+		List<CodeTableBO> codeBOList = new ArrayList<CodeTableBO>();
 		for (String codeType : codeHqlMap.keySet()) {
-			List<CodeTypeBO> result = this.collect(codeType);
+			List<CodeTableBO> result = this.collect(codeType);
 			if (result != null && result.size() > 0) {
 				codeBOList.addAll(result);
 			}
@@ -42,7 +42,7 @@ public class HqlCodeCollector implements ICodeCollector {
 		return codeBOList;
 	}
 
-	public List<CodeTypeBO> collect(String codeType) {
+	public List<CodeTableBO> collect(String codeType) {
 		String hql = codeHqlMap.get(codeType);
 		if (StringUtils.isEmpty(hql)) {
 			return Collections.EMPTY_LIST;
