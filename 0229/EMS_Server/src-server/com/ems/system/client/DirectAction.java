@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -22,6 +23,8 @@ import com.softwarementors.extjs.djn.servlet.ssm.WebContextManager;
  */
 @SuppressWarnings("unchecked")
 public class DirectAction {
+	
+	protected Logger logger = Logger.getLogger(this.getClass()); 
 	
 	protected ApplicationContext appCtx;
 	
