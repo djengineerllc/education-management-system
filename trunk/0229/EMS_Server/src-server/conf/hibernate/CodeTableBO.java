@@ -1,14 +1,15 @@
 package conf.hibernate;
 
+import com.ems.common.model.bo.BaseBO;
+
 /**
  * CodeType entity. @author MyEclipse Persistence Tools
  */
 
-public class CodeTableBO implements java.io.Serializable {
+public class CodeTableBO extends BaseBO {
 
 	// Fields
 
-	private Integer id;
 	private String codeType;
 	private String codeKey;
 	private String codeValue;
@@ -19,42 +20,24 @@ public class CodeTableBO implements java.io.Serializable {
 	private String canModifyInd;
 	private String status;
 
-	// Constructors
-
-	/** default constructor */
 	public CodeTableBO() {
 	}
-
-	/** minimal constructor */
-	public CodeTableBO(String codeKey) {
-		this.codeKey = codeKey;
-	}
 	
-	public CodeTableBO(String codeValue, String codeName) {
-		this.codeKey = codeValue;
-		this.codeValue = codeValue;
+	public CodeTableBO(Object codeValue, String codeName) {
+		this.codeKey = codeValue.toString();
+		this.codeValue = codeValue.toString();
 		this.codeName = codeName;
 	}
 	
-	public CodeTableBO(String codeValue, String codeName, String codeGroup) {
-		this.codeKey = codeValue;
-		this.codeValue = codeValue;
+	public CodeTableBO(Object codeValue, String codeName, Object codeGroup) {
+		this.codeKey = codeValue.toString();
+		this.codeValue = codeValue.toString();
 		this.codeName = codeName;
-		this.codeGroup = codeGroup;
+		this.codeGroup = codeGroup != null ? codeGroup.toString() : null;
 	}
-
-	// Property accessors
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
+	
 	public String getCodeType() {
-		return this.codeType;
+		return codeType;
 	}
 
 	public void setCodeType(String codeType) {
@@ -62,7 +45,7 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public String getCodeKey() {
-		return this.codeKey;
+		return codeKey;
 	}
 
 	public void setCodeKey(String codeKey) {
@@ -70,7 +53,7 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public String getCodeValue() {
-		return this.codeValue;
+		return codeValue;
 	}
 
 	public void setCodeValue(String codeValue) {
@@ -78,7 +61,7 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public String getCodeName() {
-		return this.codeName;
+		return codeName;
 	}
 
 	public void setCodeName(String codeName) {
@@ -86,7 +69,7 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public String getCodeDesc() {
-		return this.codeDesc;
+		return codeDesc;
 	}
 
 	public void setCodeDesc(String codeDesc) {
@@ -102,7 +85,7 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public Integer getOrdinal() {
-		return this.ordinal;
+		return ordinal;
 	}
 
 	public void setOrdinal(Integer ordinal) {
@@ -110,7 +93,7 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public String getCanModifyInd() {
-		return this.canModifyInd;
+		return canModifyInd;
 	}
 
 	public void setCanModifyInd(String canModifyInd) {
@@ -118,11 +101,10 @@ public class CodeTableBO implements java.io.Serializable {
 	}
 
 	public String getStatus() {
-		return this.status;
+		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 }
