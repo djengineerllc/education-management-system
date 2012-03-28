@@ -1,3 +1,4 @@
+<div style="height:6px;"></div>
 <div style="text-align:center">THE INTERNATIONAL COLLEGE OF XIAMEN UNIVERSITY TRANSCRIPT/</div>
 <div style="text-align:center">厦门大学国际学院成绩单</div>
 <div style="height:12px;"></div>
@@ -36,5 +37,5 @@ Note: Ms: Marks   Hs: Hours   Cs: Credits   Year 1. The Hundred Mark System: 60-
 <div style="text-align:left">注：大一课程评估为百分制：60分及格，100分为满分。大二课程必修课每个学期1学分至少40学时，每门课程评估结果为P（通过）或者F（未通过），P（通过）表示每门课程的所有知识点都合格，U＝在读，记分单元评分标准： A＝70～100，B＝60～69，C＝50～59，F＝0～49。
 </div>
 <div style="height:8px;"></div>
-<div style="text-align:right">Designed by/制表人: xxx</div>              
+<div style="text-align:right">Designed by/制表人: xxx</div>
 <div style="text-align:right">Date/日期: 2011年9月20日</div>
