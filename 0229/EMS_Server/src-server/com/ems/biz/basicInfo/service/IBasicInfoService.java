@@ -3,19 +3,19 @@ package com.ems.biz.basicInfo.service;
 import java.io.Serializable;
 import java.util.List;
 
-import com.ems.client.action.biz.samples.common.vo.BookVO;
-import com.ems.client.action.biz.samples.common.vo.ProfessVO;
-import com.ems.client.action.biz.samples.common.vo.ProjectVO;
-import com.ems.client.action.biz.samples.common.vo.RoomVO;
-import com.ems.client.action.biz.samples.common.vo.SubjectVO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
+import com.ems.common.model.vo.BookVO;
+import com.ems.common.model.vo.CourseVO;
+import com.ems.common.model.vo.ProfessVO;
+import com.ems.common.model.vo.ProjectVO;
+import com.ems.common.model.vo.RoomVO;
 
-import conf.hibernate.Book;
-import conf.hibernate.Profess;
-import conf.hibernate.Project;
-import conf.hibernate.Room;
-import conf.hibernate.Subject;
+import conf.hibernate.BookBO;
+import conf.hibernate.CourseBO;
+import conf.hibernate.ProfessBO;
+import conf.hibernate.ProjectBO;
+import conf.hibernate.RoomBO;
 
 public interface IBasicInfoService {
 	
@@ -38,31 +38,31 @@ public interface IBasicInfoService {
 	 * @return
 	 * @throws EMSException
 	 */
-	public List<Project> findProjectByVO(ProjectVO projectVO) throws EMSException;
+	public List<ProjectBO> findProjectByVO(ProjectVO projectVO) throws EMSException;
 	
 	/**
 	 * 查找专业信息
-	 * @param projectVO
+	 * @param professVO
 	 * @return
 	 * @throws EMSException
 	 */
-	public List<Profess> findProfessByVO(ProfessVO professVO) throws EMSException;
+	public List<ProfessBO> findProfessByVO(ProfessVO professVO) throws EMSException;
 	
 	/**
 	 * 查找课程信息
-	 * @param projectVO
+	 * @param courseVO
 	 * @return
 	 * @throws EMSException
 	 */
-	public List<Subject> findSubjectByVO(SubjectVO subjectVO) throws EMSException;
+	public List<CourseBO> findCourseByVO(CourseVO courseVO) throws EMSException;
 	
 	/**
 	 * 查找教室信息
-	 * @param projectVO
+	 * @param roomVO
 	 * @return
 	 * @throws EMSException
 	 */
-	public List<Room> findRoomByVO(RoomVO roomVO) throws EMSException;
+	public List<RoomBO> findRoomByVO(RoomVO roomVO) throws EMSException;
 	
 	/**
 	 * 查找教材信息
@@ -70,7 +70,7 @@ public interface IBasicInfoService {
 	 * @return
 	 * @throws EMSException
 	 */
-	public List<Book> findBookByVO(BookVO bookVO) throws EMSException;
+	public List<BookBO> findBookByVO(BookVO bookVO) throws EMSException;
 	
 	public void delete(Object obj) throws EMSRollbackableException;
 	
