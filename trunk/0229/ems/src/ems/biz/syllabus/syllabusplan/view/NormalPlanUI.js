@@ -68,7 +68,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		xtype: 'iconbrowser',
 			    		border: false,
 			    		ddSource: 'course',
-			    		dataIndex: 'name',
+			    		dataIndex: 'value',
 			    		dataFilter: 'name',
 			    		store: Dic.getStore('Course'),
 			    		prepareData: function(data) {
@@ -84,7 +84,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		xtype: 'iconbrowser',
 			    		border: false,
 			    		ddSource: 'teacher',
-			    		dataIndex: 'name',
+			    		dataIndex: 'value',
 			    		dataFilter: 'name',
 			    		store: Dic.getStore('Sex'),
 			    		prepareData: function(data) {
@@ -100,7 +100,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		xtype: 'iconbrowser',
 			    		border: false,
 			    		ddSource: 'room',
-			    		dataIndex: 'name',
+			    		dataIndex: 'value',
 			    		dataFilter: 'name',
 			    		store: Dic.getStore('Room'),
 			    		prepareData: function(data) {
@@ -141,6 +141,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		        },{
 					text: '单双',
 		            dataIndex: 'oeInd',
+		            renderer: Dic.renderer('WeekOeInd'),
 		            width: 50
 				},{
 					text: '周一',
@@ -148,23 +149,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'monCourse',
-						ddTarget: 'course'
-//						,renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-//							if (value) {
-//								
-//							}
-//							return value + ' x';
-//						}
+						ddTarget: 'course',
+						renderer: Dic.renderer('Course')
 		            }, {
 		                text: '教师',
 		                width: 70,
 						dataIndex: 'monTeacher',
-						ddTarget: 'teacher'
+						ddTarget: 'teacher',
+						renderer: Dic.renderer('Teacher')
 		            }, {
 		                text: '教室',
 		                width: 70,
 						dataIndex: 'monRoom',
-						ddTarget: 'room'
+						ddTarget: 'room',
+						renderer: Dic.renderer('Room')
 		            }]
 				},{
 					text: '周二',
@@ -172,17 +170,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'tueCourse',
-						ddTarget: 'course'
+						ddTarget: 'course',
+						renderer: Dic.renderer('Course')
 		            }, {
 		                text: '教师',
 		                width: 70,
 						dataIndex: 'tueTeacher',
-						ddTarget: 'teacher'
+						ddTarget: 'teacher',
+						renderer: Dic.renderer('Teacher')
 		            }, {
 		                text: '教室',
 		                width: 70,
 						dataIndex: 'tueRoom',
-						ddTarget: 'room'
+						ddTarget: 'room',
+						renderer: Dic.renderer('Room')
 		            }]	
 				},{
 					text: '周三',
@@ -190,17 +191,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'webCourse',
-						ddTarget: 'course'
+						ddTarget: 'course',
+						renderer: Dic.renderer('Course')
 		            }, {
 		                text: '教师',
 		                width: 70,
 						dataIndex: 'webTeacher',
-						ddTarget: 'teacher'
+						ddTarget: 'teacher',
+						renderer: Dic.renderer('Teacher')
 		            }, {
 		                text: '教室',
 		                width: 70,
 						dataIndex: 'webRoom',
-						ddTarget: 'room'
+						ddTarget: 'room',
+						renderer: Dic.renderer('Room')
 		            }]	
 				},{
 					text: '周四',
@@ -208,17 +212,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'thuCourse',
-						ddTarget: 'course'
+						ddTarget: 'course',
+						renderer: Dic.renderer('Course')
 		            }, {
 		                text: '教师',
 		                width: 70,
 						dataIndex: 'thuTeacher',
-						ddTarget: 'teacher'
+						ddTarget: 'teacher',
+						renderer: Dic.renderer('Teacher')
 		            }, {
 		                text: '教室',
 		                width: 70,
 						dataIndex: 'thuRoom',
-						ddTarget: 'room'
+						ddTarget: 'room',
+						renderer: Dic.renderer('Room')
 		            }]	
 				},{
 					text: '周五',
@@ -226,17 +233,20 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'friCourse',
-						ddTarget: 'course'
+						ddTarget: 'course',
+						renderer: Dic.renderer('Course')
 		            }, {
 		                text: '教师',
 		                width: 70,
 						dataIndex: 'friTeacher',
-						ddTarget: 'teacher'
+						ddTarget: 'teacher',
+						renderer: Dic.renderer('Teacher')
 		            }, {
 		                text: '教室',
 		                width: 70,
 						dataIndex: 'friRoom',
-						ddTarget: 'room'
+						ddTarget: 'room',
+						renderer: Dic.renderer('Room')
 		            }]	
 				}]
 			}]
