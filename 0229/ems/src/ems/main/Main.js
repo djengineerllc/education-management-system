@@ -37,7 +37,7 @@ Ext.define('ems.main.Main', {
 			p = r.p,
 			pc = p.panelConfig || {},
 			eo = r.eventSource,
-			menuId = eo.menuId || 'root';
+			menuId = eo.menuId || -1;
 		
 		me.A({
 			m: 'getMenu',
@@ -85,10 +85,11 @@ Ext.define('ems.main.Main', {
 			moduleConfig: (record.get ? (Ext.decode(record.get('moduleConfig') || '{}')) : null),
 			id: moduleId,
 			title: record.get ? (record.get('moduleName') ? record.get('moduleName') : record.get('text')) : '',
-			autoScroll: true,
-			tabConfig: {
-				minWidth: 90
-			}
+			autoScroll: true
+//			,
+//			tabConfig: {
+//				minWidth: 90
+//			}
 		});
 //		Ems.RM(moduleId, workItemConfig.moduleConfig, function(module) {
 //			workItemConfig.items = [module.ui];
