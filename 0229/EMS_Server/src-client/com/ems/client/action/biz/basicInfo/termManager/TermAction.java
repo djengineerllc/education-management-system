@@ -13,7 +13,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
-import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -38,7 +37,16 @@ public class TermAction extends DirectAction {
 	public ExtPagingVO loadTerm(JsonArray params) {
 		TermVO termVO_qry = BeanUtils.toBeanFromJsonFirst(params, TermVO.class);
 		List<TermBO> terms = this.basicInfoService.findTermByVO(termVO_qry);
-		return new ExtPagingVO(terms);
+		List<TermVO> termVOS = new ArrayList<TermVO>();
+		TermVO termVO = null;
+		for(TermBO termBO : terms){
+			termVO = new TermVO();
+			termVO.setId(termBO.getId());
+			termVO.setTermName(termBO.getTermName());
+			termVO.setIsCurrentTerm("1".equals(termBO.getIsCurrentTerm())?"是":"否");
+			termVOS.add(termVO);
+		}
+		return new ExtPagingVO(termVOS);
 	}
 	
 	@DirectFormPostMethod

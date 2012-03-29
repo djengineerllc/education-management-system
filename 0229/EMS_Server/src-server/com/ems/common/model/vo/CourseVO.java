@@ -4,10 +4,12 @@ public class CourseVO {
 	
 	private Integer id;
 	private String courseNo;
-	private String courseCnName;
-	private String courseEnName;
+	private String courseName;
+	private String courseEngName;
 	private Double courseScore;
 	private Integer courseTime;
+	private String courseType;
+	private String courseComment;
 	public Integer getId() {
 		return id;
 	}
@@ -20,17 +22,17 @@ public class CourseVO {
 	public void setCourseNo(String courseNo) {
 		this.courseNo = courseNo;
 	}
-	public String getCourseCnName() {
-		return courseCnName;
+	public String getCourseName() {
+		return courseName;
 	}
-	public void setCourseCnName(String courseCnName) {
-		this.courseCnName = courseCnName;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
-	public String getCourseEnName() {
-		return courseEnName;
+	public String getCourseEngName() {
+		return courseEngName;
 	}
-	public void setCourseEnName(String courseEnName) {
-		this.courseEnName = courseEnName;
+	public void setCourseEngName(String courseEngName) {
+		this.courseEngName = courseEngName;
 	}
 	public Double getCourseScore() {
 		return courseScore;
@@ -43,5 +45,17 @@ public class CourseVO {
 	}
 	public void setCourseTime(Integer courseTime) {
 		this.courseTime = courseTime;
+	}
+	public String getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
+	}
+	public String getCourseComment() {
+		return courseComment;
+	}
+	public void setCourseComment(String courseComment) {
+		this.courseComment = courseComment;
 	}
 }

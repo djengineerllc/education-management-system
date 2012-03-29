@@ -28,11 +28,6 @@ ems.system.SystemActions.REMOTING_API = {
         name: 'getSystemTime'/*() => java.util.Date */,
         len: 0,
         formHandler: false
-      },
-      {
-        name: 'getLoginInfo'/*() => com.ems.client.action.login.vo.LoginInfoVO */,
-        len: 0,
-        formHandler: false
       }
     ]
   }
