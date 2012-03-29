@@ -37,7 +37,7 @@ public class DirectAction {
 	}
 	
 	public <T extends DirectAction> T getAction(Class<T> actionClass) {
-		String actionName = this.getActionName(actionClass);
+		String actionName = getActionName(actionClass);
 		Object action = this.getWebContext().getSessionScopedObject(actionName);
 		if (action == null) {
 			action = this.getWebContext().getApplicationScopedObject(actionName);
@@ -46,7 +46,7 @@ public class DirectAction {
 		return (T) action;
 	}
 	
-	public String getActionName(Class actionClass) {
+	public static String getActionName(Class actionClass) {
 		String className = actionClass.getName();
 		String actionPrefix = "com.ems.client.action.";
 		return String.format("ems.%ss", className.substring(className.indexOf(actionPrefix) + actionPrefix.length())).replace('.', '_') + '_' + actionClass.getSimpleName();
