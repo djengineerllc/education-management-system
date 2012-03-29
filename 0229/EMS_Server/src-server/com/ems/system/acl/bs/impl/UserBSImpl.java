@@ -47,7 +47,7 @@ public class UserBSImpl implements IUserBS {
 	public List<MenuItemVO> findMenuList(Integer userId, Integer menuId) throws EMSException {
 		List<MenuInfoBO> menuInfoBOList = commonDAO.findByHql("SELECT mi FROM UserRoleRelBO urr, RoleMenuRelBO rmr, MenuInfoBO mi WHERE urr.roleId = rmr.roleId AND rmr.menuId = mi.id AND urr.userId = ? AND mi.parentId = ? ORDER BY mi.parentId, mi.ordinal ASC", userId, menuId);
 		
-		List<MenuItemVO> menu = new ArrayList<>();
+		List<MenuItemVO> menu = new ArrayList<MenuItemVO>();
 		MenuItemVO itemVO = null;
 		if (menuInfoBOList != null && menuInfoBOList.size() > 0) {
 			for (MenuInfoBO menuInfoBO : menuInfoBOList) {
