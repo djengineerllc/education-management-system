@@ -259,8 +259,8 @@
 	padding-left: 20px;
 	background: #FFFFFF url('images/icons/filter_16.png') left no-repeat;
 	border: none;
-	border-radius: 8px;
-	-moz-border-radius: 8px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 
 .ems .x-container .x-form-item-label.field-container-label {
