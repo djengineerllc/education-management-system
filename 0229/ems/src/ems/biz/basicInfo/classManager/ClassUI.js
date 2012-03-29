@@ -20,7 +20,11 @@ Ext.define('ems.biz.basicInfo.classManager.ClassUI', {
                 paging: true,
                 loadDF: me.DF('loadClass'),
                 searchForm: {
-                    items: [{
+                    items: [Dic.comboBox('Grade', {
+					fieldLabel: '年级名',
+					name: 'gradeId',
+					value:-1
+				}),{
                         fieldLabel: '班级名',
                         name: 'className'
                     }]
