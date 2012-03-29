@@ -16,6 +16,7 @@ import com.ems.system.acl.bs.IUserBS;
 import com.ems.system.client.vo.MenuItemVO;
 
 import conf.hibernate.MenuInfoBO;
+import conf.hibernate.RoleInfoBO;
 import conf.hibernate.UserInfoBO;
 
 @Service("userBS")
@@ -24,7 +25,7 @@ public class UserBSImpl implements IUserBS {
 	@Autowired
 	@Qualifier("commonDAO")
 	private ICommonDAO commonDAO;
-
+	
 	public LoginInfoVO findLoginInfoVO(String loginName, String password) throws EMSException {
 		
 		String md5_pwd = MD5.MD5Encode(password);
@@ -36,8 +37,16 @@ public class UserBSImpl implements IUserBS {
 			loginInfoVO.setUserId(userInfoBO.getId());
 			loginInfoVO.setUserName(userInfoBO.getUserName());
 			loginInfoVO.setLoginName(userInfoBO.getLoginName());
-			loginInfoVO.setRoleId(1);
-			loginInfoVO.setRoleName("系统管理员");
+			
+			RoleInfoBO roleInfoBO = (RoleInfoBO)commonDAO.firstEntity("SELECT ri FROM UserRoleRelBO urr, RoleInfoBO ri WHERE urr.roleId = ri.id AND urr.userId = ?", userInfoBO.getId());
+			loginInfoVO.setRoleId(roleInfoBO.getId());
+			loginInfoVO.setRoleName(roleInfoBO.getRoleName());
+			
+			if (Code.eqValue("Role", "student", roleInfoBO.getRoleCd())) {
+				// 学生  年级/班级/专业/项目/...
+			}
+			
+			loginInfoVO.setCurrTerm("4"); // TODO
 		}
 		
 		return loginInfoVO;
