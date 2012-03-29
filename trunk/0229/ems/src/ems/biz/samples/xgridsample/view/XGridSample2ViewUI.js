@@ -13,7 +13,7 @@ Ext.define('ems.biz.samples.xgridsample.view.XGridSample2ViewUI', {
 			items: [{
 				anchor: '100% 100%',
 				xtype: 'xgrid',
-				paging: false,
+				paging: true,
 				editingMode: 'rowediting',
 				loadDF: me.DF('getXGridSample1ViewData'),
 				storeConfig: {
