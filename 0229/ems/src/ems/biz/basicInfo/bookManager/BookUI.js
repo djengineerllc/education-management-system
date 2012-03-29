@@ -15,6 +15,7 @@ Ext.define('ems.biz.basicInfo.bookManager.BookUI', {
                 paging: true,
                 loadDF: me.DF('loadBook'),
                 searchForm: {
+                	fieldColumns:4,
                     items: [{
                         fieldLabel: '教材名',
                         name: 'bookName'
