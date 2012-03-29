@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.common.code.Code;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.model.vo.ClassVO;
 import com.ems.common.util.BeanUtils;
@@ -28,6 +29,11 @@ import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 import conf.hibernate.ClassBO;
 import conf.hibernate.GradeBO;
 
+/**
+ * 班级管理
+ * @author zhuchaole
+ *
+ */
 @ActionScope(scope=Scope.APPLICATION)
 public class ClassAction extends DirectAction  {
 	
@@ -45,7 +51,7 @@ public class ClassAction extends DirectAction  {
 			classVO.setId(classBO.getId());
 			classVO.setClassName(classBO.getClassName());
 			classVO.setGradeId(classBO.getGradeId());
-			classVO.setGradeName(basicInfoService.findById(GradeBO.class, classBO.getGradeId()).getGradeName());
+			classVO.setGradeName(Code.getName("Grade", classBO.getGradeId()+""));
 			classVO.setStudentNum(classBO.getStudentNum());
 			classVOList.add(classVO);
 		}
