@@ -271,6 +271,9 @@ Ems.Locale = {
         		msgButton.setText(Ext.MessageBox.buttonText[msgButton.itemId]);
         	});
         }
+        if (Ext.tab && Ext.tab.Tab) {
+            Ext.tab.Tab.prototype.closeText = "关闭此标签";
+        }
         // END: add by chiknin
     }
 };
