@@ -47,7 +47,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 	            xtype: 'container',
 	            layout: {
 					type: 'table',
-					columns: me.fieldColumns || 3
+					columns: me.grid.searchForm.fieldColumns || 3
 				},
 				defaultType: 'textfield',
 				defaults: {
