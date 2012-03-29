@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-03-29 23:10:09
+Date: 2012-03-30 00:18:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `book` (
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of book
@@ -72,7 +72,7 @@ CREATE TABLE `code_table` (
   `can_modify_ind` char(1) DEFAULT '1',
   `status` char(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of code_table
@@ -91,6 +91,8 @@ INSERT INTO code_table VALUES ('13', 'EducationLevel', 'S4', '4', '专科', null
 INSERT INTO code_table VALUES ('14', 'GkType', 'S1', '1', '文史类', null, null, '1', '1', '1');
 INSERT INTO code_table VALUES ('15', 'GkType', 'S2', '2', '理工类', null, null, '2', '1', '1');
 INSERT INTO code_table VALUES ('16', 'GkType', 'S3', '3', '艺术类', null, null, '3', '1', '1');
+INSERT INTO code_table VALUES ('17', 'WeekOeInd', 'S1', '1', '单', null, null, '1', '1', '1');
+INSERT INTO code_table VALUES ('18', 'WeekOeInd', 'S2', '2', '双', null, null, '2', '1', '1');
 
 -- ----------------------------
 -- Table structure for `course`
@@ -462,8 +464,8 @@ INSERT INTO project_old VALUES ('109', '本科预科项目', '各英语国家', 
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE `room` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `room_name` varchar(100) DEFAULT NULL,
   `term_id` int(11) DEFAULT NULL,
+  `room_name` varchar(100) DEFAULT NULL,
   `room_size` varchar(20) DEFAULT NULL,
   `room_status` varchar(20) DEFAULT NULL,
   `room_comment` varchar(200) DEFAULT NULL,
@@ -475,11 +477,11 @@ CREATE TABLE `room` (
 -- ----------------------------
 -- Records of room
 -- ----------------------------
-INSERT INTO room VALUES ('1', '北教楼501', '4', '80', '正常', null, '2012-03-27 22:56:14', null);
-INSERT INTO room VALUES ('2', '北教楼503', '4', '100', '正常', '无', '2012-03-27 23:00:59', null);
-INSERT INTO room VALUES ('4', '多媒体202', '3', '100', '正常', '无', '2012-03-27 23:14:57', null);
-INSERT INTO room VALUES ('5', '多媒体505', '3', '100', '正常', '无', '2012-03-27 23:22:03', null);
-INSERT INTO room VALUES ('6', '多媒体606', '3', '100', '备用', '备用', '2012-03-27 23:34:51', null);
+INSERT INTO room VALUES ('1', '4', '北教楼501', '80', '正常', null, '2012-03-27 22:56:14', null);
+INSERT INTO room VALUES ('2', '4', '北教楼503', '100', '正常', '无', '2012-03-27 23:00:59', null);
+INSERT INTO room VALUES ('4', '3', '多媒体202', '100', '正常', '无', '2012-03-27 23:14:57', null);
+INSERT INTO room VALUES ('5', '3', '多媒体505', '100', '正常', '无', '2012-03-27 23:22:03', null);
+INSERT INTO room VALUES ('6', '3', '多媒体606', '100', '备用', '备用', '2012-03-27 23:34:51', null);
 
 -- ----------------------------
 -- Table structure for `term`
