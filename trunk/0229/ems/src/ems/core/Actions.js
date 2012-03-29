@@ -57,20 +57,31 @@ Ext.define('ems.core.Actions', {
 	},
 	
 	_loadRemotingApi: function() {
-		var me = this;
-		Ext.Loader.loadScriptFile(
-			me.getRemotingApiUrl(), // url
-			me._onLoadRemotingApi, // onLoad
-			function(msg, synchronous) { // onError
-				alert(msg);
-			},
-			me, // scope
-			true // synchronous
-		);
-	},
-	_onLoadRemotingApi: function() {
 		var me = this,
 			provider = me.getProvider();
+		
+		if (provider) {
+			me._onLoadRemotingApi(provider);
+		} else {
+			Ext.Loader.loadScriptFile(
+				me.getRemotingApiUrl(), // url
+				function() {
+					provider = me.getProvider();
+					me._onLoadRemotingApi(provider);
+				}, // onLoad
+				function(msg, synchronous) { // onError
+					EU.showErrorDialog({
+						title: '系统异常',
+						msg: msg
+					});
+				},
+				me, // scope
+				true // synchronous
+			);
+		}
+	},
+	_onLoadRemotingApi: function(provider) {
+		var me = this;
 		
 		me.providerManaged = Ext.direct.Manager.addProvider(provider);
 		
