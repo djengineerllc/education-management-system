@@ -34,7 +34,7 @@ Ext.define('ems.core.widget.XGrid', {
 	totalProperty: 'totalCount',
 	root: 'items',
 	
-    initComponent: function(){
+    initComponent: function() {
         var me = this, 
 			config = me._defaultXGridConfig();
 		
@@ -55,27 +55,31 @@ Ext.define('ems.core.widget.XGrid', {
 		if (me.plugins == undefined) {
 			config.plugins = me._buildPlugins();
 		}
-        Ext.applyIf(me, config);
-		
 		if (me.rowNumberer) {
-			me.columns = [Ext.create('Ext.grid.RowNumberer')].concat(me.columns || []);
+			config.columns = [Ext.create('Ext.grid.RowNumberer')].concat(config.columns || []);
 		}
-        
-        this.callParent(arguments);
 		
-		if (me.paging == true) {
-			me.addDocked(Ext.create('Ext.toolbar.Paging', {
-				dock: 'bottom',
-				store: config.store,
-				displayInfo: true
-			}));
+        Ext.applyIf(me, config);
+        this.callParent(arguments);
+    },
+    bridgeToolbars: function() {
+    	var me = this;
+    	this.callParent(arguments);
+    	if (me.paging == true) {
+			me.dockedItems = me.dockedItems.concat(
+				Ext.create('Ext.toolbar.Paging', {
+					dock: 'bottom',
+					store: me.store,
+					displayInfo: true
+				}
+			));
 		}
     },
-	onDestroy: function() {
-		this.callParent(arguments);
+//	onDestroy: function() {
+//		this.callParent(arguments);
 //		this.store.destroy();
 //		this.store = null;
-	},
+//	},
 	
 	getAllColumn: function() {
 		var me = this, col_i, col, subCol_i, allCol = [];
