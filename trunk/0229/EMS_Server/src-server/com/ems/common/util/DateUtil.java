@@ -19,6 +19,10 @@ public class DateUtil {
 	public static String DATE_FORMAT_TIME_STRING = "HH:mm:ss";
 	public static SimpleDateFormat DATE_FORMAT_TIME = new SimpleDateFormat(DATE_FORMAT_TIME_STRING);
 	
+	public static Date currData() {
+		return new Date();
+	}
+	
     public static Date parseFull(String source) {
     	return parse(source, DATE_FORMAT_FULL);
     }

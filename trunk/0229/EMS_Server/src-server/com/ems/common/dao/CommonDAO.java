@@ -120,5 +120,17 @@ private static Log logger = LogFactory.getLog(CommonDAO.class);
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+	
+	public Object firstEntity(String hql, Object... values) {
+		List result = this.findByHql(hql, values);
+		if (result != null && result.size() > 0) {
+			return result.get(0);
+		}
+		
+		return null;
+	}
 
+//	public List findHqlByBean(String hql, Object value) {
+//		return this.getHibernateTemplate().find(hql, value);
+//	}
 }
