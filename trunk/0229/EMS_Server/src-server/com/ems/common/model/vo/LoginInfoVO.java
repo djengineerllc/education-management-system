@@ -11,7 +11,7 @@ public class LoginInfoVO implements Serializable {
 	private Integer roleId;
 	private String roleName;
 	
-	private String currTermId;
+	private String currTerm;
 	
 	public Integer getUserId() {
 		return userId;
@@ -42,6 +42,12 @@ public class LoginInfoVO implements Serializable {
 	}
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+	public String getCurrTerm() {
+		return currTerm;
+	}
+	public void setCurrTerm(String currTerm) {
+		this.currTerm = currTerm;
 	}
 	
 //	private UserRoleVO currRole;
