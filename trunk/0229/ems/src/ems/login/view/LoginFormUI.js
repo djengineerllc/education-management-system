@@ -3,7 +3,7 @@ Ext.define('ems.login.view.LoginFormUI', {
     
     initData: function() {
     	var me = this,
-    		userNameInput = me.down('#userName');
+    		userNameInput = me.down('#loginName');
     	
     	userNameInput.focus(false, 0);
     },
@@ -27,14 +27,15 @@ Ext.define('ems.login.view.LoginFormUI', {
 				},
 				fieldDefaults: {
 					labelAlign: 'right',
-					labelWidth: 60
+					labelWidth: 60,
+					allowBlank: false
 				},
 				items: [{
 					xtype: 'textfield',
 //					iconCls: 'icon-user',
-					itemId: 'userName',
-					name: 'userName',
-					fieldLabel: '用户',
+					itemId: 'loginName',
+					name: 'loginName',
+					fieldLabel: '用户名',
 					value: 'admin'
 				}, {
 					xtype: 'textfield',
