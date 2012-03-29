@@ -11,6 +11,7 @@ import com.ems.common.code.Code;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.model.vo.LoginInfoVO;
+import com.ems.common.util.MD5;
 import com.ems.system.acl.bs.IUserBS;
 import com.ems.system.client.vo.MenuItemVO;
 
@@ -24,12 +25,10 @@ public class UserBSImpl implements IUserBS {
 	@Qualifier("commonDAO")
 	private ICommonDAO commonDAO;
 
-	@Override
 	public LoginInfoVO findLoginInfoVO(String loginName, String password) throws EMSException {
 		
-		// TODO password 加密操作
-		
-		UserInfoBO userInfoBO = (UserInfoBO)commonDAO.firstEntity("FROM UserInfoBO bo WHERE bo.loginName = ? AND bo.password = ?", loginName, password);
+		String md5_pwd = MD5.MD5Encode(password);
+		UserInfoBO userInfoBO = (UserInfoBO)commonDAO.firstEntity("FROM UserInfoBO bo WHERE bo.loginName = ? AND bo.password = ?", loginName, md5_pwd);
 		
 		LoginInfoVO loginInfoVO = null;
 		if (userInfoBO != null) {
