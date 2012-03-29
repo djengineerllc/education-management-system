@@ -109,4 +109,6 @@ public interface IBasicInfoService {
 	
 	public void update(Object obj) throws EMSRollbackableException;
 	
+	public TermBO findCurrTerm() throws EMSException;
+	
 }
