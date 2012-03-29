@@ -156,9 +156,13 @@ Ext.define('ems.core.widget.XGrid', {
 	_buildPlugins: function() {
 		var me = this;
 		
-		var plugins = [
-			Ext.create('ems.core.widget.plugin.XGridSearchForm')
-		];
+		var plugins = [];
+		
+		if (me.searchForm) {
+			plugins.push(
+				Ext.create('ems.core.widget.plugin.XGridSearchForm')
+			);
+		}
 		
 		if (me.editingMode != undefined) {
 			plugins.push(
@@ -181,7 +185,7 @@ Ext.define('ems.core.widget.XGrid', {
     _defaultXGridConfig: function(){
 		var me = this;
         return {
-        }
+        };
     },
 	
 	_modelFieldAttrs: [
