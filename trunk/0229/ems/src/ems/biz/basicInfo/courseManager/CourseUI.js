@@ -18,7 +18,7 @@ Ext.define('ems.biz.basicInfo.courseManager.CourseUI', {
                 xtype: 'xgrid',
                 selMode: 'multi',
                 paging: true,
-                loadDF: me.DF('loadSubject'),
+                loadDF: me.DF('loadCourse'),
                 searchForm: {
                     items: [{
                         fieldLabel: '课程中文名',
