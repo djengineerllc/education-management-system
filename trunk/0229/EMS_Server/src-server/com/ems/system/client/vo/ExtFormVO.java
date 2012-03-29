@@ -3,6 +3,8 @@ package com.ems.system.client.vo;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * @author Chiknin
  */
@@ -59,6 +61,15 @@ public class ExtFormVO extends ExtBaseVO {
 	}
 	public static ExtFormVO success() {
 		return new ExtFormVO();
+	}
+	
+	public boolean isEmpty(Object value, String field, String errorMsg) {
+		if (value == null || StringUtils.isEmpty(value.toString())) {
+			this.addError(field, errorMsg);
+			return true;
+		}
+		
+		return false;
 	}
 
 	public boolean isSuccess() {
