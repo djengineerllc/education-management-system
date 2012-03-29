@@ -18,6 +18,9 @@ Ext.define('ems.login.Session', {
 	},
 	
 	getWelcomeText: function() {
+		var loginInfo = this.getLoginInfo();
+		
+		
 		return '您好 admin 同学， 学号 xxxxx | 年级 xxx | 班级 xxx | 项目 xxx | 专业 xxxx';
 	}
 });
