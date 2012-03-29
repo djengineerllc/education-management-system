@@ -14,18 +14,6 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 			initData;
 		
 		/* 初始化store */
-		termComboData = [{
-			value: '',
-			name: '全学期'
-		}, {
-			value: '2011A',
-			name: '2011年第一学期'
-		}, {
-			value: '2011B',
-			name: '2011年第二学期'
-		}];
-		termComboBox.getStore().loadData(termComboData); // 学期
-		
 		Ext.each(sltStudents, function(sltStudent) {
 			stuComboData.push({
 				value: sltStudent.stuNo,
@@ -53,7 +41,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		}
 		
 		queryInfoForm.setValues({
-			term: '2011B',
+			term: Session.getLoginInfo().currTerm || '',
 			stuNo: initData.stuNo
 		});
 		
@@ -90,10 +78,11 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 					width: 100
 				},
 				items: [
-					Dic.localComboBox({
+					Dic.comboBox('Term', {
 						fieldLabel: '学期',
 						itemId: 'termComboBox',
                         name: 'term',
+                        headerOption: true,
 						width: 160
 					}),
 					Dic.localComboBox({
@@ -108,11 +97,12 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 							}
 						}
 					}),
-					Dic.comboBox('Sex', {
+					Dic.comboBox('AchApprResult', {
 						fieldLabel: '成绩评估结果',
 						labelWidth: 80,
 						itemId: 'apprResultComboBox',
                         name: 'apprResult',
+                        headerOption: true,
 						width: 160
 					})
 	            ],
