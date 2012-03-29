@@ -93,4 +93,5 @@ public interface ICommonDAO {
 	public List findBySql(String sql) ;
 	
 	
+	public Object firstEntity(String hql, Object... value);
 }
