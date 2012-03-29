@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.common.code.Code;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
@@ -55,6 +56,9 @@ public class BasicInfoServiceImpl implements IBasicInfoService {
 			valueParam.add("%"+termVO.getTermName()+"%");
 		}
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
+	}
+	public TermBO findCurrTerm() throws EMSException {
+		return (TermBO) commonDAO.firstEntity("FROM TermBO bo WHERE bo.isCurrentTerm = ?", Code.getValue("Indicator", "S1"));
 	}
 	
 	public List<GradeBO> findGradeByVO(GradeVO gradeVO) throws EMSException{
