@@ -7,11 +7,10 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.ems.client.action.login.LoginAction;
-import com.ems.client.action.login.vo.LoginInfoVO;
 import com.ems.common.code.Code;
 import com.ems.common.model.vo.DicVO;
 import com.ems.common.util.BeanUtils;
+import com.ems.common.util.DateUtil;
 import com.ems.system.client.DirectAction;
 import com.google.gson.JsonArray;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
@@ -25,7 +24,7 @@ public class SystemAction extends DirectAction {
 	
 	@DirectMethod
 	public Date getSystemTime() {
-		return new Date();
+		return DateUtil.currData();
 	}
 	
 	@DirectMethod
@@ -58,15 +57,5 @@ public class SystemAction extends DirectAction {
 		}
 		
 		return dics;
-	}
-	
-	@DirectMethod
-	public LoginInfoVO getLoginInfo() {
-		LoginAction loginAction = this.getAction(LoginAction.class);
-		if (loginAction != null) {
-			return loginAction.getLoginInfo();
-		}
-		
-		return null;
 	}
 }
