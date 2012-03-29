@@ -381,7 +381,7 @@ Ext.define('Ext.toolbar.Paging', {
         if (!me.rendered) {
             return;
         }
-
+		
         pageData = me.getPageData();
         currPage = pageData.currentPage;
         pageCount = pageData.pageCount;
@@ -391,8 +391,10 @@ Ext.define('Ext.toolbar.Paging', {
         me.child('#inputItem').setValue(currPage);
         me.child('#first').setDisabled(currPage === 1);
         me.child('#prev').setDisabled(currPage === 1);
-        me.child('#next').setDisabled(currPage === pageCount);
-        me.child('#last').setDisabled(currPage === pageCount);
+//        me.child('#next').setDisabled(currPage === pageCount); // delete by chiknin
+//        me.child('#last').setDisabled(currPage === pageCount); // delete by chiknin
+        me.child('#next').setDisabled(currPage === (isNaN(pageCount) ? 1 : pageCount)); // add by chiknin
+        me.child('#last').setDisabled(currPage === (isNaN(pageCount) ? 1 : pageCount)); // add by chiknin
         me.child('#refresh').enable();
         me.updateInfo();
         me.fireEvent('change', me, pageData);
