@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="conf.hibernate">
-    <class name="CodeTableBO" table="code_table">
+    <class name="CodeTableBO" table="tb_code_table">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />

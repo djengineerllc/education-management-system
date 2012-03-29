@@ -60,10 +60,6 @@ xsi:schemaLocation="
 	</bean>
 	<!-- START: Code Manager -->
 	
-	<bean id="basicInfoService" class="com.ems.biz.basicInfo.service.impl.BasicInfoService">
-		<property name="commonDAO" ref="commonDAO" />
-	</bean>
-	
 	<bean id="commonDAO" class="com.ems.common.dao.CommonDAO">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
