@@ -108,13 +108,13 @@ public class BasicInfoServiceImpl implements IBasicInfoService {
 	public List<CourseBO> findCourseByVO(CourseVO courseVO) throws EMSException{
 		StringBuffer hql = new StringBuffer(" from CourseBO where 1=1 ");
 		List<Object> valueParam = new ArrayList<Object>();
-		if(!StringUtils.isNullBlank(courseVO.getCourseCnName())){
+		if(!StringUtils.isNullBlank(courseVO.getCourseName())){
 			hql.append(" and courseName like ? "); 
-			valueParam.add("%"+courseVO.getCourseCnName()+"%");
+			valueParam.add("%"+courseVO.getCourseName()+"%");
 		}
-		if(!StringUtils.isNullBlank(courseVO.getCourseEnName())){
+		if(!StringUtils.isNullBlank(courseVO.getCourseEngName())){
 			hql.append(" and courseEngName like ? "); 
-			valueParam.add("%"+courseVO.getCourseEnName()+"%");
+			valueParam.add("%"+courseVO.getCourseEngName()+"%");
 		}
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
