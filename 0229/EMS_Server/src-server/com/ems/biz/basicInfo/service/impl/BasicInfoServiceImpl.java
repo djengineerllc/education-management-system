@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
@@ -27,8 +31,11 @@ import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
 import conf.hibernate.TermBO;
 
-public class BasicInfoService implements IBasicInfoService {
+@Service("basicInfoService")
+public class BasicInfoServiceImpl implements IBasicInfoService {
 	
+	@Autowired
+	@Qualifier("commonDAO")
 	private ICommonDAO commonDAO;
 
 	public void save(Object obj) throws EMSRollbackableException {
@@ -159,15 +166,4 @@ public class BasicInfoService implements IBasicInfoService {
 	public void update(Object obj) throws EMSRollbackableException{
 		this.commonDAO.update(obj);
 	}
-
-	
-	/** GET **/
-	public ICommonDAO getCommonDAO() {
-		return commonDAO;
-	}
-
-	public void setCommonDAO(ICommonDAO commonDAO) {
-		this.commonDAO = commonDAO;
-	}
-
 }
