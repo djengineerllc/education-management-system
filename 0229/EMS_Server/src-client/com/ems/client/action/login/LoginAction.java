@@ -1,13 +1,11 @@
 package com.ems.client.action.login;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.fileupload.FileItem;
 
-import com.ems.client.action.login.vo.LoginInfoVO;
-import com.ems.client.action.login.vo.UserRoleVO;
+import com.ems.common.model.vo.LoginInfoVO;
+import com.ems.system.acl.bs.IUserBS;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
 import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
@@ -18,61 +16,50 @@ import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 @ActionScope(scope=Scope.SESSION)
 public class LoginAction extends DirectAction {
 	
+	private IUserBS userBS = this.getBean("userBS", IUserBS.class);
+	
 	private LoginInfoVO loginInfoVO = null;
 	
 	@DirectFormPostMethod
 	public ExtFormVO login(Map<String, String> formParameters, Map<String, FileItem> fileFields) {
-		String userName = formParameters.get("userName");
+		String loginName = formParameters.get("loginName");
 		String password = formParameters.get("password");
 		
 		ExtFormVO result = new ExtFormVO();
-		
-		if (!"admin".equalsIgnoreCase(userName) && !"test".equalsIgnoreCase(userName)) {
-			result.addError("userName", "用户名不存在");
+		if (result.isEmpty(loginName, "loginName", "用户名不能为空") 
+				|| result.isEmpty(password, "password", "密码不能为空")) {
 			return result;
 		}
 		
-		loginInfoVO = new LoginInfoVO();
-		loginInfoVO.setUserName(userName);
-		
-		if ("admin".equalsIgnoreCase(userName)) {
-			List<UserRoleVO> roles = new ArrayList<UserRoleVO>();
-			roles.add(new UserRoleVO(1, "admin"));
-			loginInfoVO.setRoles(roles);
-			loginInfoVO.setCurrentRole(roles.get(0));
-		}
-		
-		if ("test".equalsIgnoreCase(userName)) {
-			List<UserRoleVO> roles = new ArrayList<UserRoleVO>();
-			roles.add(new UserRoleVO(1, "admin"));
-			roles.add(new UserRoleVO(1, "student"));
-			roles.add(new UserRoleVO(1, "teacher"));
-			
-			loginInfoVO.setRoles(roles);
-			result.addProp("selectRole", true);
+		loginInfoVO = userBS.findLoginInfoVO(loginName, password);
+		if (loginInfoVO == null) {
+			result.addError("password", "用户名不存在或密码错误");
+			return result;
 		}
 		
 		result.setData(loginInfoVO);
+//		result.addProp("selectRole", true);
 		
 		return result;
 	}
 	
 	@DirectMethod
 	public void logout() {
+		this.loginInfoVO = null;
 		this.getSession().invalidate();
 	}
 	
 	@DirectMethod
 	public ExtFormVO selectRole(String userName, String role) {
-		UserRoleVO currentRole = null;
-		for (UserRoleVO userRoleVO : loginInfoVO.getRoles()) {
-			if (userRoleVO.getName().equals(role)) {
-				currentRole = userRoleVO;
-				break;
-			}
-		}
-		
-		loginInfoVO.setCurrentRole(currentRole);
+//		UserRoleVO currentRole = null;
+//		for (UserRoleVO userRoleVO : loginInfoVO.getRoles()) {
+//			if (userRoleVO.getName().equals(role)) {
+//				currentRole = userRoleVO;
+//				break;
+//			}
+//		}
+//		
+//		loginInfoVO.setCurrentRole(currentRole);
 		
 		return ExtFormVO.success(loginInfoVO);
 	}
