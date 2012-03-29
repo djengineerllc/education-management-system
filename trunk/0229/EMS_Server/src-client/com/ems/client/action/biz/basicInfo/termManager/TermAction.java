@@ -13,6 +13,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
 
 import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -35,45 +36,28 @@ public class TermAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadTerm(JsonArray params) {
-		try{
-			List<TermVO> termVOList = new ArrayList<TermVO>();
-			TermVO termVO = null;
-			List<TermBO> terms = this.basicInfoService.getAll(TermBO.class, " id desc ");
-			for(TermBO term:terms){
-				termVO = new TermVO();
-				termVO.setId(term.getId());
-				termVO.setTermName(term.getTermName());
-				termVO.setIsCurrentTerm("1".equals(term.getIsCurrentTerm())?"是":"否");
-				termVOList.add(termVO);
-			}
-			return new ExtPagingVO(termVOList);
-		}catch(Exception e){
-			logger.error("loadTerm--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
-		}
+		TermVO termVO_qry = BeanUtils.toBeanFromJsonFirst(params, TermVO.class);
+		List<TermBO> terms = this.basicInfoService.findTermByVO(termVO_qry);
+		return new ExtPagingVO(terms);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		TermVO termVO = BeanUtils.toBeanFromMap(formParameters, TermVO.class);
+		TermBO termBO = BeanUtils.toBeanFromMap(formParameters, TermBO.class);
 		ExtFormVO result = new ExtFormVO();
 		List<TermBO> terms = this.basicInfoService.getAll(TermBO.class, " id desc ");
 		for(TermBO term:terms){
-			if(term.getTermName().equals(termVO.getTermName())){
-				result.addError("termName", String.format("学期[%s]已重复", termVO.getTermName()));
+			if(term.getTermName().equals(termBO.getTermName())){
+				result.addError("termName", String.format("学期[%s]已重复", termBO.getTermName()));
 				return result;
 			}
 		}
-		TermBO termBO = new TermBO();
-		termBO.setTermName(termVO.getTermName());
-		termBO.setIsCurrentTerm(termVO.getIsCurrentTerm());
 		termBO.setCreateTime(new Date());
 		this.basicInfoService.save(termBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		System.out.println("getFormData termId = " + id);
 		TermVO termVO = null;
 		TermBO termBO = null;
 		if(id != null){
@@ -87,13 +71,10 @@ public class TermAction extends DirectAction {
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		TermVO termVO = BeanUtils.toBeanFromMap(formParameters, TermVO.class);
+		TermBO termBO = BeanUtils.toBeanFromMap(formParameters, TermBO.class);
 		ExtFormVO result = new ExtFormVO();
-		TermBO term = this.basicInfoService.findById(TermBO.class, termVO.getId());
-		term.setTermName(termVO.getTermName());
-		term.setIsCurrentTerm(termVO.getIsCurrentTerm());
-		term.setUpdateTime(new Date());
-		this.basicInfoService.update(term);
+		termBO.setUpdateTime(new Date());
+		this.basicInfoService.update(termBO);
 		return result;
 	}
 	

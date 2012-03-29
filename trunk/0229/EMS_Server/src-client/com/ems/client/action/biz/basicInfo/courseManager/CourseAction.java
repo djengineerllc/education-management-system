@@ -1,7 +1,6 @@
 package com.ems.client.action.biz.basicInfo.courseManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -38,79 +37,42 @@ public class CourseAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadCourse(JsonArray params) {
-		try{
-			List<CourseVO> subjectVOList = new ArrayList<CourseVO>();
-			CourseVO subjectVO_qry = BeanUtils.toBeanFromJsonFirst(params, CourseVO.class);
-			List<CourseBO> subjectes = basicInfoService.findCourseByVO(subjectVO_qry);
-			for(CourseBO subject : subjectes){
-				CourseVO subjectVO = new CourseVO();
-				subjectVO.setId(subject.getId());
-				subjectVO.setCourseNo(subject.getCourseNo());
-				subjectVO.setCourseCnName(subject.getCourseName());
-				subjectVO.setCourseEnName(subject.getCourseEngName());
-				subjectVO.setCourseScore(subject.getCourseScore());
-				subjectVO.setCourseTime(subject.getCourseTime());
-				subjectVOList.add(subjectVO);
-			}
-			return new ExtPagingVO(subjectVOList);
-		}catch(Exception e){
-			logger.error("loadCourse--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
-		}
+		CourseVO subjectVO_qry = BeanUtils.toBeanFromJsonFirst(params, CourseVO.class);
+		List<CourseBO> courses = basicInfoService.findCourseByVO(subjectVO_qry);
+		return new ExtPagingVO(courses);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		CourseVO subjectVO = BeanUtils.toBeanFromMap(formParameters, CourseVO.class);
+		CourseBO courseBO = BeanUtils.toBeanFromMap(formParameters, CourseBO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<CourseBO> subjectes = basicInfoService.getAll(CourseBO.class, " id desc ");
-		for(CourseBO subject_ : subjectes){
-			if (subject_.getCourseName().equals(subjectVO.getCourseCnName())) {
-				result.addError("CourseCnName", String.format("课程[%s]已重复", subjectVO.getCourseCnName()));
+		List<CourseBO> courses = basicInfoService.getAll(CourseBO.class, " id desc ");
+		for(CourseBO course_ : courses){
+			if (course_.getCourseName().equals(courseBO.getCourseName())) {
+				result.addError("CourseCnName", String.format("课程[%s]已重复", courseBO.getCourseName()));
 				return result;
 			}
-			if(subject_.getCourseNo().equals(subjectVO.getCourseNo())){
-				result.addError("CourseNo", String.format("课程编号[%s]已重复", subjectVO.getCourseNo()));
+			if(course_.getCourseNo().equals(courseBO.getCourseNo())){
+				result.addError("CourseNo", String.format("课程编号[%s]已重复", courseBO.getCourseNo()));
 				return result;
 			}
 		}
-		CourseBO subject = new CourseBO();
-		subject.setCourseNo(subjectVO.getCourseNo());
-		subject.setCourseName(subjectVO.getCourseCnName());
-		subject.setCourseEngName(subjectVO.getCourseEnName());
-		subject.setCourseScore(subjectVO.getCourseScore());
-		subject.setCourseTime(subjectVO.getCourseTime().intValue());
-		subject.setCreateTime(new Date());
-		this.basicInfoService.save(subject);
+		courseBO.setCreateTime(new Date());
+		this.basicInfoService.save(courseBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		System.out.println("getFormData id = " + id);
-		CourseVO subjectVO = null;
 		CourseBO subject = null;
 		if(id != null){
 			subject = this.basicInfoService.findById(CourseBO.class, id);
-			subjectVO = new CourseVO();
-			subjectVO.setId(subject.getId());
-			subjectVO.setCourseNo(subject.getCourseNo());
-			subjectVO.setCourseCnName(subject.getCourseName());
-			subjectVO.setCourseEnName(subject.getCourseEngName());
-			subjectVO.setCourseTime(subject.getCourseTime());
-			subjectVO.setCourseScore(subject.getCourseScore());
 		}
-		return new ExtFormVO(subjectVO);
+		return new ExtFormVO(subject);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		CourseVO subjectVO = BeanUtils.toBeanFromMap(formParameters, CourseVO.class);
+		CourseBO subject = BeanUtils.toBeanFromMap(formParameters, CourseBO.class);
 		ExtFormVO result = new ExtFormVO();
-		CourseBO subject = this.basicInfoService.findById(CourseBO.class, subjectVO.getId());
-		subject.setCourseNo(subjectVO.getCourseNo());
-		subject.setCourseName(subjectVO.getCourseCnName());
-		subject.setCourseEngName(subjectVO.getCourseEnName());
-		subject.setCourseTime(subjectVO.getCourseTime());
-		subject.setCourseScore(subjectVO.getCourseScore());
 		subject.setUpdateTime(new Date());
 		this.basicInfoService.update(subject);
 		return result;

@@ -9,17 +9,23 @@ import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.vo.BookVO;
+import com.ems.common.model.vo.ClassVO;
 import com.ems.common.model.vo.CourseVO;
+import com.ems.common.model.vo.GradeVO;
 import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.RoomVO;
+import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.StringUtils;
 
 import conf.hibernate.BookBO;
+import conf.hibernate.ClassBO;
 import conf.hibernate.CourseBO;
+import conf.hibernate.GradeBO;
 import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
+import conf.hibernate.TermBO;
 
 public class BasicInfoService implements IBasicInfoService {
 	
@@ -32,6 +38,40 @@ public class BasicInfoService implements IBasicInfoService {
 	public <T> T findById(Class<T> entityClass, Serializable id)
 			throws EMSException {
 		return this.commonDAO.findById(entityClass, id);
+	}
+	
+	public List<TermBO> findTermByVO(TermVO termVO) throws EMSException{
+		String hql = "from TermBO where 1=1 ";
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(termVO.getTermName())){
+			hql = hql+" and termName like ? "; 
+			valueParam.add("%"+termVO.getTermName()+"%");
+		}
+		return this.commonDAO.findByHql(hql, valueParam.toArray());
+	}
+	
+	public List<GradeBO> findGradeByVO(GradeVO gradeVO) throws EMSException{
+		String hql = "from GradeBO where 1=1 ";
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(gradeVO.getGradeName())){
+			hql = hql+" and gradeName like ? "; 
+			valueParam.add("%"+gradeVO.getGradeName()+"%");
+		}
+		return this.commonDAO.findByHql(hql, valueParam.toArray());
+	}
+	
+	public List<ClassBO> findClassByVO(ClassVO classVO) throws EMSException{
+		String hql = "from ClassBO where 1=1 ";
+		List<Object> valueParam = new ArrayList<Object>();
+		if(classVO.getGradeId() != -1){
+			hql = hql+" and gradeId = ? "; 
+			valueParam.add(classVO.getGradeId());
+		}
+		if(!StringUtils.isNullBlank(classVO.getClassName())){
+			hql = hql+" and className like ? "; 
+			valueParam.add("%"+classVO.getClassName()+"%");
+		}
+		return this.commonDAO.findByHql(hql, valueParam.toArray());
 	}
 	
 	public List<ProjectBO> findProjectByVO(ProjectVO projectVO) throws EMSException{

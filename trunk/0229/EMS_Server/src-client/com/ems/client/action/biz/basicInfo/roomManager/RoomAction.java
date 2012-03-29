@@ -43,52 +43,40 @@ public class RoomAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadRoom(JsonArray params) {
-		try{
-			List<RoomVO> roomVOList = new ArrayList<RoomVO>();
-			RoomVO roomVO_qry = BeanUtils.toBeanFromJsonFirst(params, RoomVO.class);
-			List<RoomBO> rooms = this.basicInfoService.findRoomByVO(roomVO_qry);
-			for(RoomBO room_:rooms){
-				RoomVO roomVO = new RoomVO();
-				roomVO.setId(room_.getId());
-				roomVO.setRoomName(room_.getRoomName());
-				roomVO.setRoomSize(room_.getRoomSize());
-				roomVO.setTermId(room_.getTermId());
-				roomVO.setTermName(this.basicInfoService.findById(TermBO.class,room_.getTermId()).getTermName());
-				roomVO.setRoomStatus(room_.getRoomStatus());
-				roomVO.setRoomComment(room_.getRoomComment());
-				roomVOList.add(roomVO);
-			}
-			return new ExtPagingVO(roomVOList);
-		}catch(Exception e){
-			logger.error("loadRoom--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
+		List<RoomVO> roomVOList = new ArrayList<RoomVO>();
+		RoomVO roomVO_qry = BeanUtils.toBeanFromJsonFirst(params, RoomVO.class);
+		List<RoomBO> rooms = this.basicInfoService.findRoomByVO(roomVO_qry);
+		for(RoomBO room_:rooms){
+			RoomVO roomVO = new RoomVO();
+			roomVO.setId(room_.getId());
+			roomVO.setRoomName(room_.getRoomName());
+			roomVO.setRoomSize(room_.getRoomSize());
+			roomVO.setTermId(room_.getTermId());
+			roomVO.setTermName(this.basicInfoService.findById(TermBO.class,room_.getTermId()).getTermName());
+			roomVO.setRoomStatus(room_.getRoomStatus());
+			roomVO.setRoomComment(room_.getRoomComment());
+			roomVOList.add(roomVO);
 		}
+		return new ExtPagingVO(roomVOList);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
+		RoomBO roomBO = BeanUtils.toBeanFromMap(formParameters, RoomBO.class);
 		ExtFormVO result = new ExtFormVO();
 		List<RoomBO> rooms = this.basicInfoService.getAll(RoomBO.class, null);
 		for(RoomBO room_ : rooms){
-			if (room_.getRoomName().equals(roomVO.getRoomName())) {
-				result.addError("RoomName", String.format("教室[%s]已重复", roomVO.getRoomName()));
+			if (room_.getRoomName().equals(roomBO.getRoomName())) {
+				result.addError("RoomName", String.format("教室[%s]已重复", roomBO.getRoomName()));
 				return result;
 			}
 		}
-		RoomBO room = new RoomBO();
-		room.setRoomName(roomVO.getRoomName());
-		room.setRoomSize(roomVO.getRoomSize());
-		room.setRoomStatus(roomVO.getRoomStatus());
-		room.setTermId(roomVO.getTermId());
-		room.setRoomComment(roomVO.getRoomComment());
-		room.setCreateTime(new Date());
-		this.basicInfoService.save(room);
+		roomBO.setCreateTime(new Date());
+		this.basicInfoService.save(roomBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		System.out.println("getFormData id = " + id);
 		RoomVO roomVO = null;
 		RoomBO room = null;
 		if(id != null){
@@ -106,15 +94,10 @@ public class RoomAction extends DirectAction {
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		RoomVO roomVO = BeanUtils.toBeanFromMap(formParameters, RoomVO.class);
+		RoomBO roomBO = BeanUtils.toBeanFromMap(formParameters, RoomBO.class);
 		ExtFormVO result = new ExtFormVO();
-		RoomBO room = this.basicInfoService.findById(RoomBO.class, roomVO.getId());
-		room.setRoomName(roomVO.getRoomName());
-		room.setRoomSize(roomVO.getRoomSize());
-		room.setRoomStatus(roomVO.getRoomStatus());
-		room.setRoomComment(roomVO.getRoomComment());
-		room.setTermId(roomVO.getTermId());
-		this.basicInfoService.update(room);
+		roomBO.setUpdateTime(new Date());
+		this.basicInfoService.update(roomBO);
 		return result;
 	}
 	

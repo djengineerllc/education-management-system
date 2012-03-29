@@ -6,16 +6,22 @@ import java.util.List;
 import com.ems.common.exception.EMSException;
 import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.vo.BookVO;
+import com.ems.common.model.vo.ClassVO;
 import com.ems.common.model.vo.CourseVO;
+import com.ems.common.model.vo.GradeVO;
 import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.RoomVO;
+import com.ems.common.model.vo.TermVO;
 
 import conf.hibernate.BookBO;
+import conf.hibernate.ClassBO;
 import conf.hibernate.CourseBO;
+import conf.hibernate.GradeBO;
 import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
+import conf.hibernate.TermBO;
 
 public interface IBasicInfoService {
 	
@@ -32,6 +38,33 @@ public interface IBasicInfoService {
 	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException;
 	
 	public <T>T findById(Class<T> entityClass,Serializable id) throws EMSException;
+	
+	
+	/**
+	 * 查找学期信息
+	 * @param classVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<TermBO> findTermByVO(TermVO termVO) throws EMSException;
+	
+	
+	/**
+	 * 查找年级信息
+	 * @param classVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<GradeBO> findGradeByVO(GradeVO gradeVO) throws EMSException;
+	
+	
+	/**
+	 * 查找班级信息
+	 * @param classVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<ClassBO> findClassByVO(ClassVO classVO) throws EMSException;
 	/**
 	 * 查找项目信息
 	 * @param projectVO

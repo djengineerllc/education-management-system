@@ -41,42 +41,34 @@ public class ProfessAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadProfess(JsonArray params) {
-		try{
-			List<ProfessVO> professVOList = new ArrayList<ProfessVO>();
-			ProfessVO professVO_qry = BeanUtils.toBeanFromJsonFirst(params, ProfessVO.class);
-			List<ProfessBO> professes = basicInfoService.findProfessByVO(professVO_qry);
-			ProfessVO professVO = null;
-			for(ProfessBO profess : professes){
-				professVO = new ProfessVO();
-				professVO.setId(profess.getId());
-				professVO.setProfessName(profess.getProfessName());
-				professVO.setProjectId(profess.getProjectId());
-				professVO.setProjectName(basicInfoService.findById(ProjectBO.class, profess.getProjectId()).getProjectName());
-				professVOList.add(professVO);
-			}
-			return new ExtPagingVO(professVOList);
-		}catch(Exception e){
-			logger.error("loadProfess--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
+		List<ProfessVO> professVOList = new ArrayList<ProfessVO>();
+		ProfessVO professVO_qry = BeanUtils.toBeanFromJsonFirst(params, ProfessVO.class);
+		List<ProfessBO> professes = basicInfoService.findProfessByVO(professVO_qry);
+		ProfessVO professVO = null;
+		for(ProfessBO profess : professes){
+			professVO = new ProfessVO();
+			professVO.setId(profess.getId());
+			professVO.setProfessName(profess.getProfessName());
+			professVO.setProjectId(profess.getProjectId());
+			professVO.setProjectName(basicInfoService.findById(ProjectBO.class, profess.getProjectId()).getProjectName());
+			professVOList.add(professVO);
 		}
+		return new ExtPagingVO(professVOList);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		ProfessVO professVO = BeanUtils.toBeanFromMap(formParameters, ProfessVO.class);
+		ProfessBO professBO = BeanUtils.toBeanFromMap(formParameters, ProfessBO.class);
 		ExtFormVO result = new ExtFormVO();
 		List<ProfessBO> professes = this.basicInfoService.getAll(ProfessBO.class, null);
 		for(ProfessBO profess_ :professes ){
-			if (profess_.getProfessName().equals(professVO.getProfessName())) {
-				result.addError("professName", String.format("专业[%s]已重复", professVO.getProfessName()));
+			if (profess_.getProfessName().equals(professBO.getProfessName())) {
+				result.addError("professName", String.format("专业[%s]已重复", professBO.getProfessName()));
 				return result;
 			}
 		}
-		ProfessBO profess = new ProfessBO();
-		profess.setProfessName(professVO.getProfessName());
-		profess.setProjectId(professVO.getProjectId());
-		profess.setCreateTime(new Date());
-		this.basicInfoService.save(profess);
+		professBO.setCreateTime(new Date());
+		this.basicInfoService.save(professBO);
 		return result;
 	}
 	@DirectMethod
@@ -95,13 +87,10 @@ public class ProfessAction extends DirectAction {
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		ProfessVO professVO = BeanUtils.toBeanFromMap(formParameters, ProfessVO.class);
+		ProfessBO professBO = BeanUtils.toBeanFromMap(formParameters, ProfessBO.class);
 		ExtFormVO result = new ExtFormVO();
-		ProfessBO profess = this.basicInfoService.findById(ProfessBO.class, professVO.getId());
-		profess.setProfessName(professVO.getProfessName());
-		profess.setProjectId(professVO.getProjectId());
-		profess.setUpdateTime(new Date());
-		this.basicInfoService.update(profess);
+		professBO.setUpdateTime(new Date());
+		this.basicInfoService.update(professBO);
 		return result;
 	}
 	
