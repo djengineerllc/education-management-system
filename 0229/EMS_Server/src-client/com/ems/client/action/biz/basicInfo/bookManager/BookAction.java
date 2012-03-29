@@ -1,14 +1,12 @@
 package com.ems.client.action.biz.basicInfo.bookManager;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.fileupload.FileItem;
-
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.model.vo.BookVO;
 import com.ems.common.util.BeanUtils;
@@ -20,7 +18,6 @@ import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
-
 import conf.hibernate.BookBO;
 
 @ActionScope(scope=Scope.APPLICATION)
@@ -49,6 +46,7 @@ public class BookAction extends DirectAction  {
 				return result;
 			}
 		}
+		bookBO.setCreateTime(new Date());
 		this.basicInfoService.save(bookBO);
 		
 		return result;

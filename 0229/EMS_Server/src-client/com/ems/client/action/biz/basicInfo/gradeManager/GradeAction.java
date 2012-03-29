@@ -1,18 +1,14 @@
 package com.ems.client.action.biz.basicInfo.gradeManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
-
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.model.vo.GradeVO;
@@ -36,61 +32,40 @@ public class GradeAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadGrade(JsonArray params) {
-		try{
-			List<GradeVO> gradeVOList = new ArrayList<GradeVO>();
-			GradeVO gradeVO = null;
-			List<GradeBO> gradeList = basicInfoService.getAll(GradeBO.class,"id desc");
-			for (GradeBO grade_ : gradeList) {
-				gradeVO = new GradeVO();
-				gradeVO.setId(grade_.getId());
-				gradeVO.setGradeName(grade_.getGradeName());
-				gradeVOList.add(gradeVO);
-			}
-			return new ExtPagingVO(gradeVOList);
-		}catch(Exception e){
-			logger.error("loadGrade--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
-		}
+		GradeVO gradeVO_qry = BeanUtils.toBeanFromJsonFirst(params, GradeVO.class);
+		List<GradeBO> gradeList = basicInfoService.findGradeByVO(gradeVO_qry);
+		return new ExtPagingVO(gradeList);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		GradeVO gradeVO = BeanUtils.toBeanFromMap(formParameters, GradeVO.class);
+		GradeBO gradeBO = BeanUtils.toBeanFromMap(formParameters, GradeBO.class);
 		ExtFormVO result = new ExtFormVO();
 		List<GradeBO> gradeList = basicInfoService.getAll(GradeBO.class,"id desc");
 		for(GradeBO grade_:gradeList){
-			if (grade_.getGradeName().equalsIgnoreCase(gradeVO.getGradeName())) {
-				result.addError("gradeName", String.format("年级[%s]已重复", gradeVO.getGradeName()));
+			if (grade_.getGradeName().equalsIgnoreCase(gradeBO.getGradeName())) {
+				result.addError("gradeName", String.format("年级[%s]已重复", gradeBO.getGradeName()));
 				return result;
 			}
 		}
-		GradeBO grade = new GradeBO();
-		grade.setGradeName(gradeVO.getGradeName());
-		grade.setCreateTime(new Date());
-		basicInfoService.save(grade);
+		gradeBO.setCreateTime(new Date());
+		basicInfoService.save(gradeBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer gradeId) {
-		System.out.println("getFormData gradeId = " + gradeId);
 		GradeBO grade = null;
-		GradeVO gradeVO = null;
 		if(gradeId != null){
 			grade = this.basicInfoService.findById(GradeBO.class, gradeId);
-			gradeVO = new GradeVO();
-			gradeVO.setId(grade.getId());
-			gradeVO.setGradeName(grade.getGradeName());
 		}
-		return new ExtFormVO(gradeVO);
+		return new ExtFormVO(grade);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		GradeVO gradeVO = BeanUtils.toBeanFromMap(formParameters, GradeVO.class);
+		GradeBO gradeBO = BeanUtils.toBeanFromMap(formParameters, GradeBO.class);
 		ExtFormVO result = new ExtFormVO();
-		GradeBO grade = this.basicInfoService.findById(GradeBO.class, gradeVO.getId());
-		grade.setGradeName(gradeVO.getGradeName());
-		grade.setUpdateTime(new Date());
-		this.basicInfoService.update(grade);
+		gradeBO.setUpdateTime(new Date());
+		this.basicInfoService.update(gradeBO);
 		return result;
 	}
 	

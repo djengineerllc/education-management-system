@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
-
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.model.vo.ClassVO;
@@ -37,49 +36,41 @@ public class ClassAction extends DirectAction  {
 	
 	@DirectMethod
 	public ExtPagingVO loadClass(JsonArray params) {
-		try{
-			List<ClassVO> classVOList = new ArrayList<ClassVO>();
-			ClassVO classVO = null;
-			List<ClassBO> classes = basicInfoService.getAll(ClassBO.class, " id desc ");
-			for(ClassBO classBO : classes){
-				classVO = new ClassVO();
-				classVO.setId(classBO.getId());
-				classVO.setClassName(classBO.getClassName());
-				classVO.setGradeId(classBO.getGradeId());
-				classVO.setGradeName(basicInfoService.findById(GradeBO.class, classBO.getGradeId()).getGradeName());
-				classVO.setStudentNum(classBO.getStudentNum());
-				classVOList.add(classVO);
-			}
-			return new ExtPagingVO(classVOList);
-		}catch(Exception e){
-			logger.error("loadClass--error--",e);
-			throw new IllegalArgumentException(e.getMessage());
+		ClassVO classVO_qry = BeanUtils.toBeanFromJsonFirst(params, ClassVO.class);
+		ClassVO classVO = null;
+		List<ClassVO> classVOList = new ArrayList<ClassVO>();
+		List<ClassBO> classes = basicInfoService.findClassByVO(classVO_qry);
+		for(ClassBO classBO : classes){
+			classVO = new ClassVO();
+			classVO.setId(classBO.getId());
+			classVO.setClassName(classBO.getClassName());
+			classVO.setGradeId(classBO.getGradeId());
+			classVO.setGradeName(basicInfoService.findById(GradeBO.class, classBO.getGradeId()).getGradeName());
+			classVO.setStudentNum(classBO.getStudentNum());
+			classVOList.add(classVO);
 		}
+		return new ExtPagingVO(classVOList);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		ClassVO classVO = BeanUtils.toBeanFromMap(formParameters, ClassVO.class);
+		ClassBO classBO = BeanUtils.toBeanFromMap(formParameters, ClassBO.class);
+		
 		ExtFormVO result = new ExtFormVO();
 		List<ClassBO> classes = basicInfoService.getAll(ClassBO.class, " id desc ");
 		for(ClassBO classBO_ : classes){
-			if (classBO_.getClassName().equals(classVO.getClassName())
-					&& classBO_.getGradeId() == classVO.getGradeId()) {
-				result.addError("className", String.format("班级[%s]已重复", classVO.getClassName()));
+			if (classBO_.getClassName().equals(classBO.getClassName())
+					&& classBO_.getGradeId() == classBO.getGradeId()) {
+				result.addError("className", String.format("班级[%s]已重复", classBO.getClassName()));
 				return result;
 			}
 		}
-		ClassBO classBO = new ClassBO();
-		classBO.setClassName(classVO.getClassName());
-		classBO.setGradeId(classVO.getGradeId());
-		classBO.setStudentNum(classVO.getStudentNum());
 		classBO.setCreateTime(new Date());
 		this.basicInfoService.save(classBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		System.out.println("getFormData classId = " + id);
 		ClassBO classBO = null;
 		ClassVO classVO = null;
 		if(id != null){
@@ -95,12 +86,8 @@ public class ClassAction extends DirectAction  {
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		ClassVO classVO = BeanUtils.toBeanFromMap(formParameters, ClassVO.class);
+		ClassBO classBO = BeanUtils.toBeanFromMap(formParameters, ClassBO.class);
 		ExtFormVO result = new ExtFormVO();
-		ClassBO classBO = this.basicInfoService.findById(ClassBO.class, classVO.getId());
-		classBO.setClassName(classVO.getClassName());
-		classBO.setGradeId(classVO.getGradeId());
-		classBO.setStudentNum(classVO.getStudentNum());
 		classBO.setUpdateTime(new Date());
 		this.basicInfoService.update(classBO);
 		return result;
