@@ -20,7 +20,7 @@ ems.main.MainActions.REMOTING_API = {
   actions: {
     ems_main_MainActions_MainAction: [
       {
-        name: 'getMenu'/*(String) => java.util.List */,
+        name: 'getMenu'/*(Integer) => java.util.List */,
         len: 1,
         formHandler: false
       }

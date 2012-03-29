@@ -1,0 +1,4 @@
+Ext.namespace("ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherActions");
+ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherActions.PROVIDER_BASE_URL=window.location.protocol+"//"+window.location.host+"/EMS_Server/djn/directprovider";
+ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherActions.POLLING_URLS={};
+ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherActions.REMOTING_API={url:ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherActions.PROVIDER_BASE_URL,type:"remoting",actions:{ems_biz_syllabus_syllabusbyteacher_SyllabusByTeacherActions_SyllabusByTeacherAction:[{name:"printSyllbusPlan",len:2,formHandler:false},{name:"loadList",len:1,formHandler:false}]}};
