@@ -4,8 +4,7 @@ Ext.define('ems.core.Requires', {
 		'Ext.tip.QuickTipManager',
 		'Ext.util.KeyMap',
 		'Ext.form.Basic',
-		
-		,'ems.core.Module', 
+		'ems.core.Module', 
 		'ems.core.Actions', 
 		'ems.core.UI',
 		'ems.core.EventBus', 
