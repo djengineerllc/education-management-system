@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-03-30 20:43:56
+Date: 2012-03-30 23:03:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -370,7 +370,7 @@ CREATE TABLE `ts_user_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login_name` varchar(20) CHARACTER SET gbk DEFAULT NULL,
   `user_name` varchar(20) CHARACTER SET gbk DEFAULT NULL,
-  `password` varchar(16) CHARACTER SET gbk DEFAULT NULL,
+  `password` char(32) CHARACTER SET gbk DEFAULT NULL,
   `email` varchar(255) CHARACTER SET gbk DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
@@ -378,12 +378,12 @@ CREATE TABLE `ts_user_info` (
 -- ----------------------------
 -- Records of ts_user_info
 -- ----------------------------
-INSERT INTO ts_user_info VALUES ('1', 'admin', '系统管理员', 'admin', null);
-INSERT INTO ts_user_info VALUES ('2', 'teacher', '教师1', 'teacher', null);
-INSERT INTO ts_user_info VALUES ('3', 'fdy', '辅导员1', 'fdy', null);
-INSERT INTO ts_user_info VALUES ('4', 'student', '学生1', 'student', null);
-INSERT INTO ts_user_info VALUES ('5', 'caiwu', '财务1', 'caiwu', null);
-INSERT INTO ts_user_info VALUES ('6', 'jwc', '教务处1', 'jwc', null);
+INSERT INTO ts_user_info VALUES ('1', 'admin', '系统管理员', '202cb962ac59075b964b07152d234b70', null);
+INSERT INTO ts_user_info VALUES ('2', 'teacher', '教师1', '202cb962ac59075b964b07152d234b70', null);
+INSERT INTO ts_user_info VALUES ('3', 'fdy', '辅导员1', '202cb962ac59075b964b07152d234b70', null);
+INSERT INTO ts_user_info VALUES ('4', 'student', '学生1', '202cb962ac59075b964b07152d234b70', null);
+INSERT INTO ts_user_info VALUES ('5', 'caiwu', '财务1', '202cb962ac59075b964b07152d234b70', null);
+INSERT INTO ts_user_info VALUES ('6', 'jwc', '教务处1', '202cb962ac59075b964b07152d234b70', null);
 
 -- ----------------------------
 -- Table structure for `ts_user_role_rel`
