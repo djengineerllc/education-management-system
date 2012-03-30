@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
 import com.ems.common.model.vo.LoginInfoVO;
-import com.ems.system.acl.bs.IUserBS;
+import com.ems.system.acl.bs.IRealmBS;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
 import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod;
@@ -16,7 +16,7 @@ import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 @ActionScope(scope=Scope.SESSION)
 public class LoginAction extends DirectAction {
 	
-	private IUserBS userBS = this.getBean("userBS", IUserBS.class);
+	private IRealmBS realmBS = this.getBean("realmBS", IRealmBS.class);
 	
 	private LoginInfoVO loginInfoVO = null;
 	
@@ -31,7 +31,7 @@ public class LoginAction extends DirectAction {
 			return result;
 		}
 		
-		loginInfoVO = userBS.findLoginInfoVO(loginName, password);
+		loginInfoVO = realmBS.findLoginInfoVO(loginName, password);
 		if (loginInfoVO == null) {
 			result.addError("password", "用户名不存在或密码错误");
 			return result;
