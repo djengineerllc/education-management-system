@@ -12,15 +12,15 @@ import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
 import com.ems.common.model.vo.LoginInfoVO;
 import com.ems.common.util.MD5;
-import com.ems.system.acl.bs.IUserBS;
+import com.ems.system.acl.bs.IRealmBS;
 import com.ems.system.client.vo.MenuItemVO;
 
 import conf.hibernate.MenuInfoBO;
 import conf.hibernate.RoleInfoBO;
 import conf.hibernate.UserInfoBO;
 
-@Service("userBS")
-public class UserBSImpl implements IUserBS {
+@Service("realmBS")
+public class RealmBSImpl implements IRealmBS {
 
 	@Autowired
 	@Qualifier("commonDAO")
@@ -39,11 +39,22 @@ public class UserBSImpl implements IUserBS {
 			loginInfoVO.setLoginName(userInfoBO.getLoginName());
 			
 			RoleInfoBO roleInfoBO = (RoleInfoBO)commonDAO.firstEntity("SELECT ri FROM UserRoleRelBO urr, RoleInfoBO ri WHERE urr.roleId = ri.id AND urr.userId = ?", userInfoBO.getId());
-			loginInfoVO.setRoleId(roleInfoBO.getId());
-			loginInfoVO.setRoleName(roleInfoBO.getRoleName());
-			
-			if (Code.eqValue("Role", "student", roleInfoBO.getRoleCd())) {
-				// 学生  年级/班级/专业/项目/...
+			if (roleInfoBO != null) {
+				loginInfoVO.setRoleId(roleInfoBO.getId());
+				loginInfoVO.setRoleCd(roleInfoBO.getRoleCd());
+				loginInfoVO.setRoleName(roleInfoBO.getRoleName());
+				
+				if (Code.eqValue("Role", "student", roleInfoBO.getRoleCd())) {
+					loginInfoVO.setStuNo("1234567890");
+					loginInfoVO.setStuGradeId(7);
+					loginInfoVO.setStuGradeName(Code.getName("Grade", "7"));
+					loginInfoVO.setStuClassId(5);
+					loginInfoVO.setStuClassName(Code.getName("Class", "4"));
+					loginInfoVO.setStuProjectId(1);
+					loginInfoVO.setStuProjectName(Code.getName("Project", "1"));
+					loginInfoVO.setStuProfessId(3);
+					loginInfoVO.setStuProfessName(Code.getName("Professional", "3"));
+				}
 			}
 			
 			loginInfoVO.setCurrTerm("4"); // TODO
