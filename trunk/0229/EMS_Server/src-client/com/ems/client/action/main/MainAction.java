@@ -14,13 +14,13 @@ import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 @ActionScope(scope=Scope.APPLICATION)
 public class MainAction extends DirectAction {
 	
-	private IRealmBS userBS = this.getBean("userBS", IRealmBS.class);
+	private IRealmBS realmBS = this.getBean("realmBS", IRealmBS.class);
 
 	@DirectMethod
 	public List<MenuItemVO> getMenu(Integer menuId) {
 		LoginInfoVO loginInfoVO = this.getAction(LoginAction.class).getLoginInfo();
 		
-		List<MenuItemVO> menu = userBS.findMenuList(loginInfoVO.getUserId(), menuId);
+		List<MenuItemVO> menu = realmBS.findMenuList(loginInfoVO.getUserId(), menuId);
 		
 		return menu;
 	}
