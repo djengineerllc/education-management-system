@@ -19,55 +19,72 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
+    <filter-mapping>
+    	<filter-name>encodingFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!--
+    <filter>
+        <filter-name>authFilter</filter-name>
+    	<filter-class>com.ems.client.filter.AuthFilter</filter-class>
+        <init-param>
+            <param-name>loginPage</param-name>
+            <param-value>index.html?</param-value>
+        </init-param>
+        <init-param>
+            <param-name>filterActionRegex</param-name>
+            <param-value>ems_system_.*|ems_main_.*|ems_biz_.*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+    	<filter-name>authFilter</filter-name>
+    	<url-pattern>/djn/directprovider/*</url-pattern>
+    </filter-mapping>
+    -->
 	
 	<!-- DirectJNgine servlet -->
 	<servlet>
 		<servlet-name>DjnServlet</servlet-name>
 		<servlet-class>com.softwarementors.extjs.djn.servlet.DirectJNgineServlet</servlet-class>
-    
 		<init-param>
 			<param-name>debug</param-name>
 			<param-value>true</param-value>
 		</init-param>   
-
 		<init-param>
 			<param-name>minify</param-name>
 			<param-value>true</param-value>
 		</init-param>
-
 		<init-param>
 			<param-name>createSourceFiles</param-name>
 			<param-value>true</param-value>
 		</init-param>
-
 		<init-param>
 			<param-name>providersUrl</param-name>
 			<param-value>djn/directprovider</param-value>
 		</init-param>
-
 		<init-param>
 			<param-name>contextPath</param-name>
 			<param-value>/EMS_Server</param-value>
 		</init-param>
-
 		<init-param>
 			<param-name>batchRequestsMultithreadingEnabled</param-name>
 			<param-value>true</param-value>
 		</init-param>
-    
 		<init-param>
 			<param-name>registryConfiguratorClass</param-name>
 			<param-value>com.ems.system.client.ActionRegistryConfigurator</param-value>
 		</init-param>
-	
+		<init-param>
+			<param-name>dispatcherClass</param-name>
+			<param-value>com.ems.client.filter.ActionDispatcher</param-value>
+		</init-param>
 		<init-param>
 			<param-name>apis</param-name>
 			<param-value></param-value>
 		</init-param>
-    
 		<load-on-startup>1</load-on-startup>
 	</servlet>  
-  
 	<servlet-mapping>
 		<servlet-name>DjnServlet</servlet-name>
 		<url-pattern>/djn/directprovider/*</url-pattern>
