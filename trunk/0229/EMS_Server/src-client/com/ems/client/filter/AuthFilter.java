@@ -17,6 +17,10 @@ import com.ems.client.action.login.LoginAction;
 import com.ems.common.model.vo.LoginInfoVO;
 import com.ems.system.client.DirectAction;
 
+/**
+ * @author chiknin
+ * (保留)
+ */
 public class AuthFilter implements Filter {
 	
 	private FilterConfig config;
