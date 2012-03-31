@@ -362,6 +362,7 @@ Ems = ems.core.Ems = {
 			viewportModuleConfig = cfg.viewportModuleConfig;
 		
 		me.destroyAllModule(true);
+		me.unmask();
 		
 		me.rootEl = rootEl ? Ext.get(rootEl) : Ext.getBody();
 		me.requestModule(viewportModuleId, viewportModuleConfig, function(module) {
@@ -396,7 +397,8 @@ Ems = ems.core.Ems = {
 		
 		var response = Ext.Ajax.request(request);
 		if (response.status != 200) {
-			alert(response.statusText);
+//			alert(response.statusText);
+			EU.exception(response.responseText);
 			return {};
 		}
 		
@@ -411,6 +413,7 @@ Ems = ems.core.Ems = {
 //            style : "width:0px;height:0px;position:absolute;right:0;bottom:0;border:none;overflow:hidden"
 //			,src : url
 //        });
+		alert(url)
 		window.open(url);//, null, "status=no,toolbar=no,menubar=no,location=no"); // "height=0,width=0,status=no,toolbar=no,menubar=no,location=no");
 	},
 	getDirectStreamRequestUrl: function(moduleId, method, data, action) {
@@ -431,10 +434,11 @@ Ems = ems.core.Ems = {
 			loadMask: true,
 			scripts: true,
 			failure: function(response, opts) {
-				EU.showErrorDialog({
-					title: '系统异常',
-					msg: response.responseText //Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
-				});
+				EU.exception(response.responseText);
+//				EU.showErrorDialog({
+//					title: '系统异常',
+//					msg: response.responseText //Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
+//				});
 			}
 		}));
 	},
@@ -458,10 +462,11 @@ Ems = ems.core.Ems = {
 		
 		Ext.ElementLoader.override({
 			failure: function(elLoader, response, opts) {
-				EU.showErrorDialog({
-					title: '系统异常',
-					msg: '系统异常, 请联系管理员.'
-				});
+				EU.exception(response.responseText);
+//				EU.showErrorDialog({
+//					title: '系统异常',
+//					msg: '系统异常, 请联系管理员.'
+//				});
 			}
 		});
 		
