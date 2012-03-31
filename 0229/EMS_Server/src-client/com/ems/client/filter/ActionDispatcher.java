@@ -8,6 +8,9 @@ import com.softwarementors.extjs.djn.api.RegisteredMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.SsmDispatcher;
 import com.softwarementors.extjs.djn.servlet.ssm.WebContextManager;
 
+/**
+ * @author chiknin
+ */
 public class ActionDispatcher extends SsmDispatcher {
 	
 	public static final String ACTION_AUTH_REGEX = "ems_system_.*|ems_main_.*|ems_biz_.*";
