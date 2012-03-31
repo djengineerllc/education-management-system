@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EMS_Server" default="war" basedir=".">
+	<property name="build" value="build"/>
+	<property name="WEB-INF" value="WebContent/WEB-INF"/>
+	<property name="lib" value="${WEB-INF}/lib"/>
+	
+	<!-- 删除build路径 -->
+	<target name="clean">
+		<delete dir="${build}" />
+	</target>
+	
+	<!-- 把WebContent路径内容打出war包-->
+	<target name="war" depends="clean">
+		<war destfile="${build}/EMS_Server.war" webxml="${WEB-INF}/web.xml" encoding="UTF-8">
+			<fileset dir="${basedir}/WebContent"></fileset> 
+		</war>
+	</target>
+</project>
