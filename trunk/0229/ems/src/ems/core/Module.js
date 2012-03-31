@@ -117,10 +117,12 @@ Ext.define('ems.core.Module', { // Controller
 			p = p.concat(function(result, e) {
 				var tx = e.getTransaction();
 				if (!e.status) {
-					EU.showErrorDialog({
-						title: '系统异常',
-						msg: Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
-					});
+//					EU.showErrorDialog({
+//						title: '系统异常',
+//						msg: Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
+//					});
+					EU.exception(e.message);
+					return;
 				};
 				
 				cb.apply(s, [result, e]);

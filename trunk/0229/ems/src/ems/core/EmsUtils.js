@@ -96,6 +96,28 @@ Ext.define('ems.core.EmsUtils', {
 //	,showWindow: function(config) {
 //		return Ext.create('Ext.window.Window', config).show();
 //	},
+    
+    exception: function(message) {
+    	if (Ext.isString(message)) {
+    		var msgJson = (/{(.*)}/.exec(message) || '')[0]
+    		if (msgJson) {
+    			message = Ext.decode(msgJson);
+    		}
+    	}
+    	
+    	if (Ext.isObject(message)) {
+    		var errorCode = message.errorCode;
+    		if (errorCode == 'AccessDenied') {
+    			EU.showMsg('', message.errorMsg || errorCode);
+    			Ems.requestViewportModule();
+    		}
+    	} else {
+    		this.showErrorDialog({
+				title: '系统异常',
+				msg: message//Ext.String.format('Call to {0}.{1} failed with message:<xmp>{2}</xmp>', tx.action, tx.method, e.message)
+			});
+    	}
+	},
 
 	PRINT_FRAME_ID: '__print_frame__',
 	print: function(content) {
