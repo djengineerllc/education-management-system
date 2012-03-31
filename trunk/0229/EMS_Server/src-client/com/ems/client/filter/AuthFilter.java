@@ -30,7 +30,7 @@ public class AuthFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException 
 	{
 		HttpServletRequest request = (HttpServletRequest) req;
-		String action = request.getParameter("action");
+		String action = request.getParameter("action"); //  request.getParameter 与 DirectJNgineServlet request.getReader() 冲突
 		if (StringUtils.isEmpty(action)) {
 			action = request.getParameter("extAction");
 		}
