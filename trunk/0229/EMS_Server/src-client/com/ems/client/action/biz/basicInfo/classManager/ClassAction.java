@@ -50,7 +50,7 @@ public class ClassAction extends DirectAction  {
 			classVO.setId(classBO.getId());
 			classVO.setClassName(classBO.getClassName());
 			classVO.setGradeId(classBO.getGradeId());
-			classVO.setGradeName(Code.getName("Grade", classBO.getGradeId()+""));
+			classVO.setGradeName(Code.getName("Grade", classBO.getGradeId()));
 			classVO.setStudentNum(classBO.getStudentNum());
 			classVOList.add(classVO);
 		}
@@ -84,7 +84,7 @@ public class ClassAction extends DirectAction  {
 			classVO.setId(id);
 			classVO.setClassName(classBO.getClassName());
 			classVO.setGradeId(classBO.getGradeId());
-			classVO.setGradeName(basicInfoBS.findById(GradeBO.class, classBO.getGradeId()).getGradeName());
+			classVO.setGradeName(Code.getName("Grade", classBO.getGradeId()));
 			classVO.setStudentNum(classBO.getStudentNum());
 		}
 		return new ExtFormVO(classVO);
