@@ -5,6 +5,9 @@
 				"src" : "index.html",
 				"dest" : "index.html"
 			}, {
+				"src" : "lib/ext/ext.js",
+				"dest" : "lib/ext/ext.js"
+			}, {
 				"src" : "lib/ext/resources/",
 				"dest" : "lib/ext/resources"
 			}, {
@@ -12,14 +15,6 @@
 				"dest" : "src/ems/core/resources"
 			}],
 	"builds" : [{
-				"name" : "Ext-core",
-				"target" : "lib/ext/ext.js",
-				"compress" : true,
-				"files" : [{
-							"path" : "lib/ext/",
-							"name" : "ext.js"
-						}]
-			}, {
 				"name" : "Bootstrap",
 				"target" : "src/ems/bootstrap.js",
 				"compress" : true,
