@@ -12,6 +12,12 @@ public class BaseBO implements Serializable {
 	private Date createTime;
 	private Date updateTime;
 	
+//	public boolean equals(Object obj) {
+//	}
+//
+//	public int hashCode() {
+//	}
+
 	public Integer getId() {
 		return id;
 	}
