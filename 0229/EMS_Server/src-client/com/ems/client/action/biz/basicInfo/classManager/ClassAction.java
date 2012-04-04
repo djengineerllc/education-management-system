@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.log4j.Logger;
-import com.ems.biz.basicInfo.service.IBasicInfoService;
+
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.common.code.Code;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.model.vo.ClassVO;
@@ -37,15 +37,14 @@ import conf.hibernate.GradeBO;
 @ActionScope(scope=Scope.APPLICATION)
 public class ClassAction extends DirectAction  {
 	
-	private Logger logger = Logger.getLogger(this.getClass()); 
-	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
+	private IBasicInfoBS basicInfoBS = this.getBean("basicInfoBS", IBasicInfoBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadClass(JsonArray params) {
 		ClassVO classVO_qry = BeanUtils.toBeanFromJsonFirst(params, ClassVO.class);
 		ClassVO classVO = null;
 		List<ClassVO> classVOList = new ArrayList<ClassVO>();
-		List<ClassBO> classes = basicInfoService.findClassByVO(classVO_qry);
+		List<ClassBO> classes = basicInfoBS.findClassByVO(classVO_qry);
 		for(ClassBO classBO : classes){
 			classVO = new ClassVO();
 			classVO.setId(classBO.getId());
@@ -63,7 +62,7 @@ public class ClassAction extends DirectAction  {
 		ClassBO classBO = BeanUtils.toBeanFromMap(formParameters, ClassBO.class);
 		
 		ExtFormVO result = new ExtFormVO();
-		List<ClassBO> classes = basicInfoService.getAll(ClassBO.class, " id desc ");
+		List<ClassBO> classes = basicInfoBS.getAll(ClassBO.class, " id desc ");
 		for(ClassBO classBO_ : classes){
 			if (classBO_.getClassName().equals(classBO.getClassName())
 					&& classBO_.getGradeId() == classBO.getGradeId()) {
@@ -72,7 +71,7 @@ public class ClassAction extends DirectAction  {
 			}
 		}
 		classBO.setCreateTime(new Date());
-		this.basicInfoService.save(classBO);
+		basicInfoBS.save(classBO);
 		return result;
 	}
 	@DirectMethod
@@ -80,12 +79,12 @@ public class ClassAction extends DirectAction  {
 		ClassBO classBO = null;
 		ClassVO classVO = null;
 		if(id != null){
-			classBO = this.basicInfoService.findById(ClassBO.class, id);
+			classBO = basicInfoBS.findById(ClassBO.class, id);
 			classVO = new ClassVO();
 			classVO.setId(id);
 			classVO.setClassName(classBO.getClassName());
 			classVO.setGradeId(classBO.getGradeId());
-			classVO.setGradeName(basicInfoService.findById(GradeBO.class, classBO.getGradeId()).getGradeName());
+			classVO.setGradeName(basicInfoBS.findById(GradeBO.class, classBO.getGradeId()).getGradeName());
 			classVO.setStudentNum(classBO.getStudentNum());
 		}
 		return new ExtFormVO(classVO);
@@ -95,15 +94,15 @@ public class ClassAction extends DirectAction  {
 		ClassBO classBO = BeanUtils.toBeanFromMap(formParameters, ClassBO.class);
 		ExtFormVO result = new ExtFormVO();
 		classBO.setUpdateTime(new Date());
-		this.basicInfoService.update(classBO);
+		basicInfoBS.update(classBO);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			ClassBO classBO = basicInfoService.findById(ClassBO.class, id);
-			this.basicInfoService.delete(classBO);
+			ClassBO classBO = basicInfoBS.findById(ClassBO.class, id);
+			basicInfoBS.delete(classBO);
 		}
 		return new ExtFormVO();
 	}
