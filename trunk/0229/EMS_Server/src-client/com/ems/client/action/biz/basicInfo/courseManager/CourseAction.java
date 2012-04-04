@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 
 import com.ems.biz.basicInfo.bs.IBasicInfoBS;
-import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.model.vo.CourseVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
