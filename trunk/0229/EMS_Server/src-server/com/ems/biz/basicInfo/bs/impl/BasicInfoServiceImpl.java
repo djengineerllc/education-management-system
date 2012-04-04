@@ -1,4 +1,4 @@
-package com.ems.biz.basicInfo.service.impl;
+package com.ems.biz.basicInfo.bs.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.biz.basicInfo.bs.IBasicInfoService;
 import com.ems.common.code.Code;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;

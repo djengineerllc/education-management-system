@@ -1,4 +1,4 @@
-package com.ems.biz.basicInfo.service;
+package com.ems.biz.basicInfo.bs;
 
 import java.io.Serializable;
 import java.util.List;
