@@ -11,10 +11,13 @@
             <generator class="identity" />
         </id>
         <property name="termName" type="java.lang.String">
-            <column name="term_name" length="50" />
+            <column name="term_name" />
         </property>
         <property name="isCurrentTerm" type="java.lang.String">
-            <column name="is_current_term" length="1" />
+            <column name="is_current_term" />
+        </property>
+         <property name="syllabusStatus" type="java.lang.String">
+            <column name="syllabus_status"/>
         </property>
         <property name="createTime" type="java.util.Date">
             <column name="create_time"/>
