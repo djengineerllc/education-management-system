@@ -55,6 +55,9 @@ xsi:schemaLocation="
 				<value>classpath:/conf/hibernate</value>
 			</list>
 		</property>
+		<property name="entityInterceptor">
+			<bean class="com.ems.common.model.bo.BaseBOListener" />
+		</property>
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
