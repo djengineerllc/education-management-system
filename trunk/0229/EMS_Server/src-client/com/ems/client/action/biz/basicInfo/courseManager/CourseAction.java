@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.biz.basicInfo.service.IBasicInfoService;
 import com.ems.common.model.vo.CourseVO;
 import com.ems.common.util.BeanUtils;
@@ -33,12 +34,12 @@ import conf.hibernate.CourseBO;
 @ActionScope(scope=Scope.APPLICATION)
 public class CourseAction extends DirectAction {
 	
-	private IBasicInfoService basicInfoService = (IBasicInfoService) super.getBean("basicInfoService");
+	private IBasicInfoBS basicInfoBS = this.getBean("basicInfoBS", IBasicInfoBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadCourse(JsonArray params) {
 		CourseVO subjectVO_qry = BeanUtils.toBeanFromJsonFirst(params, CourseVO.class);
-		List<CourseBO> courses = basicInfoService.findCourseByVO(subjectVO_qry);
+		List<CourseBO> courses = basicInfoBS.findCourseByVO(subjectVO_qry);
 		return new ExtPagingVO(courses);
 	}
 	
@@ -46,7 +47,7 @@ public class CourseAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		CourseBO courseBO = BeanUtils.toBeanFromMap(formParameters, CourseBO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<CourseBO> courses = basicInfoService.getAll(CourseBO.class, " id desc ");
+		List<CourseBO> courses = basicInfoBS.getAll(CourseBO.class, " id desc ");
 		for(CourseBO course_ : courses){
 			if (course_.getCourseName().equals(courseBO.getCourseName())) {
 				result.addError("CourseCnName", String.format("课程[%s]已重复", courseBO.getCourseName()));
@@ -58,14 +59,14 @@ public class CourseAction extends DirectAction {
 			}
 		}
 		courseBO.setCreateTime(new Date());
-		this.basicInfoService.save(courseBO);
+		basicInfoBS.save(courseBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
 		CourseBO subject = null;
 		if(id != null){
-			subject = this.basicInfoService.findById(CourseBO.class, id);
+			subject = basicInfoBS.findById(CourseBO.class, id);
 		}
 		return new ExtFormVO(subject);
 	}
@@ -74,14 +75,14 @@ public class CourseAction extends DirectAction {
 		CourseBO subject = BeanUtils.toBeanFromMap(formParameters, CourseBO.class);
 		ExtFormVO result = new ExtFormVO();
 		subject.setUpdateTime(new Date());
-		this.basicInfoService.update(subject);
+		basicInfoBS.update(subject);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(CourseBO.class, id));
+			basicInfoBS.delete(basicInfoBS.findById(CourseBO.class, id));
 		}
 		return new ExtFormVO();
 	}
@@ -97,8 +98,4 @@ public class CourseAction extends DirectAction {
 		ExtFormVO formVO = new ExtFormVO();
 		return formVO;
 	}
-
-
-
-
 }
