@@ -38,7 +38,7 @@
 			<td rowSpan="10">${item.classCode}</td>
 			</#if>
 			<#if (item_index % 2) == 0>
-			<td rowSpan="${2}">${item.lesson}</td>
+			<td rowSpan="2">${item.lesson}</td>
 			</#if>
 			<td>${item.oeInd}</td>
 			<td>${item.monCourse}</td>
