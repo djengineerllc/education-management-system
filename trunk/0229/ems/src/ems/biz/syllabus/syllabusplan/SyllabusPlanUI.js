@@ -36,16 +36,21 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
 //                   ]
 //                },
                 columns: [{
-                    dataIndex: 'teamId',
+                    dataIndex: 'id',
                     text: '学期ID',
                     hidden: true,
                     flex: 1
-                },{
-                    dataIndex: 'teamName',
+                }, {
+                    dataIndex: 'termName',
                     text: '学期名',
                     flex: 1
-                },{
-                    dataIndex: 'syllabusState',
+                }, {
+                    dataIndex: 'isCurrentTerm',
+                    text: '是否当前学期',
+                    renderer: Dic.renderer('Indicator'),
+                    flex: 1
+                }, {
+                    dataIndex: 'syllabusStatus',
                     text: '是否已排课',
                     renderer: Dic.renderer('Indicator'),
                     flex: 1
