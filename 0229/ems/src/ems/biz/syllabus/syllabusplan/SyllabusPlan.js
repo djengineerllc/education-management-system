@@ -63,7 +63,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
 							} else {
 								me._onSuccess(bizAction);
 								win.close();
-								g.store.load();
+								me.down('grid').store.load();
 							}
 						}
 					})
