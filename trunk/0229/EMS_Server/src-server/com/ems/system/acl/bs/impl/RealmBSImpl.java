@@ -29,7 +29,7 @@ public class RealmBSImpl implements IRealmBS {
 	public LoginInfoVO findLoginInfoVO(String loginName, String password) throws EMSException {
 		
 		String md5_pwd = MD5.MD5Encode(password);
-		UserInfoBO userInfoBO = (UserInfoBO)commonDAO.firstEntity("FROM UserInfoBO bo WHERE bo.loginName = ? AND bo.password = ?", loginName, md5_pwd);
+		UserInfoBO userInfoBO = (UserInfoBO)commonDAO.unquieResult("FROM UserInfoBO bo WHERE bo.loginName = ? AND bo.password = ?", loginName, md5_pwd);
 		
 		LoginInfoVO loginInfoVO = null;
 		if (userInfoBO != null) {
@@ -38,7 +38,7 @@ public class RealmBSImpl implements IRealmBS {
 			loginInfoVO.setUserName(userInfoBO.getUserName());
 			loginInfoVO.setLoginName(userInfoBO.getLoginName());
 			
-			RoleInfoBO roleInfoBO = (RoleInfoBO)commonDAO.firstEntity("SELECT ri FROM UserRoleRelBO urr, RoleInfoBO ri WHERE urr.roleId = ri.id AND urr.userId = ?", userInfoBO.getId());
+			RoleInfoBO roleInfoBO = (RoleInfoBO)commonDAO.unquieResult("SELECT ri FROM UserRoleRelBO urr, RoleInfoBO ri WHERE urr.roleId = ri.id AND urr.userId = ?", userInfoBO.getId());
 			if (roleInfoBO != null) {
 				loginInfoVO.setRoleId(roleInfoBO.getId());
 				loginInfoVO.setRoleCd(roleInfoBO.getRoleCd());
