@@ -38,6 +38,7 @@ Ems = ems.core.Ems = {
 			ajaxTimeout: 60000,
 			enableQuickTips: true,
 			enableLocale: true,
+			localFolder: '/locale/',
 			enableBuffer: 10,
 //			stateProvider: 'Ext.state.CookieProvider',
 			lang: 'zh_CN',
@@ -174,7 +175,7 @@ Ems = ems.core.Ems = {
 	},
 	
 	updateLocale: function() {
-		if (this.config.lang) {
+		if (this.config.lang && Ems.Locale && Ems.Locale.update) {
 			Ext.defer(Ems.Locale.update, 10);
 		}
 	},
