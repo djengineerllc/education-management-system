@@ -9,8 +9,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.client.action.biz.syllabus.common.vo.SyllabusPlanVO;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
+import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectCrudAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -20,21 +22,18 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.TermBO;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class SyllabusPlanAction extends DirectCrudAction {
 	
+	private IBasicInfoBS basicInfoBS = this.getBean("basicInfoBS", IBasicInfoBS.class);
+	
 	@DirectMethod
 	public ExtPagingVO loadList(JsonArray params) {
+		List<TermBO> termBOList = basicInfoBS.findTermByVO(new TermVO());
 		
-		List items = new ArrayList();
-		
-		Map<String, Object> item = new HashMap<String, Object>();
-		item.put("teamId", "1");
-		item.put("teamName", "2012年第一学期");
-		item.put("syllabusState", "2");
-		items.add(item);
-		
-		return new ExtPagingVO(items);
+		return new ExtPagingVO(termBOList);
 	}
 	
 	@DirectMethod
@@ -79,7 +78,6 @@ public class SyllabusPlanAction extends DirectCrudAction {
 		List items = new ArrayList();
 		
 		SyllabusPlanVO spVO1 = new SyllabusPlanVO();
-		spVO1.setId(1);
 		spVO1.setLesson("12课");
 		spVO1.setClassCode("12CP");
 		spVO1.setOeInd("单");
@@ -101,21 +99,18 @@ public class SyllabusPlanAction extends DirectCrudAction {
 		items.add(spVO1);
 		
 		SyllabusPlanVO spVO2 = new SyllabusPlanVO();
-		spVO2.setId(2);
 		spVO2.setLesson("12课");
 		spVO2.setClassCode("12CP");
 		spVO2.setOeInd("双");
 		items.add(spVO2);
 		
 		SyllabusPlanVO spVO3 = new SyllabusPlanVO();
-		spVO3.setId(3);
 		spVO3.setLesson("12课");
 		spVO3.setClassCode("12SCF");
 		spVO3.setOeInd("单");
 		items.add(spVO3);
 		
 		SyllabusPlanVO spVO4 = new SyllabusPlanVO();
-		spVO4.setId(4);
 		spVO4.setLesson("12课");
 		spVO4.setClassCode("12SCF");
 		spVO4.setOeInd("双");
