@@ -59,7 +59,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	public TermBO findCurrTerm() throws EMSException {
-		return (TermBO) commonDAO.firstEntity("FROM TermBO bo WHERE bo.isCurrentTerm = ?", Code.getValue("Indicator", "S1"));
+		return (TermBO) commonDAO.unquieResult("FROM TermBO bo WHERE bo.isCurrentTerm = ?", Code.getValue("Indicator", "S1"));
 	}
 	
 	public List<GradeBO> findGradeByVO(GradeVO gradeVO) throws EMSException{
@@ -75,7 +75,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 	public List<ClassBO> findClassByVO(ClassVO classVO) throws EMSException{
 		String hql = "from ClassBO where 1=1 ";
 		List<Object> valueParam = new ArrayList<Object>();
-		if(classVO.getGradeId() != -1){
+		if(classVO.getGradeId() != null){
 			hql = hql+" and gradeId = ? "; 
 			valueParam.add(classVO.getGradeId());
 		}
