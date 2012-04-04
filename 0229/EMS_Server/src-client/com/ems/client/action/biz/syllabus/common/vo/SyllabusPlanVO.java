@@ -5,35 +5,41 @@ import java.io.Serializable;
 public class SyllabusPlanVO implements Serializable {
 	
 	private String lesson;
-	private String classCode;
-	private String teacher;
+	private Integer classId;
+	private Integer teacher;
+	private String teacherName;
 	private String course;
 	private String oeInd;
 	private Integer monId;
-	private String monCourse;
-	private String monTeacher;
-	private String monClass;
-	private String monRoom;
+	private Integer monCourse;
+	private Integer monTeacher;
+	private String monTeacherName;
+	private Integer monClass;
+	private Integer monRoom;
 	private Integer tueId;
-	private String tueCourse;
-	private String tueTeacher;
-	private String tueClass;
-	private String tueRoom;
+	private Integer tueCourse;
+	private Integer tueTeacher;
+	private String tueTeacherName;
+	private Integer tueClass;
+	private Integer tueRoom;
 	private Integer webId;
-	private String webCourse;
-	private String webTeacher;
-	private String webClass;
-	private String webRoom;
+	private Integer webCourse;
+	private Integer webTeacher;
+	private String webTeacherName;
+	private Integer webClass;
+	private Integer webRoom;
 	private Integer thuId;
-	private String thuCourse;
-	private String thuTeacher;
-	private String thuClass;
-	private String thuRoom;
+	private Integer thuCourse;
+	private Integer thuTeacher;
+	private String thuTeacherName;
+	private Integer thuClass;
+	private Integer thuRoom;
 	private Integer friId;
-	private String friCourse;
-	private String friTeacher;
-	private String friClass;
-	private String friRoom;
+	private Integer friCourse;
+	private Integer friTeacher;
+	private String friTeacherName;
+	private Integer friClass;
+	private Integer friRoom;
 	
 	public String getLesson() {
 		return lesson;
@@ -41,17 +47,23 @@ public class SyllabusPlanVO implements Serializable {
 	public void setLesson(String lesson) {
 		this.lesson = lesson;
 	}
-	public String getClassCode() {
-		return classCode;
+	public Integer getClassId() {
+		return classId;
 	}
-	public void setClassCode(String classCode) {
-		this.classCode = classCode;
+	public void setClassId(Integer classId) {
+		this.classId = classId;
 	}
-	public String getTeacher() {
+	public Integer getTeacher() {
 		return teacher;
 	}
-	public void setTeacher(String teacher) {
+	public void setTeacher(Integer teacher) {
 		this.teacher = teacher;
+	}
+	public String getTeacherName() {
+		return teacherName;
+	}
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
 	}
 	public String getCourse() {
 		return course;
@@ -71,28 +83,34 @@ public class SyllabusPlanVO implements Serializable {
 	public void setMonId(Integer monId) {
 		this.monId = monId;
 	}
-	public String getMonCourse() {
+	public Integer getMonCourse() {
 		return monCourse;
 	}
-	public void setMonCourse(String monCourse) {
+	public void setMonCourse(Integer monCourse) {
 		this.monCourse = monCourse;
 	}
-	public String getMonTeacher() {
+	public Integer getMonTeacher() {
 		return monTeacher;
 	}
-	public void setMonTeacher(String monTeacher) {
+	public void setMonTeacher(Integer monTeacher) {
 		this.monTeacher = monTeacher;
 	}
-	public String getMonClass() {
+	public String getMonTeacherName() {
+		return monTeacherName;
+	}
+	public void setMonTeacherName(String monTeacherName) {
+		this.monTeacherName = monTeacherName;
+	}
+	public Integer getMonClass() {
 		return monClass;
 	}
-	public void setMonClass(String monClass) {
+	public void setMonClass(Integer monClass) {
 		this.monClass = monClass;
 	}
-	public String getMonRoom() {
+	public Integer getMonRoom() {
 		return monRoom;
 	}
-	public void setMonRoom(String monRoom) {
+	public void setMonRoom(Integer monRoom) {
 		this.monRoom = monRoom;
 	}
 	public Integer getTueId() {
@@ -101,28 +119,34 @@ public class SyllabusPlanVO implements Serializable {
 	public void setTueId(Integer tueId) {
 		this.tueId = tueId;
 	}
-	public String getTueCourse() {
+	public Integer getTueCourse() {
 		return tueCourse;
 	}
-	public void setTueCourse(String tueCourse) {
+	public void setTueCourse(Integer tueCourse) {
 		this.tueCourse = tueCourse;
 	}
-	public String getTueTeacher() {
+	public Integer getTueTeacher() {
 		return tueTeacher;
 	}
-	public void setTueTeacher(String tueTeacher) {
+	public void setTueTeacher(Integer tueTeacher) {
 		this.tueTeacher = tueTeacher;
 	}
-	public String getTueClass() {
+	public String getTueTeacherName() {
+		return tueTeacherName;
+	}
+	public void setTueTeacherName(String tueTeacherName) {
+		this.tueTeacherName = tueTeacherName;
+	}
+	public Integer getTueClass() {
 		return tueClass;
 	}
-	public void setTueClass(String tueClass) {
+	public void setTueClass(Integer tueClass) {
 		this.tueClass = tueClass;
 	}
-	public String getTueRoom() {
+	public Integer getTueRoom() {
 		return tueRoom;
 	}
-	public void setTueRoom(String tueRoom) {
+	public void setTueRoom(Integer tueRoom) {
 		this.tueRoom = tueRoom;
 	}
 	public Integer getWebId() {
@@ -131,28 +155,34 @@ public class SyllabusPlanVO implements Serializable {
 	public void setWebId(Integer webId) {
 		this.webId = webId;
 	}
-	public String getWebCourse() {
+	public Integer getWebCourse() {
 		return webCourse;
 	}
-	public void setWebCourse(String webCourse) {
+	public void setWebCourse(Integer webCourse) {
 		this.webCourse = webCourse;
 	}
-	public String getWebTeacher() {
+	public Integer getWebTeacher() {
 		return webTeacher;
 	}
-	public void setWebTeacher(String webTeacher) {
+	public void setWebTeacher(Integer webTeacher) {
 		this.webTeacher = webTeacher;
 	}
-	public String getWebClass() {
+	public String getWebTeacherName() {
+		return webTeacherName;
+	}
+	public void setWebTeacherName(String webTeacherName) {
+		this.webTeacherName = webTeacherName;
+	}
+	public Integer getWebClass() {
 		return webClass;
 	}
-	public void setWebClass(String webClass) {
+	public void setWebClass(Integer webClass) {
 		this.webClass = webClass;
 	}
-	public String getWebRoom() {
+	public Integer getWebRoom() {
 		return webRoom;
 	}
-	public void setWebRoom(String webRoom) {
+	public void setWebRoom(Integer webRoom) {
 		this.webRoom = webRoom;
 	}
 	public Integer getThuId() {
@@ -161,28 +191,34 @@ public class SyllabusPlanVO implements Serializable {
 	public void setThuId(Integer thuId) {
 		this.thuId = thuId;
 	}
-	public String getThuCourse() {
+	public Integer getThuCourse() {
 		return thuCourse;
 	}
-	public void setThuCourse(String thuCourse) {
+	public void setThuCourse(Integer thuCourse) {
 		this.thuCourse = thuCourse;
 	}
-	public String getThuTeacher() {
+	public Integer getThuTeacher() {
 		return thuTeacher;
 	}
-	public void setThuTeacher(String thuTeacher) {
+	public void setThuTeacher(Integer thuTeacher) {
 		this.thuTeacher = thuTeacher;
 	}
-	public String getThuClass() {
+	public String getThuTeacherName() {
+		return thuTeacherName;
+	}
+	public void setThuTeacherName(String thuTeacherName) {
+		this.thuTeacherName = thuTeacherName;
+	}
+	public Integer getThuClass() {
 		return thuClass;
 	}
-	public void setThuClass(String thuClass) {
+	public void setThuClass(Integer thuClass) {
 		this.thuClass = thuClass;
 	}
-	public String getThuRoom() {
+	public Integer getThuRoom() {
 		return thuRoom;
 	}
-	public void setThuRoom(String thuRoom) {
+	public void setThuRoom(Integer thuRoom) {
 		this.thuRoom = thuRoom;
 	}
 	public Integer getFriId() {
@@ -191,28 +227,34 @@ public class SyllabusPlanVO implements Serializable {
 	public void setFriId(Integer friId) {
 		this.friId = friId;
 	}
-	public String getFriCourse() {
+	public Integer getFriCourse() {
 		return friCourse;
 	}
-	public void setFriCourse(String friCourse) {
+	public void setFriCourse(Integer friCourse) {
 		this.friCourse = friCourse;
 	}
-	public String getFriTeacher() {
+	public Integer getFriTeacher() {
 		return friTeacher;
 	}
-	public void setFriTeacher(String friTeacher) {
+	public void setFriTeacher(Integer friTeacher) {
 		this.friTeacher = friTeacher;
 	}
-	public String getFriClass() {
+	public String getFriTeacherName() {
+		return friTeacherName;
+	}
+	public void setFriTeacherName(String friTeacherName) {
+		this.friTeacherName = friTeacherName;
+	}
+	public Integer getFriClass() {
 		return friClass;
 	}
-	public void setFriClass(String friClass) {
+	public void setFriClass(Integer friClass) {
 		this.friClass = friClass;
 	}
-	public String getFriRoom() {
+	public Integer getFriRoom() {
 		return friRoom;
 	}
-	public void setFriRoom(String friRoom) {
+	public void setFriRoom(Integer friRoom) {
 		this.friRoom = friRoom;
 	}
 }

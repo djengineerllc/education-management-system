@@ -10,24 +10,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ems.biz.basicInfo.bs.IBasicInfoBS;
+import com.ems.biz.syllabus.bs.ISyllabusBS;
 import com.ems.client.action.biz.syllabus.common.vo.SyllabusPlanVO;
+import com.ems.common.code.Code;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
+import com.ems.common.model.vo.ClassVO;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
+import com.ems.common.util.BeanUtils.KeyNamingCallback;
 import com.ems.system.client.DirectCrudAction;
 import com.ems.system.client.vo.ExtFormVO;
 import com.ems.system.client.vo.ExtPagingVO;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
+import com.sun.org.omg.SendingContext.CodeBaseOperations;
 
+import conf.hibernate.ClassBO;
+import conf.hibernate.CodeTableBO;
+import conf.hibernate.SyllabusBO;
 import conf.hibernate.TermBO;
 
 @ActionScope(scope=Scope.APPLICATION)
 public class SyllabusPlanAction extends DirectCrudAction {
 	
 	private IBasicInfoBS basicInfoBS = this.getBean("basicInfoBS", IBasicInfoBS.class);
+	private ISyllabusBS syllabusBS = this.getBean("syllabusBS", ISyllabusBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadList(JsonArray params) {
@@ -39,24 +49,124 @@ public class SyllabusPlanAction extends DirectCrudAction {
 	@DirectMethod
 	public ExtPagingVO loadSyllabusPlanDetail(JsonArray params) {
 		Map<String, String> paramMap = BeanUtils.toMapFromJsonFirst(params);
-		String teamId = paramMap.get("teamId");
+		Integer termId = BeanUtils.toInteger(paramMap.get("id"));
 		
-		System.out.println(paramMap);
+		List<ClassBO> classBOList = basicInfoBS.findClassByVO(new ClassVO());
+		List<SyllabusBO> syllabusBOList = syllabusBS.findByTermId(termId);
+		Map<String, SyllabusBO> syllabusBOMap = BeanUtils.toMap(syllabusBOList, new KeyNamingCallback<SyllabusBO>() {
+			@Override
+			public String getKey(SyllabusBO item, List<SyllabusBO> list, int idx) {
+				return String.format("%s-%s-%s-%s", item.getLesson(), item.getClassId().toString(), item.getOeInd(), item.getWeek());
+			}
+		});
 		
-		List items = this.getTestData();
 		
-		return new ExtPagingVO(items);
+		List<SyllabusPlanVO> syllabusPlanVOList = new ArrayList<SyllabusPlanVO>();
+		SyllabusPlanVO syllabusPlanVO = null;
+		SyllabusBO syllabusBO = null;
+		for (CodeTableBO lessonBO : Code.getCodes("Lesson")) {
+			for (ClassBO classBO : classBOList) {
+				for (CodeTableBO weekOeIndBO : Code.getCodes("WeekOeInd")) {
+					syllabusPlanVO = new SyllabusPlanVO();
+					syllabusPlanVO.setLesson(lessonBO.getCodeValue());
+					syllabusPlanVO.setClassId(classBO.getId());
+					syllabusPlanVO.setOeInd(weekOeIndBO.getCodeValue());
+					
+					String baseKey = String.format("%s-%s-%s-", syllabusPlanVO.getLesson(), syllabusPlanVO.getClassId().toString(), syllabusPlanVO.getOeInd());
+					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S1"));
+					if (syllabusBO != null) {
+						syllabusPlanVO.setMonCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setMonTeacher(syllabusBO.getTeacherId());
+						syllabusPlanVO.setMonRoom(syllabusBO.getRoomId());
+					}
+					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S2"));
+					if (syllabusBO != null) {
+						syllabusPlanVO.setTueCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setTueTeacher(syllabusBO.getTeacherId());
+						syllabusPlanVO.setTueRoom(syllabusBO.getRoomId());
+					}
+					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S3"));
+					if (syllabusBO != null) {
+						syllabusPlanVO.setWebCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setWebTeacher(syllabusBO.getTeacherId());
+						syllabusPlanVO.setWebRoom(syllabusBO.getRoomId());
+					}
+					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S4"));
+					if (syllabusBO != null) {
+						syllabusPlanVO.setThuCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setThuTeacher(syllabusBO.getTeacherId());
+						syllabusPlanVO.setThuRoom(syllabusBO.getRoomId());
+					}
+					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S5"));
+					if (syllabusBO != null) {
+						syllabusPlanVO.setFriCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setFriTeacher(syllabusBO.getTeacherId());
+						syllabusPlanVO.setFriRoom(syllabusBO.getRoomId());
+					}
+					
+					syllabusPlanVOList.add(syllabusPlanVO);
+				}
+			}
+		}
+		
+		return new ExtPagingVO(syllabusPlanVOList);
 	}
 	
 	@DirectMethod
 	public ExtFormVO submitSyllabusPlanDetail(JsonArray params) {
-//		List<SyllabusPlanVO> syllabusPlanVOList = BeanUtils.toBeanFromJson(.get("data"), SyllabusPlanVO.class);
-//		
-//		for (int i = 0; i < syllabusPlanVOList.size(); i++) {
-//			syllabusPlanVOList.get(i).setId(i);
-//		}
+		JsonObject jsonObj = params.get(0).getAsJsonObject();
+		Integer termId = jsonObj.get("termId").getAsInt();
+		List<SyllabusPlanVO> syllabusPlanVOList = BeanUtils.toBeanFromJson(jsonObj.get("submitData").getAsJsonArray(), SyllabusPlanVO.class);
+		
+		List<SyllabusBO> boList = new ArrayList<SyllabusBO>();
+		SyllabusBO bo = null;
+		for (SyllabusPlanVO vo : syllabusPlanVOList) {
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S1"), vo.getMonId(), vo.getMonCourse(), vo.getMonTeacher(), vo.getMonRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S2"), vo.getTueId(), vo.getTueCourse(), vo.getTueTeacher(), vo.getTueRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S3"), vo.getWebId(), vo.getWebCourse(), vo.getWebTeacher(), vo.getWebRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S4"), vo.getThuId(), vo.getThuCourse(), vo.getThuTeacher(), vo.getThuRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S5"), vo.getFriId(), vo.getFriCourse(), vo.getFriTeacher(), vo.getFriRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+		}
+		syllabusBS.submitSyllabus(termId, boList);
 		
 		return ExtFormVO.success();
+	}
+	private SyllabusBO toSyllabusBO(Integer termId, SyllabusPlanVO vo, String week, Integer id, Integer course, Integer teacher, Integer room) {
+		if (course == null && teacher == null && room == null) {
+			return null;
+		}
+		
+		SyllabusBO bo = new SyllabusBO();
+		bo.setId(id);
+		bo.setTermId(termId);
+		bo.setClassId(vo.getClassId());
+		bo.setLesson(vo.getLesson());
+		bo.setOeInd(vo.getOeInd());
+		bo.setWeek(week);
+		bo.setCourseId(course);
+		bo.setTeacherId(teacher);
+		bo.setRoomId(room);
+		
+		return bo;
 	}
 	
 	@DirectMethod
@@ -76,72 +186,6 @@ public class SyllabusPlanAction extends DirectCrudAction {
 	
 	private List<SyllabusPlanVO> getTestData() {
 		List items = new ArrayList();
-		
-		SyllabusPlanVO spVO1 = new SyllabusPlanVO();
-		spVO1.setLesson("12课");
-		spVO1.setClassCode("12CP");
-		spVO1.setOeInd("单");
-		spVO1.setMonCourse("大学英语");
-		spVO1.setMonTeacher("小萌");
-		spVO1.setMonRoom("校东区102室");
-		spVO1.setTueCourse("大学英语");
-		spVO1.setTueTeacher("小萌");
-		spVO1.setTueRoom("校东区102室");
-		spVO1.setWebCourse("大学英语");
-		spVO1.setWebTeacher("小萌");
-		spVO1.setWebRoom("校东区102室");
-		spVO1.setThuCourse("大学英语");
-		spVO1.setThuTeacher("小萌");
-		spVO1.setThuRoom("校东区102室");
-		spVO1.setFriCourse("大学英语");
-		spVO1.setFriTeacher("小萌");
-		spVO1.setFriRoom("校东区102室");
-		items.add(spVO1);
-		
-		SyllabusPlanVO spVO2 = new SyllabusPlanVO();
-		spVO2.setLesson("12课");
-		spVO2.setClassCode("12CP");
-		spVO2.setOeInd("双");
-		items.add(spVO2);
-		
-		SyllabusPlanVO spVO3 = new SyllabusPlanVO();
-		spVO3.setLesson("12课");
-		spVO3.setClassCode("12SCF");
-		spVO3.setOeInd("单");
-		items.add(spVO3);
-		
-		SyllabusPlanVO spVO4 = new SyllabusPlanVO();
-		spVO4.setLesson("12课");
-		spVO4.setClassCode("12SCF");
-		spVO4.setOeInd("双");
-		spVO4.setMonCourse("大学英语");
-		spVO4.setMonTeacher("小萌");
-		spVO4.setMonRoom("校东区102室");
-		items.add(spVO4);
-		
-		SyllabusPlanVO spVO21 = new SyllabusPlanVO();
-		spVO21.setLesson("34课");
-		spVO21.setClassCode("12CP");
-		spVO21.setOeInd("单");
-		items.add(spVO21);
-		
-		SyllabusPlanVO spVO22 = new SyllabusPlanVO();
-		spVO22.setLesson("34课");
-		spVO22.setClassCode("12CP");
-		spVO22.setOeInd("双");
-		items.add(spVO22);
-		
-		SyllabusPlanVO spVO23 = new SyllabusPlanVO();
-		spVO23.setLesson("34课");
-		spVO23.setClassCode("12SCF");
-		spVO23.setOeInd("单");
-		items.add(spVO23);
-		
-		SyllabusPlanVO spVO24 = new SyllabusPlanVO();
-		spVO24.setLesson("34课");
-		spVO24.setClassCode("12SCF");
-		spVO24.setOeInd("双");
-		items.add(spVO24);
 		
 		return items;
 		
