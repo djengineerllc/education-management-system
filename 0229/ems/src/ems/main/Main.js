@@ -316,6 +316,29 @@ Ext.define('ems.main.Main', {
 				});
 				
 				return data;
+			},
+			
+			getData: function() {
+				var me = this,
+					s = me.store,
+					data = [], r, hasData;
+					
+				Ext.each(s.getRange(), function(record) {
+					r = {};
+					hasData = false
+					for (var r_f in record.data) {
+						if (!Ext.isEmpty(record.data[r_f])) {
+							r[r_f] = record.data[r_f];
+							hasData = true;
+						}
+					}
+					
+					if (hasData) {
+						data.push(r);
+					}
+				});
+				
+				return data;
 			}
 		});
 	}
