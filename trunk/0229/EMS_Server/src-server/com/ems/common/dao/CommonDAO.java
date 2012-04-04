@@ -2,11 +2,10 @@ package com.ems.common.dao;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -130,6 +129,9 @@ public class CommonDAO implements ICommonDAO {
 		return jdbcTemplate.queryForList(sql);
 	}
 
+	// -----------------
+	// START: by chiknin
+	// -----------------
 	public Object unquieResult(String hql, Object... values) {
 		List result = this.findByHql(hql, values);
 		if (result != null && result.size() > 0) {
@@ -138,6 +140,57 @@ public class CommonDAO implements ICommonDAO {
 
 		return null;
 	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List findPageListByHql(final String hqlString, final List paramValues, final int firstResult, final int maxResults) {
+		return (List) hibernateTemplate.execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query q = session.createQuery(hqlString);
+				
+				if (paramValues != null) {
+					for (int i = 0; i < paramValues.size(); i++) {
+						q.setParameter(i, paramValues.get(i));
+					}
+				}
+				
+				q.setFirstResult(firstResult);
+				q.setMaxResults(maxResults);
+				
+				return q.list();
+			}
+		});
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public int executeHql(final String hqlString, final List paramValues) {
+		return hibernateTemplate.execute(new HibernateCallback() {
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query q = session.createQuery(hqlString);
+				if (paramValues != null) {
+					for (int i = 0; i < paramValues.size(); i++) {
+						q.setParameter(i, paramValues.get(i));
+					}
+				}
+				
+				return q.executeUpdate();
+			}
+		});
+	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public int executeHql(final String hqlString, final Object paramValue) {
+		List paramValues = null;
+		if (paramValue != null) {
+			paramValues = new ArrayList(1);
+			paramValues.add(paramValue);
+		}
+		
+		return this.executeHql(hqlString, paramValues);
+	}
+	
+	// -----------------
+	// END: by chiknin
+	// -----------------
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
