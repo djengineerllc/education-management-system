@@ -92,6 +92,12 @@ public interface ICommonDAO {
 	 */
 	public List findBySql(String sql) ;
 	
+	// ==================
+	// 
+	// ==================
 	
-	public Object firstEntity(String hql, Object... value);
+	public Object unquieResult(String hql, Object... value);
+	public List findPageListByHql(final String hqlString, final List paramValues, final int firstResult, final int maxResults);
+	public int executeHql(final String hqlString, final List paramValues);
+	public int executeHql(final String hqlString, final Object paramValue);
 }
