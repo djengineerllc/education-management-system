@@ -14,6 +14,7 @@ import com.ems.biz.syllabus.bs.ISyllabusBS;
 import com.ems.client.action.biz.syllabus.common.vo.SyllabusPlanVO;
 import com.ems.common.code.Code;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
+import com.ems.common.exception.EMSException;
 import com.ems.common.model.vo.ClassVO;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
@@ -26,6 +27,7 @@ import com.google.gson.JsonObject;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
+import com.sun.xml.internal.ws.encoding.RootOnlyCodec;
 
 import conf.hibernate.ClassBO;
 import conf.hibernate.CodeTableBO;
@@ -50,6 +52,85 @@ public class SyllabusPlanAction extends DirectCrudAction {
 		Map<String, String> paramMap = BeanUtils.toMapFromJsonFirst(params);
 		Integer termId = BeanUtils.toInteger(paramMap.get("id"));
 		
+		List<SyllabusPlanVO> syllabusPlanVOList = this.getSyllabusPlanVOList(termId);
+		
+		return new ExtPagingVO(syllabusPlanVOList);
+	}
+	
+	@DirectMethod
+	public ExtFormVO submitSyllabusPlanDetail(JsonArray params) {
+		JsonObject jsonObj = params.get(0).getAsJsonObject();
+		Integer termId = jsonObj.get("termId").getAsInt();
+		List<SyllabusPlanVO> syllabusPlanVOList = BeanUtils.toBeanFromJson(jsonObj.get("submitData").getAsJsonArray(), SyllabusPlanVO.class);
+		
+		List<SyllabusBO> boList = new ArrayList<SyllabusBO>();
+		SyllabusBO bo = null;
+		for (SyllabusPlanVO vo : syllabusPlanVOList) {
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S1"), vo.getMonId(), vo.getMonCourse(), vo.getMonTeacher(), vo.getMonRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S2"), vo.getTueId(), vo.getTueCourse(), vo.getTueTeacher(), vo.getTueRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S3"), vo.getWebId(), vo.getWebCourse(), vo.getWebTeacher(), vo.getWebRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S4"), vo.getThuId(), vo.getThuCourse(), vo.getThuTeacher(), vo.getThuRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+			
+			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S5"), vo.getFriId(), vo.getFriCourse(), vo.getFriTeacher(), vo.getFriRoom());
+			if (bo != null) {
+				boList.add(bo);
+			}
+		}
+		syllabusBS.submitSyllabus(termId, boList);
+		
+		return ExtFormVO.success();
+	}
+	
+	@DirectMethod
+	public void printSyllbusPlan(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Integer termId = BeanUtils.toInteger(request.getParameter("id"));
+		
+		Map rootVO = new HashMap();
+		List<SyllabusPlanVO> syllabusPlanVOList = this.getSyllabusPlanVOList(termId);
+		rootVO.put("items", syllabusPlanVOList);
+		rootVO.put("classCount", syllabusPlanVOList.size() / 5 / 2);
+		rootVO.put("termId", termId);
+		
+		String data = (String) DataTransformerHelper.transform("DT_print_syllabusplan", rootVO);
+		
+		this.writeToResponse(response, data.getBytes("UTF-8"));
+	}
+	
+	private SyllabusBO toSyllabusBO(Integer termId, SyllabusPlanVO vo, String week, Integer id, Integer course, Integer teacher, Integer room) {
+		if (course == null && teacher == null && room == null) {
+			return null;
+		}
+		
+		SyllabusBO bo = new SyllabusBO();
+		bo.setId(id);
+		bo.setTermId(termId);
+		bo.setClassId(vo.getClassId());
+		bo.setLesson(vo.getLesson());
+		bo.setOeInd(vo.getOeInd());
+		bo.setWeek(week);
+		bo.setCourseId(course);
+		bo.setTeacherId(teacher);
+		bo.setRoomId(room);
+		
+		return bo;
+	}
+	
+	private List<SyllabusPlanVO> getSyllabusPlanVOList(Integer termId) throws EMSException {
 		List<ClassBO> classBOList = basicInfoBS.findClassByVO(new ClassVO());
 		List<SyllabusBO> syllabusBOList = syllabusBS.findByTermId(termId);
 		Map<String, SyllabusBO> syllabusBOMap = BeanUtils.toMap(syllabusBOList, new KeyNamingCallback<SyllabusBO>() {
@@ -57,7 +138,6 @@ public class SyllabusPlanAction extends DirectCrudAction {
 				return String.format("%s-%s-%s-%s", item.getLesson(), item.getClassId().toString(), item.getOeInd(), item.getWeek());
 			}
 		});
-		
 		
 		List<SyllabusPlanVO> syllabusPlanVOList = new ArrayList<SyllabusPlanVO>();
 		SyllabusPlanVO syllabusPlanVO = null;
@@ -107,85 +187,6 @@ public class SyllabusPlanAction extends DirectCrudAction {
 			}
 		}
 		
-		return new ExtPagingVO(syllabusPlanVOList);
-	}
-	
-	@DirectMethod
-	public ExtFormVO submitSyllabusPlanDetail(JsonArray params) {
-		JsonObject jsonObj = params.get(0).getAsJsonObject();
-		Integer termId = jsonObj.get("termId").getAsInt();
-		List<SyllabusPlanVO> syllabusPlanVOList = BeanUtils.toBeanFromJson(jsonObj.get("submitData").getAsJsonArray(), SyllabusPlanVO.class);
-		
-		List<SyllabusBO> boList = new ArrayList<SyllabusBO>();
-		SyllabusBO bo = null;
-		for (SyllabusPlanVO vo : syllabusPlanVOList) {
-			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S1"), vo.getMonId(), vo.getMonCourse(), vo.getMonTeacher(), vo.getMonRoom());
-			if (bo != null) {
-				boList.add(bo);
-			}
-			
-			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S2"), vo.getTueId(), vo.getTueCourse(), vo.getTueTeacher(), vo.getTueRoom());
-			if (bo != null) {
-				boList.add(bo);
-			}
-			
-			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S3"), vo.getWebId(), vo.getWebCourse(), vo.getWebTeacher(), vo.getWebRoom());
-			if (bo != null) {
-				boList.add(bo);
-			}
-			
-			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S4"), vo.getThuId(), vo.getThuCourse(), vo.getThuTeacher(), vo.getThuRoom());
-			if (bo != null) {
-				boList.add(bo);
-			}
-			
-			bo = this.toSyllabusBO(termId, vo, Code.getValue("Week", "S5"), vo.getFriId(), vo.getFriCourse(), vo.getFriTeacher(), vo.getFriRoom());
-			if (bo != null) {
-				boList.add(bo);
-			}
-		}
-		syllabusBS.submitSyllabus(termId, boList);
-		
-		return ExtFormVO.success();
-	}
-	private SyllabusBO toSyllabusBO(Integer termId, SyllabusPlanVO vo, String week, Integer id, Integer course, Integer teacher, Integer room) {
-		if (course == null && teacher == null && room == null) {
-			return null;
-		}
-		
-		SyllabusBO bo = new SyllabusBO();
-		bo.setId(id);
-		bo.setTermId(termId);
-		bo.setClassId(vo.getClassId());
-		bo.setLesson(vo.getLesson());
-		bo.setOeInd(vo.getOeInd());
-		bo.setWeek(week);
-		bo.setCourseId(course);
-		bo.setTeacherId(teacher);
-		bo.setRoomId(room);
-		
-		return bo;
-	}
-	
-	@DirectMethod
-	public void printSyllbusPlan(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String teamId = request.getParameter("teamId");
-		
-		Map rootVO = new HashMap();
-		
-		List<SyllabusPlanVO> items = this.getTestData();
-		rootVO.put("items", items);
-		rootVO.put("classCount", 2); // items.size() / 2 / 5);
-		
-		String data = (String) DataTransformerHelper.transform("DT_print_syllabusplan", rootVO);
-		
-		this.writeToResponse(response, data.getBytes("UTF-8"));
-	}
-	
-	private List<SyllabusPlanVO> getTestData() {
-		List items = new ArrayList();
-		
-		return items;
-		
+		return syllabusPlanVOList;
 	}
 }
