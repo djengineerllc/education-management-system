@@ -1,1 +1,1 @@
-sencha build -p build.jsb3 -d ./deploy/ems -v >log.txt
+lib\ext\jsbuilder\JSBuilder.bat --projectFile build.jsb3 --deployDir  ./deploy/ems --verbose
