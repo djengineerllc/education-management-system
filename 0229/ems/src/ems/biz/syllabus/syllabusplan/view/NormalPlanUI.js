@@ -15,6 +15,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			syllabusPlanGrid = me.down('#syllabusPlanGrid'),
 			title;
 		
+		
 		syllabusPlanGrid.store.load({
 			params: sltTerm
 		});
