@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
-import org.apache.log4j.Logger;
-import com.ems.biz.basicInfo.service.IBasicInfoService;
+
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.model.vo.GradeVO;
 import com.ems.common.util.BeanUtils;
@@ -27,13 +29,12 @@ import conf.hibernate.GradeBO;
 @ActionScope(scope=Scope.APPLICATION)
 public class GradeAction extends DirectAction {
 	
-	private Logger logger = Logger.getLogger(this.getClass()); 
-	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
+	private IBasicInfoBS basicInfoBS = this.getBean("basicInfoBS", IBasicInfoBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadGrade(JsonArray params) {
 		GradeVO gradeVO_qry = BeanUtils.toBeanFromJsonFirst(params, GradeVO.class);
-		List<GradeBO> gradeList = basicInfoService.findGradeByVO(gradeVO_qry);
+		List<GradeBO> gradeList = basicInfoBS.findGradeByVO(gradeVO_qry);
 		return new ExtPagingVO(gradeList);
 	}
 	
@@ -41,7 +42,7 @@ public class GradeAction extends DirectAction {
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		GradeBO gradeBO = BeanUtils.toBeanFromMap(formParameters, GradeBO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<GradeBO> gradeList = basicInfoService.getAll(GradeBO.class,"id desc");
+		List<GradeBO> gradeList = basicInfoBS.getAll(GradeBO.class,"id desc");
 		for(GradeBO grade_:gradeList){
 			if (grade_.getGradeName().equalsIgnoreCase(gradeBO.getGradeName())) {
 				result.addError("gradeName", String.format("年级[%s]已重复", gradeBO.getGradeName()));
@@ -49,14 +50,14 @@ public class GradeAction extends DirectAction {
 			}
 		}
 		gradeBO.setCreateTime(new Date());
-		basicInfoService.save(gradeBO);
+		basicInfoBS.save(gradeBO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer gradeId) {
 		GradeBO grade = null;
 		if(gradeId != null){
-			grade = this.basicInfoService.findById(GradeBO.class, gradeId);
+			grade = basicInfoBS.findById(GradeBO.class, gradeId);
 		}
 		return new ExtFormVO(grade);
 	}
@@ -65,7 +66,7 @@ public class GradeAction extends DirectAction {
 		GradeBO gradeBO = BeanUtils.toBeanFromMap(formParameters, GradeBO.class);
 		ExtFormVO result = new ExtFormVO();
 		gradeBO.setUpdateTime(new Date());
-		this.basicInfoService.update(gradeBO);
+		basicInfoBS.update(gradeBO);
 		return result;
 	}
 	
@@ -73,8 +74,8 @@ public class GradeAction extends DirectAction {
 	public ExtFormVO delete(Integer[] ids) {
 		GradeBO grade = null;
 		for (Integer id : ids) {
-			grade = this.basicInfoService.findById(GradeBO.class, id);
-			this.basicInfoService.delete(grade);
+			grade = basicInfoBS.findById(GradeBO.class, id);
+			basicInfoBS.delete(grade);
 		}
 		return new ExtFormVO();
 	}
