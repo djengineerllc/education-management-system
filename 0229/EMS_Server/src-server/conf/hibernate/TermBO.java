@@ -11,6 +11,7 @@ public class TermBO extends BaseBO {
 
 	private String termName;
 	private String isCurrentTerm;
+	private String syllabusStatus;
 	
 	public String getTermName() {
 		return termName;
@@ -23,5 +24,11 @@ public class TermBO extends BaseBO {
 	}
 	public void setIsCurrentTerm(String isCurrentTerm) {
 		this.isCurrentTerm = isCurrentTerm;
+	}
+	public String getSyllabusStatus() {
+		return syllabusStatus;
+	}
+	public void setSyllabusStatus(String syllabusStatus) {
+		this.syllabusStatus = syllabusStatus;
 	}
 }
