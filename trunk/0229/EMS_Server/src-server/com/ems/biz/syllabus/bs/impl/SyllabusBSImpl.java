@@ -25,7 +25,6 @@ public class SyllabusBSImpl implements ISyllabusBS {
 		return commonDAO.findByHql("FROM SyllabusBO bo WHERE bo.termId = ? ORDER BY bo.id ASC", termId);
 	}
 
-	@Override
 	public void submitSyllabus(Integer termId, List<SyllabusBO> boList) throws EMSException {
 		commonDAO.executeHql("DELETE FROM SyllabusBO bo WHERE bo.termId = ?", termId);
 		
