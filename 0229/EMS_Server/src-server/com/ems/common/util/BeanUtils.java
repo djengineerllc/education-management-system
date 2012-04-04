@@ -3,7 +3,6 @@ package com.ems.common.util;
 import java.beans.PropertyDescriptor;
 import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -147,7 +146,24 @@ public class BeanUtils extends org.springframework.beans.BeanUtils{
 		}
 	}
 	
+	public static interface KeyNamingCallback<T> {
+		public String getKey(T item, List<T> list, int idx);
+	}
+	public static <T> Map<String, T> toMap(List<T> list, KeyNamingCallback callback) {
+		Map<String, T> result = new HashMap<String, T>();
+		for (int i = 0; i < list.size(); i++) {
+			result.put(callback.getKey(list.get(i), list, i), list.get(i));
+		}
+		return result;
+	}
 	
+	public static Integer toInteger(Object obj) {
+		if (obj == null) {
+			return null;
+		}
+		
+		return Integer.valueOf(obj.toString());
+	}
 	
 	
 	
