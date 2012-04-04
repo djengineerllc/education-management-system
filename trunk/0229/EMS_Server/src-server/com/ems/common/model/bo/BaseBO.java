@@ -12,11 +12,29 @@ public class BaseBO implements Serializable {
 	private Date createTime;
 	private Date updateTime;
 	
-//	public boolean equals(Object obj) {
-//	}
-//
-//	public int hashCode() {
-//	}
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof BaseBO)) {
+			return false;
+		}
+		
+		final BaseBO bo = (BaseBO) other;
+		if (this.id != null && bo.getId() != null && this.id.equals(bo.getId())) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	public int hashCode() {
+		if (this.id == null) {
+			return super.hashCode();
+		}
+		
+		return (29 * super.hashCode()) + this.id.hashCode();
+	}
 
 	public Integer getId() {
 		return id;
