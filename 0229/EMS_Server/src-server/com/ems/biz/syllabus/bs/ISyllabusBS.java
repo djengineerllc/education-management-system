@@ -8,4 +8,6 @@ import conf.hibernate.SyllabusBO;
 
 public interface ISyllabusBS {
 	public List<SyllabusBO> findByTermId(Integer termId) throws EMSException;
+
+	public void submitSyllabus(Integer termId, List<SyllabusBO> boList) throws EMSException;
 }
