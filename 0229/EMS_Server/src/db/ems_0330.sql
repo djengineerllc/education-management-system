@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-03-30 23:03:02
+Date: 2012-03-31 00:30:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -251,10 +251,10 @@ CREATE TABLE `tb_term` (
 -- ----------------------------
 -- Records of tb_term
 -- ----------------------------
-INSERT INTO tb_term VALUES ('1', '2006-2007第一学期', '0', '2012-03-20 00:03:33', '2012-03-20 00:11:13');
-INSERT INTO tb_term VALUES ('2', '2007-2007第二学期', '0', '2012-03-27 22:50:56', null);
-INSERT INTO tb_term VALUES ('3', '2011-2012第一学期', '0', '2012-03-27 22:51:27', null);
-INSERT INTO tb_term VALUES ('4', '2011-2012第二学期', '1', '2012-03-27 22:52:02', null);
+INSERT INTO tb_term VALUES ('1', '2006-2007第一学期', '1', '2012-03-20 00:03:33', '2012-03-20 00:11:13');
+INSERT INTO tb_term VALUES ('2', '2007-2007第二学期', '1', '2012-03-27 22:50:56', null);
+INSERT INTO tb_term VALUES ('3', '2011-2012第一学期', '1', '2012-03-27 22:51:27', null);
+INSERT INTO tb_term VALUES ('4', '2011-2012第二学期', '2', '2012-03-27 22:52:02', null);
 
 -- ----------------------------
 -- Table structure for `ts_menu_info`
@@ -315,12 +315,12 @@ CREATE TABLE `ts_role_info` (
 -- ----------------------------
 -- Records of ts_role_info
 -- ----------------------------
-INSERT INTO ts_role_info VALUES ('1', 'R0001', '系统管理员');
-INSERT INTO ts_role_info VALUES ('2', 'R0002', '教师');
-INSERT INTO ts_role_info VALUES ('3', 'R0003', '辅导员');
-INSERT INTO ts_role_info VALUES ('4', 'R0004', '学生');
-INSERT INTO ts_role_info VALUES ('5', 'R0005', '财务');
-INSERT INTO ts_role_info VALUES ('6', 'R0006', '教务处');
+INSERT INTO ts_role_info VALUES ('1', 'admin', '系统管理员');
+INSERT INTO ts_role_info VALUES ('2', 'teacher', '教师');
+INSERT INTO ts_role_info VALUES ('3', 'counselor', '辅导员');
+INSERT INTO ts_role_info VALUES ('4', 'student', '学生');
+INSERT INTO ts_role_info VALUES ('5', 'financial', '财务');
+INSERT INTO ts_role_info VALUES ('6', 'senate', '教务处');
 
 -- ----------------------------
 -- Table structure for `ts_role_menu_rel`
