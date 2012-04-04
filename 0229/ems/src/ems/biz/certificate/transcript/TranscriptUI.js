@@ -75,10 +75,12 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
                 }, {
                     dataIndex: 'stuGrade',
                     text: '年级',
+                    renderer: Dic.renderer('Grade'),
                     flex: 1
                 }, {
                     dataIndex: 'stuClass',
                     text: '班级',
+                    renderer: Dic.renderer('Class'),
                     flex: 1
                 }, {
                     dataIndex: 'stuNo',
@@ -91,23 +93,23 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
                 }, {
                     dataIndex: 'stuSex',
                     text: '性别',
-                    flex: 1,
-					renderer: Dic.renderer('Sex')
+                    renderer: Dic.renderer('Sex'),
+                    flex: 1
                 }, {
                     dataIndex: 'stuProj',
                     text: '项目',
-                    flex: 1,
-					renderer: Dic.renderer('Project')
+                    renderer: Dic.renderer('Project'),
+                    flex: 1
                 }, {
                     dataIndex: 'stuProf',
                     text: '专业',
-                    flex: 1,
-					renderer: Dic.renderer('Professional')
+                    renderer: Dic.renderer('Professional'),
+                    flex: 1
                 }, {
                     dataIndex: 'stuStatus',
                     text: '状态',
-                    flex: 1,
-					renderer: Dic.renderer('StudentStatus')
+                    renderer: Dic.renderer('StudentStatus'),
+                    flex: 1
                 }],
 				tbarButtons: [{
 					text: '打印证明',

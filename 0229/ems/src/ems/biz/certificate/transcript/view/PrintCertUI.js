@@ -83,7 +83,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 						itemId: 'termComboBox',
                         name: 'term',
                         headerOption: true,
-						width: 160
+						width: 180
 					}),
 					Dic.localComboBox({
 						fieldLabel: '学生',
