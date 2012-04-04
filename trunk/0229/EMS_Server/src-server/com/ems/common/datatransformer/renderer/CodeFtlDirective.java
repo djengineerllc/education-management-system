@@ -34,8 +34,8 @@ public class CodeFtlDirective implements TemplateDirectiveModel {
 		throws TemplateException, IOException 
 	{
 		String mode = (String) params.get(NODE_ATTR_MODE);
-		String codeType = ((SimpleScalar) params.get(NODE_ATTR_CODE_TYPE)).getAsString();
-		String data = ((SimpleScalar) params.get(NODE_ATTR_DATA)).getAsString();
+		String codeType = ((TemplateModel) params.get(NODE_ATTR_CODE_TYPE)).toString();
+		String data = ((TemplateModel) params.get(NODE_ATTR_DATA)).toString();
 		
 		String result = null;
 		if (NODE_ATTR_MODE_GET_VALUE.equalsIgnoreCase(mode)) {
