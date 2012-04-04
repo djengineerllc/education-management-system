@@ -21,6 +21,7 @@ import conf.hibernate.GradeBO;
 import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
+import conf.hibernate.SyllabusBO;
 import conf.hibernate.TermBO;
 
 public interface IBasicInfoBS {
@@ -110,5 +111,4 @@ public interface IBasicInfoBS {
 	public void update(Object obj) throws EMSRollbackableException;
 	
 	public TermBO findCurrTerm() throws EMSException;
-	
 }
