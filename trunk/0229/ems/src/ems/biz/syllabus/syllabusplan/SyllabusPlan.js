@@ -43,19 +43,27 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             	width: 400,
             	html: '1. 拖动[课程/教师/教室]到对应表格列进行排课    2. 双击单元格清空数据'
             }, {
-		        text: '提交',
+		        text: '保存',
 		        handler: function() {
-			    	var g = this.up('window').down('grid'),
-			    		data = g.getUpdatedData();
+			    	var win = this.up('window'), 
+			    		g = win.down('grid'),
+			    		data = g.getData()//g.getUpdatedData();
 			    	
 					me.A({
 						m: 'submitSyllabusPlanDetail',
-						p: data, 
+						p: {
+							termId: reqParams[0].id,
+							submitData: data
+						}, 
 						cb: function(result, e) {
 							if (result.errors) {
 								EU.showInfoDialog({
 									msg: result.errors
 								})
+							} else {
+								me._onSuccess(bizAction);
+								win.close();
+								g.store.load();
 							}
 						}
 					})

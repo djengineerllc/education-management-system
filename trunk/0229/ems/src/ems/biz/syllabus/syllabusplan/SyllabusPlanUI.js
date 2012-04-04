@@ -19,7 +19,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlanUI', {
             items: [{
                 xtype: 'xgrid',
                 selMode: 'single',
-                paging: true,
+//                paging: true,
                 loadDF: me.DF('loadList'),
                 storeConfig: {
                 	autoLoad: true
