@@ -64,7 +64,7 @@
 		window.onbeforeunload = function() { return ''; };
 		
 		jsPaths = [
-			'lib/ext/ext-all.js'
+			'lib/ext/ext.js'
 		];
 	} else {
 		jsPaths = [
