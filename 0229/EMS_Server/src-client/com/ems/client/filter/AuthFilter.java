@@ -25,12 +25,10 @@ public class AuthFilter implements Filter {
 	
 	private FilterConfig config;
 	
-	@Override
 	public void init(FilterConfig config) throws ServletException {
 		this.config = config;
 	}
 	
-	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException 
 	{
 		HttpServletRequest request = (HttpServletRequest) req;
@@ -53,7 +51,6 @@ public class AuthFilter implements Filter {
 		filterChain.doFilter(req, resp);
 	}
 
-	@Override
 	public void destroy() {
 		this.config = null;
 	}
