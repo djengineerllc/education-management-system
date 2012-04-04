@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ems.common.code.Code;
 
 import freemarker.core.Environment;
-import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;
 import freemarker.template.TemplateException;
@@ -33,19 +34,26 @@ public class CodeFtlDirective implements TemplateDirectiveModel {
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) 
 		throws TemplateException, IOException 
 	{
-		String mode = (String) params.get(NODE_ATTR_MODE);
-		String codeType = ((TemplateModel) params.get(NODE_ATTR_CODE_TYPE)).toString();
-		String data = ((TemplateModel) params.get(NODE_ATTR_DATA)).toString();
+		TemplateModel modeTM = (TemplateModel) params.get(NODE_ATTR_MODE);
+		String mode = modeTM != null ? modeTM.toString() : null;
+		TemplateModel codeTypeTM = (TemplateModel) params.get(NODE_ATTR_CODE_TYPE);
+		String codeType = codeTypeTM != null ? codeTypeTM.toString() : null;
+		TemplateModel dataTM = (TemplateModel) params.get(NODE_ATTR_DATA);
+		String data = dataTM != null ? dataTM.toString() : null;
 		
 		String result = null;
-		if (NODE_ATTR_MODE_GET_VALUE.equalsIgnoreCase(mode)) {
-			result = Code.getValue(codeType, data);
-		} else if(NODE_ATTR_MODE_GET_NAME.equalsIgnoreCase(mode)) { 
-			result = Code.getName(codeType, data);
-		} else if (NODE_ATTR_MODE_GET_VALUE_BY_NAME.equalsIgnoreCase(mode)) {
-			result = Code.getValueByName(codeType, data);
-		} else { // NODE_ATTR_MODE_GET_NAME_BY_VALUE
-			result = Code.getNameByValue(codeType, data);
+		if (StringUtils.isNotEmpty(data)) {
+			if (NODE_ATTR_MODE_GET_VALUE.equalsIgnoreCase(mode)) {
+				result = Code.getValue(codeType, data);
+			} else if(NODE_ATTR_MODE_GET_NAME.equalsIgnoreCase(mode)) { 
+				result = Code.getName(codeType, data);
+			} else if (NODE_ATTR_MODE_GET_VALUE_BY_NAME.equalsIgnoreCase(mode)) {
+				result = Code.getValueByName(codeType, data);
+			} else { // NODE_ATTR_MODE_GET_NAME_BY_VALUE
+				result = Code.getNameByValue(codeType, data);
+			}
+		} else {
+			result = "";
 		}
 		
 		Writer out = env.getOut();
