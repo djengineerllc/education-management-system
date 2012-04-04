@@ -4,32 +4,40 @@ import java.io.Serializable;
 
 public class UserInfoVO implements Serializable {
 	private Integer id;
+	private Integer roleId;
+	private String roleName;
+	private String loginName;
 	private String userName;
-	private String sex;
-	private String birthday;
+	private String password;
 	private String email;
+	private String contact;
 	
 	public UserInfoVO() {
 	}
-	public UserInfoVO(String userName, String sex, String birthday, String email) {
+	public UserInfoVO(String loginName, String userName, String password, String email) {
+		this.loginName = loginName;
 		this.userName = userName;
-		this.sex = sex;
-		this.birthday = birthday;
+		this.password = password;
 		this.email = email;
 	}
-	public UserInfoVO(Integer id, String userName, String sex, String birthday, String email) {
+	public UserInfoVO(Integer id, String loginName, String userName, String password, String email) {
 		this.id = id;
+		this.loginName = loginName;
 		this.userName = userName;
-		this.sex = sex;
-		this.birthday = birthday;
+		this.password = password;
 		this.email = email;
 	}
-	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getLoginName() {
+		return loginName;
+	}
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 	public String getUserName() {
 		return userName;
@@ -37,17 +45,11 @@ public class UserInfoVO implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getSex() {
-		return sex;
+	public String getPassword() {
+		return password;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public String getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getEmail() {
 		return email;
@@ -55,21 +57,22 @@ public class UserInfoVO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	private String sexcheckboxgroup_S1;
-	private String sexcheckboxgroup_S2;
-
-	public String getSexcheckboxgroup_S1() {
-		return sexcheckboxgroup_S1;
+	public Integer getRoleId() {
+		return roleId;
 	}
-	public void setSexcheckboxgroup_S1(String sexcheckboxgroup_S1) {
-		this.sexcheckboxgroup_S1 = sexcheckboxgroup_S1;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
-	public String getSexcheckboxgroup_S2() {
-		return sexcheckboxgroup_S2;
+	public String getContact() {
+		return contact;
 	}
-	public void setSexcheckboxgroup_S2(String sexcheckboxgroup_S2) {
-		this.sexcheckboxgroup_S2 = sexcheckboxgroup_S2;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
-
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 }
