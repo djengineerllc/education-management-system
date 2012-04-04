@@ -91,7 +91,7 @@ Ems = ems.core.Ems = {
 		me.plugins = [];
 		me.privileges = {};
 		me.isStarted = false;
-		me.rootEl = null;
+//		me.rootEl = null;
 		me.eventBus = Ext.create('ems.core.EventBus');
 		
 		me.overrideExtClassess();
