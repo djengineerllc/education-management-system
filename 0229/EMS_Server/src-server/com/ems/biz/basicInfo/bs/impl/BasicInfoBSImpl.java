@@ -21,6 +21,7 @@ import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.RoomVO;
 import com.ems.common.model.vo.TermVO;
+import com.ems.common.model.vo.UserInfoVO;
 import com.ems.common.util.StringUtils;
 
 import conf.hibernate.BookBO;
@@ -31,6 +32,7 @@ import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
 import conf.hibernate.TermBO;
+import conf.hibernate.UserInfoBO;
 
 @Service("basicInfoBS")
 public class BasicInfoBSImpl implements IBasicInfoBS {
@@ -158,6 +160,45 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			valueParam.add("%"+bookVO.getPublishName()+"%");
 		}
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+	}
+	
+	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException{
+		StringBuffer hql = new StringBuffer("select user.*,role.roleId ");
+		hql.append(" from UserInfoBO user,UserRoleRelBO role where user.id=role.userId ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(!StringUtils.isNullBlank(userInfoVO.getLoginName())){
+			hql.append(" and user.loginName like ? "); 
+			valueParam.add("%"+userInfoVO.getLoginName()+"%");
+		}
+		if(!StringUtils.isNullBlank(userInfoVO.getUserName())){
+			hql.append(" and user.userName like ? "); 
+			valueParam.add("%"+userInfoVO.getUserName()+"%");
+		}
+		if(userInfoVO.getRoleId() != -1 ){
+			hql.append(" and role.roleId = ? "); 
+			valueParam.add(userInfoVO.getRoleId());
+		}
+		List result = this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+		UserInfoVO userInfoVO_ret = null;
+		List<UserInfoVO> userInfoVOes = new ArrayList<UserInfoVO>();
+		if(result != null && result.size() >  0){
+			for(int i = 0;i<result.size();i++){
+				Object[] obj = (Object[])result.get(i);
+				UserInfoBO user = (UserInfoBO)obj[0];
+				Integer roleId = (Integer)obj[1];
+				userInfoVO_ret = new UserInfoVO();
+				userInfoVO_ret.setId(user.getId());
+				userInfoVO_ret.setLoginName(user.getLoginName());
+				userInfoVO_ret.setUserName(user.getUserName());
+				userInfoVO_ret.setPassword(user.getPassword());
+				userInfoVO_ret.setRoleId(roleId);
+				userInfoVO_ret.setRoleName(Code.getName("Role", roleId+""));
+				userInfoVO_ret.setContact(user.getContact());
+				userInfoVO_ret.setEmail(user.getEmail());
+				userInfoVOes.add(userInfoVO_ret);
+			}
+		}
+		return userInfoVOes;
 	}
 
 	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException {
