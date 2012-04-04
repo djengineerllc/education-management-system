@@ -1,7 +1,25 @@
 {
 	"projectName" : "EMS - Education Management System",
-	"licenseText" : "EMS - Education Management System\nCopyright(c) 2011 Amoy Team",
+	"licenseText" : "EMS - Education Management System\nCopyright(c) 2012 Amoy Team",
+	"resources" : [{
+				"src" : "index.html",
+				"dest" : "index.html"
+			}, {
+				"src" : "lib/ext/resources/",
+				"dest" : "lib/ext/resources"
+			}, {
+				"src" : "src/ems/core/resources/",
+				"dest" : "src/ems/core/resources"
+			}],
 	"builds" : [{
+				"name" : "Ext-core",
+				"target" : "lib/ext/ext.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "lib/ext/",
+							"name" : "ext.js"
+						}]
+			}, {
 				"name" : "Bootstrap",
 				"target" : "src/ems/bootstrap.js",
 				"compress" : true,
@@ -615,6 +633,9 @@
 				"target" : "src/ems/login/Login.js",
 				"compress" : true,
 				"files" : [{
+							"path" : "src/ems/login/",
+							"name" : "Session.js"
+						}, {
 							"path" : "src/ems/login/view/",
 							"name" : "SelectRoleFormUI.js"
 						}, {
@@ -878,6 +899,18 @@
 							"name" : "Panel.js"
 						}, {
 							"path" : "src/ems/core/widget/",
+							"name" : "CellFieldDropZone.js"
+						}, {
+							"path" : "src/ems/core/widget/",
+							"name" : "GridSpanView.js"
+						}, {
+							"path" : "src/ems/core/widget/",
+							"name" : "IconBrowser.js"
+						}, {
+							"path" : "src/ems/core/widget/",
+							"name" : "PanelFieldDragZone.js"
+						}, {
+							"path" : "src/ems/core/widget/",
 							"name" : "XGrid.js"
 						}, {
 							"path" : "src/ems/main/data/model/",
@@ -896,8 +929,8 @@
 							"name" : "Main.js"
 						}]
 			}, {
-				"name" : "Ems-biz-base-crud",
-				"target" : "src/ems/biz/base/crud/CrudUI.js",
+				"name" : "Ems-biz-base-requires",
+				"target" : "src/ems/biz/base/Requires.js",
 				"compress" : true,
 				"files" : [{
 							"path" : "src/ems/biz/base/crud/",
@@ -906,41 +939,340 @@
 							"path" : "src/ems/biz/base/crud/",
 							"name" : "CrudUI.js"
 						}]
-			}, {
-				"name" : "Ems-biz-crud",
-				"target" : "src/ems/biz/samples/crud/User.js",
+			},
+
+			{
+				"name" : "Ems-biz-certificate-freshgraduate",
+				"description" : "打印证明->预毕业证明",
+				"target" : "src/ems/biz/certificate/freshgraduate/FreshGraduate.js",
 				"compress" : true,
 				"files" : [{
-							"path" : "src/ems/biz/samples/crud/view/",
-							"name" : "UserEditUI.js"
+							"path" : "src/ems/biz/certificate/freshgraduate/view/",
+							"name" : "PrintCertUI.js"
 						}, {
-							"path" : "src/ems/biz/samples/crud/view/",
-							"name" : "UserReadUI.js"
+							"path" : "src/ems/biz/certificate/freshgraduate/",
+							"name" : "FreshGraduateActions.js"
 						}, {
-							"path" : "src/ems/biz/samples/crud/view/",
-							"name" : "UserBatchImportUI.js"
+							"path" : "src/ems/biz/certificate/freshgraduate/",
+							"name" : "FreshGraduateUI.js"
 						}, {
-							"path" : "src/ems/biz/samples/crud/",
-							"name" : "UserActions.js"
-						}, {
-							"path" : "src/ems/biz/samples/crud/",
-							"name" : "UserUI.js"
-						}, {
-							"path" : "src/ems/biz/samples/crud/",
-							"name" : "User.js"
+							"path" : "src/ems/biz/certificate/freshgraduate/",
+							"name" : "FreshGraduate.js"
 						}]
-			}],
-	"resources" : [{
-				"src" : "index.html",
-				"dest" : "index.html"
 			}, {
-				"src" : "lib/ext/resources/",
-				"dest" : "lib/ext/resources"
+				"name" : "Ems-biz-certificate-graduate",
+				"description" : "打印证明->预毕业证明",
+				"target" : "src/ems/biz/certificate/graduate/Graduate.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/certificate/graduate/view/",
+							"name" : "PrintCertUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/graduate/",
+							"name" : "GraduateActions.js"
+						}, {
+							"path" : "src/ems/biz/certificate/graduate/",
+							"name" : "GraduateUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/graduate/",
+							"name" : "Graduate.js"
+						}]
 			}, {
-				"src" : "lib/ext/ext.js",
-				"dest" : "lib/ext/ext.js"
+				"name" : "Ems-biz-certificate-studentship",
+				"description" : "打印证明->在学证明",
+				"target" : "src/ems/biz/certificate/studentship/Studentship.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/certificate/studentship/view/",
+							"name" : "PrintCertUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/studentship/",
+							"name" : "StudentshipActions.js"
+						}, {
+							"path" : "src/ems/biz/certificate/studentship/",
+							"name" : "StudentshipUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/studentship/",
+							"name" : "Studentship.js"
+						}]
 			}, {
-				"src" : "src/ems/core/resources/",
-				"dest" : "src/ems/core/resources"
+				"name" : "Ems-biz-certificate-study",
+				"description" : "打印证明->就读证明",
+				"target" : "src/ems/biz/certificate/study/Study.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/certificate/study/view/",
+							"name" : "PrintCertUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/study/",
+							"name" : "StudyActions.js"
+						}, {
+							"path" : "src/ems/biz/certificate/study/",
+							"name" : "StudyUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/study/",
+							"name" : "Study.js"
+						}]
+			}, {
+				"name" : "Ems-biz-certificate-transcript",
+				"description" : "打印证明->成绩证明",
+				"target" : "src/ems/biz/certificate/transcript/Transcript.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/certificate/transcript/view/",
+							"name" : "PrintCertUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/transcript/",
+							"name" : "TranscriptActions.js"
+						}, {
+							"path" : "src/ems/biz/certificate/transcript/",
+							"name" : "TranscriptUI.js"
+						}, {
+							"path" : "src/ems/biz/certificate/transcript/",
+							"name" : "Transcript.js"
+						}]
+			}, {
+				"name" : "Ems-biz-syllabus-syllabusplan",
+				"description" : "课程管理->排课(一览表)",
+				"target" : "src/ems/biz/syllabus/syllabusplan/SyllabusPlan.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/syllabus/syllabusplan/view/",
+							"name" : "NormalPlanUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusplan/view/",
+							"name" : "ViewSyllabusPlanUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusplan/",
+							"name" : "SyllabusPlanActions.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusplan/",
+							"name" : "SyllabusPlanUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusplan/",
+							"name" : "SyllabusPlan.js"
+						}]
+			}, {
+				"name" : "Ems-biz-syllabus-syllabusbyteacher",
+				"description" : "课程管理->教师分表",
+				"target" : "src/ems/biz/syllabus/syllabusbyteacher/SyllabusByTeacher.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/syllabus/syllabusbyteacher/view/",
+							"name" : "ViewSyllabusUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbyteacher/",
+							"name" : "SyllabusByTeacherActions.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbyteacher/",
+							"name" : "SyllabusByTeacherUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbyteacher/",
+							"name" : "SyllabusByTeacher.js"
+						}]
+			}, {
+				"name" : "Ems-biz-syllabus-syllabusbycourse",
+				"description" : "课程管理->课程分表",
+				"target" : "src/ems/biz/syllabus/syllabusbycourse/SyllabusByCourse.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/syllabus/syllabusbycourse/view/",
+							"name" : "ViewSyllabusUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbycourse/",
+							"name" : "SyllabusByCourseActions.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbycourse/",
+							"name" : "SyllabusByCourseUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbycourse/",
+							"name" : "SyllabusByCourse.js"
+						}]
+			}, {
+				"name" : "Ems-biz-syllabus-syllabusbyclass",
+				"description" : "课程管理->班级分表",
+				"target" : "src/ems/biz/syllabus/syllabusbyclass/SyllabusByClass.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/syllabus/syllabusbyclass/view/",
+							"name" : "ViewSyllabusUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbyclass/",
+							"name" : "SyllabusByClassActions.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbyclass/",
+							"name" : "SyllabusByClassUI.js"
+						}, {
+							"path" : "src/ems/biz/syllabus/syllabusbyclass/",
+							"name" : "SyllabusByClass.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-book",
+				"description" : "基础信息管理->教材管理",
+				"target" : "src/ems/biz/basicInfo/bookManager/Book.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/bookManager/view/",
+							"name" : "BookReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/bookManager/view/",
+							"name" : "BookEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/bookManager/view/",
+							"name" : "BookBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/bookManager/",
+							"name" : "BookActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/bookManager/",
+							"name" : "BookUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/bookManager/",
+							"name" : "Book.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-classmanager",
+				"description" : "基础信息管理->班级管理",
+				"target" : "src/ems/biz/basicInfo/classManager/Class.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/classManager/view/",
+							"name" : "ClassReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/classManager/view/",
+							"name" : "ClassEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/classManager/view/",
+							"name" : "ClassBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/classManager/",
+							"name" : "ClassActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/classManager/",
+							"name" : "ClassUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/classManager/",
+							"name" : "Class.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-grademanager",
+				"description" : "基础信息管理->年级管理",
+				"target" : "src/ems/biz/basicInfo/gradeManager/Grade.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/gradeManager/view/",
+							"name" : "GradeReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/gradeManager/view/",
+							"name" : "GradeEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/gradeManager/view/",
+							"name" : "GradeBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/gradeManager/",
+							"name" : "GradeActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/gradeManager/",
+							"name" : "GradeUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/gradeManager/",
+							"name" : "Grade.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-professmanager",
+				"description" : "基础信息管理->专业管理",
+				"target" : "src/ems/biz/basicInfo/professManager/Profess.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/professManager/view/",
+							"name" : "ProfessReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/professManager/view/",
+							"name" : "ProfessEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/professManager/view/",
+							"name" : "ProfessBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/professManager/",
+							"name" : "ProfessActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/professManager/",
+							"name" : "ProfessUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/professManager/",
+							"name" : "Profess.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-projectmanager",
+				"description" : "基础信息管理->项目管理",
+				"target" : "src/ems/biz/basicInfo/projectManager/Project.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/projectManager/view/",
+							"name" : "ProjectReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/projectManager/view/",
+							"name" : "ProjectEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/projectManager/view/",
+							"name" : "ProjectBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/projectManager/",
+							"name" : "ProjectActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/projectManager/",
+							"name" : "ProjectUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/projectManager/",
+							"name" : "Project.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-roommanager",
+				"description" : "基础信息管理->教室管理",
+				"target" : "src/ems/biz/basicInfo/roomManager/Room.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/roomManager/view/",
+							"name" : "RoomReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/roomManager/view/",
+							"name" : "RoomEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/roomManager/view/",
+							"name" : "RoomBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/roomManager/",
+							"name" : "RoomActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/roomManager/",
+							"name" : "RoomUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/roomManager/",
+							"name" : "Room.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-termmanager",
+				"description" : "基础信息管理->学期管理",
+				"target" : "src/ems/biz/basicInfo/termManager/Term.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/termManager/view/",
+							"name" : "TermReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/termManager/view/",
+							"name" : "TermEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/termManager/view/",
+							"name" : "TermBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/termManager/",
+							"name" : "TermActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/termManager/",
+							"name" : "TermUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/termManager/",
+							"name" : "Term.js"
+						}]
 			}]
 }
