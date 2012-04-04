@@ -1,5 +1,5 @@
 <div style="height:6px;"></div>
-<div style="text-align:center"><b>课程一览表(XX学期)</b></div>
+<div style="text-align:center"><b>课程一览表(<@code codeType='Term' data=termId />)</b></div>
 <div style="height:12px;"></div>
 <table border="1" cellpadding="0" cellspacing="0" width="100%">
 	<thead>
