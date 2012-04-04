@@ -61,6 +61,17 @@ Ext.define('ems.core.Module', { // Controller
 		if (me.silent === false) {
 			me.createUI();
 		}
+		if (me.autoLoadLocale == true) {
+			var cn = me.$className;
+			Ems.Ajax({
+				url: Ems.appFolder + cn.substring(cn.indexOf('.'), cn.lastIndexOf('.')).replace(/\./g, '/') + Ems.config.localFolder + Ems.config.lang + '.json',
+				async: false,
+				success: function(response) {
+					var localeText = response.responseText || {};
+					me.locale = Ext.decode(localeText);
+				}
+			});
+		}
 	},
 	getActionsClassName: function() {
 		return (this.$className + this.actionsClassSuffix);

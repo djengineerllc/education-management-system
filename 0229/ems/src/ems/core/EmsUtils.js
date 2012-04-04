@@ -99,7 +99,7 @@ Ext.define('ems.core.EmsUtils', {
     
     exception: function(message) {
     	if (Ext.isString(message)) {
-    		var msgJson = (/{(.*)}/.exec(message) || '')[0]
+    		var msgJson = (/{(.*)}/.exec(message) || '')[0]; // TODO regex
     		if (msgJson) {
     			message = Ext.decode(msgJson);
     		}
