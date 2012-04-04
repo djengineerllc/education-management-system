@@ -5,8 +5,6 @@ Ext.define('ems.login.Login', {
 		'ems.login.Session'
 	],
 	
-	_loginInfo: null,
-	
 	init: function() {
 		var me = this;
 		me.callParent(arguments);
