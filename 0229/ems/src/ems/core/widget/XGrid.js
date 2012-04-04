@@ -14,6 +14,7 @@ Ext.define('ems.core.widget.XGrid', {
 	frame: false,
 	border: false,
 	columnLines: false,
+	sortableColumns: false,
 		
 	rowNumberer: true,
 	
