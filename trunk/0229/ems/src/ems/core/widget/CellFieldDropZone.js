@@ -20,7 +20,7 @@ Ext.define('ems.core.widget.CellFieldDropZone', {
 			grid.on('celldblclick', function(table, cell, cellIndex, record, row, rowIndex, e) { // TODO row.rowIndex != rowIndex
 				var column = grid.getColumn(cellIndex, row.rowIndex), dataIndex = column.dataIndex;
 				if (column.ddTarget) {
-					record.set(dataIndex, record.raw[dataIndex] || '');
+					record.set(dataIndex, '');//record.raw[dataIndex] || '');
 				}
 			}, me);
 		} else {
