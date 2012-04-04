@@ -346,7 +346,8 @@ Ems = ems.core.Ems = {
 			}
 		}
 		if (me.rootEl) {
-			Ext.destroy(me.rootEl);
+//			Ext.destroy(me.rootEl);
+			Ext.getCmp(me.rootEl).destroy();
 			me.rootEl = null;
 		};
 	},
