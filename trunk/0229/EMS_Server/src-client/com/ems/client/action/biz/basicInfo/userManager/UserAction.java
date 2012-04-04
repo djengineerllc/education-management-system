@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-
-import com.ems.biz.basicInfo.service.IBasicInfoService;
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.common.model.vo.UserInfoVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -28,13 +27,13 @@ import conf.hibernate.BookBO;
 public class UserAction extends DirectAction {
 
 	
-	private IBasicInfoService basicInfoService = (IBasicInfoService)super.getBean("basicInfoService");
+	private IBasicInfoBS basicInfoBS  = this.getBean("basicInfoBS", IBasicInfoBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadUser(JsonArray params) {
 		UserInfoVO userVO_qry = BeanUtils.toBeanFromJsonFirst(params, UserInfoVO.class);
 		
-		List<UserInfoVO> userInfo = this.basicInfoService.findUserByVO(userVO_qry);
+		List<UserInfoVO> userInfo = this.basicInfoBS.findUserByVO(userVO_qry);
 		
 		return new ExtPagingVO(userInfo);
 	}
@@ -44,7 +43,7 @@ public class UserAction extends DirectAction {
 		BookBO bookBO = BeanUtils.toBeanFromMap(formParameters, BookBO.class);
 		
 		ExtFormVO result = new ExtFormVO();
-		List<BookBO> books = this.basicInfoService.getAll(BookBO.class, " id desc ");
+		List<BookBO> books = this.basicInfoBS.getAll(BookBO.class, " id desc ");
 		for(BookBO book_:books){
 			if(book_.getBookName().equals(bookBO.getBookName())) {
 				result.addError("BookName", String.format("教材[%s]已重复", bookBO.getBookName()));
@@ -52,7 +51,7 @@ public class UserAction extends DirectAction {
 			}
 		}
 		bookBO.setCreateTime(new Date());
-		this.basicInfoService.save(bookBO);
+		this.basicInfoBS.save(bookBO);
 		
 		return result;
 	}
@@ -60,7 +59,7 @@ public class UserAction extends DirectAction {
 	public ExtFormVO read(Integer id) {
 		BookBO bookBO = null;
 		if(id != null){
-			bookBO = this.basicInfoService.findById(BookBO.class, id);
+			bookBO = this.basicInfoBS.findById(BookBO.class, id);
 		}
 		
 		return new ExtFormVO(bookBO);
@@ -69,14 +68,14 @@ public class UserAction extends DirectAction {
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		BookBO bookBO = BeanUtils.toBeanFromMap(formParameters, BookBO.class);
 		ExtFormVO result = new ExtFormVO();
-		this.basicInfoService.update(bookBO);
+		this.basicInfoBS.update(bookBO);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
 		for (Integer id : ids) {
-			this.basicInfoService.delete(this.basicInfoService.findById(BookBO.class, id));
+			this.basicInfoBS.delete(this.basicInfoBS.findById(BookBO.class, id));
 		}
 		return new ExtFormVO();
 	}

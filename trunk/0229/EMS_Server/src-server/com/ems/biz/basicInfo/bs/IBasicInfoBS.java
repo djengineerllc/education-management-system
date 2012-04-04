@@ -13,6 +13,7 @@ import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.RoomVO;
 import com.ems.common.model.vo.TermVO;
+import com.ems.common.model.vo.UserInfoVO;
 
 import conf.hibernate.BookBO;
 import conf.hibernate.ClassBO;
@@ -21,7 +22,6 @@ import conf.hibernate.GradeBO;
 import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
-import conf.hibernate.SyllabusBO;
 import conf.hibernate.TermBO;
 
 public interface IBasicInfoBS {
@@ -105,6 +105,14 @@ public interface IBasicInfoBS {
 	 * @throws EMSException
 	 */
 	public List<BookBO> findBookByVO(BookVO bookVO) throws EMSException;
+	
+	/**
+	 * 查找用户信息
+	 * @param userInfoVO
+	 * @return
+	 * @throws EMSException
+	 */
+	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException;
 	
 	public void delete(Object obj) throws EMSRollbackableException;
 	
