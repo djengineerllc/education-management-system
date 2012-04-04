@@ -15,7 +15,6 @@ public class ActionDispatcher extends SsmDispatcher {
 	
 	public static final String ACTION_AUTH_REGEX = "ems_system_.*|ems_main_.*|ems_biz_.*";
 	
-	@Override
 	public Object dispatch(RegisteredMethod method, Object[] parameters) {
 		
 		this.checkAuth(method);
