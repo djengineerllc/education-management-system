@@ -27,10 +27,6 @@ public class SyllabusBSImpl implements ISyllabusBS {
 
 	@Override
 	public void submitSyllabus(Integer termId, List<SyllabusBO> boList) throws EMSException {
-		if (boList == null || boList.size() == 0) {
-			return;
-		}
-		
 		commonDAO.executeHql("DELETE FROM SyllabusBO bo WHERE bo.termId = ?", termId);
 		
 		String syllabusStatus = null;
