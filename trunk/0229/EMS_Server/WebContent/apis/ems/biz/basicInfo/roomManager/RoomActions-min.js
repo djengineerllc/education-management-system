@@ -1,4 +1,0 @@
-Ext.namespace("ems.biz.basicInfo.roomManager.RoomActions");
-ems.biz.basicInfo.roomManager.RoomActions.PROVIDER_BASE_URL=window.location.protocol+"//"+window.location.host+"/EMS_Server/djn/directprovider";
-ems.biz.basicInfo.roomManager.RoomActions.POLLING_URLS={};
-ems.biz.basicInfo.roomManager.RoomActions.REMOTING_API={url:ems.biz.basicInfo.roomManager.RoomActions.PROVIDER_BASE_URL,type:"remoting",actions:{ems_biz_basicInfo_roomManager_RoomActions_RoomAction:[{name:"update",len:1,formHandler:true},{name:"exportExcel",len:2,formHandler:false},{name:"delete",len:1,formHandler:false},{name:"read",len:1,formHandler:false},{name:"loadRoom",len:1,formHandler:false},{name:"create",len:1,formHandler:true},{name:"batchImport",len:1,formHandler:true},{name:"downloadExcelTemplate",len:2,formHandler:false}]}};
