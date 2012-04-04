@@ -412,6 +412,7 @@ CREATE TABLE `ts_user_info` (
   `user_name` varchar(20) CHARACTER SET gbk DEFAULT NULL,
   `password` char(32) CHARACTER SET gbk DEFAULT NULL,
   `email` varchar(255) CHARACTER SET gbk DEFAULT NULL,
+  `contact` varchar(255) CHARACTER SET gbk DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
