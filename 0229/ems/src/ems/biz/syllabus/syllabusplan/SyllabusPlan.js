@@ -7,18 +7,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
         viewSyllabusPlan: '查看一览表'
     },
 	
-	normalPlanUIViewId: 'NormalPlanUI',
-	autoPlanUIViewId: 'AutoPlanUI',
-	viewSyllabusPlanUIViewId: 'ViewSyllabusPlanUI',
-	
-//	submitButton: {
-//        text: '提交',
-//        handler: function() {
-//        	alert(this.up('grid'))
-//        	debugger;
-//        }
-//    },
-	
     init: function() {
         var me = this;
         me.callParent(arguments);
@@ -38,7 +26,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             return;
         }
 		
-        me.SW(me.normalPlanUIViewId, {
+        me.SW('NormalPlanUI', {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
@@ -96,7 +84,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.SyllabusPlan', {
             return;
         }
 		
-        me.SW(me.viewSyllabusPlanUIViewId, {
+        me.SW('ViewSyllabusPlanUI', {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
