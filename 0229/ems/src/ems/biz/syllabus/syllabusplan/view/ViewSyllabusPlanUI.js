@@ -3,15 +3,21 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllabusPlanUI', {
 	
 	initData: function() {
 		var me = this,
-			sltTeam = me.reqParams[0],
-			contentPanel = me.down('#contentPanel');
+			sltTerm = me.reqParams[0],
+			contentPanel = me.down('#contentPanel'),
+			title;
 		
 		contentPanel.el.load({
 			url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printSyllbusPlan'),
 			loadMask: true,
 			scripts: true,
-			params: sltTeam
+			params: sltTerm
 		});
+		
+		title = Ext.String.format('课程一览表({0})', 
+			sltTerm.termName
+		);
+		me.up().setTitle(title);
 	},
 	
 	uiConfig: function(){

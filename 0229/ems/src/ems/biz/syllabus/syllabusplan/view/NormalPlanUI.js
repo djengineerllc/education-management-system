@@ -9,12 +9,18 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	
 	initData: function() {
 		var me = this,
-			sltTeam = me.reqParams[0],
-			syllabusPlanGrid = me.down('#syllabusPlanGrid');
+			sltTerm = me.reqParams[0],
+			syllabusPlanGrid = me.down('#syllabusPlanGrid'),
+			title;
 		
 		syllabusPlanGrid.store.load({
-			params: sltTeam
+			params: sltTerm
 		});
+		
+		title = Ext.String.format('手动排课({0})', 
+			sltTerm.termName
+		);
+		me.up().setTitle(title);
 	},
 	
 	uiConfig: function(){
