@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 
 import com.ems.biz.basicInfo.bs.IBasicInfoBS;
+import com.ems.common.code.Code;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -40,7 +41,7 @@ public class TermAction extends DirectAction {
 			termVO = new TermVO();
 			termVO.setId(termBO.getId());
 			termVO.setTermName(termBO.getTermName());
-			termVO.setIsCurrentTerm("1".equals(termBO.getIsCurrentTerm())?"是":"否");
+			termVO.setIsCurrentTerm(Code.getName("Indicator", termBO.getIsCurrentTerm()));
 			termVOS.add(termVO);
 		}
 		return new ExtPagingVO(termVOS);
