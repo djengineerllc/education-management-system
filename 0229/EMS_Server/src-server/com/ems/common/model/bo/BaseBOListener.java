@@ -7,7 +7,11 @@ import org.hibernate.type.Type;
 
 import com.ems.common.util.DateUtil;
 
+/**
+ * @author chiknin
+ */
 public class BaseBOListener extends EmptyInterceptor {
+	
 	@Override
 	public boolean onSave(Object entity, Serializable id, Object[] state, 
 		String[] propertyNames, Type[] types) 
