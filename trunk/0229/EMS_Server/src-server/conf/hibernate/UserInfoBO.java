@@ -8,6 +8,7 @@ public class UserInfoBO extends BaseBO {
 	private String userName;
 	private String password;
 	private String email;
+	private String contact;
 	
 	public String getLoginName() {
 		return loginName;
@@ -33,4 +34,11 @@ public class UserInfoBO extends BaseBO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	
 }
