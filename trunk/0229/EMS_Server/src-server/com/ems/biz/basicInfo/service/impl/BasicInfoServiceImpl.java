@@ -49,13 +49,14 @@ public class BasicInfoServiceImpl implements IBasicInfoService {
 	}
 	
 	public List<TermBO> findTermByVO(TermVO termVO) throws EMSException{
-		String hql = "from TermBO where 1=1 ";
+		StringBuilder hql = new StringBuilder("from TermBO where 1=1 ");
 		List<Object> valueParam = new ArrayList<Object>();
 		if(!StringUtils.isNullBlank(termVO.getTermName())){
-			hql = hql+" and termName like ? "; 
+			hql.append(" and termName like ? "); 
 			valueParam.add("%"+termVO.getTermName()+"%");
 		}
-		return this.commonDAO.findByHql(hql, valueParam.toArray());
+		hql.append(" order by id desc");
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	public TermBO findCurrTerm() throws EMSException {
 		return (TermBO) commonDAO.firstEntity("FROM TermBO bo WHERE bo.isCurrentTerm = ?", Code.getValue("Indicator", "S1"));
