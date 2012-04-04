@@ -1,4 +1,0 @@
-Ext.namespace("ems.biz.samples.crud.UserActions");
-ems.biz.samples.crud.UserActions.PROVIDER_BASE_URL=window.location.protocol+"//"+window.location.host+"/EMS_Server/djn/directprovider";
-ems.biz.samples.crud.UserActions.POLLING_URLS={};
-ems.biz.samples.crud.UserActions.REMOTING_API={url:ems.biz.samples.crud.UserActions.PROVIDER_BASE_URL,type:"remoting",actions:{ems_biz_samples_crud_UserActions_UserAction:[{name:"update",len:1,formHandler:true},{name:"exportExcel",len:2,formHandler:false},{name:"delete",len:1,formHandler:false},{name:"read",len:1,formHandler:false},{name:"loadList",len:1,formHandler:false},{name:"create",len:1,formHandler:true},{name:"batchImport",len:1,formHandler:true},{name:"downloadExcelTemplate",len:2,formHandler:false}]}};
