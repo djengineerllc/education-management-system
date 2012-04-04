@@ -22,4 +22,17 @@ public class SyllabusBSImpl implements ISyllabusBS {
 	public List<SyllabusBO> findByTermId(Integer termId) throws EMSException {
 		return commonDAO.findByHql("FROM SyllabusBO bo WHERE bo.termId = ? ORDER BY bo.id ASC", termId);
 	}
+
+	@Override
+	public void submitSyllabus(Integer termId, List<SyllabusBO> boList) throws EMSException {
+		if (boList == null || boList.size() == 0) {
+			return;
+		}
+		
+		commonDAO.executeHql("DELETE FROM SyllabusBO bo WHERE bo.termId = ?", termId);
+		
+		for (SyllabusBO bo : boList) {
+			commonDAO.save(bo);
+		}
+	}
 }
