@@ -7,6 +7,8 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		'ems.core.widget.IconBrowser'
 	],
 	
+	classCount: 3,
+	
 	initData: function() {
 		var me = this,
 			sltTerm = me.reqParams[0],
@@ -131,18 +133,16 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 					Ext.create('ems.core.widget.CellFieldDropZone')
 				],
 				columns: [{
-					text: 'ID',
-		            dataIndex: 'id',
-		            hidden: true
-				},{
 		            text: '课时',
 		            dataIndex: 'lesson',
+		            renderer: Dic.renderer('Lesson'),
 		            width: 50,
-		            rowSpan: 4
+		            rowSpan: (me.classCount * 2)
 		        },{
 		        	text: '班级',
-		            dataIndex: 'classCode',
-		            width: 70,
+		            dataIndex: 'classId',
+		            renderer: Dic.renderer('Class'),
+		            width: 100,
 		            rowSpan: 2
 		        },{
 					text: '单双',
@@ -152,6 +152,10 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周一',
 		            columns: [{
+		            	text: 'ID',
+						dataIndex: 'monId',
+						hidden: true
+		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'monCourse',
@@ -173,6 +177,10 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周二',
 		            columns: [{
+		            	text: 'ID',
+						dataIndex: 'tueId',
+						hidden: true
+		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'tueCourse',
@@ -194,6 +202,10 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周三',
 		            columns: [{
+		            	text: 'ID',
+						dataIndex: 'webId',
+						hidden: true
+		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'webCourse',
@@ -215,6 +227,10 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周四',
 		            columns: [{
+		            	text: 'ID',
+						dataIndex: 'thuId',
+						hidden: true
+		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'thuCourse',
@@ -236,6 +252,10 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周五',
 		            columns: [{
+		            	text: 'ID',
+						dataIndex: 'friId',
+						hidden: true
+		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'friCourse',
