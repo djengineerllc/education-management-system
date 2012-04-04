@@ -53,7 +53,6 @@ public class SyllabusPlanAction extends DirectCrudAction {
 		List<ClassBO> classBOList = basicInfoBS.findClassByVO(new ClassVO());
 		List<SyllabusBO> syllabusBOList = syllabusBS.findByTermId(termId);
 		Map<String, SyllabusBO> syllabusBOMap = BeanUtils.toMap(syllabusBOList, new KeyNamingCallback<SyllabusBO>() {
-			@Override
 			public String getKey(SyllabusBO item, List<SyllabusBO> list, int idx) {
 				return String.format("%s-%s-%s-%s", item.getLesson(), item.getClassId().toString(), item.getOeInd(), item.getWeek());
 			}
