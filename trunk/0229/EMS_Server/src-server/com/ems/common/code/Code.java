@@ -275,6 +275,13 @@ public class Code implements InitializingBean {
 
 		return null;
 	}
+	public static String getName(String codeType, Object key) {
+		if (key != null) {
+			return getName(codeType, key.toString());
+		}
+		
+		return null;
+	}
 
 	/**
 	 * 根据代码类型和代码值获取代码名称
