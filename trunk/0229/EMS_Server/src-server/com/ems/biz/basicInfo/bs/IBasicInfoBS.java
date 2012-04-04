@@ -23,7 +23,7 @@ import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
 import conf.hibernate.TermBO;
 
-public interface IBasicInfoService {
+public interface IBasicInfoBS {
 	
 	public void save(Object obj) throws EMSRollbackableException;
 	

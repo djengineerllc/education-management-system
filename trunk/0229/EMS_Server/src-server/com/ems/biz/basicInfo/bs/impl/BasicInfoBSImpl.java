@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.ems.biz.basicInfo.bs.IBasicInfoService;
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.common.code.Code;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
@@ -32,8 +32,8 @@ import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
 import conf.hibernate.TermBO;
 
-@Service("basicInfoService")
-public class BasicInfoServiceImpl implements IBasicInfoService {
+@Service("basicInfoBS")
+public class BasicInfoBSImpl implements IBasicInfoBS {
 	
 	@Autowired
 	@Qualifier("commonDAO")
