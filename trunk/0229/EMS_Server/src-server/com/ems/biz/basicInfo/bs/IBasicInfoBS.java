@@ -119,4 +119,10 @@ public interface IBasicInfoBS {
 	public void update(Object obj) throws EMSRollbackableException;
 	
 	public TermBO findCurrTerm() throws EMSException;
+	
+	public void createUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException;
+	
+	public void updateUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException;
+	
+	public void deleteUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException;
 }

@@ -22,6 +22,7 @@ import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
 import conf.hibernate.BookBO;
+import conf.hibernate.UserInfoBO;
 
 @ActionScope(scope=Scope.APPLICATION)
 public class UserAction extends DirectAction {
@@ -40,42 +41,45 @@ public class UserAction extends DirectAction {
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		BookBO bookBO = BeanUtils.toBeanFromMap(formParameters, BookBO.class);
-		
+		UserInfoVO userInfoVO = BeanUtils.toBeanFromMap(formParameters, UserInfoVO.class);
 		ExtFormVO result = new ExtFormVO();
-		List<BookBO> books = this.basicInfoBS.getAll(BookBO.class, " id desc ");
-		for(BookBO book_:books){
-			if(book_.getBookName().equals(bookBO.getBookName())) {
-				result.addError("BookName", String.format("教材[%s]已重复", bookBO.getBookName()));
+		List<UserInfoBO> userInfoes = this.basicInfoBS.getAll(UserInfoBO.class, " id desc ");
+		for(UserInfoBO userInfoBO_:userInfoes){
+			if(userInfoBO_.getLoginName().equals(userInfoVO.getLoginName())
+					&& userInfoBO_.getUserName().equals(userInfoVO.getUserName())) {
+				result.addError("userName", String.format("用户[%s]已重复", userInfoVO.getUserName()));
 				return result;
 			}
 		}
-		bookBO.setCreateTime(new Date());
-		this.basicInfoBS.save(bookBO);
-		
+		this.basicInfoBS.createUserInfo(userInfoVO);
 		return result;
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		BookBO bookBO = null;
+		UserInfoVO userInfoVO = null;
 		if(id != null){
-			bookBO = this.basicInfoBS.findById(BookBO.class, id);
+			UserInfoVO userInfoVO_qry = new UserInfoVO();
+			userInfoVO_qry.setId(id);
+			userInfoVO = this.basicInfoBS.findUserByVO(userInfoVO_qry).get(0);
 		}
 		
-		return new ExtFormVO(bookBO);
+		return new ExtFormVO(userInfoVO);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		BookBO bookBO = BeanUtils.toBeanFromMap(formParameters, BookBO.class);
+		UserInfoVO userInfoVO = BeanUtils.toBeanFromMap(formParameters, UserInfoVO.class);
 		ExtFormVO result = new ExtFormVO();
-		this.basicInfoBS.update(bookBO);
+		this.basicInfoBS.updateUserInfo(userInfoVO);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
+		UserInfoVO userInfoVO = null;
 		for (Integer id : ids) {
-			this.basicInfoBS.delete(this.basicInfoBS.findById(BookBO.class, id));
+			userInfoVO = new UserInfoVO();
+			userInfoVO.setId(id);
+			this.basicInfoBS.deleteUserInfo(userInfoVO);
 		}
 		return new ExtFormVO();
 	}

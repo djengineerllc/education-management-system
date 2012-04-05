@@ -2,6 +2,7 @@ package com.ems.biz.basicInfo.bs.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.ems.common.model.vo.ProjectVO;
 import com.ems.common.model.vo.RoomVO;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.model.vo.UserInfoVO;
+import com.ems.common.util.MD5;
 import com.ems.common.util.StringUtils;
 
 import conf.hibernate.BookBO;
@@ -33,6 +35,7 @@ import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
 import conf.hibernate.TermBO;
 import conf.hibernate.UserInfoBO;
+import conf.hibernate.UserRoleRelBO;
 
 @Service("basicInfoBS")
 public class BasicInfoBSImpl implements IBasicInfoBS {
@@ -163,9 +166,13 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 	}
 	
 	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException{
-		StringBuffer hql = new StringBuffer("select user.*,role.roleId ");
-		hql.append(" from UserInfoBO user,UserRoleRelBO role where user.id=role.userId ");
+		StringBuffer hql = new StringBuffer("select user,role.roleId ");
+		hql.append(" from UserInfoBO user left join UserRoleRelBO role on user.id=role.userId ");
 		List<Object> valueParam = new ArrayList<Object>();
+		if(userInfoVO.getId() != null && userInfoVO.getId() != -1){
+			hql.append(" and user.id = ? "); 
+			valueParam.add(userInfoVO.getId());
+		}
 		if(!StringUtils.isNullBlank(userInfoVO.getLoginName())){
 			hql.append(" and user.loginName like ? "); 
 			valueParam.add("%"+userInfoVO.getLoginName()+"%");
@@ -199,6 +206,46 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			}
 		}
 		return userInfoVOes;
+	}
+	
+	public void createUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException{
+		UserInfoBO userInfoBO = new UserInfoBO();
+		userInfoBO.setLoginName(userInfoVO.getLoginName());
+		userInfoBO.setUserName(userInfoVO.getUserName());
+		userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
+		userInfoBO.setEmail(userInfoVO.getEmail());
+		userInfoBO.setContact(userInfoVO.getContact());
+		userInfoBO.setCreateTime(new Date());
+		this.commonDAO.save(userInfoBO);
+		UserRoleRelBO userRoleRelBO = new UserRoleRelBO();
+		userRoleRelBO.setUserId(userInfoBO.getId());
+		userRoleRelBO.setRoleId(userInfoVO.getRoleId());
+		userRoleRelBO.setCreateTime(new Date());
+		this.commonDAO.save(userRoleRelBO);
+	}
+	
+	public void updateUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException{
+		UserInfoBO userInfoBO = this.commonDAO.findById(UserInfoBO.class, userInfoVO.getId());
+		userInfoBO.setLoginName(userInfoVO.getLoginName());
+		userInfoBO.setUserName(userInfoVO.getUserName());
+		userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
+		userInfoBO.setEmail(userInfoVO.getEmail());
+		userInfoBO.setContact(userInfoVO.getContact());
+		userInfoBO.setUpdateTime(new Date());
+		this.commonDAO.update(userInfoBO);
+		UserRoleRelBO userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId","roleId"}, 
+				new String[]{"=","="}, new Object[]{userInfoVO.getId(),userInfoVO.getRoleId()}).get(0);
+		userRoleRelBO.setRoleId(userInfoVO.getRoleId());
+		userRoleRelBO.setUpdateTime(new Date());
+		this.commonDAO.update(userRoleRelBO);
+	}
+	
+	public void deleteUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException{
+		UserInfoBO userInfoBO = this.commonDAO.findById(UserInfoBO.class, userInfoVO.getId());
+		this.commonDAO.delete(userInfoBO);
+		List<UserRoleRelBO> userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId"}, 
+				new String[]{"="}, new Object[]{userInfoVO.getId()});
+		this.commonDAO.delete(userRoleRelBO);
 	}
 
 	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException {
