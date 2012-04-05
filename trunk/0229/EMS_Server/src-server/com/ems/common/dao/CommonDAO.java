@@ -142,15 +142,15 @@ public class CommonDAO implements ICommonDAO {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List findListByHql(final String hqlString, final Map<String, Object> paramValues) {
+	public List findListByHql(final String hqlString, final Map<String, Object> paramMap) {
 		return ((List) hibernateTemplate.execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				Query q = session.createQuery(hqlString);
 				
-				if (paramValues != null) {
+				if (paramMap != null) {
 					String key = null;
 					Object value = null;
-					for (Map.Entry<String, Object> entry : paramValues.entrySet()) {
+					for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
 						key = entry.getKey();
 						value = entry.getValue();
 						if (value != null && value instanceof Object[]) {
