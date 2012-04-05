@@ -3,7 +3,9 @@ package com.ems.biz.basicInfo.bs.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -89,6 +91,12 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			valueParam.add("%"+classVO.getClassName()+"%");
 		}
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
+	}
+	
+	public List<ClassBO> findClassByIds(List<Integer> ids) throws EMSException{
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", ids);
+		return commonDAO.findListByHql("FROM ClassBO bo WHERE bo.id IN (:id)", paramMap);
 	}
 	
 	public List<ProjectBO> findProjectByVO(ProjectVO projectVO) throws EMSException{

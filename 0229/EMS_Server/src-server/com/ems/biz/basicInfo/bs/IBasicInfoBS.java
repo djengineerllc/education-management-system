@@ -66,6 +66,8 @@ public interface IBasicInfoBS {
 	 * @throws EMSException
 	 */
 	public List<ClassBO> findClassByVO(ClassVO classVO) throws EMSException;
+	public List<ClassBO> findClassByIds(List<Integer> ids) throws EMSException;
+	
 	/**
 	 * 查找项目信息
 	 * @param projectVO
