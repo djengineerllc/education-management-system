@@ -27,36 +27,36 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.SyllabusByCourseUI', {
                 		fieldLabel: '学期',
                 		labelWidth: 30,
                 		itemId: 'termComboBox',
-                		name: 'term',
+                		name: 'termId',
                 		value: Session.getLoginInfo().currTerm || ''
                 	}), {
                 		fieldLabel: '课程名',
-                		name: 'subjectName'
+                		name: 'courseName'
                 	}]
                 },
                 columns: [{
-                    dataIndex: 'subjectId',
+                    dataIndex: 'id',
                     text: '课程ID',
                     hidden: true,
                     flex: 1
                 }, {
-                    dataIndex: 'subjectNo',
+                    dataIndex: 'courseNo',
                     text: '课程编号',
                     flex: 1
                 }, {
-                    dataIndex: 'subjectCnName',
+                    dataIndex: 'courseName',
                     text: '课程中文名',
-                    flex: 1
+                    flex: 3
                 },{
-                    dataIndex: 'subjectEnName',
+                    dataIndex: 'courseEngName',
                     text: '课程英文名',
-                    flex: 1
+                    flex: 3
                 },{
-                    dataIndex: 'subjectScore',
+                    dataIndex: 'courseScore',
                     text: '学分',
                     flex: 1
                 },{
-                    dataIndex: 'subjectTime',
+                    dataIndex: 'courseTime',
                     text: '课时',
                     flex: 1
                 }],
