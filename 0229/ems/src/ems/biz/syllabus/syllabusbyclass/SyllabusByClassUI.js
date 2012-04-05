@@ -31,8 +31,7 @@ Ext.define('ems.biz.syllabus.syllabusbyclass.SyllabusByClassUI', {
                 	}), 
                 	Dic.comboBox('Grade', {
                 		fieldLabel: '年级',
-                		name: 'gradeId',
-                		headerOption: true
+                		name: 'gradeId'
                 	}), {
                 		fieldLabel: '班级名',
                 		name: 'className'
