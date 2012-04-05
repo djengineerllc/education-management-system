@@ -7,8 +7,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		'ems.core.widget.IconBrowser'
 	],
 	
-	classCount: 3,
-	
 	initData: function() {
 		var me = this,
 			sltTerm = me.reqParams[0],
@@ -27,7 +25,9 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 	},
 	
 	uiConfig: function(){
-		var me = this;
+		var me = this,
+			classCount = Dic.getStore('Class').getCount();
+		
 		return {
 			layout: 'border',
 			border: false,
@@ -138,7 +138,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            dataIndex: 'lesson',
 		            renderer: Dic.renderer('Lesson'),
 		            width: 50,
-		            rowSpan: (me.classCount * 2)
+		            rowSpan: (classCount * 2)
 		        },{
 		        	text: '班级',
 		            dataIndex: 'classId',
