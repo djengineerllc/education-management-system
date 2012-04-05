@@ -23,13 +23,12 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                 loadDF: me.DF('loadList'),
                 searchForm: {
                     items: [
-               		Dic.comboBox('Team', {
+               		Dic.comboBox('Term', {
                 		fieldLabel: '学期',
                 		labelWidth: 30,
                 		itemId: 'termComboBox',
                 		name: 'term',
-//                		valueKey: '2012B',
-                		headerOption: true
+                		value: Session.getLoginInfo().currTerm || ''
                 	}), {
                 		fieldLabel: '教师名',
                 		name: 'teacherName'
