@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -138,6 +139,33 @@ public class CommonDAO implements ICommonDAO {
 		}
 
 		return null;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List findListByHql(final String hqlString, final Map<String, Object> paramValues) {
+		return ((List) hibernateTemplate.execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query q = session.createQuery(hqlString);
+				
+				if (paramValues != null) {
+					String key = null;
+					Object value = null;
+					for (Map.Entry<String, Object> entry : paramValues.entrySet()) {
+						key = entry.getKey();
+						value = entry.getValue();
+						if (value != null && value instanceof Object[]) {
+							q.setParameterList(key, (Object[]) value);
+						} else if (value != null && value instanceof Collection) {
+							q.setParameterList(key, (Collection) value);
+						} else {
+							q.setParameter(key, value);
+						}
+					}
+				}
+				
+				return q.list();
+			}
+		}));
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
