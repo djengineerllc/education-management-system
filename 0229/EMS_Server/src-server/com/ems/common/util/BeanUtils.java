@@ -199,9 +199,18 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
 		return Integer.valueOf(obj.toString());
 	}
 	
-	
-	
-	
+	public static List<Integer> toInteger(Object[] objs) {
+		if (objs == null) {
+			return null;
+		}
+		
+		List<Integer> list = new ArrayList<Integer>();
+		for (Object obj : objs) {
+			list.add(toInteger(obj));
+		}
+		
+		return list;
+	}
 	
 	
 	static class Bean {
