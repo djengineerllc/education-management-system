@@ -2,6 +2,7 @@ package com.ems.common.util;
 
 import java.beans.PropertyDescriptor;
 import java.beans.PropertyEditorSupport;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -17,17 +19,49 @@ import org.springframework.beans.BeanWrapperImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 /**
  * 
  * @author Chiknin
  *
  */
-public class BeanUtils extends org.springframework.beans.BeanUtils{
+public class BeanUtils extends org.springframework.beans.BeanUtils {
 	
-	public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create(); // .serializeNulls()
+	public static Gson gson = null;
+	
+	private static class IntegerTypeAdapter implements JsonSerializer<Integer>, JsonDeserializer<Integer> {
+		public JsonElement serialize(Integer src, Type typeOfSrc, JsonSerializationContext context) {
+			return new JsonPrimitive(src);
+		}
+		
+		public Integer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+			// json.getAsInt()
+			String v = json.getAsString();
+			return StringUtils.isNotBlank(v) ? Integer.valueOf(v) : null;
+		}
+		
+		public String toString() {
+			return IntegerTypeAdapter.class.getSimpleName();
+		}
+	}
+	static {
+		GsonBuilder gb = new GsonBuilder();
+		
+		IntegerTypeAdapter integerTypeAdapter = new IntegerTypeAdapter();
+		gb.registerTypeAdapter(Integer.class, integerTypeAdapter);
+		gb.registerTypeAdapter(int.class, integerTypeAdapter);
+		
+//		gsonBuilder.registerTypeAdapter(Integer.class, new )
+		gson = gb.setDateFormat("yyyy-MM-dd HH:mm:ss").create(); // .serializeNulls()
+	}
 	
 	public static <T> T toBeanFromJson(JsonObject jsonObj, Class<T> beanClass) {
 		return gson.fromJson(jsonObj, beanClass);
