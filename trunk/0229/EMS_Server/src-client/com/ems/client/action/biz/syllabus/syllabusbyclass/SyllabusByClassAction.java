@@ -83,7 +83,7 @@ public class SyllabusByClassAction extends DirectCrudAction {
 					syllabusPlanVO.setLesson(lessonBO.getCodeValue());
 					syllabusPlanVO.setOeInd(weekOeIndBO.getCodeValue());
 					
-					String baseKey = String.format("%s-%s-%s-", syllabusPlanVO.getLesson(), syllabusPlanVO.getClassId().toString(), syllabusPlanVO.getOeInd());
+					String baseKey = String.format("%s-%s-%s-", syllabusPlanVO.getClassId().toString(), syllabusPlanVO.getLesson(), syllabusPlanVO.getOeInd());
 					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S1"));
 					if (syllabusBO != null) {
 						syllabusPlanVO.setMonCourse(syllabusBO.getCourseId());
