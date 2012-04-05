@@ -54,8 +54,7 @@ public class SyllabusByClassAction extends DirectCrudAction {
 		List<SyllabusPlanVO> syllabusPlanVOList = this.getSyllabusPlanVOList(termId, classIds);
 		
 		Map rootVO = new HashMap();
-		List<SyllabusPlanVO> items = new ArrayList<SyllabusPlanVO>();
-		rootVO.put("items", items);
+		rootVO.put("items", syllabusPlanVOList);
 		rootVO.put("classCount", syllabusPlanVOList.size() / 5 / 2);
 		rootVO.put("termId", termId);
 		
