@@ -27,7 +27,6 @@ import com.google.gson.JsonObject;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
-import com.sun.xml.internal.ws.encoding.RootOnlyCodec;
 
 import conf.hibernate.ClassBO;
 import conf.hibernate.CodeTableBO;
