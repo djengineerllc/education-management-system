@@ -1,7 +1,9 @@
 package com.ems.biz.syllabus.bs.impl;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +25,14 @@ public class SyllabusBSImpl implements ISyllabusBS {
 	
 	public List<SyllabusBO> findByTermId(Integer termId) throws EMSException {
 		return commonDAO.findByHql("FROM SyllabusBO bo WHERE bo.termId = ? ORDER BY bo.id ASC", termId);
+	}
+	
+	public List<SyllabusBO> findByTermIdAndClassId(Integer termId, List<Integer> classId) throws EMSException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("termId", termId);
+		paramMap.put("classId", classId);
+		
+		return commonDAO.findListByHql("FROM SyllabusBO bo WHERE bo.termId = :termId AND bo.classId IN (:classId) ORDER BY bo.id ASC", paramMap);
 	}
 
 	public void submitSyllabus(Integer termId, List<SyllabusBO> boList) throws EMSException {
