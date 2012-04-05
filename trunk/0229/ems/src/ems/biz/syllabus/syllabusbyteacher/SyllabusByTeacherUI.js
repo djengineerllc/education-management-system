@@ -19,7 +19,7 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
             items: [{
                 xtype: 'xgrid',
                 selMode: 'multi',
-                paging: true,
+//                paging: true,
                 loadDF: me.DF('loadList'),
                 searchForm: {
                     items: [
