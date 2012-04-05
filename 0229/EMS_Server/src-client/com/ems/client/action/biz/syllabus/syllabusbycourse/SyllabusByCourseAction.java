@@ -9,8 +9,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ems.biz.basicInfo.bs.IBasicInfoBS;
 import com.ems.client.action.biz.syllabus.common.vo.SyllabusPlanVO;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
+import com.ems.common.model.vo.CourseVO;
+import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectCrudAction;
 import com.ems.system.client.vo.ExtPagingVO;
 import com.google.gson.JsonArray;
@@ -18,20 +21,23 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.CourseBO;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class SyllabusByCourseAction extends DirectCrudAction {
 	
+	private IBasicInfoBS basicInfoBS = this.getBean("basicInfoBS", IBasicInfoBS.class);
+	
 	@DirectMethod
 	public ExtPagingVO loadList(JsonArray params) {
+//		 Map<String, String> paramMap = BeanUtils.toMapFromJsonFirst(params);
+//		 Integer termId = BeanUtils.toInteger(paramMap.get("termId"));
+		CourseVO courseVO = BeanUtils.toBeanFromJsonFirst(params, CourseVO.class);
+		courseVO.setCourseEngName(courseVO.getCourseName());
 		
-		List items = new ArrayList();
+		List<CourseBO> courseBOList = basicInfoBS.findCourseByVO(courseVO);
 		
-		Map<String, Object> item = new HashMap<String, Object>();
-		item.put("teamName", "2012年第一学期");
-		item.put("syllabusState", "2");
-		items.add(item);
-		
-		return new ExtPagingVO(items);
+		return new ExtPagingVO(courseBOList);
 	}
 	
 	@DirectMethod
