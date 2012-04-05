@@ -44,7 +44,7 @@ public class RealmBSImpl implements IRealmBS {
 				loginInfoVO.setRoleCd(roleInfoBO.getRoleCd());
 				loginInfoVO.setRoleName(roleInfoBO.getRoleName());
 				
-				if (Code.eqValue("Role", "student", roleInfoBO.getRoleCd())) {
+				if (Code.eqValue("Role_key_code", "student", roleInfoBO.getRoleCd())) {
 					loginInfoVO.setStuNo("1234567890");
 					loginInfoVO.setStuGradeId(7);
 					loginInfoVO.setStuGradeName(Code.getName("Grade", "7"));
