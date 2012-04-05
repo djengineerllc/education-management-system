@@ -419,12 +419,12 @@ CREATE TABLE `ts_user_info` (
 -- ----------------------------
 -- Records of ts_user_info
 -- ----------------------------
-INSERT INTO ts_user_info VALUES ('1', 'admin', '系统管理员', '202cb962ac59075b964b07152d234b70', null);
-INSERT INTO ts_user_info VALUES ('2', 'teacher', '教师1', '202cb962ac59075b964b07152d234b70', null);
-INSERT INTO ts_user_info VALUES ('3', 'fdy', '辅导员1', '202cb962ac59075b964b07152d234b70', null);
-INSERT INTO ts_user_info VALUES ('4', 'student', '学生1', '202cb962ac59075b964b07152d234b70', null);
-INSERT INTO ts_user_info VALUES ('5', 'caiwu', '财务1', '202cb962ac59075b964b07152d234b70', null);
-INSERT INTO ts_user_info VALUES ('6', 'jwc', '教务处1', '202cb962ac59075b964b07152d234b70', null);
+INSERT INTO ts_user_info VALUES ('1', 'admin', '系统管理员', '202cb962ac59075b964b07152d234b70', null,null);
+INSERT INTO ts_user_info VALUES ('2', 'teacher', '教师1', '202cb962ac59075b964b07152d234b70', null,null);
+INSERT INTO ts_user_info VALUES ('3', 'fdy', '辅导员1', '202cb962ac59075b964b07152d234b70', null,null);
+INSERT INTO ts_user_info VALUES ('4', 'student', '学生1', '202cb962ac59075b964b07152d234b70', null,null);
+INSERT INTO ts_user_info VALUES ('5', 'caiwu', '财务1', '202cb962ac59075b964b07152d234b70', null,null);
+INSERT INTO ts_user_info VALUES ('6', 'jwc', '教务处1', '202cb962ac59075b964b07152d234b70', null,null);
 
 -- ----------------------------
 -- Table structure for `ts_user_role_rel`
