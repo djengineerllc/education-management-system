@@ -6,7 +6,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllabusPlanUI', {
 			sltTerm = me.reqParams[0],
 			contentPanel = me.down('#contentPanel'),
 			title;
-		debugger;
+		
 		contentPanel.el.load({
 			url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printSyllbusPlan'),
 			loadMask: true,
