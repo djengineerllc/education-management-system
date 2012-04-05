@@ -26,55 +26,19 @@ Ext.define('ems.biz.syllabus.syllabusbyclass.SyllabusByClassUI', {
                		Dic.comboBox('Term', {
                 		fieldLabel: '学期',
                 		labelWidth: 30,
-                		itemId: 'termComboBox',
                 		name: 'term',
                 		value: Session.getLoginInfo().currTerm || ''
+                	}), 
+                	Dic.comboBox('Grade', {
+                		fieldLabel: '年级',
+                		name: 'gradeId',
+                		headerOption: true
                 	}), {
-						xtype: 'fieldcontainer',
-		                fieldLabel: '班级',
-		                combineErrors: true,
-		                layout: {
-							type: 'hbox',
-							align: 'middle'
-						},
-		                defaults: {
-		                    hideLabel: true
-		                },
-						width: 290,
-		                items: [
-						Dic.comboBox('Grade', {
-	                        fieldLabel: '年级',
-	                        name: 'stuGrade',
-							hideLabel: true,
-							emptyText: '年级',
-							value: '',
-							listeners: {
-								change: function(comp, newValue, oldValue, eOpts) {
-									var data = newValue ? Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: 'Class', group: newValue}]).result : [],
-										stuClassCombo = me.down('#stuClassId');
-										
-									stuClassCombo.setValue(null);
-									stuClassCombo.emptyText = data.length > 0 ? '班级' : '请选择年级';
-									stuClassCombo.applyEmptyText();
-									stuClassCombo.store.loadData(data);
-								}
-							},
-							width: 80
-						}), 
-						Dic.localComboBox({
-							itemId: 'stuClassId',
-	                        name: 'stuClass',
-							emptyText: '请选择年级',
-							width: 100
-						})]
-					}]
+                		fieldLabel: '班级名',
+                		name: 'className'
+                	}]
                 },
                 columns: [{
-                    dataIndex: 'id',
-                    text: 'ID',
-                    hidden: true,
-                    flex: 1
-                },{
                     dataIndex: 'gradeId',
                     text: '年级',
                     renderer: Dic.renderer('Grade'),
