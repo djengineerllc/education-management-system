@@ -11,6 +11,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
         r: '查看'
     },
     
+    addViewId: null, // require
     editViewId: null, // require
     readViewId: null, // require
 	
@@ -110,7 +111,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
             return;
         }
         
-        me.SW(me.editViewId, {
+        me.SW(me.addViewId || me.editViewId, {
             bizAction: bizAction,
             reqParams: reqParams
         }, {
