@@ -5,7 +5,7 @@ Ext.define('ems.biz.basicInfo.userManager.view.UserReadUI', {
 		var me = this;
 		return {
 			width: 230,
-			height: 130,
+			height: 160,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
@@ -22,7 +22,8 @@ Ext.define('ems.biz.basicInfo.userManager.view.UserReadUI', {
 				},
 				items: [{
 					fieldLabel: 'ID',
-	                name: 'id'
+	                name: 'id',
+	                hidden: true
 				},{
 	                fieldLabel: '帐号',
 	                name: 'loginName'
