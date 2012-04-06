@@ -22,11 +22,12 @@ Ext.define('ems.biz.basicInfo.userManager.UserUI', {
                     },{
                         fieldLabel: '姓名',
                         name: 'userName'
-                    },Dic.comboBox('Role', {
-					fieldLabel: '角色',
-					name: 'roleId',
-					value:-1
-				})]
+                    },
+                    Dic.comboBox('Role', {
+						fieldLabel: '角色',
+						name: 'roleId',
+						headerOption: true
+					})]
                 },
                 columns: [{
                     dataIndex: 'loginName',
