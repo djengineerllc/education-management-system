@@ -185,6 +185,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			sql.append(" and b.role_id = ? "); 
 			valueParam.add(userInfoVO.getRoleId());
 		}
+		sql.append(" order by a.id desc ");
 		List result = this.commonDAO.findBySql(sql.toString(), valueParam.toArray());
 		UserInfoVO userInfoVO_ret = null;
 		List<UserInfoVO> userInfoVOes = new ArrayList<UserInfoVO>();
@@ -235,7 +236,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		UserInfoBO userInfoBO = new UserInfoBO();
 		userInfoBO.setLoginName(userInfoVO.getLoginName());
 		userInfoBO.setUserName(userInfoVO.getUserName());
-		userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
+		userInfoBO.setPassword(MD5.MD5Encode(Code.getValue("SysParams", "defaultPassword")));
 		userInfoBO.setEmail(userInfoVO.getEmail());
 		userInfoBO.setContact(userInfoVO.getContact());
 		this.commonDAO.save(userInfoBO);

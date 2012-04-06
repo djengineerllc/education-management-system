@@ -26,5 +26,8 @@
         <property name="studentNum" type="java.lang.Integer">
             <column name="student_num" />
         </property>
+        <property name="isGraduate" type="java.lang.String">
+            <column name="is_graduate" />
+        </property>
     </class>
 </hibernate-mapping>

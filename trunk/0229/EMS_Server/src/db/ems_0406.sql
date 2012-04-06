@@ -108,6 +108,8 @@ INSERT INTO tb_code_table VALUES ('29', 'Lesson', 'S34', '34', '34节', null, nu
 INSERT INTO tb_code_table VALUES ('30', 'Lesson', 'S56', '56', '56节', null, null, '3', '1', '1');
 INSERT INTO tb_code_table VALUES ('31', 'Lesson', 'S78', '78', '78节', null, null, '4', '1', '1');
 INSERT INTO tb_code_table VALUES ('32', 'Lesson', 'S90', '90', '90节', null, null, '5', '1', '1');
+INSERT INTO tb_code_table VALUES ('33', 'SysParams', 'defaultPassword', '123456', '默认密码', NULL, NULL, '1', '1', '1');
+
 
 -- ----------------------------
 -- Table structure for `tb_course`
