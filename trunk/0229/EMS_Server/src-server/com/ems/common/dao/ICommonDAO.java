@@ -40,6 +40,13 @@ public interface ICommonDAO {
 	public void deleteById(Class clazz,Serializable id);
 	
 	/**
+	 * 批量删除
+	 * @param clazz
+	 * @param id
+	 */
+	public void delete(List objectList);
+	
+	/**
 	 * 功能：查询表中所有的记录
 	 * @param clazz 该表映射的类
 	 * @param orderBy 排序字符串  不用排序则用NULL
@@ -92,6 +99,9 @@ public interface ICommonDAO {
 	 * @return 结果集(List of HashMap)
 	 */
 	public List findBySql(String sql) ;
+	
+	
+	public List findBySql(final String queryString, final Object[] parameters) ;
 	
 	// ==================
 	// 

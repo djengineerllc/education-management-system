@@ -58,9 +58,7 @@ public class UserAction extends DirectAction {
 	public ExtFormVO read(Integer id) {
 		UserInfoVO userInfoVO = null;
 		if(id != null){
-			UserInfoVO userInfoVO_qry = new UserInfoVO();
-			userInfoVO_qry.setId(id);
-			userInfoVO = this.basicInfoBS.findUserByVO(userInfoVO_qry).get(0);
+			userInfoVO = this.basicInfoBS.findUserVOById(id);
 		}
 		
 		return new ExtFormVO(userInfoVO);

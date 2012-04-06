@@ -119,6 +119,14 @@ public interface IBasicInfoBS {
 	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException;
 	public List<UserInfoBO> findUserInfoById(List<Integer> id) throws EMSException;
 	
+	/**
+	 * 
+	 * @param id userId
+	 * @return
+	 * @throws EMSException
+	 */
+	public UserInfoVO findUserVOById(Integer id) throws EMSException;
+	
 	public void delete(Object obj) throws EMSRollbackableException;
 	
 	public void update(Object obj) throws EMSRollbackableException;
