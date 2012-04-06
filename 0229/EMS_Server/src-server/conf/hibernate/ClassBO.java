@@ -11,6 +11,7 @@ public class ClassBO extends BaseBO {
 	private Integer gradeId;
 	private String className;
 	private Integer studentNum;
+	private String isGraduate;
 	
 	public Integer getGradeId() {
 		return gradeId;
@@ -29,5 +30,11 @@ public class ClassBO extends BaseBO {
 	}
 	public void setStudentNum(Integer studentNum) {
 		this.studentNum = studentNum;
+	}
+	public String getIsGraduate() {
+		return isGraduate;
+	}
+	public void setIsGraduate(String isGraduate) {
+		this.isGraduate = isGraduate;
 	}
 }
