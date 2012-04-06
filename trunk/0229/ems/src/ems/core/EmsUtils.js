@@ -156,7 +156,7 @@ Ext.define('ems.core.EmsUtils', {
 				head: '<style type="text/css">' + 
 						'*{color: #000 !important;}' + 
 						'a{text-decoration: none !important;}' + 
-						'body{color:black;font-size:12px;font-family:tahoma, arial, verdana, sans-serif}' +
+						'body{color:black;font-size:9px;font-family:tahoma, arial, verdana, sans-serif}' +
 					  '</style>',
 				body: content
 			});
