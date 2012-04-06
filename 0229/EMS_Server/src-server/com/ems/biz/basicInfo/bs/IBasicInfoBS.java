@@ -23,6 +23,7 @@ import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
 import conf.hibernate.RoomBO;
 import conf.hibernate.TermBO;
+import conf.hibernate.UserInfoBO;
 
 public interface IBasicInfoBS {
 	
@@ -66,7 +67,7 @@ public interface IBasicInfoBS {
 	 * @throws EMSException
 	 */
 	public List<ClassBO> findClassByVO(ClassVO classVO) throws EMSException;
-	public List<ClassBO> findClassByIds(List<Integer> ids) throws EMSException;
+	public List<ClassBO> findClassById(List<Integer> id) throws EMSException;
 	
 	/**
 	 * 查找项目信息
@@ -91,6 +92,7 @@ public interface IBasicInfoBS {
 	 * @throws EMSException
 	 */
 	public List<CourseBO> findCourseByVO(CourseVO courseVO) throws EMSException;
+	public List<CourseBO> findCourseByNo(List<String> no) throws EMSException;
 	
 	/**
 	 * 查找教室信息
@@ -115,6 +117,7 @@ public interface IBasicInfoBS {
 	 * @throws EMSException
 	 */
 	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException;
+	public List<UserInfoBO> findUserInfoById(List<Integer> id) throws EMSException;
 	
 	public void delete(Object obj) throws EMSRollbackableException;
 	

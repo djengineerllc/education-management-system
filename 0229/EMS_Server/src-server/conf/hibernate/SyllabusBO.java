@@ -13,7 +13,7 @@ public class SyllabusBO extends BaseBO {
 	private String lesson;
 	private String oeInd;
 	private String week;
-	private Integer courseId;
+	private String courseNo;
 	private Integer teacherId;
 	private Integer roomId;
 	
@@ -47,11 +47,11 @@ public class SyllabusBO extends BaseBO {
 	public void setWeek(String week) {
 		this.week = week;
 	}
-	public Integer getCourseId() {
-		return courseId;
+	public String getCourseNo() {
+		return courseNo;
 	}
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId;
+	public void setCourseNo(String courseNo) {
+		this.courseNo = courseNo;
 	}
 	public Integer getTeacherId() {
 		return teacherId;

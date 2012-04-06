@@ -25,8 +25,8 @@
         <property name="week" type="java.lang.String">
             <column name="week" />
         </property>
-        <property name="courseId" type="java.lang.Integer">
-            <column name="course_id" />
+        <property name="courseNo" type="java.lang.String">
+            <column name="course_no" />
         </property>
         <property name="teacherId" type="java.lang.Integer">
             <column name="teacher_id" />

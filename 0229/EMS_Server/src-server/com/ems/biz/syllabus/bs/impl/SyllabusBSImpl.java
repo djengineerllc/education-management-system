@@ -34,6 +34,22 @@ public class SyllabusBSImpl implements ISyllabusBS {
 		
 		return commonDAO.findListByHql("FROM SyllabusBO bo WHERE bo.termId = :termId AND bo.classId IN (:classId) ORDER BY bo.id ASC", paramMap);
 	}
+	
+	public List<SyllabusBO> findByTermIdAndCourseNo(Integer termId, List<String> courseNo) throws EMSException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("termId", termId);
+		paramMap.put("courseNo", courseNo);
+		
+		return commonDAO.findListByHql("FROM SyllabusBO bo WHERE bo.termId = :termId AND bo.courseNo IN (:courseNo) ORDER BY bo.id ASC", paramMap);
+	}
+	
+	public List<SyllabusBO> findByTermIdAndTeacherId(Integer termId, List<Integer> teacherId) throws EMSException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("termId", termId);
+		paramMap.put("teacherId", teacherId);
+		
+		return commonDAO.findListByHql("FROM SyllabusBO bo WHERE bo.termId = :termId AND bo.teacherId IN (:teacherId) ORDER BY bo.id ASC", paramMap);
+	}
 
 	public void submitSyllabus(Integer termId, List<SyllabusBO> boList) throws EMSException {
 		commonDAO.executeHql("DELETE FROM SyllabusBO bo WHERE bo.termId = ?", termId);
