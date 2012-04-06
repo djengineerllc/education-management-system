@@ -1312,7 +1312,7 @@
 							"name" : "CourseBatchImportUI.js"
 						}, {
 							"path" : "src/ems/biz/basicInfo/courseManager/",
-							"name" : CourseActions.js"
+							"name" : "CourseActions.js"
 						}, {
 							"path" : "src/ems/biz/basicInfo/courseManager/",
 							"name" : "CourseUI.js"
