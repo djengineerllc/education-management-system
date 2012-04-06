@@ -65,9 +65,6 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		hql.append(" order by id desc");
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
-	public TermBO findCurrTerm() throws EMSException {
-		return (TermBO) commonDAO.unquieResult("FROM TermBO bo WHERE bo.isCurrentTerm = ?", Code.getValue("Indicator", "S1"));
-	}
 	
 	public List<GradeBO> findGradeByVO(GradeVO gradeVO) throws EMSException{
 		String hql = "from GradeBO where 1=1 ";
@@ -91,12 +88,6 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			valueParam.add("%"+classVO.getClassName()+"%");
 		}
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
-	}
-	
-	public List<ClassBO> findClassByIds(List<Integer> ids) throws EMSException{
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("id", ids);
-		return commonDAO.findListByHql("FROM ClassBO bo WHERE bo.id IN (:id)", paramMap);
 	}
 	
 	public List<ProjectBO> findProjectByVO(ProjectVO projectVO) throws EMSException{
@@ -254,6 +245,25 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		List<UserRoleRelBO> userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId"}, 
 				new String[]{"="}, new Object[]{userInfoVO.getId()});
 		this.commonDAO.delete(userRoleRelBO);
+	}
+	
+	public TermBO findCurrTerm() throws EMSException {
+		return (TermBO) commonDAO.unquieResult("FROM TermBO bo WHERE bo.isCurrentTerm = ?", Code.getValue("Indicator", "S1"));
+	}
+	public List<ClassBO> findClassById(List<Integer> id) throws EMSException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", id);
+		return commonDAO.findListByHql("FROM ClassBO bo WHERE bo.id IN (:id)", paramMap);
+	}
+	public List<CourseBO> findCourseByNo(List<String> no) throws EMSException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("no", no);
+		return commonDAO.findListByHql("FROM CourseBO bo WHERE bo.courseNo IN (:no)", paramMap);
+	}
+	public List<UserInfoBO> findUserInfoById(List<Integer> id) throws EMSException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", id);
+		return commonDAO.findListByHql("FROM UserInfoBO bo WHERE bo.id IN (:id)", paramMap);
 	}
 
 	public <T> List<T> getAll(Class<T> clazz,String orderBy) throws EMSException {
