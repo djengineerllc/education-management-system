@@ -8,20 +8,39 @@
 }
 
 .ems .x-message-box .ext-mb-info {
-	background-image: url('images/icons/msg_info_32.png');
+	margin-right: 16px;
+	margin-bottom: 3px;
+	width: 32px !important;
+	height: 32px !important;
+	background: transparent url('images/ems_icons.png') no-repeat -127px -47px;
 }
 .ems .x-message-box .ext-mb-warning {
-	background-image: url('images/icons/msg_warning_32.png');
+	margin-right: 16px;
+	margin-bottom: 3px;
+	width: 32px !important;
+	height: 32px !important;
+	background: transparent url('images/ems_icons.png') no-repeat -32px -48px;
 }
 .ems .x-message-box .ext-mb-question {
-	background-image: url('images/icons/msg_question_32.png');
+	margin-right: 16px;
+	margin-bottom: 3px;
+	width: 31px !important;
+	height: 32px !important;
+	background: transparent url('images/ems_icons.png') no-repeat -96px -48px;
 }
 .ems .x-message-box .ext-mb-error {
-	background-image: url('images/icons/msg_error_32.png');
+	margin-right: 16px;
+	margin-bottom: 3px;
+	width: 32px !important;
+	height: 32px !important;
+	background: transparent url('images/ems_icons.png') no-repeat 0px -48px;
 }
 .ems .x-message-box .ext-mb-success {
-	background: transparent no-repeat top left;
-	background-image: url('images/icons/msg_success_32.png');
+	margin-right: 16px;
+	margin-bottom: 3px;
+	width: 32px !important;
+	height: 32px !important;
+	background: transparent url('images/ems_icons.png') no-repeat -64px -48px;
 }
 
 .ems .x-tab-bar .x-tab-bar-body {
