@@ -191,7 +191,6 @@ public class CommonDAO implements ICommonDAO {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public int executeHql(final String hqlString, final List paramValues) {
 		return hibernateTemplate.execute(new HibernateCallback() {
-			@Override
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				Query q = session.createQuery(hqlString);
 				if (paramValues != null) {
