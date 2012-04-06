@@ -167,7 +167,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException{
 		StringBuffer sql = 
 			new StringBuffer("select a.id,a.login_name,a.user_name,a.password,a.email,a.contact,b.role_id ");
-		sql.append(" from ts_user_info a left outer join ts_user_role_rel b on a.id = b.user_id ");
+		sql.append(" from ts_user_info a left outer join ts_user_role_rel b on a.id = b.user_id where 1 = 1");
 		List<Object> valueParam = new ArrayList<Object>();
 		if(userInfoVO.getId() != null && userInfoVO.getId() != -1){
 			sql.append(" and a.id = ? "); 
@@ -252,7 +252,6 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		//userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
 		userInfoBO.setEmail(userInfoVO.getEmail());
 		userInfoBO.setContact(userInfoVO.getContact());
-		userInfoBO.setUpdateTime(new Date());
 		this.commonDAO.update(userInfoBO);
 		UserRoleRelBO userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId"}, 
 				new String[]{"="}, new Object[]{userInfoVO.getId()}).get(0);
