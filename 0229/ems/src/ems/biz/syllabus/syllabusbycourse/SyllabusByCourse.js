@@ -26,7 +26,10 @@ Ext.define('ems.biz.syllabus.syllabusbycourse.SyllabusByCourse', {
 		
         me.SW('ViewSyllabusUI', {
             bizAction: bizAction,
-            reqParams: reqParams
+            reqParams: {
+            	termId: me.down('#termComboBox').getValue(),
+            	sltCourses: reqParams
+            }
         }, {
 			title: '课程课表',
 			width: 850,

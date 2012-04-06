@@ -26,7 +26,10 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacher', {
 		
         me.SW('ViewSyllabusUI', {
             bizAction: bizAction,
-            reqParams: reqParams
+            reqParams: {
+            	termId: me.down('#termComboBox').getValue(),
+            	sltTeachers: reqParams
+            }
         }, {
 			title: '教师课表',
 			width: 850,

@@ -3,7 +3,24 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.view.ViewSyllabusUI', {
 	
 	initData: function() {
 		var me = this,
-			sltTeachers = me.reqParams;
+			termId = me.reqParams['termId'],
+			sltTeachers = me.reqParams['sltTeachers'],
+			sltTeacherIds = [],
+			contentPanel = me.down('#contentPanel');
+		
+		Ext.each(sltTeachers, function(sltTeacher) {
+			sltTeacherIds.push(sltTeacher.id);
+		});
+		
+		contentPanel.el.load({
+			url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printSyllbusPlan'),
+			loadMask: true,
+			scripts: true,
+			params: {
+				termId: termId,
+				sltTeacherId: sltTeacherIds
+			}
+		});
 	},
 	
 	uiConfig: function(){
