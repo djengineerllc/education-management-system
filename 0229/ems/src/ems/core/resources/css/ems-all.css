@@ -160,21 +160,21 @@
 }
 
 .ems .icon-users, .ems .icon-roles {
-	background: transparent url('images/icons/users_16.png') no-repeat top left;
+	background: transparent url('images/ems_icons.png') no-repeat -48px -32px;
 }
 
 .ems .icon-role-admin {
-	background: transparent url('images/icons/user_role_admin_16.png') no-repeat top left;
+	background: transparent url('images/ems_icons.png') no-repeat -16px -32px;
 }
 .ems .icon-role-teacher {
-	background: transparent url('images/icons/user_role_teacher_16.png') no-repeat top left;
+	background: transparent url('images/ems_icons.png') no-repeat -32px -32px;
 }
 .ems .icon-role-student {
-	background: transparent url('images/icons/user_role_student_16.png') no-repeat top left;
+	background: transparent url('images/ems_icons.png') no-repeat -16px -32px;
 }
 
 .ems .icon-logout {
-	background: transparent url('images/icons/logout_16.png') no-repeat top left;
+	background: transparent url('images/ems_icons.png') no-repeat -64px -0px;
 }
 
 .ems .icon-identity-card {
