@@ -148,6 +148,20 @@ Ext.define('ems.main.MainUI', {
 							})
 						}
 					})
+//					items: [{
+//						title: 'x1',
+//						listeners: {
+//							expand: {
+//								fn: function() {
+//									alert(1)
+//								}
+//							}
+//						}
+//					}, {
+//						title: 'x2'
+//					}, {
+//						title: 'x3'
+//					}]
 				}]
 		    }, {
 				region: 'center',
@@ -166,7 +180,7 @@ Ext.define('ems.main.MainUI', {
 //					}],
 					items: [{
 						title: '首页',
-						html: 'Creating more tabs...'
+						itemId: 'homeWorkItem'
 					}],
 					listeners: me.MRA('tabchange', 'onWorkItemChange')
 				}]
