@@ -29,10 +29,14 @@ Ext.define('ems.biz.basicInfo.userManager.UserUI', {
 				})]
                 },
                 columns: [{
+                    dataIndex: 'id',
+                    text: 'id',
+                    flex: 1
+                },{
                     dataIndex: 'loginName',
                     text: '帐号',
                     flex: 1
-                }, {
+                },{
                     dataIndex: 'userName',
                     text: '姓名',
                     flex: 1
