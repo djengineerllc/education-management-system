@@ -103,7 +103,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 	public List<ProfessBO> findProfessByVO(ProfessVO professVO) throws EMSException{
 		StringBuffer hql = new StringBuffer(" from ProfessBO where 1=1 ");
 		List<Object> valueParam = new ArrayList<Object>();
-		if(professVO.getProjectId() != -1){
+		if(professVO.getProjectId() != null && professVO.getProjectId() != -1){
 			hql.append(" and projectId = ? "); 
 			valueParam.add(professVO.getProjectId());
 		}
@@ -135,7 +135,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql.append(" and roomName like ? "); 
 			valueParam.add("%"+roomVO.getRoomName()+"%");
 		}
-		if(roomVO.getTermId() != -1){
+		if(roomVO.getTermId() != null && roomVO.getTermId() != -1){
 			hql.append(" and termId = ? "); 
 			valueParam.add(roomVO.getTermId());
 		}
@@ -165,46 +165,70 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 	}
 	
 	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException{
-		StringBuffer hql = new StringBuffer("select user,role.roleId ");
-		hql.append(" from UserInfoBO user left join UserRoleRelBO role on user.id=role.userId ");
+		StringBuffer sql = 
+			new StringBuffer("select a.id,a.login_name,a.user_name,a.password,a.email,a.contact,b.role_id ");
+		sql.append(" from ts_user_info a left outer join ts_user_role_rel b on a.id = b.user_id ");
 		List<Object> valueParam = new ArrayList<Object>();
 		if(userInfoVO.getId() != null && userInfoVO.getId() != -1){
-			hql.append(" and user.id = ? "); 
+			sql.append(" and a.id = ? "); 
 			valueParam.add(userInfoVO.getId());
 		}
 		if(!StringUtils.isNullBlank(userInfoVO.getLoginName())){
-			hql.append(" and user.loginName like ? "); 
+			sql.append(" and a.login_name like ? "); 
 			valueParam.add("%"+userInfoVO.getLoginName()+"%");
 		}
 		if(!StringUtils.isNullBlank(userInfoVO.getUserName())){
-			hql.append(" and user.userName like ? "); 
+			sql.append(" and a.user_name like ? "); 
 			valueParam.add("%"+userInfoVO.getUserName()+"%");
 		}
-		if(userInfoVO.getRoleId() != -1 ){
-			hql.append(" and role.roleId = ? "); 
+		if(userInfoVO.getRoleId() != null && userInfoVO.getRoleId() != -1 ){
+			sql.append(" and b.role_id = ? "); 
 			valueParam.add(userInfoVO.getRoleId());
 		}
-		List result = this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+		List result = this.commonDAO.findBySql(sql.toString(), valueParam.toArray());
 		UserInfoVO userInfoVO_ret = null;
 		List<UserInfoVO> userInfoVOes = new ArrayList<UserInfoVO>();
 		if(result != null && result.size() >  0){
 			for(int i = 0;i<result.size();i++){
 				Object[] obj = (Object[])result.get(i);
-				UserInfoBO user = (UserInfoBO)obj[0];
-				Integer roleId = (Integer)obj[1];
 				userInfoVO_ret = new UserInfoVO();
-				userInfoVO_ret.setId(user.getId());
-				userInfoVO_ret.setLoginName(user.getLoginName());
-				userInfoVO_ret.setUserName(user.getUserName());
-				userInfoVO_ret.setPassword(user.getPassword());
-				userInfoVO_ret.setRoleId(roleId);
-				userInfoVO_ret.setRoleName(Code.getName("Role", roleId+""));
-				userInfoVO_ret.setContact(user.getContact());
-				userInfoVO_ret.setEmail(user.getEmail());
+				userInfoVO_ret.setId((Integer)obj[0]);
+				userInfoVO_ret.setLoginName(StringUtils.nullToSpace(obj[1]));
+				userInfoVO_ret.setUserName(StringUtils.nullToSpace(obj[2]));
+				userInfoVO_ret.setPassword(StringUtils.nullToSpace(obj[3]));
+				userInfoVO_ret.setEmail(StringUtils.nullToSpace(obj[4]));
+				userInfoVO_ret.setContact(StringUtils.nullToSpace(obj[5]));
+				if(obj[6] != null){
+					userInfoVO_ret.setRoleId((Integer)obj[6]);
+					userInfoVO_ret.setRoleName(Code.getName("Role", userInfoVO_ret.getRoleId()+""));
+				}
 				userInfoVOes.add(userInfoVO_ret);
 			}
 		}
 		return userInfoVOes;
+	}
+	
+	public UserInfoVO findUserVOById(Integer id) throws EMSException {
+		StringBuffer sql = 
+			new StringBuffer("select a.id,a.login_name,a.user_name,a.password,a.email,a.contact,b.role_id ");
+		sql.append(" from ts_user_info a left outer join ts_user_role_rel b on a.id = b.user_id ");
+		sql.append(" where a.id = ? ");
+		List result = this.commonDAO.findBySql(sql.toString(), new Object[]{id});
+		UserInfoVO userInfoVO_ret = new UserInfoVO();
+		if(result != null && result.size() >  0){
+			Object[] obj = (Object[])result.get(0);
+			userInfoVO_ret.setId((Integer)obj[0]);
+			userInfoVO_ret.setLoginName(StringUtils.nullToSpace(obj[1]));
+			userInfoVO_ret.setUserName(StringUtils.nullToSpace(obj[2]));
+			userInfoVO_ret.setPassword(StringUtils.nullToSpace(obj[3]));
+			userInfoVO_ret.setEmail(StringUtils.nullToSpace(obj[4]));
+			userInfoVO_ret.setContact(StringUtils.nullToSpace(obj[5]));
+			if(obj[6] != null){
+				userInfoVO_ret.setRoleId((Integer)obj[6]);
+				userInfoVO_ret.setRoleName(Code.getName("Role", userInfoVO_ret.getRoleId()+""));
+			}
+		}
+		return userInfoVO_ret;
 	}
 	
 	public void createUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException{
@@ -214,12 +238,10 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
 		userInfoBO.setEmail(userInfoVO.getEmail());
 		userInfoBO.setContact(userInfoVO.getContact());
-		userInfoBO.setCreateTime(new Date());
 		this.commonDAO.save(userInfoBO);
 		UserRoleRelBO userRoleRelBO = new UserRoleRelBO();
 		userRoleRelBO.setUserId(userInfoBO.getId());
 		userRoleRelBO.setRoleId(userInfoVO.getRoleId());
-		userRoleRelBO.setCreateTime(new Date());
 		this.commonDAO.save(userRoleRelBO);
 	}
 	
@@ -227,15 +249,14 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		UserInfoBO userInfoBO = this.commonDAO.findById(UserInfoBO.class, userInfoVO.getId());
 		userInfoBO.setLoginName(userInfoVO.getLoginName());
 		userInfoBO.setUserName(userInfoVO.getUserName());
-		userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
+		//userInfoBO.setPassword(MD5.MD5Encode(userInfoVO.getPassword()));
 		userInfoBO.setEmail(userInfoVO.getEmail());
 		userInfoBO.setContact(userInfoVO.getContact());
 		userInfoBO.setUpdateTime(new Date());
 		this.commonDAO.update(userInfoBO);
-		UserRoleRelBO userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId","roleId"}, 
-				new String[]{"=","="}, new Object[]{userInfoVO.getId(),userInfoVO.getRoleId()}).get(0);
+		UserRoleRelBO userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId"}, 
+				new String[]{"="}, new Object[]{userInfoVO.getId()}).get(0);
 		userRoleRelBO.setRoleId(userInfoVO.getRoleId());
-		userRoleRelBO.setUpdateTime(new Date());
 		this.commonDAO.update(userRoleRelBO);
 	}
 	

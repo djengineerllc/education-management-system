@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -68,6 +69,14 @@ public class CommonDAO implements ICommonDAO {
 	public void deleteById(Class clazz, Serializable id) {
 		hibernateTemplate.delete(this.findById(clazz, id));
 	}
+	
+	public void delete(List objectList){
+		if(objectList != null){
+			for(Iterator it = objectList.iterator();it.hasNext();){
+				this.hibernateTemplate.delete(it.next());
+			}
+		}
+	}
 
 	public void update(Object obj) {
 		hibernateTemplate.update(obj);
@@ -127,6 +136,21 @@ public class CommonDAO implements ICommonDAO {
 	 */
 	public List findBySql(String sql) {
 		return jdbcTemplate.queryForList(sql);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List findBySql(final String queryString, final Object[] parameters) {
+		return (List) this.hibernateTemplate.execute(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Query query = session.createSQLQuery(queryString);
+				if (parameters != null) {
+					for (int i = 0; i < parameters.length; i++) {
+						query.setParameter(i, parameters[i]);
+					}
+				}
+				return query.list();
+			}			
+		});
 	}
 
 	// -----------------
