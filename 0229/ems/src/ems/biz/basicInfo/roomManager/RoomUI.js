@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.roomManager.RoomUI', {
                     items: [Dic.comboBox('Term', {
 					fieldLabel: '学期',
 					name: 'termId',
-					value:-1
+					headerOption: true
 				}),{
                         fieldLabel: '教室',
                         name: 'roomName'
