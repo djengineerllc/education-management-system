@@ -414,7 +414,7 @@ Ems = ems.core.Ems = {
 //            style : "width:0px;height:0px;position:absolute;right:0;bottom:0;border:none;overflow:hidden"
 //			,src : url
 //        });
-		alert(url)
+		
 		window.open(url);//, null, "status=no,toolbar=no,menubar=no,location=no"); // "height=0,width=0,status=no,toolbar=no,menubar=no,location=no");
 	},
 	getDirectStreamRequestUrl: function(moduleId, method, data, action) {
