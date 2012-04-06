@@ -11,36 +11,35 @@ public class SyllabusPlanVO implements Serializable {
 	private String course;
 	private String oeInd;
 	private Integer monId;
-	private Integer monCourse;
+	private String monCourse;
 	private Integer monTeacher;
 	private String monTeacherName;
 	private Integer monClass;
 	private Integer monRoom;
 	private Integer tueId;
-	private Integer tueCourse;
+	private String tueCourse;
 	private Integer tueTeacher;
 	private String tueTeacherName;
 	private Integer tueClass;
 	private Integer tueRoom;
 	private Integer webId;
-	private Integer webCourse;
+	private String webCourse;
 	private Integer webTeacher;
 	private String webTeacherName;
 	private Integer webClass;
 	private Integer webRoom;
 	private Integer thuId;
-	private Integer thuCourse;
+	private String thuCourse;
 	private Integer thuTeacher;
 	private String thuTeacherName;
 	private Integer thuClass;
 	private Integer thuRoom;
 	private Integer friId;
-	private Integer friCourse;
+	private String friCourse;
 	private Integer friTeacher;
 	private String friTeacherName;
 	private Integer friClass;
 	private Integer friRoom;
-	
 	public String getLesson() {
 		return lesson;
 	}
@@ -83,10 +82,10 @@ public class SyllabusPlanVO implements Serializable {
 	public void setMonId(Integer monId) {
 		this.monId = monId;
 	}
-	public Integer getMonCourse() {
+	public String getMonCourse() {
 		return monCourse;
 	}
-	public void setMonCourse(Integer monCourse) {
+	public void setMonCourse(String monCourse) {
 		this.monCourse = monCourse;
 	}
 	public Integer getMonTeacher() {
@@ -119,10 +118,10 @@ public class SyllabusPlanVO implements Serializable {
 	public void setTueId(Integer tueId) {
 		this.tueId = tueId;
 	}
-	public Integer getTueCourse() {
+	public String getTueCourse() {
 		return tueCourse;
 	}
-	public void setTueCourse(Integer tueCourse) {
+	public void setTueCourse(String tueCourse) {
 		this.tueCourse = tueCourse;
 	}
 	public Integer getTueTeacher() {
@@ -155,10 +154,10 @@ public class SyllabusPlanVO implements Serializable {
 	public void setWebId(Integer webId) {
 		this.webId = webId;
 	}
-	public Integer getWebCourse() {
+	public String getWebCourse() {
 		return webCourse;
 	}
-	public void setWebCourse(Integer webCourse) {
+	public void setWebCourse(String webCourse) {
 		this.webCourse = webCourse;
 	}
 	public Integer getWebTeacher() {
@@ -191,10 +190,10 @@ public class SyllabusPlanVO implements Serializable {
 	public void setThuId(Integer thuId) {
 		this.thuId = thuId;
 	}
-	public Integer getThuCourse() {
+	public String getThuCourse() {
 		return thuCourse;
 	}
-	public void setThuCourse(Integer thuCourse) {
+	public void setThuCourse(String thuCourse) {
 		this.thuCourse = thuCourse;
 	}
 	public Integer getThuTeacher() {
@@ -227,10 +226,10 @@ public class SyllabusPlanVO implements Serializable {
 	public void setFriId(Integer friId) {
 		this.friId = friId;
 	}
-	public Integer getFriCourse() {
+	public String getFriCourse() {
 		return friCourse;
 	}
-	public void setFriCourse(Integer friCourse) {
+	public void setFriCourse(String friCourse) {
 		this.friCourse = friCourse;
 	}
 	public Integer getFriTeacher() {
