@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.classManager.ClassUI', {
                     items: [Dic.comboBox('Grade', {
 					fieldLabel: '年级名',
 					name: 'gradeId',
-					value:-1
+					headerOption: true
 				}),{
                         fieldLabel: '班级名',
                         name: 'className'
