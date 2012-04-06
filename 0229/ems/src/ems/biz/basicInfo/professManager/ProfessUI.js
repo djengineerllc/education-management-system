@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                     items: [Dic.comboBox('Project', {
 					fieldLabel: '项目名',
 					name: 'projectId',
-					value:-1
+					headerOption: true
 				}),{
                         fieldLabel: '专业名',
                         name: 'professName'
