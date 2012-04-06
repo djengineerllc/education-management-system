@@ -35,16 +35,20 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                 	}]
                 },
                 columns: [{
-                	dataIndex: 'teacherName',
+                	dataIndex: 'id',
+                    text: '教师ID',
+                    flex: 1
+                }, {
+                	dataIndex: 'userName',
                     text: '教师名',
                     flex: 1
                 }, {
-                	dataIndex: 'teacherTel',
-                    text: '电话',
+                	dataIndex: 'contact',
+                    text: '联系电话',
                     flex: 1
                 }, {
-                	dataIndex: 'teacherEmail',
-                    text: 'E-Mail',
+                	dataIndex: 'email',
+                    text: '电子邮箱',
                     flex: 1
                 }],
 				tbarButtons: [{

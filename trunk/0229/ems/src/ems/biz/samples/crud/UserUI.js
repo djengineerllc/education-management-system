@@ -4,10 +4,9 @@ Ext.define('ems.biz.samples.crud.UserUI', {
     requires: ['ems.core.widget.XGrid'],
 	
 	isListUI: true,
-//	enableCreateAction: true,
-//	enableUpdateAction: true,
-//	enableDeleteAction: true,
-//	enableReadAction: true,
+	enableBatchImport: true,
+	enablePrint: true,
+	enableExportExcel: true,
     
     uiConfig: function(){
         var me = this;
