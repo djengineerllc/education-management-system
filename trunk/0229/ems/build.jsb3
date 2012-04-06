@@ -1272,5 +1272,53 @@
 							"path" : "src/ems/biz/basicInfo/termManager/",
 							"name" : "Term.js"
 						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-usermanager",
+				"description" : "基础信息管理->用户管理",
+				"target" : "src/ems/biz/basicInfo/userManager/User.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/userManager/view/",
+							"name" : "UserReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/userManager/view/",
+							"name" : "UserEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/userManager/view/",
+							"name" : "UserBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/userManager/",
+							"name" : "UserActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/userManager/",
+							"name" : "UserUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/userManager/",
+							"name" : "User.js"
+						}]
+			}, {
+				"name" : "Ems-biz-baseinfo-coursemanager",
+				"description" : "基础信息管理->课程管理",
+				"target" : "src/ems/biz/basicInfo/courseManager/Course.js",
+				"compress" : true,
+				"files" : [{
+							"path" : "src/ems/biz/basicInfo/courseManager/view/",
+							"name" : "CourseReadUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/courseManager/view/",
+							"name" : "CourseEditUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/courseManager/view/",
+							"name" : "CourseBatchImportUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/courseManager/",
+							"name" : CourseActions.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/courseManager/",
+							"name" : "CourseUI.js"
+						}, {
+							"path" : "src/ems/biz/basicInfo/courseManager/",
+							"name" : "Course.js"
+						}]
 			}]
 }
