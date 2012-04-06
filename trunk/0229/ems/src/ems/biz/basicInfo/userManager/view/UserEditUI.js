@@ -23,14 +23,18 @@ Ext.define('ems.biz.basicInfo.userManager.view.UserEditUI', {
 					name: 'id'
 				},{
 	                fieldLabel: '帐号',
-	                name: 'loginName'
+	                name: 'loginName',
+	                allowBlank: false
 	            },{
 	                fieldLabel: '姓名',
-	                name: 'userName'
-	            },Dic.comboBox('Role', {
+	                name: 'userName',
+	                allowBlank: false
+	            },
+	            Dic.comboBox('Role', {
 					fieldLabel: '角色',
 					name: 'roleId',
-					value:-1
+					value: '',
+					allowBlank: false
 				}),{
 	                fieldLabel: 'E-Mail',
 	                name: 'email',
