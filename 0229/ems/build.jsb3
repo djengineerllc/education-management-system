@@ -1,6 +1,6 @@
 {
 	"projectName" : "EMS - Education Management System",
-	"licenseText" : "EMS - Education Management System\nCopyright(c) 2012 Amoy Team",
+	"licenseText" : "EMS - Education Management System\nCopyright(c) 2012 Amoy Team\nAuthor: chiknin, lele, alljava",
 	"resources" : [{
 				"src" : "index.html",
 				"dest" : "index.html"
@@ -913,6 +913,9 @@
 						}, {
 							"path" : "src/ems/main/data/store/",
 							"name" : "MenuStore.js"
+						}, {
+							"path" : "src/ems/main/view/",
+							"name" : "HomeUI.js"
 						}, {
 							"path" : "src/ems/main/",
 							"name" : "MainActions.js"
