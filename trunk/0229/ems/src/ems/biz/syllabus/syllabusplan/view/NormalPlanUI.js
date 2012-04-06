@@ -82,7 +82,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		store: Dic.getStore('Course'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
-			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
+			                    url: 'src/ems/core/resources/css/images/icons/course_16.png'
 			                });
 			                return data;
 			            }
@@ -98,7 +98,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		store: Dic.getStore('Sex'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
-			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
+			                    url: 'src/ems/core/resources/css/images/icons/user_role_teacher_16.png'
 			                });
 			                return data;
 			            }
@@ -114,7 +114,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		store: Dic.getStore('Room'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
-			                    url: 'src/ems/core/resources/css/images/icons/users_16.png'
+			                    url: 'src/ems/core/resources/css/images/icons/map_16.png'
 			                });
 			                return data;
 			            }
