@@ -63,8 +63,8 @@ public class SyllabusByClassAction extends DirectCrudAction {
 		this.writeToResponse(response, data.getBytes("UTF-8"));
 	}
 	
-	public List<SyllabusPlanVO> getSyllabusPlanVOList(Integer termId, List<Integer> classIds) throws EMSException {
-		List<ClassBO> classBOList = basicInfoBS.findClassByIds(classIds);
+	private List<SyllabusPlanVO> getSyllabusPlanVOList(Integer termId, List<Integer> classIds) throws EMSException {
+		List<ClassBO> classBOList = basicInfoBS.findClassById(classIds);
 		List<SyllabusBO> syllabusBOList = syllabusBS.findByTermIdAndClassId(termId, classIds);
 		Map<String, SyllabusBO> syllabusBOMap = BeanUtils.toMap(syllabusBOList, new KeyNamingCallback<SyllabusBO>() {
 			public String getKey(SyllabusBO item, List<SyllabusBO> list, int idx) {
@@ -86,31 +86,31 @@ public class SyllabusByClassAction extends DirectCrudAction {
 					String baseKey = String.format("%s-%s-%s-", syllabusPlanVO.getClassId().toString(), syllabusPlanVO.getLesson(), syllabusPlanVO.getOeInd());
 					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S1"));
 					if (syllabusBO != null) {
-						syllabusPlanVO.setMonCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setMonCourse(syllabusBO.getCourseNo());
 						syllabusPlanVO.setMonTeacher(syllabusBO.getTeacherId());
 						syllabusPlanVO.setMonRoom(syllabusBO.getRoomId());
 					}
 					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S2"));
 					if (syllabusBO != null) {
-						syllabusPlanVO.setTueCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setTueCourse(syllabusBO.getCourseNo());
 						syllabusPlanVO.setTueTeacher(syllabusBO.getTeacherId());
 						syllabusPlanVO.setTueRoom(syllabusBO.getRoomId());
 					}
 					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S3"));
 					if (syllabusBO != null) {
-						syllabusPlanVO.setWebCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setWebCourse(syllabusBO.getCourseNo());
 						syllabusPlanVO.setWebTeacher(syllabusBO.getTeacherId());
 						syllabusPlanVO.setWebRoom(syllabusBO.getRoomId());
 					}
 					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S4"));
 					if (syllabusBO != null) {
-						syllabusPlanVO.setThuCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setThuCourse(syllabusBO.getCourseNo());
 						syllabusPlanVO.setThuTeacher(syllabusBO.getTeacherId());
 						syllabusPlanVO.setThuRoom(syllabusBO.getRoomId());
 					}
 					syllabusBO = syllabusBOMap.get(baseKey + Code.getValue("Week", "S5"));
 					if (syllabusBO != null) {
-						syllabusPlanVO.setFriCourse(syllabusBO.getCourseId());
+						syllabusPlanVO.setFriCourse(syllabusBO.getCourseNo());
 						syllabusPlanVO.setFriTeacher(syllabusBO.getTeacherId());
 						syllabusPlanVO.setFriRoom(syllabusBO.getRoomId());
 					}
