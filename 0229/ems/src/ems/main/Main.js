@@ -5,14 +5,11 @@ Ext.define('ems.main.Main', {
 		'Ext.tab.Panel',
 		'Ext.form.field.ComboBox'
 	],
-	
 	uses: [
 		'ems.main.MainActions',
 		'ems.main.data.store.MenuStore',
 		'ems.main.MainUI'
 	],
-	
-	autoLoadLocale: false,
 	
 	constructor: function() {
 		var me = this;
@@ -27,6 +24,12 @@ Ext.define('ems.main.Main', {
 		Ext.require([
 			'ems.biz.base.Requires'
 		]);
+		
+		Ext.defer(function() {
+			me.RV('HomeUI', {
+	            renderTo: me.down('#homeWorkItem')
+	        });
+		}, 100);
 	},
 	
 	loadMenu: function(params, request) {
