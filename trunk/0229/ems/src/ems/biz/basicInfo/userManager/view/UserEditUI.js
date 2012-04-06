@@ -33,7 +33,8 @@ Ext.define('ems.biz.basicInfo.userManager.view.UserEditUI', {
 					value:-1
 				}),{
 	                fieldLabel: 'E-Mail',
-	                name: 'email'
+	                name: 'email',
+	                vtype: 'email'
 	            },{
 	                fieldLabel: '联系电话',
 	                name: 'contact'
