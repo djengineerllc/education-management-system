@@ -178,26 +178,21 @@
 }
 
 .ems .icon-identity-card {
-	background-image: url('images/icons/identity_card_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -80px -32px;
 }
 
 .ems .icon-user {
-	background-image: url('images/icons/user_16.png');
 }
 
 .ems .icon-key {
-	background-image: url('images/icons/key_16.png');
-}
-
-.ems .icon-horn {
-	background-image: url('images/icons/horn_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -80px 0px;
 }
 
 .ems .icon-search {
-	background-image: url('images/icons/search_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat 0px -16px;
 }
 .ems .icon-reset {
-	background-image: url('images/icons/reset_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -16px -16px;
 }
 
 .ems .icon-add, .ems .icon-new, .ems .icon-create {
@@ -205,7 +200,7 @@
 }
 
 .ems .icon-edit, .ems .icon-modify, .ems .icon-update {
-	background-image: url('images/icons/edit_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -32px -16px;
 }
 
 .ems .icon-close, .ems .icon-delete {
@@ -213,7 +208,7 @@
 }
 
 .ems .icon-read, .ems .icon-view {
-	background-image: url('images/icons/read_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -64px -16px;
 }
 
 .ems .icon-speaker {
@@ -222,23 +217,23 @@
 }
 
 .ems .icon-print {
-	background-image: url('images/icons/print_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -80px -16px;
 }
 
 .ems .icon-batch-import {
-	background-image: url('images/icons/table_import_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -112px -16px;
 }
 
 .ems .icon-export-excel {
-	background-image: url('images/icons/export_excel_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -96px -16px;
 }
 
 .ems .icon-cert {
-	background-image: url('images/icons/cert_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -112px -32px;
 }
 
 .ems .icon-stamp {
-	background-image: url('images/icons/stamp_16.png');
+	background: transparent url('images/ems_icons.png') no-repeat -112px 0px;
 }
 
 .ems .icon-arrow-up {
@@ -250,11 +245,11 @@
 }
 
 .ems .icon-plan {
-	background-image: url('images/icons/plan_16.png')
+	background: transparent url('images/ems_icons.png') no-repeat -96px -32px;
 }
 
 .ems .icon-filter {
-	background-image: url('images/icons/filter_16.png')
+	background: transparent url('images/ems_icons.png') no-repeat -48px -16px;
 }
 
 
