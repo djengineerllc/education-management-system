@@ -161,23 +161,28 @@ Ext.define('ems.core.EmsUtils', {
 			'<body class=\"ems\">{body}</body>',
 		'</html>'
 	]),
-	printHtml: function(content, title) {
+	printHtml: function(content, title, cssPaths) {
+		var importCss = [], 
+			cssPaths = [Ems.config.printCssPath].concat(cssPaths || []);
+		Ext.each(cssPaths, function(cssPath) {
+			importCss.push('@import url("'+ cssPath +'");');
+		});
+		
 		var me = this,
 			html = me.printHtmlTpl.apply({
-				title: title,
+				title: title || '打印',
 				head: '<style type="text/css">' + 
-						'*{color: #000 !important;}' + 
-						'a{text-decoration: none !important;}' + 
-						'body{color:black;font-size:9px;font-family:tahoma, arial, verdana, sans-serif}' +
+						importCss.join('') +
 					  '</style>',
 				body: content
 			});
+		
 		me.print(html);
 	},
 	
 	printer: function(pageArgs, pageFn) {
 		return {
-			PAGE_SEPARATOR: '<div style="page-break-after: always;"></div>',
+			PAGE_SEPARATOR: '<div style="page-separator"></div>',
 			pages: [],
 			
 			addPage: function(page) {
