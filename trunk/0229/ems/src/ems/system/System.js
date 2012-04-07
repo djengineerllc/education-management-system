@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.system.System', {
 	extend: 'ems.core.Module',
 	silent: true,
