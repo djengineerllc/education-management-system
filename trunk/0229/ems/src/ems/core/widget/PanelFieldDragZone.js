@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.core.widget.PanelFieldDragZone', {
 	extend: 'Ext.dd.DragZone',
 	

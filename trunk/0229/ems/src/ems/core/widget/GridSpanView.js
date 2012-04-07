@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.core.widget.TableSpanChunker', {
 	extend: 'Ext.view.TableChunker.self',
 	singleton: true,
