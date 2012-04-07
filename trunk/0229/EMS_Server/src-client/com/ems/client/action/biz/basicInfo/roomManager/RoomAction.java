@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 
 import com.ems.biz.basicInfo.bs.IBasicInfoBS;
+import com.ems.common.code.Code;
 import com.ems.common.model.vo.RoomVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -49,7 +50,7 @@ public class RoomAction extends DirectAction {
 			roomVO.setRoomSize(room_.getRoomSize());
 			roomVO.setTermId(room_.getTermId());
 			roomVO.setTermName(basicInfoBS.findById(TermBO.class,room_.getTermId()).getTermName());
-			roomVO.setRoomStatus(room_.getRoomStatus());
+			roomVO.setRoomStatus(Code.getNameByValue("roomStatus",room_.getRoomStatus()));
 			roomVO.setRoomComment(room_.getRoomComment());
 			roomVOList.add(roomVO);
 		}
@@ -81,7 +82,7 @@ public class RoomAction extends DirectAction {
 			roomVO.setId(room.getId());
 			roomVO.setRoomName(room.getRoomName());
 			roomVO.setRoomSize(room.getRoomSize());
-			roomVO.setRoomStatus(room.getRoomStatus());
+			roomVO.setRoomStatus(Code.getNameByValue("roomStatus",room.getRoomStatus()));
 			roomVO.setTermId(room.getTermId());
 			roomVO.setRoomComment(room.getRoomComment());
 			roomVO.setTermName(basicInfoBS.findById(TermBO.class, room.getTermId()).getTermName());
