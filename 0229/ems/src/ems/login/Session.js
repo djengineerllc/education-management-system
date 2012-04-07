@@ -23,7 +23,7 @@ Ext.define('ems.login.Session', {
 		
 		if (loginInfo.roleCd == 'student') {
 			welcomeText = Ext.String.format(
-				'您好 {0}, 角色: {1} | 学号: {2} | 年级: {3} | 班级: {4} | 项目: {5} | 专业: {6}', 
+				'您好， {0} 角色: {1} | 学号: {2} | 年级: {3} | 班级: {4} | 项目: {5} | 专业: {6}', 
 				loginInfo.userName || '', 
 				loginInfo.roleName || '',
 				loginInfo.stuNo || '',
@@ -34,7 +34,7 @@ Ext.define('ems.login.Session', {
 			);
 		} else {
 			welcomeText = Ext.String.format(
-				'您好 {0}，角色: {1}', 
+				'您好， {0} 角色: {1}', 
 				loginInfo.userName || '',
 				loginInfo.roleName || ''
 			);
