@@ -25,7 +25,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomEditUI', {
 				bodyPadding: 10,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
