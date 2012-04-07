@@ -189,46 +189,47 @@ Ext.define('ems.main.MainUI', {
 				border: false,
 				items: [
 					Ext.create('Ext.ux.statusbar.StatusBar', {
-					border: false,
-					cls: 'ems-status-bar',
-					defaultText: '系统公告',
-					defaultIconCls: 'icon-speaker'
-//					statusAlign: 'right',
-//		            items: ['-',{
-//						xtype: 'displayfield',
-//						labelAlign: 'right',
-//						labelWidth: 80,
-//						fieldLabel: '当前用户',
-//						value: 'admin'
-//					}, {
-//						xtype: 'displayfield',
-//						labelAlign: 'right',
-//						labelWidth: 80,
-//						fieldLabel: '当前角色',
-//						value: '系统管理员'
-//					}
-//					,'-', {
-//						xtype: 'tbtext',
-//						id: 'clock',
-//						listeners: {
-//							render: function() {
-//								Ems.A('ems.system.System', {
-//									m: 'getSystemTime',
-//									cb: function(result, e) {
-//										var clock = Ext.getCmp('clock');
-//										Ext.TaskManager.start({
-//											run: function() {
-//												clock.update(Ext.Date.format(new Date(), 'Y-m-d G:i:s'));
-//											},
-//											interval: 1000
-//										});
-//									}
-//								})
+						border: false,
+						cls: 'ems-status-bar',
+						defaultText: '暂无公告',
+						defaultIconCls: 'icon-speaker'
+//						statusAlign: 'right',
+//			            items: ['-',{
+//							xtype: 'displayfield',
+//							labelAlign: 'right',
+//							labelWidth: 80,
+//							fieldLabel: '当前用户',
+//							value: 'admin'
+//						}, {
+//							xtype: 'displayfield',
+//							labelAlign: 'right',
+//							labelWidth: 80,
+//							fieldLabel: '当前角色',
+//							value: '系统管理员'
+//						}
+//						,'-', {
+//							xtype: 'tbtext',
+//							id: 'clock',
+//							listeners: {
+//								render: function() {
+//									Ems.A('ems.system.System', {
+//										m: 'getSystemTime',
+//										cb: function(result, e) {
+//											var clock = Ext.getCmp('clock');
+//											Ext.TaskManager.start({
+//												run: function() {
+//													clock.update(Ext.Date.format(new Date(), 'Y-m-d G:i:s'));
+//												},
+//												interval: 1000
+//											});
+//										}
+//									})
+//								}
 //							}
 //						}
-//					}
-//					]
-	            })]
+//						]
+	            	})
+	            ]
 			}]
 		};
 	}
