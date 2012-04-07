@@ -14,8 +14,8 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 230,
+			height: 120,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
