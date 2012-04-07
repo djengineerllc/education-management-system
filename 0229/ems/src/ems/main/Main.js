@@ -11,6 +11,19 @@ Ext.define('ems.main.Main', {
 		'ems.main.MainUI'
 	],
 	
+	currBulletinIndex: 0,
+	bulletins: [{
+		id: 1,
+		publishDate: '2012-1-1 12:12:00',
+		title: '中午食堂免费大餐',
+		content: ''
+	}, {
+		id: 2,
+		publishDate: '2012-2-2 22:22:00',
+		title: '五一放假九天',
+		content: ''
+	}],
+	
 	constructor: function() {
 		var me = this;
 		me.overrideExtClassess();
@@ -30,6 +43,30 @@ Ext.define('ems.main.Main', {
 	            renderTo: me.down('#homeWorkItem')
 	        });
 		}, 100);
+		
+		me.updateBulletinTask = {
+			run: me.updateBulletinTaskRun,
+			args: [Ext.getCmp('bulletinBoard')],
+			scope: me,
+			interval: 5000
+		};
+		Ext.TaskManager.start(me.updateBulletinTask);
+	},
+	destroy: function() {
+		var me = this;
+		Ext.TaskManager.stop(me.updateBulletinTask);
+		me.callParent(arguments);
+	},
+	
+	updateBulletinTaskRun: function(bulletinBoard) {
+		var me = this,
+			bulletin = me.bulletins[me.currBulletinIndex];
+		bulletinBoard.setStatus({
+			text: Ext.String.format('<a href="#{0}">{1} [{2}]</a>', bulletin.id, bulletin.title, bulletin.publishDate)
+		});
+		if (++me.currBulletinIndex == me.bulletins.length) {
+			me.currBulletinIndex = 0;
+		}
 	},
 	
 	loadMenu: function(params, request) {

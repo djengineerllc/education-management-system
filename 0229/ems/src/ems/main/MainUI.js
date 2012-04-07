@@ -190,6 +190,7 @@ Ext.define('ems.main.MainUI', {
 				items: [
 					Ext.create('Ext.ux.statusbar.StatusBar', {
 						border: false,
+						id: 'bulletinBoard',
 						cls: 'ems-status-bar',
 						defaultText: '暂无公告',
 						defaultIconCls: 'icon-speaker'
