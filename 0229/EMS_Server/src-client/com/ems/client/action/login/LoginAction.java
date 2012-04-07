@@ -26,14 +26,14 @@ public class LoginAction extends DirectAction {
 		String password = formParameters.get("password");
 		
 		ExtFormVO result = new ExtFormVO();
-		if (result.isEmpty(loginName, "loginName", "用户名不能为空") 
+		if (result.isEmpty(loginName, "loginName", "帐号不能为空") 
 				|| result.isEmpty(password, "password", "密码不能为空")) {
 			return result;
 		}
 		
 		loginInfoVO = realmBS.findLoginInfoVO(loginName, password);
 		if (loginInfoVO == null) {
-			result.addError("password", "用户名不存在或密码错误");
+			result.addError("password", "帐号不存在或密码错误");
 			return result;
 		}
 		
