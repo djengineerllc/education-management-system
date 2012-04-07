@@ -36,6 +36,15 @@ Ext.define('ems.system.Dic', {
 		
 		return dicStore;
 	},
+	distroyStore: function(dicType) {
+		var me = this,
+			storeId = (me.DIC_STORE_PREFIX + dicType),
+			dicStore = Ext.data.StoreManager.lookup(storeId);
+		if (dicStore) {
+//			dicStore.destroy();
+			dicStore.destroyStore();
+		}
+	},
 	
 	localComboBox: function(config) {
 		return Ext.create('Ext.form.field.ComboBox', Ext.applyIf(config || {}, {
