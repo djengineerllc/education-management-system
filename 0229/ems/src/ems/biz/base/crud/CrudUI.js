@@ -20,7 +20,7 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 	enableDeleteAction: true,
 	enableReadAction: true,
 	enableBatchImport: false,
-	enablePrint: false,
+	enablePrint: true,
 	enableExportExcel: false,
 	
 	constructor: function() {
