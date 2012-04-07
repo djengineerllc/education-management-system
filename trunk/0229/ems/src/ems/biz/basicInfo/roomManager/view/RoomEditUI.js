@@ -40,8 +40,10 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomEditUI', {
 	                name: 'roomName'
 	            },Dic.comboBox('Term', {
 					fieldLabel: '学期',
-					name: 'termId'
+					name: 'termId',
+					value: Session.getLoginInfo().currTerm || ''
 				}),{
+					xtype: 'numberfield',
 	                fieldLabel: '教室人数',
 	                name: 'roomSize'
 	            },{
