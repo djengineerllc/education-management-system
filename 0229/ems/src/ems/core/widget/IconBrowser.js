@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.core.widget.IconBrowser', {
 	extend: 'Ext.view.View',
 	alias: 'widget.iconbrowser',
