@@ -1,11 +1,12 @@
 package conf.hibernate;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
 /**
  * Class entity. @author MyEclipse Persistence Tools
  */
-
+@CodeRefresh("Class")
 public class ClassBO extends BaseBO {
 
 	private Integer gradeId;

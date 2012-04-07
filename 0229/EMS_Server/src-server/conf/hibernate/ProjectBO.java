@@ -1,11 +1,12 @@
 package conf.hibernate;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
 /**
  * Project entity. @author MyEclipse Persistence Tools
  */
-
+@CodeRefresh("Project")
 public class ProjectBO extends BaseBO {
 
 	private String projectName;

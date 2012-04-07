@@ -1,11 +1,13 @@
 package conf.hibernate;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
 /**
  * Book entity. @author MyEclipse Persistence Tools
  */
 
+@CodeRefresh("Book")
 public class BookBO extends BaseBO {
 
 	private String bookName;

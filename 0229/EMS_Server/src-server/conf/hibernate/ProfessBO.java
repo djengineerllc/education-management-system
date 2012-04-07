@@ -1,11 +1,12 @@
 package conf.hibernate;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
 /**
  * Profess entity. @author MyEclipse Persistence Tools
  */
-
+@CodeRefresh("Professional")
 public class ProfessBO extends BaseBO {
 
 	private Integer projectId;

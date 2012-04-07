@@ -1,12 +1,13 @@
 package conf.hibernate;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
 
 /**
  * Term entity. @author MyEclipse Persistence Tools
  */
-
+@CodeRefresh("Term")
 public class TermBO extends BaseBO {
 
 	private String termName;
