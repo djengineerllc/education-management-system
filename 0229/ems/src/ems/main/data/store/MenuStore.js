@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.main.data.store.MenuStore', {
     extend: 'Ext.data.TreeStore',
     requires: ['ems.main.data.model.MenuModel'],

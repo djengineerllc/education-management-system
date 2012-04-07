@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.main.data.model.MenuModel', {
     extend: 'Ext.data.Model',
     fields: [
