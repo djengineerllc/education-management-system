@@ -22,10 +22,12 @@ Ext.define('ems.biz.basicInfo.courseManager.CourseUI', {
                 searchForm: {
                     items: [{
                         fieldLabel: '课程中文名',
-                        name: 'courseName'
+                        name: 'courseName',
+                        labelWidth: 80
                     },{
                         fieldLabel: '课程英文名',
-                        name: 'courseEngName'
+                        name: 'courseEngName',
+                        labelWidth: 80
                     }]
                 },
                 columns: [{

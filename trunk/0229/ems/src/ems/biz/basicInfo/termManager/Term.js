@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.termManager.Term', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'TermEditUI', // require
-	readViewId: 'TermReadUI' // require
+	editViewId: 'TermEditUI',
+	readViewId: 'TermReadUI',
     
 //    ,init: function() {
 //        var me = this;
@@ -13,4 +13,9 @@ Ext.define('ems.biz.basicInfo.termManager.Term', {
 //        var me = this;
 //        me.callParent(arguments);
 //    }
+	
+	_onSuccess: function(bizAction) {
+		this.callParent(arguments);
+		Dic.distroyStore('Term');
+	}
 });

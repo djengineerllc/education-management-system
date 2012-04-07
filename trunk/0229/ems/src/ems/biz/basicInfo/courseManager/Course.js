@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.courseManager.Course', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'CourseEditUI', // require
-	readViewId: 'CourseReadUI' // require
+	editViewId: 'CourseEditUI',
+	readViewId: 'CourseReadUI',
     
 //    ,init: function() {
 //        var me = this;
@@ -13,4 +13,9 @@ Ext.define('ems.biz.basicInfo.courseManager.Course', {
 //        var me = this;
 //        me.callParent(arguments);
 //    }
+	
+	_onSuccess: function(bizAction) {
+		this.callParent(arguments);
+		Dic.distroyStore('Course');
+	}
 });

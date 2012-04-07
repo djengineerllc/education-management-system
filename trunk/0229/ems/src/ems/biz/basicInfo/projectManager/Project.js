@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.projectManager.Project', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'ProjectEditUI', // require
-	readViewId: 'ProjectReadUI' // require
+	editViewId: 'ProjectEditUI',
+	readViewId: 'ProjectReadUI',
     
 //    ,init: function() {
 //        var me = this;
@@ -13,4 +13,9 @@ Ext.define('ems.biz.basicInfo.projectManager.Project', {
 //        var me = this;
 //        me.callParent(arguments);
 //    }
+	
+	_onSuccess: function(bizAction) {
+		this.callParent(arguments);
+		Dic.distroyStore('Project');
+	}
 });

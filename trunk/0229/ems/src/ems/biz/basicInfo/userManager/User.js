@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.userManager.User', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'UserEditUI', // require
-	readViewId: 'UserReadUI' // require
+	editViewId: 'UserEditUI',
+	readViewId: 'UserReadUI'
     
 //    ,init: function() {
 //        var me = this;

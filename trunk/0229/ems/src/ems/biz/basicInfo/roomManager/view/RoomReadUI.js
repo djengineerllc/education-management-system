@@ -15,7 +15,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomReadUI', {
 		var me = this;
 		return {
 			width: 300,
-			height: 200,
+			height: 130,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomReadUI', {
 				bodyPadding: 10,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
@@ -31,6 +31,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomReadUI', {
 					anchor: '100%'
 				},
 				items: [{
+					xtype: 'hidden',
 					fieldLabel: '教室ID',
 	                name: 'id'
 				},{

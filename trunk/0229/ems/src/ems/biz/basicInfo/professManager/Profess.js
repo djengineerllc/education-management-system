@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.professManager.Profess', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'ProfessEditUI', // require
-	readViewId: 'ProfessReadUI' // require
+	editViewId: 'ProfessEditUI',
+	readViewId: 'ProfessReadUI',
     
 //    ,init: function() {
 //        var me = this;
@@ -13,4 +13,9 @@ Ext.define('ems.biz.basicInfo.professManager.Profess', {
 //        var me = this;
 //        me.callParent(arguments);
 //    }
+	
+	_onSuccess: function(bizAction) {
+		this.callParent(arguments);
+		Dic.distroyStore('Professional');
+	}
 });

@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.gradeManager.Grade', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'GradeEditUI', // require
-	readViewId: 'GradeReadUI' // require
+	editViewId: 'GradeEditUI',
+	readViewId: 'GradeReadUI',
     
 //    ,init: function() {
 //        var me = this;
@@ -13,4 +13,9 @@ Ext.define('ems.biz.basicInfo.gradeManager.Grade', {
 //        var me = this;
 //        me.callParent(arguments);
 //    }
+	
+	_onSuccess: function(bizAction) {
+		this.callParent(arguments);
+		Dic.distroyStore('Grade');
+	}
 });
