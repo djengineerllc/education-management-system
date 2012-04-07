@@ -14,8 +14,8 @@ Ext.define('ems.biz.basicInfo.gradeManager.view.GradeReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 230,
+			height: 70,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
