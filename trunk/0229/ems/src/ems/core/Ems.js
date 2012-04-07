@@ -61,7 +61,8 @@ Ems = ems.core.Ems = {
 			requireModules: [
 				'ems.system.System'
 			],
-			waitMsg: '请求处理中, 请稍候...'
+			waitMsg: '请求处理中, 请稍候...',
+			printCssPath: 'src/ems/core/resources/css/ems-print-all.css'
 		});
 		
 		Ext.Loader.setConfig(config.extLoaderConfig);
