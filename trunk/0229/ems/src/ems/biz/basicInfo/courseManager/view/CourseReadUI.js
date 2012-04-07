@@ -14,8 +14,8 @@ Ext.define('ems.biz.basicInfo.courseManager.view.CourseReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 260,
+			height: 170,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.courseManager.view.CourseReadUI', {
 				bodyPadding: 10,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
