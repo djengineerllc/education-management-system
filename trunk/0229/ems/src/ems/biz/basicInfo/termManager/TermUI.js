@@ -36,6 +36,7 @@ Ext.define('ems.biz.basicInfo.termManager.TermUI', {
                 },{
                     dataIndex: 'isCurrentTerm',
                     text: '是否当前学期',
+                    renderer: Dic.renderer('Indicator'),
                     flex: 1
                 }]
             }]
