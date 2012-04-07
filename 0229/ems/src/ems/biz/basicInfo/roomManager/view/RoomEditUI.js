@@ -49,10 +49,10 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomEditUI', {
 	                fieldLabel: '教室人数',
 	                name: 'roomSize',
 	                allowBlank: false
-	            },{
-	                fieldLabel: '教室使用情况',
-	                name: 'roomStatus'
-	            },{
+	            },Dic.comboBox('roomStatus', {
+					fieldLabel: '教室使用情况',
+					name: 'roomStatus'
+				}),{
 	                fieldLabel: '教室备注',
 	                name: 'roomComment'
 	            }]
