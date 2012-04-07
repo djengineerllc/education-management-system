@@ -1,7 +1,6 @@
 package com.ems.client.action.biz.basicInfo.termManager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 
 import com.ems.biz.basicInfo.bs.IBasicInfoBS;
-import com.ems.common.code.Code;
 import com.ems.common.model.vo.TermVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
@@ -35,16 +33,7 @@ public class TermAction extends DirectAction {
 	public ExtPagingVO loadTerm(JsonArray params) {
 		TermVO termVO_qry = BeanUtils.toBeanFromJsonFirst(params, TermVO.class);
 		List<TermBO> terms = basicInfoBS.findTermByVO(termVO_qry);
-		List<TermVO> termVOS = new ArrayList<TermVO>();
-		TermVO termVO = null;
-		for(TermBO termBO : terms){
-			termVO = new TermVO();
-			termVO.setId(termBO.getId());
-			termVO.setTermName(termBO.getTermName());
-			termVO.setIsCurrentTerm(Code.getName("Indicator", termBO.getIsCurrentTerm()));
-			termVOS.add(termVO);
-		}
-		return new ExtPagingVO(termVOS);
+		return new ExtPagingVO(terms);
 	}
 	
 	@DirectFormPostMethod
