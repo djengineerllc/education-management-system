@@ -37,7 +37,8 @@ Ext.define('ems.biz.basicInfo.gradeManager.view.GradeEditUI', {
 					name: 'id'
 				},{
 	                fieldLabel: '年级名',
-	                name: 'gradeName'
+	                name: 'gradeName',
+	                allowBlank: false
 	            }]
 			}]
 		};
