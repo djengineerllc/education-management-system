@@ -32,7 +32,7 @@ Ext.define('ems.biz.basicInfo.gradeManager.GradeUI', {
                 }, {
                     dataIndex: 'gradeName',
                     text: '年级名',
-                    flex: 1
+                    flex: 2
                 }]
             }]
         }
