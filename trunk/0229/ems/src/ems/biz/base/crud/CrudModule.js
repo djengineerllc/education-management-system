@@ -219,6 +219,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 	},
 	
 	onPrint: function(params, request){
+		this.down('xgrid').print();
 		return false;
 	},
 	
