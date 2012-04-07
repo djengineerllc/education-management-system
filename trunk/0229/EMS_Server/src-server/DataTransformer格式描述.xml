@@ -1,0 +1,434 @@
+<!-- 
+1. 与当前工程整合, 加载spring文件: com/tansun/scf/integration/config/AC-integration.xml
+2. 非核心包目录, 可以任意删减: 
+   com/tansun/scf/integration/datatransformer/handler
+   com/tansun/scf/integration/datatransformer/renderer
+   com/tansun/scf/integration/datatransformer/validator
+   com/tansun/scf/integration/dto
+   template/integration/endpoint (规则文件所在包目录)
+3. 实例类(main方法, 集成时可以删除 main方法)
+   com/tansun/scf/integration/datatransformer/factory/object/PojoToTextTransformer.java
+   com/tansun/scf/integration/datatransformer/factory/object/TextToPojoTransformer.java
+4. 此数据转换工具提供了
+   Pojo To Text
+   Text To Pojo
+   Pojo To Excel
+   Excel To Pojo
+   Pojo To Template(ftl)
+   Xml To Pojo
+   Pojo To Pdf
+ -->
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+数据转换规则配置集合
+ objectFactory(O): 数据转换组件默认使用的对象工厂
+ description(O): 描述
+ -->
+<DataTransformers objectFactory="new|spring" description="">
+	<!-- 
+	环境常量定义[0..n]
+	 name(M): 名称
+	 value(M): 值
+	 type(O): 值数据类型
+	 description(O): 描述
+	 -->
+	<Constant name="" value="" type="" description="" />
+	
+	<!-- 
+	导入配置文件[0..n]
+	 resource(M): 子配置文件路径, 相对classes目录
+	 description(O): 描述
+	 -->
+	<Import resource="" description="" />
+
+	<!-- 
+	公共渲染器定义集合[0..n]
+	 -->
+	<Renderers>
+		<!-- 
+		渲染器定义[0..n]
+		 name(M): 名称
+		 style(O): 渲染器样式参数
+		 phase(O): 渲染阶段
+		 objectFactory(O): 渲染器对象工厂
+		 className(M): 类全限定名或Spring BeanID, 自定义渲染器需现实 IRenderer 接口
+		 scope(O): 作用域
+		 -->
+		<Renderer name="" style="" phase="before|after" objectFactory="new|spring" className="" scope="singleton|prototype">
+			<!-- 
+			渲染器属性定义[0..n]
+			 name(M): 名称
+			 value(M): 值
+			 type(O): 值数据类型
+			 description(O): 描述
+			 -->
+			<Property name="" value="" type="" description="" />
+		</Renderer>
+	</Renderers>
+	
+	<!-- 
+	公共校验器定义集合[0..n]
+	 -->
+	<Validators>
+		<!-- 
+		校验器定义[0..n]
+		 name(M): 名称
+		 expr(O): 校验规则参数
+		 msg(O): 提示信息
+		 objectFactory(O): 渲染器对象工厂
+		 className(M): 类全限定名或Spring BeanID, 自定义渲染器需现实 IValidator 接口
+		 scope(O): 作用域
+		 -->
+		<Validator name="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+			<!-- 
+			校验器属性定义[0..n]
+			 name(M): 名称
+			 value(M): 值
+			 type(O): 值数据类型
+			 description(O): 描述
+			 -->
+			<Property name="" value="" type="" description="" />
+		</Validator>
+	</Validators>
+	
+	<!-- 
+	公共处理器定义集合[0..n]
+	 -->
+	<Handlers>
+		<!-- 
+		处理器定义[0..n]
+		 name(M): 名称
+		 executor(O): 执行器(线程池) 异步处理 {该功能未开发}
+		 objectFactory(O): 渲染器对象工厂
+		 className(M): 类全限定名或Spring BeanID, 自定义渲染器需现实 IHandler 接口
+		 scope(O): 作用域
+		 -->
+		<Handler name="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+			<!-- 
+			处理器属性定义[0..n]
+			 name(M): 名称
+			 value(M): 值
+			 type(O): 值数据类型
+			 description(O): 描述
+			 -->
+			<Property name="" value="" type="" description="" />
+		</Handler>
+	</Handlers>
+	
+	<!-- 
+	公共文本字段集定义[0..n]
+	 name(M): 文本字段集名称
+	 -->
+	<TextFieldSet name="">
+		<!-- 
+		文本字段定义[0..n]
+		 name(M): 名称
+		 value(O): 值
+		 dataType(O): 值数据类型
+		 trim(O): 是否去除文本字段头尾空格
+		 startMode(O): 开始模式
+		 startValue(M): 开始值
+		 endMode(O): 结束模式
+		 endValue(M): 结束值
+		 description(O): 描述
+		 -->
+		<Field name="" value="" dataType="" trim="true|false"
+			startMode="relative|absolute|character" startValue="" 
+			endMode="length|character" endValue="" 
+			description="">
+			<!-- 属性定义[0..n] -->
+			<Property name="" value="" type="" description="" />
+			<!-- 
+			调用渲染器[0..n]
+			name(O): 名称
+			ref(O): 引用渲染器名称
+			style(O): 渲染器样式参数
+			phase(O): 渲染阶段
+			objectFactory(O): 渲染器对象工厂
+			className(M): 类全限定名或Spring BeanID, 自定义渲染器需现实 IRenderer 接口
+			scope(O): 作用域
+			 -->
+			<Renderer name="" ref="" style="" phase="before|after" objectFactory="new|spring" className="" scope="singleton|prototype">
+				<!-- 调用渲染器属性定义 [0..n] -->
+				<Property name="" value="" type="" description="" />
+			</Renderer>
+			<!-- 
+			调用校验器[0..1]
+			 name(M): 名称
+			 ref(O): 引用校验器名称
+			 expr(O): 校验规则参数
+			 msg(O): 提示信息
+			 objectFactory(O): 渲染器对象工厂
+			 className(M): 类全限定名或Spring BeanID, 自定义渲染器需现实 IValidator 接口
+			 scope(O): 作用域
+			 -->
+			<Validator name="" ref="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+				<!-- 调用校验器属性定义 [0..n] -->
+				<Property name="" value="" type="" description="" />
+			</Validator>
+			<!-- 
+			调用处理器[0..n]
+			 name(M): 名称
+			 ref(O): 引用处理器名称
+			 expr(O): 校验规则参数
+			 msg(O): 提示信息
+			 objectFactory(O): 渲染器对象工厂
+			 className(M): 类全限定名或Spring BeanID, 自定义渲染器需现实 IValidator 接口
+			 scope(O): 作用域
+			 -->
+			<Handler name="" ref="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+				<!-- 调用处理器属性定义 [0..n] -->
+				<Property name="" value="" type="" description="" />
+			</Handler>
+		</Field>
+		<!-- 
+		文本字段组定义[0..n]
+		 name(M): 名称
+		 description(O): 描述
+		 -->
+		<FieldGroup name="" description="">
+			<!-- 文本字段定义[0..n] -->
+			<Field name="" value="" dataType="" trim="true|false"
+				startMode="relative|absolute|character" startValue="" 
+				endMode="length|character" endValue="" 
+				description="">
+				<!-- 调用渲染器属性定义[0..n] -->
+				<Property name="" value="" type="" description="" />
+				<!-- 调用渲染器[0..n] -->
+				<Renderer name="" ref="" style="" phase="before|after" objectFactory="new|spring" className="" scope="singleton|prototype">
+					<!-- 调用渲染器属性定义 [0..n] -->
+					<Property name="" value="" type="" description="" />
+				</Renderer>
+				<!-- 调用校验器[0..1] -->
+				<Validator name="" ref="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+					<!-- 调用校验器属性定义 [0..n] -->
+					<Property name="" value="" type="" description="" />
+				</Validator>
+				<!-- 调用处理器[0..n] -->
+				<Handler name="" ref="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+					<!-- 调用处理器属性定义 [0..n] -->
+					<Property name="" value="" type="" description="" />
+				</Handler>
+			</Field>
+		</FieldGroup>
+	</TextFieldSet>
+	
+	<CellSet>
+		<Cell>
+		</Cell>
+		<CellGroup>
+			<Cell>
+			</Cell>
+		</CellGroup>
+	</CellSet>
+	
+	<!-- 环境属性定义[0..n] -->
+	<Property name="" value="" type="" description="" />
+	
+	<!-- ------------------------------------------------------------- -->
+	
+	<!-- 单个数据转换配置[0..n] -->
+	<DataTransformer name="" description="">
+		<!-- 
+		Pojo To Text
+		 failMode(O): 校验失败处理模式
+		               exception -> 直接抛出异常
+		               record -> 记录异常信息
+		 -->
+		<PojoToText failMode="exception|record">
+			<!-- 属性定义[0..n] -->
+			<Property name="" value="" type="" description="" />
+			<!-- 重复体[1] -->
+			<Repeat newLineChar="">
+				<!-- 属性定义[0..n] -->
+				<Property name="" value="" type="" description="" />
+				<!-- 文本字段集引用[0..n] -->
+				<TextFieldSet ref="" description="">
+					<!-- 文本字段[0..n], 名称相同的将覆盖引用的文本字段集中的字段 -->
+					<Field name="" value="" dataType="" trim="true|false"
+						startMode="relative|absolute|character" startValue="" 
+						endMode="length|character" endValue="" 
+						description="">
+						<!-- 属性定义[0..n] -->
+						<Property name="" value="" type="" description="" />
+						<!-- 调用渲染器[0..n] -->
+						<Renderer name="" ref="" style="" phase="before|after" objectFactory="new|spring" className="" scope="singleton|prototype">
+							<!-- 调用渲染器属性定义 [0..n] -->
+							<Property name="" value="" type="" description="" />
+						</Renderer>
+						<!-- 调用校验器[0..1] -->
+						<Validator name="" ref="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+							<!-- 调用校验器属性定义 [0..n] -->
+							<Property name="" value="" type="" description="" />
+						</Validator>
+						<!-- 调用处理器[0..n] -->
+						<Handler name="" ref="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+							<!-- 调用处理器属性定义 [0..n] -->
+							<Property name="" value="" type="" description="" />
+						</Handler>
+					</Field>
+				</TextFieldSet>
+				<!-- 文本字段[0..n], 名称相同的将覆盖引用的文本字段集中的字段 -->
+				<Field name="" value="" dataType="" trim="true|false"
+					startMode="relative|absolute|character" startValue="" 
+					endMode="length|character" endValue="" 
+					description="">
+					<!-- 属性定义[0..n] -->
+					<Property name="" value="" type="" description="" />
+					<!-- 调用渲染器[0..n] -->
+					<Renderer name="" ref="" style="" phase="before|after" objectFactory="new|spring" className="" scope="singleton|prototype">
+						<!-- 调用渲染器属性定义 [0..n] -->
+						<Property name="" value="" type="" description="" />
+					</Renderer>
+					<!-- 调用校验器[0..1] -->
+					<Validator name="" ref="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+						<!-- 调用校验器属性定义 [0..n] -->
+						<Property name="" value="" type="" description="" />
+					</Validator>
+					<!-- 调用处理器[0..n] -->
+					<Handler name="" ref="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+						<!-- 调用处理器属性定义 [0..n] -->
+						<Property name="" value="" type="" description="" />
+					</Handler>
+				</Field>
+				<!-- 文本字段组[0..n] -->
+				<FieldGroup name="" description="">
+					<!-- 属性定义 [0..n] -->
+					<Property name="" value="" type="" description="" />
+					<!-- 文本字段[0..n], 名称相同的将覆盖引用的文本字段集中的字段 -->
+					<Field name="" value="" dataType="" trim="true|false"
+						startMode="relative|absolute|character" startValue="" 
+						endMode="length|character" endValue="" 
+						description="">
+						<!-- 属性定义[0..n] -->
+						<Property name="" value="" type="" description="" />
+						<!-- 调用渲染器[0..n] -->
+						<Renderer name="" ref="" style="" phase="before|after" objectFactory="new|spring" className="" scope="singleton|prototype">
+							<!-- 调用渲染器属性定义 [0..n] -->
+							<Property name="" value="" type="" description="" />
+						</Renderer>
+						<!-- 调用校验器[0..1] -->
+						<Validator name="" ref="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+							<!-- 调用校验器属性定义 [0..n] -->
+							<Property name="" value="" type="" description="" />
+						</Validator>
+						<!-- 调用处理器[0..n] -->
+						<Handler name="" ref="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+							<!-- 调用处理器属性定义 [0..n] -->
+							<Property name="" value="" type="" description="" />
+						</Handler>
+					</Field>
+				</FieldGroup>
+				<!-- 校验器[0..1] -->
+				<Validator name="" ref="" expr="" msg="" objectFactory="new|spring" className="" scope="singleton|prototype">
+					<!-- 属性定义 [0..n] -->
+					<Property name="" value="" type="" description="" />
+				</Validator>
+				<!-- 处理器[0..n] -->
+				<Handler name="" ref="" executor="" objectFactory="new|spring" className="" scope="singleton|prototype">
+					<!-- 处理器属性定义 [0..n] -->
+					<Property name="" value="" type="" description="" />
+				</Handler>
+			</Repeat>
+		</PojoToText>
+	</DataTransformer>
+	
+	<!-- 单个数据转换配置[0..n] -->
+	<DataTransformer name="" description="">
+		<!-- [1] -->
+		<TextToPojo failMode="exception|record" lengthBy="char|byte" lengthByByteCharset="">
+			<!-- [1] -->
+			<Repeat newLineChar="" mappingClass="" singleResult="false|true">
+				<!-- 属性定义[0..n] -->
+				<Property />
+				<!-- 文本字段集引用[0..n] -->
+				<TextFieldSet />
+					<!-- 文本字段[0..n], 名称相同的将覆盖引用的文本字段集中的字段 -->
+					<Field />
+				</TextFieldSet>
+				<!-- 文本字段[0..n], 名称相同的将覆盖引用的文本字段集中的字段 -->
+				<Field />
+				<!-- 文本字段组[0..n] -->
+				<FieldGroup name="" countRef="" 
+					mappingClass="" 
+					itemMappingClass=""
+				>
+					<!-- 文本字段[0..n] -->
+					<Field />
+				</FieldGroup>
+				<Handler />
+			</Repeat>
+		</TextToPojo>
+	</DataTransformer>
+	
+	<DataTransformer name="">
+		<PojoToTemplate failMode="exception|record" >
+			<!-- [1] -->
+			<Template file="">
+				<!-- [0..n] -->
+				<Property />
+				<!-- [0..1] -->
+				<Validator />
+				<!-- [0..n] -->
+				<Renderer />
+			</Template>
+		</PojoToTemplate>
+	</DataTransformer>
+	
+	
+	<DataTransformer name="">
+		<XmlToPojo failMode="exception|record">
+			<!-- [1] -->
+			<Template file="">
+				<!-- [0..n] -->
+				<Property />
+				<!-- [0..1] -->
+				<Validator />
+				<!-- [0..n] -->
+				<Renderer />
+			</Template>
+		</XmlToPojo>
+	</DataTransformer>
+	
+	<DataTransformer name="">
+		<PojoToExcel failMode="exception|record" version="2003|2007">
+			<!-- [1..n] -->
+			<Sheet name="" sheetName="" description="">
+				<!-- [0..n] -->
+				<Cell name="" value="" row="" column="" description="">
+					<!-- [0..n] -->
+					<Property />
+					<!-- [0..1] -->
+					<Validator />
+					<!-- [0..n] -->
+					<Renderer />
+				</Cell>
+				<!-- [0..n] -->
+				<CellGroup name="" count="" row="">
+					<!-- [0..n] -->
+					<Property />
+					<!-- [0..n] -->
+					<Cell />
+				</CellGroup>
+			</Sheet>
+		</PojoToExcel>
+	</DataTransformer>
+	
+	
+	<DataTransformer name="">
+		<ExcelToPojo version="2003|2007">
+			<!-- [1..n] -->
+			<Sheet name="" count="" sheetName="" mappingClass="" description="" >
+				<!-- [0..n] -->
+				<Cell />
+				<!-- [0..n] -->
+				<CellGroup name="" mappingClass="" itemMappingClass="" row="">
+					<!-- [0..n] -->
+					<Cell />
+				</CellGroup>
+			</Sheet>
+		</ExcelToPojo>
+	</DataTransformer>
+	
+</DataTransformers>
