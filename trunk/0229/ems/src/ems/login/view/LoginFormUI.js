@@ -27,7 +27,7 @@ Ext.define('ems.login.view.LoginFormUI', {
 				},
 				fieldDefaults: {
 					labelAlign: 'right',
-					labelWidth: 60,
+					labelWidth: 50,
 					allowBlank: false
 				},
 				items: [{
@@ -35,7 +35,7 @@ Ext.define('ems.login.view.LoginFormUI', {
 //					iconCls: 'icon-user',
 					itemId: 'loginName',
 					name: 'loginName',
-					fieldLabel: '用户名',
+					fieldLabel: '帐号',
 					value: 'admin'
 				}, {
 					xtype: 'textfield',
