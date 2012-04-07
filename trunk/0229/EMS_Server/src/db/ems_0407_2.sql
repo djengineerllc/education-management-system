@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-04-07 00:54:37
+Date: 2012-04-07 10:36:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -196,36 +196,6 @@ INSERT INTO tb_project VALUES ('2', '法国兰斯管理学院本硕连读项目'
 INSERT INTO tb_project VALUES ('4', '英国南安普顿大学艺术设计本科项目', null, '2012-03-21 23:39:32', '2012-03-21 23:39:42');
 
 -- ----------------------------
--- Table structure for `tb_project_old`
--- ----------------------------
-DROP TABLE IF EXISTS `tb_project_old`;
-CREATE TABLE `tb_project_old` (
-  `id` int(11) NOT NULL,
-  `project_name` varchar(100) DEFAULT NULL,
-  `study_country` varchar(200) DEFAULT NULL,
-  `study_school` varchar(100) DEFAULT NULL,
-  `education_system` varchar(100) DEFAULT NULL,
-  `zsdx` varchar(50) DEFAULT NULL,
-  `cgtj` varchar(100) DEFAULT NULL,
-  `professional` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk COMMENT='InnoDB free: 106496 kB';
-
--- ----------------------------
--- Records of tb_project_old
--- ----------------------------
-INSERT INTO tb_project_old VALUES ('100', '预本硕连读项目', '英国,荷兰,澳大利亚,美国', '有30多所高校可供选择', '3年国内+ 2年国外', '高中毕业生', '通过国内全部课程，且雅思达到6.0', '计算机网络|国际理财|国际贸易与商务|商务会计|物流管理(非制造业)|酒店管理');
-INSERT INTO tb_project_old VALUES ('101', '法国兰斯管理学院本硕连读项目', '法国', '法国兰斯 管理学院（ESB）', '3年国内+2年或2年国外', '高中毕业生', '通过国内全部课程，通过法方面试，且雅思达到6.0或法语TEF达到550', '管理学');
-INSERT INTO tb_project_old VALUES ('102', '中日本科项目', '日本', '日本静冈产业大学', '2年国内+2年国外', '高中毕业生', '通过国内全部课程，并且通过日语二级', '预科');
-INSERT INTO tb_project_old VALUES ('103', '英国伦敦大学商务管理本科项目', '英国', '英国伦敦大学', '2年国内+2年国外', '高中毕业生', '通过国内全部课程，通过英方面试，且雅思达到6.5', '商务管理');
-INSERT INTO tb_project_old VALUES ('104', '英国南安普顿大学艺术设计本科项目', '英国', '英国南安普顿大学', '2年国内+2年国外', '高中毕业生', '通过国内全部课程，通过英方面试', '视觉艺术设计专业|纺织时装及纤维专业');
-INSERT INTO tb_project_old VALUES ('105', '英国南安普顿大学教育硕士项目', '英国', '英国南安普顿大学', '1年国内+1年国外', '本科毕业生', '通过国内全部课程通过英方面试', '教育机构管理与领导|教育实践与革新|计算机辅助教学');
-INSERT INTO tb_project_old VALUES ('106', '美国布里诺大学工商管理硕士项目', '美国', '美国布里诺大学', '0.5年国内+1年国外（或1.5年国外）', '大专毕业生或本科毕业生', '通过国内全部课程，大学平均成绩75分以上或GPA2.5以上', '工商管理');
-INSERT INTO tb_project_old VALUES ('107', '硕士预科项目', '各英语国家', '英语授课的相关院校', '1年国内+1年或2年国外', '本科毕业生', '达到申请院校的雅思要求', '预科');
-INSERT INTO tb_project_old VALUES ('108', '美国本科预科', '美国', '有12所美国大学可供选择', '1年国内+4年国外', '高中毕业生', '通过国内全部课程，且雅思达到6.0', '预科');
-INSERT INTO tb_project_old VALUES ('109', '本科预科项目', '各英语国家', '英语授课的相关院校', '1年国内+3年或4年国外', '高中毕业生', '达到申请院校的雅思要求', '预科');
-
--- ----------------------------
 -- Table structure for `tb_room`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_room`;
@@ -265,14 +235,14 @@ CREATE TABLE `tb_syllabus` (
   `teacher_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_syllabus
 -- ----------------------------
-INSERT INTO tb_syllabus VALUES ('71', '4', '4', '12', '1', '1', '5019', '2', '6');
-INSERT INTO tb_syllabus VALUES ('72', '4', '5', '12', '1', '1', '1130', '1', '5');
-INSERT INTO tb_syllabus VALUES ('73', '4', '4', '34', '1', '1', '1130', '2', '5');
+INSERT INTO tb_syllabus VALUES ('74', '4', '4', '12', '1', '1', '5019', '2', '6');
+INSERT INTO tb_syllabus VALUES ('75', '4', '5', '12', '1', '1', '1130', '1', '5');
+INSERT INTO tb_syllabus VALUES ('76', '4', '4', '34', '1', '1', '1130', '2', '5');
 
 -- ----------------------------
 -- Table structure for `tb_term`
@@ -302,13 +272,13 @@ INSERT INTO tb_term VALUES ('4', '2011-2012第二学期', '1', '1', '2012-03-27 
 DROP TABLE IF EXISTS `ts_menu_info`;
 CREATE TABLE `ts_menu_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) CHARACTER SET gbk DEFAULT NULL,
-  `leaf` char(1) CHARACTER SET gbk DEFAULT NULL,
-  `module_id` varchar(255) CHARACTER SET gbk DEFAULT NULL,
-  `module_name` varchar(255) CHARACTER SET gbk DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
+  `leaf` char(1) DEFAULT NULL,
+  `module_id` varchar(255) DEFAULT NULL,
+  `module_name` varchar(255) DEFAULT NULL,
   `parent_id` int(11) DEFAULT '-1',
   `ordinal` int(2) DEFAULT '0',
-  `status` char(1) CHARACTER SET gbk DEFAULT '1',
+  `status` char(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
@@ -348,7 +318,7 @@ INSERT INTO ts_menu_info VALUES ('26', '课程分表', '1', 'ems.biz.syllabus.sy
 DROP TABLE IF EXISTS `ts_role_info`;
 CREATE TABLE `ts_role_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_cd` varchar(255) CHARACTER SET gbk DEFAULT NULL,
+  `role_cd` varchar(255) DEFAULT NULL,
   `role_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
@@ -410,11 +380,11 @@ INSERT INTO ts_role_menu_rel VALUES ('26', '1', '26');
 DROP TABLE IF EXISTS `ts_user_info`;
 CREATE TABLE `ts_user_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login_name` varchar(20) CHARACTER SET gbk DEFAULT NULL,
-  `user_name` varchar(20) CHARACTER SET gbk DEFAULT NULL,
-  `password` char(32) CHARACTER SET gbk DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET gbk DEFAULT NULL,
-  `contact` varchar(255) CHARACTER SET gbk DEFAULT NULL,
+  `login_name` varchar(20) DEFAULT NULL,
+  `user_name` varchar(20) DEFAULT NULL,
+  `password` char(32) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `contact` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
