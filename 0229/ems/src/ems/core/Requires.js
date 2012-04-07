@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.core.Requires', {
 	requires: [
 		'Ext.Ajax',

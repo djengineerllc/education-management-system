@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.core.EmsUtils', {
 	singleton: true,
 	alternateClassName: 'EU',
