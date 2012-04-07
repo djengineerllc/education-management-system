@@ -5,7 +5,7 @@ Ext.define('ems.biz.basicInfo.userManager.view.UserReadUI', {
 		var me = this;
 		return {
 			width: 230,
-			height: 160,
+			height: 130,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
