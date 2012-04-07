@@ -78,6 +78,13 @@ public class Code implements InitializingBean {
 			}
 		}
 	}
+	public static void clear(String codeType) {
+		if (StringUtils.isBlank(codeType)) {
+			return;
+		}
+		
+		codesCache.remove(codeType);
+	}
 
 	/**
 	 * 根据代码类型获取代码列表
