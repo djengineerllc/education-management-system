@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.biz.base.crud.CrudUI', {
     extend: 'ems.core.UI',
 	
