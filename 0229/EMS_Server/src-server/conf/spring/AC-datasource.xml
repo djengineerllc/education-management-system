@@ -44,8 +44,9 @@ xsi:schemaLocation="
 		</property>
 		<property name="hibernateProperties">
 			<props>
+				<!--
 				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
-				<!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>-->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
@@ -79,7 +80,7 @@ xsi:schemaLocation="
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut id="emsServicePointcut" expression="execution(* com.ems.biz..bs..*.*(..))"/>
+		<aop:pointcut id="emsServicePointcut" expression="execution(* com.ems.biz..bs..I*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="emsServicePointcut"/>
 	</aop:config>
 	
