@@ -40,7 +40,7 @@ Ext.define('ems.biz.basicInfo.classManager.ClassUI', {
                 },{
                     dataIndex: 'className',
                     text: '班级名',
-                    flex: 1
+                    flex: 2
                 },{
                     dataIndex: 'studentNum',
                     text: '班级人数',
