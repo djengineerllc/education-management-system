@@ -1,8 +1,8 @@
 Ext.define('ems.biz.basicInfo.bookManager.Book', {
     extend: 'ems.biz.base.crud.CrudModule',
 	
-	editViewId: 'BookEditUI', // require
-	readViewId: 'BookReadUI' // require
+	editViewId: 'BookEditUI',
+	readViewId: 'BookReadUI',
     
 //    ,init: function() {
 //        var me = this;
@@ -13,4 +13,9 @@ Ext.define('ems.biz.basicInfo.bookManager.Book', {
 //        var me = this;
 //        me.callParent(arguments);
 //    }
+	
+	_onSuccess: function(bizAction) {
+		this.callParent(arguments);
+		Dic.distroyStore('Book');
+	}
 });

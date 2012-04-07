@@ -33,7 +33,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomEditUI', {
 					anchor: '100%'
 				},
 				items: [{
-					xtype: 'hiddenfield',
+					xtype: 'hidden',
 					name: 'id'
 				},{
 	                fieldLabel: '教室名',
