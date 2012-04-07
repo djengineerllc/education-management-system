@@ -37,7 +37,7 @@ Ext.define('ems.biz.basicInfo.bookManager.BookUI', {
                 }, {
                     dataIndex: 'bookName',
                     text: '教材名称',
-                    flex: 1
+                    flex: 2
                 }, {
                     dataIndex: 'publishName',
                     text: '出版社',
