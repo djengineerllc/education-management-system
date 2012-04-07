@@ -38,7 +38,7 @@ public class DefaultGsonBuilderConfigurator implements GsonBuilderConfigurator {
     if( configuration.getDebug() ) {
       builder.setPrettyPrinting();
     }
-//    builder.serializeNulls();
+//    builder.serializeNulls(); // delete by chiknin
     builder.disableHtmlEscaping();
   }
 
