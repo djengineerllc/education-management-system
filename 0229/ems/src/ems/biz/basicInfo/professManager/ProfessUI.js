@@ -36,7 +36,7 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                 },{
                     dataIndex: 'professName',
                     text: '专业名称',
-                    flex: 1
+                    flex: 2
                 },{
                     dataIndex: 'projectId',
                     text: '项目ID',
@@ -44,7 +44,7 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                 }, {
                     dataIndex: 'projectName',
                     text: '项目名',
-                    flex: 1
+                    flex: 2
                 }]
             }]
         }
