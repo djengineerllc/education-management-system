@@ -9,7 +9,6 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
 	enableDeleteAction: false,
 	enableReadAction: false,
 	enableBatchImport: false,
-	enablePrint: false,
 	enableExportExcel: false,
 	
     uiConfig: function() {
