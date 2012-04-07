@@ -14,8 +14,8 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 230,
+			height: 90,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
@@ -23,7 +23,7 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermReadUI', {
 				bodyPadding: 10,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
@@ -36,10 +36,11 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermReadUI', {
 				},{
 	                fieldLabel: '学期名',
 	                name: 'termName'
-	            },{
-                    fieldLabel: '是否当前学期',
-                    name: 'isCurrentTerm'
-                }]
+	            },
+                Dic.displayfield('Indicator', {
+					fieldLabel: '是否当前学期',
+	                name: 'isCurrentTerm'
+				})]
 			}]
 		};
 	}
