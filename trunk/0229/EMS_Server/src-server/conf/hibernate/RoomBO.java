@@ -1,11 +1,12 @@
 package conf.hibernate;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
 /**
  * Room entity. @author MyEclipse Persistence Tools
  */
-
+@CodeRefresh("Room")
 public class RoomBO extends BaseBO {
 
 	private Integer termId;
