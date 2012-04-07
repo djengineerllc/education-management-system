@@ -48,7 +48,7 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                     flex: 1
                 }, {
                 	dataIndex: 'email',
-                    text: '电子邮箱',
+                    text: 'E-Mail',
                     flex: 1
                 }],
 				tbarButtons: [{
