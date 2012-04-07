@@ -6,12 +6,12 @@
 	
 	<!-- 删除build路径 -->
 	<target name="clean">
-		<delete dir="${build}" />
+		<delete dir="${build}/EMS_Server.war" />
 	</target>
 	
 	<!-- 把WebContent路径内容打出war包-->
 	<target name="war" depends="clean">
-		<war destfile="${build}/EMS_Server.war" webxml="${WEB-INF}/web.xml" encoding="UTF-8">
+		<war destfile="${build}/EMS_Server.war" webxml="${WEB-INF}/web.xml">
 			<fileset dir="${basedir}/WebContent"></fileset> 
 		</war>
 	</target>
