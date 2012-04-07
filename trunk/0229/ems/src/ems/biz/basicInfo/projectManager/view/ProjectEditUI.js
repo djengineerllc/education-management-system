@@ -30,7 +30,8 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectEditUI', {
 				},
 				defaults: {
 					xtype: 'textfield',
-					anchor: '100%'
+					anchor: '100%',
+					allowBlank: false
 				},
 				items: [{
 					xtype: 'hiddenfield',
