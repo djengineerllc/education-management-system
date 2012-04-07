@@ -8,6 +8,10 @@ Ext.define('ems.core.EmsUtils', {
 	],
 	
 	showDialog: function(config) {
+		if (config && Ext.isIE) {
+			delete config.animateTarget;
+		}
+		
 		return Ext.MessageBox.show(config || {
 			width: 360
 		}); 
