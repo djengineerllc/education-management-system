@@ -58,9 +58,10 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
 		IntegerTypeAdapter integerTypeAdapter = new IntegerTypeAdapter();
 		gb.registerTypeAdapter(Integer.class, integerTypeAdapter);
 		gb.registerTypeAdapter(int.class, integerTypeAdapter);
+		gb.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 //		gsonBuilder.registerTypeAdapter(Integer.class, new )
-		gson = gb.setDateFormat("yyyy-MM-dd HH:mm:ss").create(); // .serializeNulls()
+		gson = gb.create(); // .serializeNulls()
 	}
 	
 	public static <T> T toBeanFromJson(JsonObject jsonObj, Class<T> beanClass) {
