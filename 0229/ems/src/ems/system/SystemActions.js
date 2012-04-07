@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.system.SystemActions', {
 	extend: 'ems.core.Actions'
 		

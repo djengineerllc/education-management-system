@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.system.data.store.DicStore', {
 	extend: 'Ext.data.DirectStore',
 	requires: [
