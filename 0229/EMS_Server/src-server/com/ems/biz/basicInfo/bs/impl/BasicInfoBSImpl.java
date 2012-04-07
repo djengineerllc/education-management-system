@@ -73,6 +73,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql = hql+" and gradeName like ? "; 
 			valueParam.add("%"+gradeVO.getGradeName()+"%");
 		}
+		hql = hql+" order by id desc ";
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
 	}
 	
@@ -87,6 +88,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql = hql+" and className like ? "; 
 			valueParam.add("%"+classVO.getClassName()+"%");
 		}
+		hql = hql+" order by id desc "; 
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
 	}
 	
@@ -97,6 +99,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql = hql+" and projectName like ? "; 
 			valueParam.add("%"+projectVO.getProjectName()+"%");
 		}
+		hql = hql+" order by id desc "; 
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
 	}
 	
@@ -111,6 +114,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql.append(" and professName like ? "); 
 			valueParam.add("%"+professVO.getProfessName()+"%");
 		}
+		hql.append(" order by id desc ");
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	
@@ -125,6 +129,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql.append(" and courseEngName like ? "); 
 			valueParam.add("%"+courseVO.getCourseEngName()+"%");
 		}
+		hql.append(" order by id desc ");
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	
@@ -139,6 +144,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql.append(" and termId = ? "); 
 			valueParam.add(roomVO.getTermId());
 		}
+		hql.append(" order by id desc ");
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	
@@ -161,6 +167,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			hql.append(" and publishName like ? "); 
 			valueParam.add("%"+bookVO.getPublishName()+"%");
 		}
+		hql.append(" order by id desc ");
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	
