@@ -14,7 +14,7 @@ Ext.define('ems.biz.basicInfo.roomManager.view.RoomReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
+			width: 230,
 			height: 130,
 			layout: 'fit',
 			items: [{
