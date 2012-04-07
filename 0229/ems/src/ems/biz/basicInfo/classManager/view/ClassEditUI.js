@@ -30,7 +30,8 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassEditUI', {
 				},
 				defaults: {
 					xtype: 'textfield',
-					anchor: '100%'
+					anchor: '100%',
+					allowBlank: false
 				},
 				items: [{
 					xtype: 'hiddenfield',
@@ -43,6 +44,7 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassEditUI', {
 	                fieldLabel: '班级名',
 	                name: 'className'
 	            },{
+	            	xtype: 'numberfield',
 	                fieldLabel: '班级人数',
 	                name: 'studentNum'
 	            }]
