@@ -23,24 +23,18 @@ Ext.define('ems.login.Session', {
 		
 		if (loginInfo.roleCd == 'student') {
 			welcomeText = Ext.String.format(
-				'您好 {0} 同学，学号: {1} | 年级: {2} | 班级: {3} | 项目: {4} | 专业: {5}', 
+				'您好 {0}，角色: {1} | 学号: {2} | 年级: {3} | 班级: {4} | 项目: {5} | 专业: {6}', 
 				loginInfo.userName || '', 
+				loginInfo.roleName || '',
 				loginInfo.stuNo || '',
 				loginInfo.stuGradeName || '',
 				loginInfo.stuClassName || '',
 				loginInfo.stuProjectName || '',
 				loginInfo.stuProfessName || ''
 			);
-		} else if (loginInfo.roleCd == 'teacher') {
-			welcomeText = Ext.String.format(
-				'您好 {0} 老师', 
-				loginInfo.userName || ''
-			);
-		} else if (loginInfo.roleCd == 'admin') {
-			welcomeText = '您好 系统管理员';
 		} else {
 			welcomeText = Ext.String.format(
-				'您好 {0} {1}', 
+				'您好 {0}，角色: {1}', 
 				loginInfo.userName || '',
 				loginInfo.roleName || ''
 			);
