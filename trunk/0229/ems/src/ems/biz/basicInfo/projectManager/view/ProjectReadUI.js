@@ -14,8 +14,8 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 230,
+			height: 80,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
