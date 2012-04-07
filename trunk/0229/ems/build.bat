@@ -6,4 +6,4 @@
 @echo ==               START BUILD EMS PROJECT              ==
 @echo ========================================================
 
-lib\ext\jsbuilder\JSBuilder.bat --projectFile build.jsb3 --deployDir  ./deploy/ems --verbose > build.log & java -jar ./lib/ext/jsbuilder/ycompressor/ycompressor.jar --type css --charset utf8 -o deploy/ems/src/ems/core/resources/css/ems-all.css deploy/ems/src/ems/core/resources/css/ems-all.css
+lib\ext\jsbuilder\JSBuilder.bat --projectFile build.jsb3 --deployDir  ./deploy/ems --verbose > build.log & java -jar ./lib/ext/jsbuilder/ycompressor/ycompressor.jar --type css --charset utf8 -o deploy/ems/src/ems/core/resources/css/ems-all.css deploy/ems/src/ems/core/resources/css/ems-all.css & java -jar ./lib/ext/jsbuilder/ycompressor/ycompressor.jar --type css --charset utf8 -o deploy/ems/src/ems/core/resources/css/ems-print-all.css deploy/ems/src/ems/core/resources/css/ems-print-all.css
