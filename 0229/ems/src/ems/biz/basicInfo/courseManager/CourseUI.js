@@ -41,11 +41,11 @@ Ext.define('ems.biz.basicInfo.courseManager.CourseUI', {
                 }, {
                     dataIndex: 'courseName',
                     text: '课程中文名',
-                    flex: 1
+                    flex: 3
                 },{
                     dataIndex: 'courseEngName',
                     text: '课程英文名',
-                    flex: 1
+                    flex: 3
                 },{
                     dataIndex: 'courseScore',
                     text: '学分',
