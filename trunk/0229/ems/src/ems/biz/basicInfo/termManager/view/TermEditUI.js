@@ -41,7 +41,8 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermEditUI', {
 	                name: 'termName'
 	            },Dic.radioGroup('Indicator', {
 					fieldLabel: '是否当前学期',
-					groupName: 'isCurrentTerm'
+					groupName: 'isCurrentTerm',
+					valueKey: 'S1'
 				})]
 			}]
 		};
