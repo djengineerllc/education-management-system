@@ -67,13 +67,14 @@ xsi:schemaLocation="
 	</bean>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
-			<tx:method name="insert*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
-			<tx:method name="create*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
-			<tx:method name="add*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
-			<tx:method name="update*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
-			<tx:method name="remove*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
-			<tx:method name="del*" propagation="REQUIRED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="save*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="insert*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="create*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="add*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="remove*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="del*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="submit*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
 			<tx:method name="*" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
