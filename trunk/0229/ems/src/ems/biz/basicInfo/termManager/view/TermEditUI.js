@@ -25,12 +25,13 @@ Ext.define('ems.biz.basicInfo.termManager.view.TermEditUI', {
 				bodyPadding: 10,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
 					xtype: 'textfield',
-					anchor: '100%'
+					anchor: '100%',
+					allowBlank: false
 				},
 				items: [{
 					xtype: 'hiddenfield',
