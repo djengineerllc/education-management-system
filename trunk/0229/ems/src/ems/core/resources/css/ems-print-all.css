@@ -19,3 +19,7 @@ body {
 .ems .print-table {
 	
 }
+
+.ems .print-table td {
+	padding: 1px 3px 1px 3px;
+}
