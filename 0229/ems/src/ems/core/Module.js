@@ -205,6 +205,10 @@ Ext.define('ems.core.Module', { // Controller
 	},
 	
 	showWindow: function(viewId, viewConfig, windowConfig) {
+		if (windowConfig && Ext.isIE) {
+			delete windowConfig.animateTarget;
+		}
+		
 		var me = this,
 			viewConfig = Ext.apply({}, me._moduleUIConfig(), viewConfig),
 			win = Ext.create('Ext.window.Window', Ext.apply({
