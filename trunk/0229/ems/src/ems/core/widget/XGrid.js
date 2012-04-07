@@ -1,3 +1,7 @@
+// ----------------------
+// Author: Chiknin
+// ----------------------
+
 Ext.define('ems.core.widget.XGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.xgrid',
@@ -8,7 +12,8 @@ Ext.define('ems.core.widget.XGrid', {
 		'Ext.selection.CheckboxModel',
 		'Ext.toolbar.Paging',
 		'Ext.ux.RowExpander',
-		'ems.core.widget.plugin.XGridSearchForm'
+		'ems.core.widget.plugin.XGridSearchForm',
+		'ems.core.widget.plugin.XGridPrinter'
 	],
 	
 	frame: false,
@@ -29,6 +34,8 @@ Ext.define('ems.core.widget.XGrid', {
 	editingMode: null, // cellediting / rowediting / null
 	
 	expandRowBodyTpl: null,
+	
+	print: true, // 开启打印功能
 	
 	paging: false,
 	idProperty: 'id',
@@ -162,6 +169,11 @@ Ext.define('ems.core.widget.XGrid', {
 		if (me.searchForm) {
 			plugins.push(
 				Ext.create('ems.core.widget.plugin.XGridSearchForm')
+			);
+		}
+		if (me.print) {
+			plugins.push(
+				Ext.create('ems.core.widget.plugin.XGridPrinter')
 			);
 		}
 		
