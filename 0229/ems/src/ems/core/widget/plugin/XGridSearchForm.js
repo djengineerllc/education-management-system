@@ -40,7 +40,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 			},
 			fieldDefaults: {
 				labelAlign: 'right',
-				labelWidth: 100
+				labelWidth: 60
 //				,msgTarget: 'side'
 			},
 			items: [{

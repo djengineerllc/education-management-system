@@ -264,6 +264,7 @@ Ems.Locale = {
         	Ext.view.AbstractView.prototype.loadingText = loadingText;
         }
         if (Ext.form && Ext.form.Labelable) {
+        	Ext.form.Labelable.prototype.labelWidth = 60;
         	Ext.form.Labelable.prototype.labelAlign = 'right';
         }
         if (Ext.MessageBox) {
