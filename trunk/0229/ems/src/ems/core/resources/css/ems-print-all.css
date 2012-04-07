@@ -15,3 +15,7 @@ body {
 .page-separator {
 	page-break-after: always;
 }
+
+.ems .print-table {
+	
+}
