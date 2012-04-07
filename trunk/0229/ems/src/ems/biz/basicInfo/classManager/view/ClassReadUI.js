@@ -14,8 +14,8 @@ Ext.define('ems.biz.basicInfo.classManager.view.ClassReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 300,
-			height: 200,
+			width: 230,
+			height: 110,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
