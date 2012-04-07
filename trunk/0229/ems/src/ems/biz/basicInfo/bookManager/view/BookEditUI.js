@@ -23,7 +23,8 @@ Ext.define('ems.biz.basicInfo.bookManager.view.BookEditUI', {
 					name: 'id'
 				},{
 	                fieldLabel: '教材名称',
-	                name: 'bookName'
+	                name: 'bookName',
+	                allowBlank: false
 	            },{
 	                fieldLabel: '出版社',
 	                name: 'publishName'
