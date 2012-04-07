@@ -914,6 +914,9 @@
 							"path" : "src/ems/main/data/store/",
 							"name" : "MenuStore.js"
 						}, {
+							"path" : "src/ems/core/widget/plugin/",
+							"name" : "XGridPrinter.js"
+						}, {
 							"path" : "src/ems/main/view/",
 							"name" : "HomeUI.js"
 						}, {
