@@ -125,25 +125,29 @@ Ext.define('ems.core.EmsUtils', {
 
 	PRINT_FRAME_ID: '__print_frame__',
 	print: function(content) {
-		var me = this,
-			printFrameDom = (Ext.fly(me.PRINT_FRAME_ID) || {}).dom;
-			
-		if (!printFrameDom) {
-			printFrameDom = Ext.DomHelper.append(Ext.getBody().dom, {
-				tag: 'iframe',
-				id: me.PRINT_FRAME_ID,
-				frameBorder: 0,
-				style: 'width:1px;height:1px;position:absolute;right:0;bottom:0;border:none;overflow:hidden;visibility:hidden'
-			});
+		var me = this, win, doc;
+		if (Ext.isIE) {
+			win = window.open('', '__print_window__', 'toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
+		} else {
+			var printFrameDom = (Ext.fly(me.PRINT_FRAME_ID) || {}).dom;
+			if (!printFrameDom) {
+				printFrameDom = Ext.DomHelper.append(Ext.getBody().dom, {
+					tag: 'iframe',
+					id: me.PRINT_FRAME_ID,
+					frameBorder: 0,
+					style: 'width:1px;height:1px;position:absolute;right:0;bottom:0;border:none;overflow:hidden;visibility:hidden'
+				});
+			}
+			win = printFrameDom.contentWindow;
 		}
 		
-		var win = printFrameDom.contentWindow,
-			doc = win.document;
+		doc = win.document;
 		doc.open();
 		doc.write(content);
 		doc.close();
 		win.focus();
 		win.print();
+		win.close();
 	},
 	
 	printHtmlTpl: Ext.create('Ext.Template', [
