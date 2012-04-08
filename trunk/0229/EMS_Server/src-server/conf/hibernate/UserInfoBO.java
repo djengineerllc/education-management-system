@@ -1,5 +1,7 @@
 package conf.hibernate;
 
+import java.util.Date;
+
 import com.ems.common.model.bo.BaseBO;
 
 public class UserInfoBO extends BaseBO {
@@ -9,7 +11,21 @@ public class UserInfoBO extends BaseBO {
 	private String password;
 	private String email;
 	private String contact;
+	private Date lastLoginTime;
+	private String sex;//性别
 	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 	public String getLoginName() {
 		return loginName;
 	}

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 1. 与当前工程整合, 加载spring文件: com/tansun/scf/integration/config/AC-integration.xml
 2. 非核心包目录, 可以任意删减: 
@@ -18,8 +19,6 @@
    Xml To Pojo
    Pojo To Pdf
  -->
-
-<?xml version="1.0" encoding="UTF-8" ?>
 <!-- 
 数据转换规则配置集合
  objectFactory(O): 数据转换组件默认使用的对象工厂
@@ -226,7 +225,7 @@
 	<!-- 环境属性定义[0..n] -->
 	<Property name="" value="" type="" description="" />
 	
-	<!-- ------------------------------------------------------------- -->
+	<!-- ************************************************************************ -->
 	
 	<!-- 单个数据转换配置[0..n] -->
 	<DataTransformer name="" description="">
@@ -343,7 +342,7 @@
 				<!-- 属性定义[0..n] -->
 				<Property />
 				<!-- 文本字段集引用[0..n] -->
-				<TextFieldSet />
+				<TextFieldSet>
 					<!-- 文本字段[0..n], 名称相同的将覆盖引用的文本字段集中的字段 -->
 					<Field />
 				</TextFieldSet>
