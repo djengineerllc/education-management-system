@@ -5,6 +5,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 		var me = this;
 		return {
 //			layout: 'fit',
+			width: 760,
 			items: [{
 				xtype: 'form',
 				layout: 'column',
