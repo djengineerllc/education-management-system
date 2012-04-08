@@ -41,7 +41,12 @@ Ext.define('ems.biz.samples.formsample.FormSampleUI', {
 	            }, {
 	                fieldLabel: '电子邮件',
 	                name: 'email'
-	            }],
+	            }, 
+            	Dic.comboBox('SysYear', {
+					fieldLabel: '系统年',
+                    name: 'sysYear'
+				})
+	            ],
 				buttons: [{
 					text: '加载数据',
 					handler: function() {
