@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.ems.common.exception.EMSException;
+
 public interface ICommonDAO {
 	
 	/**
@@ -112,4 +114,6 @@ public interface ICommonDAO {
 	public List findPageListByHql(final String hqlString, final List paramValues, final int firstResult, final int maxResults);
 	public int executeHql(final String hqlString, final List paramValues);
 	public int executeHql(final String hqlString, final Object paramValue);
+	
+	public List findByValueBean(String queryString, Object valueBean) throws EMSException;
 }

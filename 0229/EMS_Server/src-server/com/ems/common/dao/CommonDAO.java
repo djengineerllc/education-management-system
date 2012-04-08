@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.ems.common.exception.EMSException;
+
 public class CommonDAO implements ICommonDAO {
 
 	protected JdbcTemplate jdbcTemplate;
@@ -236,6 +238,10 @@ public class CommonDAO implements ICommonDAO {
 		}
 		
 		return this.executeHql(hqlString, paramValues);
+	}
+	
+	public List findByValueBean(String queryString, Object valueBean) throws EMSException{
+		return this.hibernateTemplate.findByValueBean(queryString, valueBean);
 	}
 	
 	// -----------------
