@@ -4,7 +4,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			layout: 'fit',
+//			layout: 'fit',
 			items: [{
 				xtype: 'form',
 				layout: 'column',
