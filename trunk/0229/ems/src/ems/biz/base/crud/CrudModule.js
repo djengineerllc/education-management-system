@@ -121,6 +121,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
         }, {
             title: me.bizActionText[bizAction],
             buttons: [me.submitButton, me.cancelButton],
+            autoScroll: true,
 			animateTarget: eo.el
         });
     },
@@ -140,6 +141,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
         }, {
             title: me.bizActionText[bizAction],
             buttons: [me.cancelButton],
+            autoScroll: true,
 			animateTarget: eo.el
 //			,modal: false
         });
@@ -160,6 +162,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
         }, {
             title: me.bizActionText[bizAction],
             buttons: [me.submitButton, me.cancelButton],
+            autoScroll: true,
 			animateTarget: eo.el
         });
     },
