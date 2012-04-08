@@ -55,8 +55,11 @@ xsi:schemaLocation="
 		<property name="hqlCodeCollector" ref="hqlCodeCollector" />
 		<property name="singleCodeCollectorList">
 			<list>
+				<!--
 				<bean class="com.ems.common.code.externalcode.ProductCodeCollector">
 				</bean>
+				-->
+				<bean class="com.ems.common.code.externalcode.SysYearCodeCollector" />
 			</list>
 		</property>
 	</bean>
