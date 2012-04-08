@@ -120,55 +120,72 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	                columnWidth: 0.25
 	            },Dic.comboBox('EducationLevel', {
 					fieldLabel: '入学学历',
-					name: 'admissionQualif'
+					name: 'admissionQualif',
+					columnWidth: 0.25
 				}),{
 	                fieldLabel: '毕业学校',
-	                name: 'graduateSchool'
+	                name: 'graduateSchool',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '专业',
-	                name: 'profession'
+	                name: 'profession',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '毕业年份',
-	                name: 'graduateYear'
+	                name: 'graduateYear',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '高考省份',
-	                name: 'gkProvince'
+	                name: 'gkProvince',
+	                 columnWidth: 0.2
 	            },{
 	                fieldLabel: '高考类别',
-	                name: 'gkType'
+	                name: 'gkType',
+	                columnWidth: 0.2
 	            },{
 	                fieldLabel: '高考总分',
-	                name: 'gkScore'
+	                name: 'gkScore',
+	                columnWidth: 0.2
 	            },{
 	                fieldLabel: '英语单科',
-	                name: 'gkEnglishScore'
+	                name: 'gkEnglishScore',
+	                columnWidth: 0.2
 	            },{
 	                fieldLabel: '高考年份',
-	                name: 'gkYear'
+	                name: 'gkYear',
+	                columnWidth: 0.2
 	            },{
 	                fieldLabel: '父亲姓名',
-	                name: 'fatherName'
+	                name: 'fatherName',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '父亲工作单位',
-	                name: 'fatherWorkUnit'
+	                name: 'fatherWorkUnit',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '父亲职位',
-	                name: 'fatherPost'
+	                name: 'fatherPost',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '父亲联系电话',
-	                name: 'fatherContactTel'
+	                name: 'fatherContactTel',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '母亲姓名',
-	                name: 'motherName'
+	                name: 'motherName',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '母亲工作单位',
-	                name: 'motherWorkUnit'
+	                name: 'motherWorkUnit',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '母亲职位',
-	                name: 'motherPost'
+	                name: 'motherPost',
+	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '母亲联系电话',
-	                name: 'motherContactTel'
+	                name: 'motherContactTel',
+	                columnWidth: 0.25
 	            }]
 			}]
 		};
