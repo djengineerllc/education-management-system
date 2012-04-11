@@ -161,10 +161,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周一',
 		            columns: [{
-		            	text: 'ID',
-						dataIndex: 'monId',
-						hidden: true
-		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'monCourse',
@@ -186,10 +182,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周二',
 		            columns: [{
-		            	text: 'ID',
-						dataIndex: 'tueId',
-						hidden: true
-		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'tueCourse',
@@ -211,10 +203,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周三',
 		            columns: [{
-		            	text: 'ID',
-						dataIndex: 'webId',
-						hidden: true
-		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'webCourse',
@@ -236,10 +224,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周四',
 		            columns: [{
-		            	text: 'ID',
-						dataIndex: 'thuId',
-						hidden: true
-		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'thuCourse',
@@ -261,10 +245,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				},{
 					text: '周五',
 		            columns: [{
-		            	text: 'ID',
-						dataIndex: 'friId',
-						hidden: true
-		            }, {
 		                text: '课程',
 		                width: 120,
 						dataIndex: 'friCourse',
