@@ -41,19 +41,19 @@
 			<td rowSpan="2"><@code codeType='Lesson' data=item.lesson /></td>
 			</#if>
 			<td><@code codeType='WeekOeInd' data=item.oeInd /></td>
-			<td>${item.monTeacher}</td>
+			<td><@code codeType='Teacher' data=item.monTeacher /></td>
 			<td><@code codeType='Class' data=item.monClass/></td>
 			<td><@code codeType='Room' data=item.monRoom /></td>
-			<td>${item.tueTeacher}</td>
+			<td><@code codeType='Teacher' data=item.tueTeacher /></td>
 			<td><@code codeType='Class' data=item.tueClass/></td>
 			<td><@code codeType='Room' data=item.tueRoom /></td>
-			<td>${item.webTeacher}</td>
+			<td><@code codeType='Teacher' data=item.webTeacher /></td>
 			<td><@code codeType='Class' data=item.webClass/></td>
 			<td><@code codeType='Room' data=item.webRoom /></td>
-			<td>${item.thuTeacher}</td>
+			<td><@code codeType='Teacher' data=item.thuTeacher /></td>
 			<td><@code codeType='Class' data=item.thuClass/></td>
 			<td><@code codeType='Room' data=item.thuRoom /></td>
-			<td>${item.friTeacher}</td> 
+			<td><@code codeType='Teacher' data=item.friTeacher /></td> 
 			<td><@code codeType='Class' data=item.friClass/></td>
 			<td><@code codeType='Room' data=item.friRoom /></td>
 		</tr>
