@@ -2,8 +2,10 @@ package conf.hibernate;
 
 import java.util.Date;
 
+import com.ems.common.code.CodeRefresh;
 import com.ems.common.model.bo.BaseBO;
 
+@CodeRefresh({"Teacher"})
 public class UserInfoBO extends BaseBO {
 	
 	private String loginName;
