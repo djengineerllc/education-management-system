@@ -19,13 +19,28 @@ Ext.define('ems.system.Dic', {
 	
 	DIC_STORE_PREFIX: 'ems.dic.',
 	
+	DEFAULT_COMBOBOX_HEADER_OPTION: {value: '', name: '全部'},
+	
+	getDicData: function(param) {
+		return (Ems.syncDirectRequest('ems.system.System', 'getDicData', [param || {}]).result) || [];
+	},
+	getDicDataAsync: function(param, callback, scope) {
+		Ems.A('ems.system.System', {
+			m: 'getDicData',
+			p: param,
+			cb: function(data) {
+				Ext.callback(callback, scope, [data]);
+			}
+		});
+	},
+	
 	getStore: function(dicType) {
 		
 		var me = this,
 			storeId = (me.DIC_STORE_PREFIX + dicType),
 			dicStore = Ext.data.StoreManager.lookup(storeId);
 		if (!dicStore) {
-			var data = Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: dicType}]).result;
+			var data = me.getDicData({type: dicType}); //Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: dicType}]).result;
 			dicStore = Ext.create('ems.system.data.store.DicStore', {
 				storeId: storeId,
 				simpleSortMode: true,
@@ -46,6 +61,24 @@ Ext.define('ems.system.Dic', {
 		}
 	},
 	
+	getEmptyStore: function(config) {
+		var me = this,
+			dicStore = Ext.create('ems.system.data.store.DicStore', {
+				autoDestroy: true
+			});
+//			hdrOpt = config && config.headerOption;
+		
+//		if (hdrOpt != undefined && hdrOpt !== false) {
+//			var hdrOptData = Ext.isObject(hdrOpt) ? hdrOpt : me.DEFAULT_COMBOBOX_HEADER_OPTION, 
+//				data = [hdrOptData];
+//				
+//			dicStore.loadData(data);
+//			delete config.headerOption;
+//		}
+		
+		return dicStore;
+	},
+	
 	localComboBox: function(config) {
 		return Ext.create('Ext.form.field.ComboBox', Ext.applyIf(config || {}, {
 			queryMode: 'local',
@@ -53,7 +86,7 @@ Ext.define('ems.system.Dic', {
 			editable: false,
 			valueField: 'value',
 			displayField: 'name',
-			store: Ext.create('ems.system.data.store.DicStore')
+			store: me.getEmptyStore(config)
 		}));
 	},
 	
@@ -63,7 +96,7 @@ Ext.define('ems.system.Dic', {
 			hdrOpt = config && config.headerOption;
 		
 		if (hdrOpt != undefined && hdrOpt !== false) {
-			var hdrOptData = Ext.isObject(hdrOpt) ? hdrOpt : {value: '', name: '全部'}, 
+			var hdrOptData = Ext.isObject(hdrOpt) ? hdrOpt : me.DEFAULT_COMBOBOX_HEADER_OPTION, 
 				records = dicStore.getRange(), 
 				data = [hdrOptData];
 				
