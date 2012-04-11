@@ -11,12 +11,17 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		var me = this,
 			sltTerm = me.reqParams[0],
 			syllabusPlanGrid = me.down('#syllabusPlanGrid'),
+			roomIconBrowser = me.down('#roomIconBrowser'),
 			title;
-		
 		
 		syllabusPlanGrid.store.load({
 			params: sltTerm
 		});
+		
+//		Dic.getDicDataAsync({type: 'Room', group: sltTerm.id}, function(data) {
+//			roomIconBrowser.store.loadData(data);
+//		}); // 'term_' + sltTerm.id
+		
 		
 		title = Ext.String.format('手动排课({0})', 
 			sltTerm.termName
@@ -75,6 +80,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            title: '课程',
 		            items: {
 			    		xtype: 'iconbrowser',
+			    		itemId: 'courseIconBrowser',
 			    		border: false,
 			    		ddSource: 'course',
 			    		dataIndex: 'value',
@@ -91,6 +97,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            title: '教师',
 		            items: {
 			    		xtype: 'iconbrowser',
+			    		itemId: 'teacherIconBrowser',
 			    		border: false,
 			    		ddSource: 'teacher',
 			    		dataIndex: 'value',
@@ -107,11 +114,12 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 		            title: '教室',
 		            items: {
 			    		xtype: 'iconbrowser',
+			    		itemId: 'roomIconBrowser',
 			    		border: false,
 			    		ddSource: 'room',
 			    		dataIndex: 'value',
 			    		dataFilter: 'name',
-			    		store: Dic.getStore('Room'),
+						store: Dic.getStore('Room'), // Dic.getEmptyStore(),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
 			                    url: 'src/ems/core/resources/css/images/icons/map_16.png'
