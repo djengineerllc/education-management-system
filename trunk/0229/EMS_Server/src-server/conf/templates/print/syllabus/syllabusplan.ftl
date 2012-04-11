@@ -42,19 +42,19 @@
 			</#if>
 			<td><@code codeType='WeekOeInd' data=item.oeInd /></td>
 			<td><@code codeType='Course' data=item.monCourse /></td>
-			<td>${item.monTeacher}</td>
+			<td><@code codeType='Teacher' data=item.monTeacher /></td>
 			<td><@code codeType='Room' data=item.monRoom /></td>
 			<td><@code codeType='Course' data=item.tueCourse /></td>
-			<td>${item.tueTeacher}</td>
+			<td><@code codeType='Teacher' data=item.tueTeacher /></td>
 			<td><@code codeType='Room' data=item.tueRoom /></td>
 			<td><@code codeType='Course' data=item.webCourse /></td>
-			<td>${item.webTeacher}</td>
+			<td><@code codeType='Teacher' data=item.webTeacher /></td>
 			<td><@code codeType='Room' data=item.webRoom /></td>
 			<td><@code codeType='Course' data=item.thuCourse /></td>
-			<td>${item.thuTeacher}</td>
+			<td><@code codeType='Teacher' data=item.thuTeacher /></td>
 			<td><@code codeType='Room' data=item.thuRoom /></td>
 			<td><@code codeType='Course' data=item.friCourse /></td>
-			<td>${item.friTeacher}</td>
+			<td><@code codeType='Teacher' data=item.friTeacher /></td>
 			<td><@code codeType='Room' data=item.friRoom /></td>
 		</tr>
 		</#list>
