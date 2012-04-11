@@ -97,7 +97,7 @@ Ext.define('ems.biz.base.crud.CrudUI', {
 				if (me.enablePrint) {
 					tbar.push({
 						iconCls: 'icon-print',
-						tooltip: '打印',
+						tooltip: '打印表格',
 						listeners: me.MRA('click', 'onPrint')
 					});
 				}
