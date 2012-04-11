@@ -35,27 +35,27 @@
 		<#list items as item>
 		<tr>
 			<#if (item_index % 10) == 0>
-			<td rowSpan="10">${item.teacher}</td>
+			<td rowSpan="10"><@code codeType='Teacher' data=item.teacher /></td>
 			</#if>
 			<#if (item_index % 2) == 0>
-			<td rowSpan="2">${item.classCode}</td>
+			<td rowSpan="2"><@code codeType='Lesson' data=item.lesson /></td>
 			</#if>
-			<td>${item.oeInd}</td>
-			<td>${item.monCourse}</td>
-			<td>${item.monClass}</td>
-			<td>${item.monRoom}</td>
-			<td>${item.tueCourse}</td>
-			<td>${item.tueClass}</td>
-			<td>${item.tueRoom}</td>
-			<td>${item.webCourse}</td>
-			<td>${item.webClass}</td>
-			<td>${item.webRoom}</td>
-			<td>${item.thuCourse}</td>
-			<td>${item.thuClass}</td>
-			<td>${item.thuRoom}</td>
-			<td>${item.friCourse}</td>
-			<td>${item.friClass}</td>
-			<td>${item.friRoom}</td>
+			<td><@code codeType='WeekOeInd' data=item.oeInd /></td>
+			<td><@code codeType='Course' data=item.monCourse /></td>
+			<td><@code codeType='Class' data=item.monClass /></td>
+			<td><@code codeType='Room' data=item.monRoom /></td>
+			<td><@code codeType='Course' data=item.tueCourse /></td>
+			<td><@code codeType='Class' data=item.tueClass /></td>
+			<td><@code codeType='Room' data=item.tueRoom /></td>
+			<td><@code codeType='Course' data=item.webCourse /></td>
+			<td><@code codeType='Class' data=item.webClass /></td>
+			<td><@code codeType='Room' data=item.webRoom /></td>
+			<td><@code codeType='Course' data=item.thuCourse /></td>
+			<td><@code codeType='Class' data=item.thuClass /></td>
+			<td><@code codeType='Room' data=item.thuRoom /></td>
+			<td><@code codeType='Course' data=item.friCourse /></td>
+			<td><@code codeType='Class' data=item.friClass /></td>
+			<td><@code codeType='Room' data=item.friRoom /></td>
 		</tr>
 		</#list>
 	</tbody>
