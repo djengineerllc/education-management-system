@@ -86,7 +86,7 @@ Ext.define('ems.system.Dic', {
 			editable: false,
 			valueField: 'value',
 			displayField: 'name',
-			store: me.getEmptyStore(config)
+			store: this.getEmptyStore(config)
 		}));
 	},
 	
