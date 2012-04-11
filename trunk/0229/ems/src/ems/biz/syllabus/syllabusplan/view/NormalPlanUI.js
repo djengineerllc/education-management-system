@@ -102,7 +102,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 			    		ddSource: 'teacher',
 			    		dataIndex: 'value',
 			    		dataFilter: 'name',
-			    		store: Dic.getStore('Sex'),
+			    		store: Dic.getStore('Teacher'),
 			    		prepareData: function(data) {
 			                Ext.apply(data, {
 			                    url: 'src/ems/core/resources/css/images/icons/user_role_teacher_16.png'
