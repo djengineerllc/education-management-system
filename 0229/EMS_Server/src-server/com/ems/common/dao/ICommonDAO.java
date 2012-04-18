@@ -21,6 +21,12 @@ public interface ICommonDAO {
 	 */
 	public void saveAll(Collection collection);
 	
+	/**
+	 * 保存或更新
+	 * @param collection
+	 */
+	public void saveOrUpdate(Collection collection);
+	
 	
 	/**
 	 * 更新实体

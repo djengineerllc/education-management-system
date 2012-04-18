@@ -32,6 +32,10 @@ public class CommonDAO implements ICommonDAO {
 	public void saveAll(Collection collection) {
 		hibernateTemplate.saveOrUpdateAll(collection);
 	}
+	
+	public void saveOrUpdate(Collection collection) {
+		hibernateTemplate.saveOrUpdateAll(collection);
+	}
 
 	public <T> T findById(Class<T> entityClass, Serializable id) {
 		return (T) hibernateTemplate.get(entityClass, id);
