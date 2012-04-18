@@ -311,7 +311,7 @@ Ems = ems.core.Ems = {
 		var module = Ext.create(id, config);
 		this.registerModule(module);
 		
-		this.updateLocale();
+//		this.updateLocale();
 		
 		return module;
     },
