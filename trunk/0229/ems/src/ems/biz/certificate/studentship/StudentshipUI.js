@@ -44,7 +44,7 @@ Ext.define('ems.biz.certificate.studentship.StudentshipUI', {
 							value: '',
 							listeners: {
 								change: function(comp, newValue, oldValue, eOpts) {
-									var data = newValue ? Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: 'Class', group: newValue}]).result : [],
+									var data = newValue ? Dic.getDicData({type: 'Class', group: newValue}) : [],
 										stuClassCombo = me.down('#stuClassId');
 										
 									stuClassCombo.setValue(null);
