@@ -44,13 +44,13 @@
 		},
 		
 		shutdown: function() {
-			window.unload = null;
+//			window.unload = null;
 			Ems.shutdown();
 		},
 		hookWindowBeforeUnload: function() {
 			//window.onunload
-			var head = document.getElementsByTagName('body')[0];
-			head.onbeforeunload = this.shutdown;
+			var body = document.getElementsByTagName('body')[0];
+			body.onbeforeunload = this.shutdown;
 		}
     };
 	
