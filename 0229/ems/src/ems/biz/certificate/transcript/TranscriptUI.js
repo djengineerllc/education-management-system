@@ -43,8 +43,8 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
 							emptyText: '年级',
 							value: '',
 							listeners: {
-								change: function(comp, newValue, oldValue, eOpts) {
-									var data = newValue ? Ems.syncDirectRequest('ems.system.System', 'getDicData', [{type: 'Class', group: newValue}]).result : [],
+								change: function(comp, newValue, oldValue, eOpts) {debugger;
+									var data = newValue ? Dic.getDicData({type: 'Class', group: newValue}) : [],
 										stuClassCombo = me.down('#stuClassId');
 										
 									stuClassCombo.setValue(null);
