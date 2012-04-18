@@ -34,6 +34,8 @@ Ext.define('ems.core.UI', {
         Ext.apply(me.initialConfig, uiConfig);
 		
 		me.callParent(arguments);
+		
+		Ems.updateLocale();
 	},
 	
 	afterRender: function() {
