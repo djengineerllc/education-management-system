@@ -8,6 +8,7 @@ import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.vo.BookVO;
 import com.ems.common.model.vo.ClassVO;
 import com.ems.common.model.vo.CourseVO;
+import com.ems.common.model.vo.EducationVO;
 import com.ems.common.model.vo.GradeVO;
 import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.model.vo.ProjectVO;
@@ -18,6 +19,7 @@ import com.ems.common.model.vo.UserInfoVO;
 import conf.hibernate.BookBO;
 import conf.hibernate.ClassBO;
 import conf.hibernate.CourseBO;
+import conf.hibernate.EducationBO;
 import conf.hibernate.GradeBO;
 import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
@@ -109,6 +111,8 @@ public interface IBasicInfoBS {
 	 * @throws EMSException
 	 */
 	public List<BookBO> findBookByVO(BookVO bookVO) throws EMSException;
+	
+	public List<EducationBO> findEducationByVO(EducationVO educationVO) throws EMSException;
 	
 	/**
 	 * 查找用户信息

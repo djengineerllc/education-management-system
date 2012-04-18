@@ -2,7 +2,6 @@ package com.ems.biz.basicInfo.bs.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,7 @@ import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.vo.BookVO;
 import com.ems.common.model.vo.ClassVO;
 import com.ems.common.model.vo.CourseVO;
+import com.ems.common.model.vo.EducationVO;
 import com.ems.common.model.vo.GradeVO;
 import com.ems.common.model.vo.ProfessVO;
 import com.ems.common.model.vo.ProjectVO;
@@ -31,6 +31,7 @@ import com.ems.common.util.StringUtils;
 import conf.hibernate.BookBO;
 import conf.hibernate.ClassBO;
 import conf.hibernate.CourseBO;
+import conf.hibernate.EducationBO;
 import conf.hibernate.GradeBO;
 import conf.hibernate.ProfessBO;
 import conf.hibernate.ProjectBO;
@@ -171,6 +172,29 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	
+	public List<EducationBO> findEducationByVO(EducationVO educationVO) throws EMSException{
+		StringBuffer hql = new StringBuffer(" from EducationBO where 1=1 ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(educationVO.getTeacherId() != null ){
+			hql.append(" and teacherId = ? "); 
+			valueParam.add(educationVO.getTeacherId());
+		}
+		if(educationVO.getClassId() != null){
+			hql.append(" and classId = ? "); 
+			valueParam.add(educationVO.getClassId());
+		}
+		if(educationVO.getTermId() != null){
+			hql.append(" and termId = ? "); 
+			valueParam.add(educationVO.getTermId());
+		}
+		if(!StringUtils.isNullBlank(educationVO.getCourseNo())){
+			hql.append(" and courseNo = ? "); 
+			valueParam.add(educationVO.getCourseNo());
+		}
+		hql.append(" order by id desc ");
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+	}
+	
 	public List<UserInfoVO> findUserByVO(UserInfoVO userInfoVO) throws EMSException{
 		StringBuffer sql = 
 			new StringBuffer("select a.id,a.login_name,a.user_name,a.password,a.email,a.contact,b.role_id ");
@@ -261,10 +285,19 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		userInfoBO.setEmail(userInfoVO.getEmail());
 		userInfoBO.setContact(userInfoVO.getContact());
 		this.commonDAO.update(userInfoBO);
-		UserRoleRelBO userRoleRelBO = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId"}, 
-				new String[]{"="}, new Object[]{userInfoVO.getId()}).get(0);
+		UserRoleRelBO userRoleRelBO = null;
+		List<UserRoleRelBO>	userRoles = this.commonDAO.find(UserRoleRelBO.class, new String[]{"userId"}, 
+				new String[]{"="}, new Object[]{userInfoVO.getId()});
+		if(userRoles == null || userRoles.size() == 0){
+			userRoleRelBO = new UserRoleRelBO();
+			userRoleRelBO.setUserId(userInfoVO.getId());
+		}else{
+			userRoleRelBO = userRoles.get(0);
+		}
 		userRoleRelBO.setRoleId(userInfoVO.getRoleId());
-		this.commonDAO.update(userRoleRelBO);
+		List<UserRoleRelBO> saveOrUpdateList = new ArrayList<UserRoleRelBO>();
+		saveOrUpdateList.add(userRoleRelBO);
+		this.commonDAO.saveOrUpdate(saveOrUpdateList);
 	}
 	
 	public void deleteUserInfo(UserInfoVO userInfoVO) throws EMSRollbackableException{

@@ -32,7 +32,7 @@ xsi:schemaLocation="
 				<entry key="Term" value="SELECT new CodeTableBO(bo.id, bo.termName) FROM TermBO bo ORDER BY bo.id DESC" />
 				<entry key="Course" value="SELECT new CodeTableBO(bo.courseNo, bo.courseName, bo.courseEngName, bo.courseType) FROM CourseBO bo ORDER BY bo.id DESC" />
 				<entry key="Room" value="SELECT new CodeTableBO(bo.id, bo.roomName, bo.termId) FROM RoomBO bo ORDER BY bo.id DESC" />
-				<entry key="Role" value="SELECT new CodeTableBO(bo.id, bo.roleName) FROM RoleInfoBO bo ORDER BY bo.id ASC" />
+				<entry key="Role" value="SELECT new CodeTableBO(bo.id, bo.roleName) FROM RoleInfoBO bo where bo.roleCd!='student' ORDER BY bo.id ASC" />
 				<entry key="Role_key_code" value="SELECT new CodeTableBO(bo.roleCd, bo.roleName) FROM RoleInfoBO bo ORDER BY bo.id ASC" />
 				<entry key="Teacher" value="SELECT new CodeTableBO(ui.id, ui.userName) FROM UserInfoBO ui, UserRoleRelBO urr, RoleInfoBO ri WHERE ui.id = urr.userId AND urr.roleId = ri.id AND ri.roleCd = 'teacher' ORDER BY ui.id ASC" />
 			</map>
