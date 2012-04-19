@@ -4,8 +4,7 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllabusPlanUI', {
 	initData: function() {
 		var me = this,
 			sltTerm = me.reqParams[0],
-			contentPanel = me.down('#contentPanel'),
-			title;
+			contentPanel = me.down('#contentPanel');
 		
 		contentPanel.el.load({
 			url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printSyllbusPlan'),
@@ -13,11 +12,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.ViewSyllabusPlanUI', {
 			scripts: true,
 			params: sltTerm
 		});
-		
-		title = Ext.String.format('课程一览表({0})', 
-			sltTerm.termName
-		);
-		me.up().setTitle(title);
 	},
 	
 	uiConfig: function(){
