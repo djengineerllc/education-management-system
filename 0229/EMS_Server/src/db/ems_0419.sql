@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-04-11 20:48:30
+Date: 2012-04-19 23:15:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,19 +44,19 @@ CREATE TABLE `tb_class` (
   `grade_id` int(11) DEFAULT NULL,
   `class_name` varchar(20) DEFAULT NULL,
   `student_num` int(11) DEFAULT NULL,
+  `is_graduate` varchar(5) DEFAULT NULL COMMENT '是否已经毕业(1:已毕业,2:未毕业);已毕业的班级不需要参与排课',
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
-  `is_graduate` varchar(5) DEFAULT NULL COMMENT '是否已经毕业(0:未毕业,1:已毕业);已毕业的班级不需要参与排课',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_class
 -- ----------------------------
-INSERT INTO tb_class VALUES ('4', '7', '雅思10-1班', '60', '2012-03-19 22:36:08', '2012-03-19 22:40:22', null);
-INSERT INTO tb_class VALUES ('5', '7', '计算机0901班', '80', '2012-03-19 22:38:01', null, null);
-INSERT INTO tb_class VALUES ('6', '3', '雅思1001班', '35', '2012-03-19 23:04:56', '2012-03-21 21:15:41', null);
-INSERT INTO tb_class VALUES ('7', '8', '1', '1', '2012-04-06 22:41:24', '2012-04-06 22:41:24', null);
+INSERT INTO tb_class VALUES ('4', '7', '雅思10-1班', '60', null, '2012-03-19 22:36:08', '2012-03-19 22:40:22');
+INSERT INTO tb_class VALUES ('5', '7', '计算机0901班', '80', null, '2012-03-19 22:38:01', null);
+INSERT INTO tb_class VALUES ('6', '3', '雅思1001班', '35', null, '2012-03-19 23:04:56', '2012-03-21 21:15:41');
+INSERT INTO tb_class VALUES ('7', '8', '1', '1', null, '2012-04-06 22:41:24', '2012-04-06 22:41:24');
 
 -- ----------------------------
 -- Table structure for `tb_code_table`
@@ -74,7 +74,7 @@ CREATE TABLE `tb_code_table` (
   `can_modify_ind` char(1) DEFAULT '1',
   `status` char(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_code_table
@@ -112,6 +112,13 @@ INSERT INTO tb_code_table VALUES ('32', 'Lesson', 'S90', '90', '90节', null, nu
 INSERT INTO tb_code_table VALUES ('33', 'SysParams', 'defaultPassword', '123456', '默认密码', null, null, '1', '1', '1');
 INSERT INTO tb_code_table VALUES ('34', 'roomStatus', 'S1', '1', '使用', null, null, '1', '1', '1');
 INSERT INTO tb_code_table VALUES ('35', 'roomStatus', 'S2', '2', '未使用', null, null, '2', '1', '1');
+INSERT INTO tb_code_table VALUES ('36', 'ScoreLevel', 'S11', 'P', '通过', null, 'A', '1', '1', '1');
+INSERT INTO tb_code_table VALUES ('37', 'ScoreLevel', 'S12', 'F', '未通过', null, 'A', '2', '1', '1');
+INSERT INTO tb_code_table VALUES ('38', 'ScoreLevel', 'S21', 'A', '70～100', null, 'B', '3', '1', '1');
+INSERT INTO tb_code_table VALUES ('39', 'ScoreLevel', 'S22', 'B', '60～69', null, 'B', '4', '1', '1');
+INSERT INTO tb_code_table VALUES ('40', 'ScoreLevel', 'S23', 'C', '50～59', null, 'B', '5', '1', '1');
+INSERT INTO tb_code_table VALUES ('41', 'ScoreLevel', 'S24', 'F', '0～49', null, 'B', '6', '1', '1');
+INSERT INTO tb_code_table VALUES ('42', 'ScoreLevel', 'S99', 'U', '在读', null, 'C', '7', '1', '1');
 
 -- ----------------------------
 -- Table structure for `tb_course`
@@ -138,12 +145,33 @@ INSERT INTO tb_course VALUES ('1', '1130', '综合英语2', 'Comprehensive Engli
 INSERT INTO tb_course VALUES ('2', '5019', '创意训练:服装设计', 'Creative Thinking &Training and Coaching-Fishion Design', '0', '0', null, null, '2012-03-26 23:06:15', null);
 
 -- ----------------------------
+-- Table structure for `tb_education`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_education`;
+CREATE TABLE `tb_education` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(11) NOT NULL,
+  `course_no` varchar(50) NOT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `term_id` int(11) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tb_education
+-- ----------------------------
+INSERT INTO tb_education VALUES ('1', '7', '5019', '5', '4', null, null);
+INSERT INTO tb_education VALUES ('2', '2', '1130', '6', '4', null, null);
+
+-- ----------------------------
 -- Table structure for `tb_grade`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_grade`;
 CREATE TABLE `tb_grade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `grade_name` varchar(11) DEFAULT NULL,
+  `grade_name` varchar(100) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -154,7 +182,7 @@ CREATE TABLE `tb_grade` (
 -- ----------------------------
 INSERT INTO tb_grade VALUES ('3', '2004级', '2012-03-18 00:00:00', null);
 INSERT INTO tb_grade VALUES ('4', '2005级', '2012-03-18 00:00:00', null);
-INSERT INTO tb_grade VALUES ('7', '2009级', '2012-03-18 00:00:00', '2012-03-18 00:00:00');
+INSERT INTO tb_grade VALUES ('7', '2009级', '2012-04-18 21:08:44', '2012-04-18 21:08:44');
 INSERT INTO tb_grade VALUES ('8', '2010级', '2012-04-06 21:16:25', '2012-04-06 21:16:25');
 
 -- ----------------------------
@@ -224,6 +252,24 @@ INSERT INTO tb_room VALUES ('6', '3', '多媒体606', '100', '2', '备用', '201
 INSERT INTO tb_room VALUES ('7', '4', '南教楼505', '55', '2', '无', '2012-04-07 22:44:17', '2012-04-07 22:44:17');
 
 -- ----------------------------
+-- Table structure for `tb_score`
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_score`;
+CREATE TABLE `tb_score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `stu_id` int(11) DEFAULT NULL,
+  `term_id` int(11) DEFAULT NULL,
+  `course_no` varchar(50) DEFAULT NULL,
+  `score_value` varchar(10) DEFAULT NULL,
+  `score_level` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_score
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `tb_student`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_student`;
@@ -238,7 +284,7 @@ CREATE TABLE `tb_student` (
   `admission_time` datetime DEFAULT NULL,
   `leave_school_time` datetime DEFAULT NULL,
   `domicile` varchar(255) DEFAULT NULL,
-  `IDNumber` varchar(255) DEFAULT NULL,
+  `id_number` varchar(255) DEFAULT NULL,
   `birth_date` datetime DEFAULT NULL,
   `home_fix_tel` varchar(255) DEFAULT NULL,
   `contact_address` varchar(255) DEFAULT NULL,
@@ -263,6 +309,7 @@ CREATE TABLE `tb_student` (
   `mother_post` varchar(255) DEFAULT NULL,
   `mother_contact_tel` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
+  `IDNumber` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK9007E96AEF0E0207` (`id`),
   CONSTRAINT `FK9007E96AEF0E0207` FOREIGN KEY (`id`) REFERENCES `ts_user_info` (`id`)
@@ -287,14 +334,15 @@ CREATE TABLE `tb_syllabus` (
   `teacher_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_syllabus
 -- ----------------------------
-INSERT INTO tb_syllabus VALUES ('90', '4', '5', '12', '1', '1', '1130', '7', '5');
-INSERT INTO tb_syllabus VALUES ('91', '4', '4', '12', '1', '1', '5019', '2', '6');
-INSERT INTO tb_syllabus VALUES ('92', '4', '4', '34', '1', '1', '1130', '2', '5');
+INSERT INTO tb_syllabus VALUES ('100', '4', '7', '12', '2', '1', '5019', '7', '4');
+INSERT INTO tb_syllabus VALUES ('101', '4', '5', '12', '1', '1', '1130', '7', '5');
+INSERT INTO tb_syllabus VALUES ('102', '4', '4', '12', '1', '1', '5019', '2', '1');
+INSERT INTO tb_syllabus VALUES ('103', '4', '4', '34', '1', '1', '1130', '2', '5');
 
 -- ----------------------------
 -- Table structure for `tb_term`
@@ -332,7 +380,7 @@ CREATE TABLE `ts_menu_info` (
   `ordinal` int(2) DEFAULT '0',
   `status` char(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ts_menu_info
@@ -365,6 +413,10 @@ INSERT INTO ts_menu_info VALUES ('25', '班级分表', '1', 'ems.biz.syllabus.sy
 INSERT INTO ts_menu_info VALUES ('26', '课程分表', '1', 'ems.biz.syllabus.syllabusbycourse.SyllabusByCourse', null, '3', '4', '1');
 INSERT INTO ts_menu_info VALUES ('27', '学生管理', '2', null, null, '-1', '5', '1');
 INSERT INTO ts_menu_info VALUES ('28', '新生添加', '1', 'ems.biz.stuMag.addNewStu.Stu', null, '27', '1', '1');
+INSERT INTO ts_menu_info VALUES ('29', '成绩管理', '2', null, null, '-1', '6', '1');
+INSERT INTO ts_menu_info VALUES ('30', '成绩录入', '1', 'ems.biz.scoremgr.scoreinput.ScoreInput', null, '29', '1', '1');
+INSERT INTO ts_menu_info VALUES ('31', '成绩查询', '1', 'ems.biz.scoremgr.scorequery.ScoreQuery', null, '29', '2', '1');
+INSERT INTO ts_menu_info VALUES ('32', '任课管理', '1', 'ems.biz.basicInfo.educatManager.Educat', null, '2', '10', '1');
 
 -- ----------------------------
 -- Table structure for `ts_role_info`
@@ -396,7 +448,7 @@ CREATE TABLE `ts_role_menu_rel` (
   `role_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ts_role_menu_rel
@@ -429,6 +481,10 @@ INSERT INTO ts_role_menu_rel VALUES ('25', '1', '25');
 INSERT INTO ts_role_menu_rel VALUES ('26', '1', '26');
 INSERT INTO ts_role_menu_rel VALUES ('27', '1', '27');
 INSERT INTO ts_role_menu_rel VALUES ('28', '1', '28');
+INSERT INTO ts_role_menu_rel VALUES ('29', '1', '29');
+INSERT INTO ts_role_menu_rel VALUES ('30', '1', '30');
+INSERT INTO ts_role_menu_rel VALUES ('31', '1', '31');
+INSERT INTO ts_role_menu_rel VALUES ('32', '1', '32');
 
 -- ----------------------------
 -- Table structure for `ts_user_info`
@@ -448,12 +504,12 @@ CREATE TABLE `ts_user_info` (
 -- Records of ts_user_info
 -- ----------------------------
 INSERT INTO ts_user_info VALUES ('1', 'admin', '系统管理员', '202cb962ac59075b964b07152d234b70', null, null);
-INSERT INTO ts_user_info VALUES ('2', 'teacher', '教师1', '202cb962ac59075b964b07152d234b70', '', '');
+INSERT INTO ts_user_info VALUES ('2', 'Davier', '大卫', '202cb962ac59075b964b07152d234b70', 'dv@tercher.com', '159002321');
 INSERT INTO ts_user_info VALUES ('3', 'fdy', '辅导员1', '202cb962ac59075b964b07152d234b70', '', '');
 INSERT INTO ts_user_info VALUES ('4', 'student', '学生1', '202cb962ac59075b964b07152d234b70', null, null);
-INSERT INTO ts_user_info VALUES ('5', 'caiwu', '财务1', '202cb962ac59075b964b07152d234b70', '', '');
-INSERT INTO ts_user_info VALUES ('6', 'jwc', '教务处1', '202cb962ac59075b964b07152d234b70', '', '');
-INSERT INTO ts_user_info VALUES ('7', 'js2', '教师2', 'e10adc3949ba59abbe56e057f20f883e', '', '');
+INSERT INTO ts_user_info VALUES ('5', 'caiwu', '财务1', '202cb962ac59075b964b07152d234b70', null, null);
+INSERT INTO ts_user_info VALUES ('6', 'jwc', '教务处1', '202cb962ac59075b964b07152d234b70', null, null);
+INSERT INTO ts_user_info VALUES ('7', 'Huward', '霍华德', 'e10adc3949ba59abbe56e057f20f883e', 'hwd@tercher.com', '13860114621');
 
 -- ----------------------------
 -- Table structure for `ts_user_role_rel`
