@@ -117,6 +117,7 @@ public interface ICommonDAO {
 	
 	public Object unquieResult(String hql, Object... value);
 	public List findListByHql(final String hqlString, final Map<String, Object> paramMap);
+	public List findListByHql(String hqlString, Object paramObj);
 	public List findPageListByHql(final String hqlString, final List paramValues, final int firstResult, final int maxResults);
 	public int executeHql(final String hqlString, final List paramValues);
 	public int executeHql(final String hqlString, final Object paramValue);
