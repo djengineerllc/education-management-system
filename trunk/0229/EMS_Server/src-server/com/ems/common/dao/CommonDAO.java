@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.ems.common.exception.EMSException;
+import com.ems.common.util.BeanUtils;
 
 public class CommonDAO implements ICommonDAO {
 
@@ -196,6 +198,24 @@ public class CommonDAO implements ICommonDAO {
 				return q.list();
 			}
 		}));
+	}
+	
+	public List findListByHql(String hqlString, Object paramObj) {
+		Map<String, Object> paramMap = null;
+		if (paramObj != null) {
+			if (paramObj instanceof Map<?, ?>) {
+				paramMap = (Map<String, Object>) paramObj;
+			} else if (paramObj instanceof Object[]) {
+				throw new UnsupportedOperationException();
+			} else if (paramObj instanceof List) {
+				throw new UnsupportedOperationException();
+			} else {
+				paramMap = new HashMap<String, Object>();
+				BeanUtils.copyBeanToMap(paramObj, paramMap);
+			}
+		}
+		
+		return this.findListByHql(hqlString, paramMap);
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
