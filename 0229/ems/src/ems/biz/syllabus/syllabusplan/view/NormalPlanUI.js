@@ -134,8 +134,6 @@ Ext.define('ems.biz.syllabus.syllabusplan.view.NormalPlanUI', {
 				xtype: 'xgrid',
 				itemId: 'syllabusPlanGrid',
 				rowNumberer: false,
-				stripeRows: true,
-				sortableColumns: false,
 				viewType: 'gridspanview',
 				loadDF: me.DF('loadSyllabusPlanDetail'),
 				plugins: [
