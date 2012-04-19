@@ -208,7 +208,7 @@ Ext.define('ems.system.Dic', {
 				return dicRecord.data.name;
 			}
 			
-			return value;
+			return value || '';
 		};
 	},
 	
@@ -236,5 +236,12 @@ Ext.define('ems.system.Dic', {
 		}
 		
 		return displayField;
+	},
+	
+	column: function(dicType, config) {
+		return Ext.applyIf(config || {}, {
+			renderer: Dic.renderer(dicType),
+			field: Dic.comboBox(dicType)
+		});
 	}
 });
