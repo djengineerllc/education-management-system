@@ -41,6 +41,7 @@
         -->
        <joined-subclass name="StudentBO" table="tb_student"> 
 	        <key column="id"/> 
+	        <property name="stuNo" column="stu_no"/>
 	        <property name="gradeId" column="grade_id" type="java.lang.Integer"/>
 	        <property name="projectId" column="project_id" type="java.lang.Integer"/>
 	        <property name="professId" column="profess_id" type="java.lang.Integer"/>
