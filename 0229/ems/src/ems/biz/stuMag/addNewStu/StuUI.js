@@ -45,11 +45,11 @@ Ext.define('ems.biz.stuMag.addNewStu.StuUI', {
 					})]
                 },
                 columns: [{
-                    dataIndex: 'userName',
+                    dataIndex: 'loginName',
                     text: '学号',
                     flex: 1
                 }, {
-                    dataIndex: 'loginName',
+                    dataIndex: 'userName',
                     text: '姓名',
                     flex: 1
                 }, {
