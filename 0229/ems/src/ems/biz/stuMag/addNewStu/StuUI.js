@@ -18,10 +18,10 @@ Ext.define('ems.biz.stuMag.addNewStu.StuUI', {
                 	fieldColumns:3,
                     items: [{
                         fieldLabel: '学号',
-                        name: 'userName'
+                        name: 'stuNo'
                     },{
                         fieldLabel: '姓名',
-                        name: 'loginName'
+                        name: 'userName'
                     },Dic.comboBox('Grade', {
 						fieldLabel: '年级',
 						name: 'gradeId',
@@ -45,7 +45,7 @@ Ext.define('ems.biz.stuMag.addNewStu.StuUI', {
 					})]
                 },
                 columns: [{
-                    dataIndex: 'loginName',
+                    dataIndex: 'stuNo',
                     text: '学号',
                     flex: 1
                 }, {
