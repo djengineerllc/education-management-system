@@ -38,7 +38,7 @@ Ext.define('ems.biz.scoremgr.scoreinput.ScoreInputUI', {
 		                items: [
 						Dic.comboBox('Grade', {
 	                        fieldLabel: '年级',
-	                        name: 'stuGrade',
+	                        name: 'gradeId',
 							hideLabel: true,
 							emptyText: '年级',
 							value: '',
@@ -57,7 +57,7 @@ Ext.define('ems.biz.scoremgr.scoreinput.ScoreInputUI', {
 						}), 
 						Dic.localComboBox({
 							itemId: 'classComboBox',
-	                        name: 'stuClass',
+	                        name: 'classId',
 							emptyText: '请选择年级',
 							width: 150
 						})]
@@ -86,7 +86,7 @@ Ext.define('ems.biz.scoremgr.scoreinput.ScoreInputUI', {
                     text: '学号',
                     flex: 1
                 }, {
-                    dataIndex: 'stuName',
+                    dataIndex: 'userName',
                     text: '姓名',
                     flex: 1
                 }, {
