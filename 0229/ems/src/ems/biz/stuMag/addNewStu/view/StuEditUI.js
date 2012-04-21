@@ -1,6 +1,11 @@
 Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	extend: 'ems.biz.base.crud.CrudUI',
 	
+	initData: function() {
+		var me = this;
+		me.callParent(arguments);
+	},
+	
 	uiConfig: function() {
 		var me = this;
 		return {
@@ -26,7 +31,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 				},{
 	                fieldLabel: '学号',
 	                name: 'userName',
-	                readOnly: true,
+	                readOnly: me.bizAction == 'c' ? false : true,
 	                columnWidth: 1/3
 	            },{
 	                fieldLabel: '密码',
