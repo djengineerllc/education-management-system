@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author Chiknin
@@ -36,7 +36,7 @@ public class DateUtil {
     	return parse(source, new SimpleDateFormat(pattern));
     }
     public static Date parse(String source, SimpleDateFormat sdf) {
-    	if (!StringUtils.hasText(source)) return null;
+    	if (StringUtils.isEmpty(source)) return null;
     	try {
     		return sdf.parse(source);
     	} catch (Exception e) {
@@ -44,9 +44,7 @@ public class DateUtil {
     	}
     }
     public static Date parse(String source) {
-    	if (source == null) {
-    		return null;
-    	}
+    	if (StringUtils.isEmpty(source)) return null;
     	
     	switch (source.length()) {
     		case 19:
