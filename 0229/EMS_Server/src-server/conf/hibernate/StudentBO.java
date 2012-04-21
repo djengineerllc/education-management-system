@@ -26,7 +26,7 @@ public class StudentBO extends UserInfoBO {
 	
 	private String domicile;//户籍所在地
 	
-	private String IDNumber;//身份证号
+	private String idNumber;//身份证号
 	
 	private Date birthDate;//出生日期
 	
@@ -152,14 +152,14 @@ public class StudentBO extends UserInfoBO {
 		this.domicile = domicile;
 	}
 
-	public String getIDNumber() {
-		return IDNumber;
+	public String getIdNumber() {
+		return idNumber;
 	}
 
-	public void setIDNumber(String iDNumber) {
-		IDNumber = iDNumber;
+	public void setIdNumber(String idNumber) {
+		this.idNumber = idNumber;
 	}
-	
+
 	public Date getBirthDate() {
 		return birthDate;
 	}
