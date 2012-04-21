@@ -29,6 +29,9 @@ public class StudentManageBSImpl implements IStudentManageBS{
 	public List<StudentBO> findByStudentBO(StudentBO studentBO)	throws EMSException {
 		StringBuffer hql = new StringBuffer();
 		hql.append("from " + StudentBO.class.getName() + " as bo where 1 = 1");
+		if(StringUtils.isNotBlank(studentBO.getStuNo())){
+			hql.append(" and bo.stuNo = :stuNo");
+		}
 		if(StringUtils.isNotBlank(studentBO.getUserName())){
 			hql.append(" and bo.userName = :userName");
 		}
