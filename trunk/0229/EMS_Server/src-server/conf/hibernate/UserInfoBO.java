@@ -11,23 +11,11 @@ public class UserInfoBO extends BaseBO {
 	private String loginName;
 	private String userName;
 	private String password;
+	private String sex;//性别
 	private String email;
 	private String contact;
 	private Date lastLoginTime;
-	private String sex;//性别
 	
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public Date getLastLoginTime() {
-		return lastLoginTime;
-	}
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
 	public String getLoginName() {
 		return loginName;
 	}
@@ -46,6 +34,12 @@ public class UserInfoBO extends BaseBO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -58,5 +52,10 @@ public class UserInfoBO extends BaseBO {
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-	
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 }
