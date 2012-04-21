@@ -8,6 +8,8 @@ public class StudentBO extends UserInfoBO {
 	//loginName		学生姓名
 	//userName		学号
 	
+	private String stuNo; // 学号
+	
 	private Integer gradeId;//年级ID
 	
 	private Integer projectId;//项目ID
@@ -79,6 +81,14 @@ public class StudentBO extends UserInfoBO {
 	private String motherPost;
 	
 	private String motherContactTel;
+	
+	public String getStuNo() {
+		return stuNo;
+	}
+
+	public void setStuNo(String stuNo) {
+		this.stuNo = stuNo;
+	}
 
 	public Integer getGradeId() {
 		return gradeId;
