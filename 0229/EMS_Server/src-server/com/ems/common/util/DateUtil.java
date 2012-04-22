@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -135,5 +136,12 @@ public class DateUtil {
     	} else {
     		return srcYear > descYear ? 1 : -1;
     	}
+    }
+    
+    public String formatZh(int style, Date date) {
+    	return DateFormat.getDateInstance(style, Locale.CHINESE).format(date);
+    }
+    public String formatEn(int style, Date date) {
+    	return DateFormat.getDateInstance(style, Locale.ENGLISH).format(date);
     }
 }
