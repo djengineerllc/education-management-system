@@ -21,17 +21,26 @@ public class ScoreMgrBSImpl implements IScoreMgrBS {
 	@Autowired
 	@Qualifier("commonDAO")
 	private ICommonDAO commonDAO;
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ScoreVO> findScoreVOBy(ScoreQueryVO queryVO) throws EMSException {
-		StringBuilder hql = new StringBuilder();
-		hql.append("SELECT new ScoreVO(scBO.id, stBO.id, stBO.userName, scBO.termId, scBO.courseNo, scBO.scoreValue, scBO.scoreLevel) ");
-		hql.append("FROM StudentBO stBO LEFT JOIN ScoreBO scBO ON stBO.id = scBO.stuId ");
-		hql.append("WHERE stBO.classId = :classId AND scBO.termId = :termId AND scBO.courseNo = :courseNo ");
-		hql.append("ORDER BY stBO.id ASC");
+		StringBuilder scoreHql = new StringBuilder();
+		scoreHql.append("SELECT new com.ems.common.model.vo.ScoreVO(scBO.id, scBO.stuId,stBO.stuNo, stBO.userName, scBO.termId, scBO.courseNo, scBO.scoreValue, scBO.scoreLevel) ");
+		scoreHql.append("FROM ScoreBO scBO, StudentBO stBO ");
+		scoreHql.append("WHERE scBO.stuId = stBO.id AND scBO.stuId IN (:stuIds) AND stBO.classId = :classId AND scBO.termId = :termId AND scBO.courseNo = :courseNo ");
+		scoreHql.append("ORDER BY scBO.id ASC");
 		
-		List<ScoreVO> scoreVOList = commonDAO.findListByHql(hql.toString(), queryVO);
+		List<ScoreVO> scoreVOList = commonDAO.findByValueBean(scoreHql.toString(), queryVO);
+		if (scoreVOList.size() == 0) {
+			scoreHql.delete(0, scoreHql.length());
+			scoreHql.append("SELECT new com.ems.common.model.vo.ScoreVO(stBO.id, stBO.stuNo, stBO.userName) ");
+			scoreHql.append("FROM StudentBO stBO ");
+			scoreHql.append("WHERE stBO.id IN (:stuIds) AND stBO.classId = :classId ");
+			scoreHql.append("ORDER BY stBO.id ASC");
+			scoreVOList = commonDAO.findByValueBean(scoreHql.toString(), queryVO);
+		}
+		
 		for (ScoreVO vo : scoreVOList) {
 			if (vo.getId() == null) {
 				vo.setTermId(queryVO.getTermId());
