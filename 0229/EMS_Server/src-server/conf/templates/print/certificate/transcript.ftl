@@ -9,8 +9,8 @@
 			<td>Student No./学号: ${stuInfo.stuNo}</td>
 		</tr>
 		<tr>
-			<td>Major/专业: Business with Accounting/<@code codeType='Project' data=stuInfo.projectId /></td>
-			<td>Programme/项目: yw/<@code codeType='Professional' data=stuInfo.professId /></td>
+			<td>Major/专业: Business with Accounting/<@code codeType="Project" data=stuInfo.projectId /></td>
+			<td>Programme/项目: yw/<@code codeType="Professional" data=stuInfo.professId /></td>
 		</tr>
 	</tbody>
 </table>
@@ -22,12 +22,14 @@
 			<th style="text-align:center;width:65px;">Hs/学时</th>
 			<th style="text-align:center;width:65px;">Cs/学分</th>
 		</tr>
+		<#list stuScoreList as stuScore>
 		<tr>
-			<td style="text-align:center;">Writing 1/写作1</td>
-			<td style="text-align:center;">82</td>
-			<td style="text-align:center;">80</td>
-			<td style="text-align:center;">2</td>
+			<td style="text-align:center;"><@code mode="getNameEnByValue" codeType="Course" data=stuScore.courseNo />/<@code codeType="Course" data=stuScore.courseNo /></td>
+			<td style="text-align:center;">${stuScore.scoreValue}</td>
+			<td style="text-align:center;"></td>
+			<td style="text-align:center;"></td>
 		</tr>
+		</#list>
 	</tbody>
 </table>
 <div style="height:10px;"></div>
