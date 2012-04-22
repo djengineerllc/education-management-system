@@ -6,17 +6,28 @@ public class ScoreVO implements Serializable {
 	
 	private Integer id;
 	private Integer stuId;
+	private String stuNo;
 	private String stuName;
 	private Integer termId;
 	private String courseNo;
 	private String scoreValue;
 	private String scoreLevel;
 	
-	public ScoreVO(Integer id, Integer stuId, String stuName, Integer termId,
+	public ScoreVO() {
+	}
+
+	public ScoreVO(Integer stuId, String stuNo, String stuName) {
+		this.stuId = stuId;
+		this.stuNo = stuNo;
+		this.stuName = stuName;
+	}
+
+	public ScoreVO(Integer id, Integer stuId, String stuNo, String stuName, Integer termId,
 			String courseNo, String scoreValue, String scoreLevel) {
 		
 		this.id = id;
 		this.stuId = stuId;
+		this.stuNo = stuNo;
 		this.stuName = stuName;
 		this.termId = termId;
 		this.courseNo = courseNo;
@@ -36,6 +47,14 @@ public class ScoreVO implements Serializable {
 	public void setStuId(Integer stuId) {
 		this.stuId = stuId;
 	}
+	public String getStuNo() {
+		return stuNo;
+	}
+
+	public void setStuNo(String stuNo) {
+		this.stuNo = stuNo;
+	}
+
 	public String getStuName() {
 		return stuName;
 	}
