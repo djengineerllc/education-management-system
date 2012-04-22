@@ -29,13 +29,13 @@ public class ScoreMgrBSImpl implements IScoreMgrBS {
 		List<Object> params = new ArrayList<Object>();
 		
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT stu.id stuId, stu.stu_no stuNo, ui.user_name stuName, sco.id, sco.term_id termId, sco.course_no courseNo, sco.score_value scoreValue, sco.score_level scoreLevel, sco.course_time courseTime ");
+		sql.append("SELECT stu.id stuId, stu.stu_no stuNo, ui.user_name stuName, sco.id, sco.term_id termId, sco.course_no courseNo, sco.score_value scoreValue, sco.score_level scoreLevel ");
 		sql.append("FROM tb_student stu ");
 		sql.append("INNER JOIN ts_user_info ui ON stu.id = ui.id ");
-		sql.append("LEFT JOIN (SELECT isco.*, icou.course_time FROM tb_score isco, tb_course icou WHERE isco.course_no = icou.course_no AND isco.term_id = ? ");
+		sql.append("LEFT JOIN (SELECT * FROM tb_score WHERE term_id = ? ");
 		params.add(queryVO.getTermId());
 		if (StringUtils.isNotEmpty(queryVO.getCourseNo())) {
-			sql.append("AND isco.course_no = ? ");
+			sql.append("AND course_no = ? ");
 			params.add(queryVO.getCourseNo());
 		}
 		sql.append(") sco ON stu.id = sco.stu_id ");
