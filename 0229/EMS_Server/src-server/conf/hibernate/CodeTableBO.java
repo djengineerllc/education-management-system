@@ -14,6 +14,7 @@ public class CodeTableBO extends BaseBO {
 	private String codeKey;
 	private String codeValue;
 	private String codeName;
+	private String codeNameEn;
 	private String codeDesc;
 	private String codeGroup;
 	private Integer ordinal;
@@ -74,6 +75,14 @@ public class CodeTableBO extends BaseBO {
 
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
+	}
+	
+	public String getCodeNameEn() {
+		return codeNameEn;
+	}
+
+	public void setCodeNameEn(String codeNameEn) {
+		this.codeNameEn = codeNameEn;
 	}
 
 	public String getCodeDesc() {
