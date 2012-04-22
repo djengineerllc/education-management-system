@@ -33,7 +33,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
                     if (!form.isValid()) {
                         return;
                     }
-					
+                    
 //					win.el.mask('请求处理中，请稍候...');
                     viewPanel.submitFormData({
 //						waitMsg: '请求处理中，请稍候...',
