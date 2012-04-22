@@ -17,7 +17,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		Ext.each(sltStudents, function(sltStudent) {
 			stuComboData.push({
 				value: sltStudent.stuNo,
-				name: Ext.String.format("{0}({1})", sltStudent.stuName, sltStudent.stuNo)
+				name: Ext.String.format("{0}({1})", sltStudent.userName, sltStudent.stuNo)
 			});
 		});
 		stuComboBox.getStore().loadData(stuComboData); // 学生
@@ -25,8 +25,8 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		/* 初始化页面信息 */
 		initData = sltStudents[0];
 		title = Ext.String.format('成绩证明 - 年级: {0}  班级: {1}', 
-			Dic.renderer('Grade')(initData.stuGrade),
-			Dic.renderer('Class')(initData.stuClass)
+			Dic.renderer('Grade')(initData.gradeId),
+			Dic.renderer('Class')(initData.classId)
 		);
 		me.up().setTitle(title); // 标题
 		

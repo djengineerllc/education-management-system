@@ -38,14 +38,14 @@ Ext.define('ems.biz.certificate.freshgraduate.FreshGraduateUI', {
 		                items: [
 						Dic.comboBox('Grade', {
 	                        fieldLabel: '年级',
-	                        name: 'stuGrade',
+	                        name: 'gradeId',
 							hideLabel: true,
 							emptyText: '年级',
 							value: '',
 							listeners: {
 								change: function(comp, newValue, oldValue, eOpts) {
 									var data = newValue ? Dic.getDicData({type: 'Class', group: newValue}) : [],
-										stuClassCombo = me.down('#stuClassId');
+										stuClassCombo = me.down('#classComboBox');
 										
 									stuClassCombo.setValue(null);
 									stuClassCombo.emptyText = data.length > 0 ? '班级' : '请选择年级';
@@ -56,8 +56,8 @@ Ext.define('ems.biz.certificate.freshgraduate.FreshGraduateUI', {
 							width: 80
 						}), 
 						Dic.localComboBox({
-							itemId: 'stuClassId',
-	                        name: 'stuClass',
+							itemId: 'classComboBox',
+	                        name: 'classId',
 							emptyText: '请选择年级',
 							width: 100
 						})]
@@ -72,12 +72,12 @@ Ext.define('ems.biz.certificate.freshgraduate.FreshGraduateUI', {
                     text: 'ID',
                     hidden: true
                 }, {
-                    dataIndex: 'stuGrade',
+                    dataIndex: 'gradeId',
                     text: '年级',
                     renderer: Dic.renderer('Grade'),
                     flex: 1
                 }, {
-                    dataIndex: 'stuClass',
+                    dataIndex: 'classId',
                     text: '班级',
                     renderer: Dic.renderer('Class'),
                     flex: 1
@@ -86,26 +86,26 @@ Ext.define('ems.biz.certificate.freshgraduate.FreshGraduateUI', {
                     text: '学号',
                     flex: 1
                 }, {
-                    dataIndex: 'stuName',
+                    dataIndex: 'userName',
                     text: '姓名',
                     flex: 1
                 }, {
-                    dataIndex: 'stuSex',
+                    dataIndex: 'sex',
                     text: '性别',
                     renderer: Dic.renderer('Sex'),
                     flex: 1
                 }, {
-                    dataIndex: 'stuProj',
+                    dataIndex: 'projectId',
                     text: '项目',
                     renderer: Dic.renderer('Project'),
-                    flex: 1
+                    flex: 2
                 }, {
-                    dataIndex: 'stuProf',
+                    dataIndex: 'professId',
                     text: '专业',
                     renderer: Dic.renderer('Professional'),
-                    flex: 1
+                    flex: 2
                 }, {
-                    dataIndex: 'stuStatus',
+                    dataIndex: 'status',
                     text: '状态',
                     renderer: Dic.renderer('StudentStatus'),
                     flex: 1
