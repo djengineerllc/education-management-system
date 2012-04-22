@@ -1,19 +1,13 @@
 package com.ems.client.action.biz.certificate.graduate;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.ems.biz.stuMag.bs.IStudentManageBS;
-import com.ems.client.action.biz.certificate.common.vo.CertQueryVO;
-import com.ems.client.action.biz.certificate.common.vo.StudentInfoVO;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectCrudAction;
