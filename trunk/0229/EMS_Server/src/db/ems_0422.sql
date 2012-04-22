@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-04-22 18:06:27
+Date: 2012-04-22 19:20:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -262,17 +262,15 @@ CREATE TABLE `tb_score` (
   `stu_id` int(11) DEFAULT NULL,
   `term_id` int(11) DEFAULT NULL,
   `course_no` varchar(50) DEFAULT NULL,
-  `score_value` varchar(10) DEFAULT NULL,
-  `score_level` varchar(10) DEFAULT NULL,
+  `score_value` varchar(10) DEFAULT '',
+  `score_level` varchar(10) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_score
 -- ----------------------------
-INSERT INTO tb_score VALUES ('5', '8', '4', '5019', '122', 'P');
-INSERT INTO tb_score VALUES ('8', '8', '4', '1130', null, null);
-INSERT INTO tb_score VALUES ('9', '9', '4', '1130', null, null);
+INSERT INTO tb_score VALUES ('11', '8', '4', '5019', '78', 'P');
 
 -- ----------------------------
 -- Table structure for `tb_student`
