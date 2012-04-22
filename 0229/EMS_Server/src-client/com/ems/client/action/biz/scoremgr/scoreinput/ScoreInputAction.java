@@ -38,8 +38,8 @@ public class ScoreInputAction extends DirectCrudAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadScoreDefaultList(JsonArray params) throws EMSException {
-		JsonObject jsonObj = params.get(0).getAsJsonObject();
 		ScoreQueryVO queryVO = new ScoreQueryVO();
+		JsonObject jsonObj = params.get(0).getAsJsonObject();
 		queryVO.setTermId(jsonObj.get("termId").getAsInt());
 		queryVO.setClassId(jsonObj.get("classId").getAsInt());
 		queryVO.setCourseNo(jsonObj.get("courseNo").getAsString());
@@ -53,8 +53,14 @@ public class ScoreInputAction extends DirectCrudAction {
 	@DirectMethod
 	public ExtFormVO submitScoreInputDetail(JsonArray params) {
 		JsonObject jsonObj = params.get(0).getAsJsonObject();
-//		Integer termId = jsonObj.get("termId").getAsInt();
+		Integer termId = jsonObj.get("termId").getAsInt();
+		String courseNo = jsonObj.get("courseNo").getAsString();
 		List<ScoreBO> scoreBOList = BeanUtils.toBeanFromJson(jsonObj.get("submitData").getAsJsonArray(), ScoreBO.class);
+		
+		for (ScoreBO scoreBO : scoreBOList) {
+			scoreBO.setTermId(termId);
+			scoreBO.setCourseNo(courseNo);
+		}
 		
 		scoreMgrBS.submitScore(scoreBOList);
 		
