@@ -39,7 +39,7 @@ public class StudentshipAction extends DirectCrudAction {
 	
 	@DirectMethod
 	public void printCert(HttpServletRequest request, HttpServletResponse response) throws IOException {
-String stuNo = request.getParameter("stuNo");
+		String stuNo = request.getParameter("stuNo");
 		
 		StudentBO queryInfo = new StudentBO();
 		queryInfo.setStuNo(stuNo);
