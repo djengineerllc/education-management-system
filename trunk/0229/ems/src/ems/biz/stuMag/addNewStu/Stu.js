@@ -3,6 +3,7 @@ Ext.define('ems.biz.stuMag.addNewStu.Stu', {
 	
 	editViewId: 'StuEditUI',
 	readViewId: 'StuReadUI',
+	addViewId: 'StuAddUI',
     
 //    ,init: function() {
 //        var me = this;

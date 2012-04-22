@@ -1,9 +1,10 @@
-Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
-    extend: 'ems.biz.base.crud.CrudUI',
+Ext.define('ems.biz.stuMag.addNewStu.view.StuAddUI', {
+	extend: 'ems.biz.base.crud.CrudUI',
 	
 	uiConfig: function() {
 		var me = this;
 		return {
+//			layout: 'fit',
 			width: 760,
 			items: [{
 				xtype: 'form',
@@ -16,7 +17,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
 					labelAlign: 'right'
 				},
 				defaults: {
-					xtype: 'displayfield',
+					xtype: 'textfield',
 					columnWidth: 0.25
 				},
 				items: [{
@@ -25,32 +26,31 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
 				},{
 	                fieldLabel: '学号',
 	                name: 'userName',
-	                readOnly: true,
 	                columnWidth: 1/3
 	            },{
 	                fieldLabel: '密码',
 	                name: 'password',
 	                columnWidth: 1/3
-	            },Dic.displayfield('StudentStatus', {
+	            },Dic.comboBox('StudentStatus', {
 					fieldLabel: '状态',
 					name: 'status',
 					columnWidth: 1/3
-				}),Dic.displayfield('Grade', {
+				}),Dic.comboBox('Grade', {
 					fieldLabel: '年级',
 					name: 'gradeId',
-					columnWidth: 0.5
-				}),Dic.displayfield('Project', {
+					columnWidth: 0.25
+				}),Dic.comboBox('Project', {
 					fieldLabel: '项目',
 					name: 'projectId',
-					columnWidth: 0.5
-				}),Dic.displayfield('Professional', {
+					columnWidth: 0.25
+				}),Dic.comboBox('Professional', {
 					fieldLabel: '专业',
 					name: 'professId',
-					columnWidth: 0.5
-				}),Dic.displayfield('Class', {
+					columnWidth: 0.25
+				}),Dic.comboBox('Class', {
 					fieldLabel: '班级',
 					name: 'classId',
-					columnWidth: 0.5
+					columnWidth: 0.25
 				}),{
 	                fieldLabel: '姓名',
 	                name: 'loginName',
@@ -59,7 +59,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
 	                fieldLabel: '拼音',
 	                name: 'pinyin',
 	                columnWidth: 0.25
-	            },Dic.displayfield('Sex', {
+	            },Dic.comboBox('Sex', {
 					fieldLabel: '性别',
 					name: 'sex',
 					columnWidth: 0.25
@@ -68,11 +68,15 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
 	                name: 'ethnic',
 	                columnWidth: 0.25
 	            },{
+	            	xtype: 'datefield',
 	                fieldLabel: '入学时间',
+	                format: 'Y-m-d',
 	                name: 'admissionTime',
 	                columnWidth: 0.5
 	            },{
+	            	xtype: 'datefield',
 	                fieldLabel: '离校时间',
+	                format: 'Y-m-d',
 	                name: 'leaveSchoolTime',
 	                columnWidth: 0.5
 	            },{
@@ -84,7 +88,9 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
 	                name: 'IDNumber',
 	                columnWidth: 1/3
 	            },{
+	            	xtype: 'datefield',
 	                fieldLabel: '出生日期',
+	                format: 'Y-m-d',
 	                name: 'birthDate',
 	                columnWidth: 1/3
 	            },{
@@ -115,7 +121,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuReadUI', {
 	                fieldLabel: '家庭地址邮编',
 	                name: 'homeAddZipCode',
 	                columnWidth: 0.25
-	            },Dic.displayfield('EducationLevel', {
+	            },Dic.comboBox('EducationLevel', {
 					fieldLabel: '入学学历',
 					name: 'admissionQualif',
 					columnWidth: 0.25

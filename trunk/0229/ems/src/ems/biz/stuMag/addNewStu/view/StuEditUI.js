@@ -76,12 +76,14 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	            },{
 	            	xtype: 'datefield',
 	                fieldLabel: '入学时间',
+	                format: 'Y-m-d',
 	                name: 'admissionTime',
 	                columnWidth: 0.5
 	            },{
 	            	xtype: 'datefield',
 	                fieldLabel: '离校时间',
-	                name: 'admissionTime',
+	                format: 'Y-m-d',
+	                name: 'leaveSchoolTime',
 	                columnWidth: 0.5
 	            },{
 	                fieldLabel: '户籍所在地',
@@ -94,6 +96,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	            },{
 	            	xtype: 'datefield',
 	                fieldLabel: '出生日期',
+	                format: 'Y-m-d',
 	                name: 'birthDate',
 	                columnWidth: 1/3
 	            },{
