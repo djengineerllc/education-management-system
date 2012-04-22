@@ -44,6 +44,14 @@ public class CodeTableBO extends BaseBO {
 		this.codeDesc = codeDesc;
 		this.codeGroup = codeGroup != null ? codeGroup.toString() : null;
 	}
+	public CodeTableBO(Object codeValue, String codeName, String codeNameEn, String codeDesc, Object codeGroup) {
+		this.codeKey = codeValue.toString();
+		this.codeValue = codeValue.toString();
+		this.codeName = codeName;
+		this.codeNameEn = codeNameEn;
+		this.codeDesc = codeDesc;
+		this.codeGroup = codeGroup != null ? codeGroup.toString() : null;
+	}
 	
 	public String getCodeType() {
 		return codeType;
