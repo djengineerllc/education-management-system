@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.orm.hibernate3.HibernateTemplate;
+
 import com.ems.common.exception.EMSException;
 
 public interface ICommonDAO {
@@ -119,7 +121,9 @@ public interface ICommonDAO {
 	public List findListByHql(final String hqlString, final Map<String, Object> paramMap);
 	public List findPageListByHql(final String hqlString, final List paramValues, final int firstResult, final int maxResults);
 	public int executeHql(final String hqlString, final List paramValues);
-	public int executeHql(final String hqlString, final Object paramValue);
+	public int executeHql(String hqlString, Object... paramValue);
 	
 	public List findByValueBean(String queryString, Object valueBean) throws EMSException;
+	
+	public HibernateTemplate getHibernateTemplate();
 }
