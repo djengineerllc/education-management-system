@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,6 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.ems.common.exception.EMSException;
-import com.ems.common.util.BeanUtils;
 
 public class CommonDAO implements ICommonDAO {
 
