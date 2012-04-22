@@ -71,7 +71,7 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
 						var formValues = form.getValues();
 						if (!formValues.classId && !formValues.classId) {
 							EU.showInfoDialog({
-								msg: '班级或学号必须输入其中一项',
+								msg: '必须输入班级或学号其中一项',
 								animateTarget: btn.el
 							});
 							return false;
