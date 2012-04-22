@@ -66,7 +66,19 @@ Ext.define('ems.biz.certificate.transcript.TranscriptUI', {
 						fieldLabel: '学号',
                         name: 'stuNo',
 						labelWidth: 60
-					}]
+					}],
+					submitValidate: function(form, btn) {
+						var formValues = form.getValues();
+						if (!formValues.classId && !formValues.classId) {
+							EU.showInfoDialog({
+								msg: '班级或学号必须输入其中一项',
+								animateTarget: btn.el
+							});
+							return false;
+						}
+						
+						return true;
+					}
                 },
                 columns: [{
                 	dataIndex: 'id',
