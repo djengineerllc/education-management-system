@@ -239,9 +239,13 @@ Ext.define('ems.system.Dic', {
 	},
 	
 	column: function(dicType, config) {
+		if (Ext.isString(dicType)) {
+			dicType = {dicType: dicType};
+		}
+		
 		return Ext.applyIf(config || {}, {
-			renderer: Dic.renderer(dicType),
-			field: Dic.comboBox(dicType)
+			renderer: Dic.renderer(dicType.dicType),
+			field: Dic.comboBox(dicType.dicType, dicType)
 		});
 	}
 });
