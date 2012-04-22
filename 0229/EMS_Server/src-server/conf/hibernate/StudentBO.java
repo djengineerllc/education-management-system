@@ -1,6 +1,5 @@
 package conf.hibernate;
 
-import java.util.Date;
 
 
 public class StudentBO extends UserInfoBO {
@@ -22,15 +21,15 @@ public class StudentBO extends UserInfoBO {
 	
 	private String ethnic;//民族
 	
-	private Date admissionTime;//入学时间
+	private String admissionTime;//入学时间 年-月
 	
-	private Date leaveSchoolTime;//离校时间
+	private String leaveSchoolTime;//离校时间 年-月
 	
 	private String domicile;//户籍所在地
 	
 	private String idNumber;//身份证号
 	
-	private Date birthDate;//出生日期
+	private String birthDate;//出生日期 年-月-日
 	
 	private String homeFixTel;//家庭固定电话
 	
@@ -138,19 +137,19 @@ public class StudentBO extends UserInfoBO {
 		this.ethnic = ethnic;
 	}
 
-	public Date getAdmissionTime() {
+	public String getAdmissionTime() {
 		return admissionTime;
 	}
 
-	public void setAdmissionTime(Date admissionTime) {
+	public void setAdmissionTime(String admissionTime) {
 		this.admissionTime = admissionTime;
 	}
 
-	public Date getLeaveSchoolTime() {
+	public String getLeaveSchoolTime() {
 		return leaveSchoolTime;
 	}
 
-	public void setLeaveSchoolTime(Date leaveSchoolTime) {
+	public void setLeaveSchoolTime(String leaveSchoolTime) {
 		this.leaveSchoolTime = leaveSchoolTime;
 	}
 
@@ -169,12 +168,17 @@ public class StudentBO extends UserInfoBO {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
+<<<<<<< .mine
+
+	public String getBirthDate() {
+=======
 
 	public Date getBirthDate() {
+>>>>>>> .r661
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -290,6 +294,14 @@ public class StudentBO extends UserInfoBO {
 		this.gkYear = gkYear;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getFatherName() {
 		return fatherName;
 	}
@@ -353,13 +365,7 @@ public class StudentBO extends UserInfoBO {
 	public void setMotherContactTel(String motherContactTel) {
 		this.motherContactTel = motherContactTel;
 	}
-	
-	public String getStatus() {
-		return status;
-	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 	
 }
