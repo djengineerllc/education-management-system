@@ -18,7 +18,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 			Ext.apply(config.items[0], sf);
 			g.addDocked(config, 0);
 			
-			g.mon(g.store, 'beforeload', function(store, operation) {
+			g.mon(g.store, 'beforeload', function(store, operation) { // TODO 
 				operation.params = Ext.apply(operation.params || {}, this._getSearchParams());
 				return true;
 			}, me);
@@ -67,7 +67,11 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 					var form = this.up('form').getForm();
 					if (!form.isValid()) {
 						return;
-					};
+					}
+					
+					if (me.grid.searchForm.submitValidate(form, this) === false) {
+						return;
+					}
 					
 					me._setSearchParams(form.getValues());
 					me.grid.store.load();
