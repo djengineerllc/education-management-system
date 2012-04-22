@@ -26,7 +26,7 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                 		fieldLabel: '学期',
                 		labelWidth: 30,
                 		itemId: 'termComboBox',
-                		name: 'term',
+                		name: 'termId',
                 		value: Session.getLoginInfo().currTerm || ''
                 	}), {
                 		fieldLabel: '教师名',
