@@ -43,13 +43,25 @@ public class ScoreMgrBSImpl implements IScoreMgrBS {
 		params.add(queryVO.getCourseNo());
 		params.add(queryVO.getClassId());
 		
-		sql.append("AND stu.id IN (?");
-		params.add(queryVO.getStuIds().get(0));
-		for (int i = 1; i < queryVO.getStuIds().size(); i++) {
-			sql.append(",?");
-			params.add(queryVO.getStuIds().get(i));
+		if (queryVO.getStuIds().size() > 0) {
+			sql.append("AND stu.id IN (?");
+			params.add(queryVO.getStuIds().get(0));
+			for (int i = 1; i < queryVO.getStuIds().size(); i++) {
+				sql.append(",?");
+				params.add(queryVO.getStuIds().get(i));
+			}
+			sql.append(") ");
 		}
-		sql.append(") ");
+		if (queryVO.getStuNos().size() > 0) {
+			sql.append("AND stu.stuNo IN (?");
+			params.add(queryVO.getStuNos().get(0));
+			for (int i = 1; i < queryVO.getStuNos().size(); i++) {
+				sql.append(",?");
+				params.add(queryVO.getStuNos().get(i));
+			}
+			sql.append(") ");
+		}
+		
 		sql.append("ORDER BY stu.id ASC");
 		
 		List<ScoreVO> scoreVOList = commonDAO.findBySql(sql.toString(), params.toArray(), ScoreVO.class);
