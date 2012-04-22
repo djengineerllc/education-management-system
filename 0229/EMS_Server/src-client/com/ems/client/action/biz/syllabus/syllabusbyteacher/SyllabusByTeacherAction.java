@@ -15,6 +15,7 @@ import com.ems.client.action.biz.syllabus.common.vo.SyllabusPlanVO;
 import com.ems.common.code.Code;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.exception.EMSException;
+import com.ems.common.model.vo.EducationVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.common.util.BeanUtils.KeyNamingCallback;
 import com.ems.system.client.DirectCrudAction;
@@ -36,25 +37,11 @@ public class SyllabusByTeacherAction extends DirectCrudAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadList(JsonArray params) {
+		EducationVO queryVO = BeanUtils.toBeanFromJsonFirst(params, EducationVO.class);
 		
-		List items = new ArrayList();
+		List<UserInfoBO> teacherBOList = basicInfoBS.findTeacherByEducat(queryVO);
 		
-		Map<String, Object> item = new HashMap<String, Object>();
-		item.put("id", "1");
-		item.put("userName", "老师1");
-		item.put("contact", "128xxxxxxxx");
-		item.put("email", "xxx@xxx.xx");
-		items.add(item);
-		
-		return new ExtPagingVO(items);
-		
-//		UserInfoVO queryVO = BeanUtils.toBeanFromJsonFirst(params, UserInfoVO.class);
-//		 
-//		List<UserInfoVO> userInfoVOList = basicInfoBS.findUserByVO(queryVO);
-//		
-//		return new ExtPagingVO(userInfoVOList);
-		
-		
+		return new ExtPagingVO(teacherBOList);
 	}
 	
 	@DirectMethod
