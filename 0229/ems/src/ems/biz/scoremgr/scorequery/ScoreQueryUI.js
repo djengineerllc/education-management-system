@@ -98,12 +98,12 @@ Ext.define('ems.biz.scoremgr.scorequery.ScoreQueryUI', {
                     dataIndex: 'projectId',
                     text: '项目',
                     renderer: Dic.renderer('Project'),
-                    flex: 1
+                    flex: 2
                 }, {
                     dataIndex: 'professId',
                     text: '专业',
                     renderer: Dic.renderer('Professional'),
-                    flex: 1
+                    flex: 2
                 }, {
                     dataIndex: 'status',
                     text: '状态',
