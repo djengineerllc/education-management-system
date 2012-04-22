@@ -236,11 +236,13 @@ public class CommonDAO implements ICommonDAO {
 		});
 	}
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public int executeHql(final String hqlString, final Object paramValue) {
+	public int executeHql(String hqlString, Object... paramValue) {
 		List paramValues = null;
 		if (paramValue != null) {
-			paramValues = new ArrayList(1);
-			paramValues.add(paramValue);
+			paramValues = new ArrayList(paramValue.length);
+			for (Object p : paramValue) {
+				paramValues.add(p);
+			}
 		}
 		
 		return this.executeHql(hqlString, paramValues);
@@ -261,4 +263,9 @@ public class CommonDAO implements ICommonDAO {
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
+
+	public HibernateTemplate getHibernateTemplate() {
+		return hibernateTemplate;
+	}
+	
 }
