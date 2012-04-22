@@ -138,10 +138,10 @@ public class DateUtil {
     	}
     }
     
-    public String formatZh(int style, Date date) {
+    public static String formatZh(int style, Date date) {
     	return DateFormat.getDateInstance(style, Locale.CHINESE).format(date);
     }
-    public String formatEn(int style, Date date) {
+    public static String formatEn(int style, Date date) {
     	return DateFormat.getDateInstance(style, Locale.ENGLISH).format(date);
     }
 }
