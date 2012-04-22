@@ -289,6 +289,21 @@ public class Code implements InitializingBean {
 		
 		return null;
 	}
+	public static String getNameEn(String codeType, String key) {
+		CodeTableBO codeBO = getCode(codeType, key);
+		if (codeBO != null) {
+			return codeBO.getCodeNameEn();
+		}
+
+		return null;
+	}
+	public static String getNameEn(String codeType, Object key) {
+		if (key != null) {
+			return getNameEn(codeType, key.toString());
+		}
+		
+		return null;
+	}
 
 	/**
 	 * 根据代码类型和代码值获取代码名称
@@ -300,6 +315,14 @@ public class Code implements InitializingBean {
 		CodeTableBO codeBO = getCodeByValue(codeType, value);
 		if (codeBO != null) {
 			return codeBO.getCodeName();
+		}
+
+		return null;
+	}
+	public static String getNameEnByValue(String codeType, String value) {
+		CodeTableBO codeBO = getCodeByValue(codeType, value);
+		if (codeBO != null) {
+			return codeBO.getCodeNameEn();
 		}
 
 		return null;
