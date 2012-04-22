@@ -1,15 +1,10 @@
 package com.ems.biz.scoremgr.bs.impl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Service;
 
 import com.ems.biz.scoremgr.bs.IScoreMgrBS;
@@ -20,7 +15,6 @@ import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.vo.ScoreVO;
 
 import conf.hibernate.ScoreBO;
-import conf.hibernate.StudentBO;
 
 @Service("scoreMgrBS")
 public class ScoreMgrBSImpl implements IScoreMgrBS {
