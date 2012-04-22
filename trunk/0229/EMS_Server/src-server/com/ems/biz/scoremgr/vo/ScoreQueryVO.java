@@ -9,6 +9,7 @@ public class ScoreQueryVO implements Serializable {
 	private Integer classId;
 	private String courseNo;
 	private List<Integer> stuIds;
+	private List<String> stuNos;
 	
 	public Integer getTermId() {
 		return termId;
@@ -33,5 +34,11 @@ public class ScoreQueryVO implements Serializable {
 	}
 	public void setStuIds(List<Integer> stuIds) {
 		this.stuIds = stuIds;
+	}
+	public List<String> getStuNos() {
+		return stuNos;
+	}
+	public void setStuNos(List<String> stuNos) {
+		this.stuNos = stuNos;
 	}
 }
