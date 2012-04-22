@@ -30,19 +30,15 @@ public class StuAction extends DirectAction  {
 	@DirectMethod
 	public ExtPagingVO loadBook(JsonArray params) {
 		StudentBO studentBO_qry = BeanUtils.toBeanFromJsonFirst(params, StudentBO.class);
-		
 		List<StudentBO> students = studentManageBS.findByStudentBO(studentBO_qry);
-		
 		return new ExtPagingVO(students);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
 		StudentBO studentBO = BeanUtils.toBeanFromMap(formParameters, StudentBO.class);
-		
 		ExtFormVO result = new ExtFormVO();
-	
-		
+		studentManageBS.create(studentBO);
 		return result;
 	}
 	
