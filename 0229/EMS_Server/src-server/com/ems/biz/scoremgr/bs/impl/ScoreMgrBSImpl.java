@@ -3,6 +3,7 @@ package com.ems.biz.scoremgr.bs.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,19 +26,25 @@ public class ScoreMgrBSImpl implements IScoreMgrBS {
 	
 	@Override
 	public List<ScoreVO> findScoreVOBy(ScoreQueryVO queryVO) throws EMSException {
+		List<Object> params = new ArrayList<Object>();
+		
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT stu.id stuId, stu.stu_no stuNo, ui.user_name stuName, sco.id, sco.term_id termId, sco.course_no courseNo, sco.score_value scoreValue, sco.score_level scoreLevel ");
+		sql.append("SELECT stu.id stuId, stu.stu_no stuNo, ui.user_name stuName, sco.id, sco.term_id termId, sco.course_no courseNo, sco.score_value scoreValue, sco.score_level scoreLevel, sco.course_time courseTime ");
 		sql.append("FROM tb_student stu ");
 		sql.append("INNER JOIN ts_user_info ui ON stu.id = ui.id ");
-		sql.append("LEFT JOIN (SELECT * FROM tb_score WHERE term_id = ? AND course_no = ?) sco ON stu.id = sco.stu_id ");
-		sql.append("WHERE stu.class_id = ? ");
-		
-		List<Object> params = new ArrayList<Object>();
+		sql.append("LEFT JOIN (SELECT isco.*, icou.course_time FROM tb_score isco, tb_course icou WHERE isco.course_no = icou.course_no AND isco.term_id = ? ");
 		params.add(queryVO.getTermId());
-		params.add(queryVO.getCourseNo());
-		params.add(queryVO.getClassId());
-		
-		if (queryVO.getStuIds().size() > 0) {
+		if (StringUtils.isNotEmpty(queryVO.getCourseNo())) {
+			sql.append("AND isco.course_no = ? ");
+			params.add(queryVO.getCourseNo());
+		}
+		sql.append(") sco ON stu.id = sco.stu_id ");
+		sql.append("WHERE 1 = 1 ");
+		if (queryVO.getClassId() != null) {
+			sql.append("AND stu.class_id = ? ");
+			params.add(queryVO.getClassId());
+		}
+		if (queryVO.getStuIds() != null && queryVO.getStuIds().size() > 0) {
 			sql.append("AND stu.id IN (?");
 			params.add(queryVO.getStuIds().get(0));
 			for (int i = 1; i < queryVO.getStuIds().size(); i++) {
@@ -46,8 +53,8 @@ public class ScoreMgrBSImpl implements IScoreMgrBS {
 			}
 			sql.append(") ");
 		}
-		if (queryVO.getStuNos().size() > 0) {
-			sql.append("AND stu.stuNo IN (?");
+		if (queryVO.getStuNos() != null && queryVO.getStuNos().size() > 0) {
+			sql.append("AND stu.stu_no IN (?");
 			params.add(queryVO.getStuNos().get(0));
 			for (int i = 1; i < queryVO.getStuNos().size(); i++) {
 				sql.append(",?");
