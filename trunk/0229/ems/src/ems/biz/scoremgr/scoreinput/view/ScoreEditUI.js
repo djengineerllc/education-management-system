@@ -36,7 +36,7 @@ Ext.define('ems.biz.scoremgr.scoreinput.view.ScoreEditUI', {
 			},
 			items: [{
 				region: 'north',
-				height: 65,
+				height: 36,
 				xtype: 'form',
 				itemId: 'queryInfoForm',
 				border: false,
@@ -68,31 +68,34 @@ Ext.define('ems.biz.scoremgr.scoreinput.view.ScoreEditUI', {
                         name: 'courseNo',
 						width: 180
 					})
-	            ],
-				bbar: ['->', {
-					text: '评级',
-					tooltip: '选中记录批量评级',
-					iconCls: 'icon-star',
-					menu: [{
-						text: '自动',
-						iconCls: 'icon-star'
-					}, {
-						text: 'A',
-						iconCls: 'icon-star'
-					}, {
-						text: 'B',
-						iconCls: 'icon-star'
-					}, {
-						text: 'C',
-						iconCls: 'icon-star'
-					}]
-				}]
+	            ]
+//				bbar: ['->', {
+//					text: '评级',
+//					tooltip: '选中记录批量评级',
+//					iconCls: 'icon-star',
+//					menu: [{
+//						text: '自动',
+//						iconCls: 'icon-star'
+//					}, {
+//						text: 'A',
+//						iconCls: 'icon-star'
+//					}, {
+//						text: 'B',
+//						iconCls: 'icon-star'
+//					}, {
+//						text: 'C',
+//						iconCls: 'icon-star'
+//					}]
+//				}]
 			}, {
 				region: 'center',
 				xtype: 'xgrid',
 				itemId: 'scoreDataGrid',
-				selMode: 'multi',
+//				selMode: 'multi',
 				editingMode: 'cellediting',
+				editingConfig: {
+					clicksToEdit: 1
+				},
 				loadDF: me.DF('loadScoreDefaultList'),
                 columns: [{
                     dataIndex: 'id',
@@ -120,7 +123,13 @@ Ext.define('ems.biz.scoremgr.scoreinput.view.ScoreEditUI', {
                     },
                     flex: 1
                 }, 
-                Dic.column('ScoreLevel', {
+                Dic.column({
+                	dicType: 'ScoreLevel', 
+                	headerOption: {
+                		name: '　',
+                		value: ''
+                	}
+                }, {
                 	dataIndex: 'scoreLevel',
                     text: '评级',
                     flex: 1
