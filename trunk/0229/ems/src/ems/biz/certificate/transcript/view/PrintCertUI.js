@@ -41,7 +41,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 		}
 		
 		queryInfoForm.setValues({
-			term: Session.getLoginInfo().currTerm || '',
+			termId: Session.getLoginInfo().currTerm || '',
 			stuNo: initData.stuNo
 		});
 		
@@ -81,7 +81,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 					Dic.comboBox('Term', {
 						fieldLabel: '学期',
 						itemId: 'termComboBox',
-                        name: 'term',
+                        name: 'termId',
                         headerOption: true,
 						width: 180
 					}),
@@ -212,7 +212,7 @@ Ext.define('ems.biz.certificate.transcript.view.PrintCertUI', {
 					url: Ems.getDirectStreamRequestUrl(me.moduleId, 'printCert'),
 					async: false,
 					params: {
-						term: termComboBox.getValue(),
+						termId: termComboBox.getValue(),
 						stuNo: sltStudent.stuNo
 					},
 					success: function(response) {
