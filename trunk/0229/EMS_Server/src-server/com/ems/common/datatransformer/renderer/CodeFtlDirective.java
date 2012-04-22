@@ -25,6 +25,7 @@ public class CodeFtlDirective implements TemplateDirectiveModel {
 	public static final String NODE_ATTR_MODE_GET_VALUE = "getValue";
 	public static final String NODE_ATTR_MODE_GET_NAME = "getName";
 	public static final String NODE_ATTR_MODE_GET_NAME_BY_VALUE	= "getNameByValue";
+	public static final String NODE_ATTR_MODE_GET_NAME_EN_BY_VALUE	= "getNameEnByValue";
 	public static final String NODE_ATTR_MODE_GET_VALUE_BY_NAME	= "getValueByName";
 	
 	public static final String NODE_ATTR_CODE_TYPE	= "codeType";
@@ -49,6 +50,8 @@ public class CodeFtlDirective implements TemplateDirectiveModel {
 				result = Code.getName(codeType, data);
 			} else if (NODE_ATTR_MODE_GET_VALUE_BY_NAME.equalsIgnoreCase(mode)) {
 				result = Code.getValueByName(codeType, data);
+			} else if (NODE_ATTR_MODE_GET_NAME_EN_BY_VALUE.equalsIgnoreCase(mode)) {
+				result = Code.getNameEnByValue(codeType, data);
 			} else { // NODE_ATTR_MODE_GET_NAME_BY_VALUE
 				result = Code.getNameByValue(codeType, data);
 			}
