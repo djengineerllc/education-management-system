@@ -20,6 +20,9 @@
         <property name="codeName" type="java.lang.String">
             <column name="code_name" />
         </property>
+        <property name="codeNameEn" type="java.lang.String">
+            <column name="code_name_en" />
+        </property>
         <property name="codeDesc" type="java.lang.String">
             <column name="code_desc" />
         </property>
