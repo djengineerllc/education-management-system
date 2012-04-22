@@ -113,6 +113,7 @@ public interface IBasicInfoBS {
 	public List<BookBO> findBookByVO(BookVO bookVO) throws EMSException;
 	
 	public List<EducationBO> findEducationByVO(EducationVO educationVO) throws EMSException;
+	public List<UserInfoBO> findTeacherByEducat(EducationVO educationVO) throws EMSException;
 	
 	/**
 	 * 查找用户信息
