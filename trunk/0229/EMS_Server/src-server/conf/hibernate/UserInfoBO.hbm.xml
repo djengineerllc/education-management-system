@@ -48,11 +48,11 @@
 	        <property name="classId" column="class_id" type="java.lang.Integer"/>
 	        <property name="pinyin" column="pinyin"/>
 	        <property name="ethnic" column="ethnic"/>
-	        <property name="admissionTime" column="admission_time" type="java.util.Date"/>
-	        <property name="leaveSchoolTime" column="leave_school_time" type="java.util.Date"/>
+	        <property name="admissionTime" column="admission_time"/>
+	        <property name="leaveSchoolTime" column="leave_school_time"/>
 	        <property name="domicile" column="domicile"/>
 	        <property name="idNumber" column="id_number"/>
-	        <property name="birthDate" column="birth_date" type="java.util.Date"/>
+	        <property name="birthDate" column="birth_date"/>
 	        <property name="homeFixTel" column="home_fix_tel"/>
 	        <property name="status" column="status"/>
 	        
