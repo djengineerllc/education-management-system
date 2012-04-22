@@ -1,12 +1,10 @@
 package com.ems.client.action.biz.scoremgr.scoreinput;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.ems.biz.scoremgr.bs.IScoreMgrBS;
 import com.ems.biz.scoremgr.vo.ScoreQueryVO;
-import com.ems.client.action.biz.common.vo.StudentInfoVO;
+import com.ems.biz.stuMag.bs.IStudentManageBS;
 import com.ems.common.exception.EMSException;
 import com.ems.common.model.vo.ScoreVO;
 import com.ems.common.util.BeanUtils;
@@ -19,29 +17,23 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.ScoreBO;
+import conf.hibernate.StudentBO;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class ScoreInputAction extends DirectCrudAction {
 	
 	private IScoreMgrBS scoreMgrBS = this.getBean("scoreMgrBS", IScoreMgrBS.class);
+	private IStudentManageBS studentManageBS = this.getBean("studentManageBS", IStudentManageBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadList(JsonArray params) {
-		Map<String, String> paramMap = BeanUtils.toMapFromJsonFirst(params);
+//		Map<String, String> paramMap = BeanUtils.toMapFromJsonFirst(params);
+		StudentBO paramBO = BeanUtils.toBeanFromJsonFirst(params, StudentBO.class);
 		
-		List<StudentInfoVO> items = new ArrayList<StudentInfoVO>();
-		StudentInfoVO stu1 = new StudentInfoVO();
-		stu1.setId(1);
-		stu1.setStuName("A");
-		stu1.setClassId(4);
-		items.add(stu1);
+		List<StudentBO> stuBOList = studentManageBS.findByStudentBO(paramBO);
 		
-		StudentInfoVO stu2 = new StudentInfoVO();
-		stu2.setId(2);
-		stu2.setStuName("B");
-		stu2.setClassId(5);
-		items.add(stu2);
-		
-		return new ExtPagingVO(items);
+		return new ExtPagingVO(stuBOList);
 	}
 	
 	@DirectMethod
@@ -60,6 +52,12 @@ public class ScoreInputAction extends DirectCrudAction {
 	
 	@DirectMethod
 	public ExtFormVO submitScoreInputDetail(JsonArray params) {
+		JsonObject jsonObj = params.get(0).getAsJsonObject();
+//		Integer termId = jsonObj.get("termId").getAsInt();
+		List<ScoreBO> scoreBOList = BeanUtils.toBeanFromJson(jsonObj.get("submitData").getAsJsonArray(), ScoreBO.class);
+		
+		scoreMgrBS.submitScore(scoreBOList);
+		
 		return new ExtFormVO();
 	}
 }
