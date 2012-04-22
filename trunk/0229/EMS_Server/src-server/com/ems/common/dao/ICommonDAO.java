@@ -111,7 +111,7 @@ public interface ICommonDAO {
 	public List findBySql(String sql) ;
 	
 	
-	public List findBySql(final String queryString, final Object[] parameters) ;
+	public <T> List<T> findBySql(final String queryString, final Object[] parameters, final Class<T> resultClass);
 	
 	// ==================
 	// 
