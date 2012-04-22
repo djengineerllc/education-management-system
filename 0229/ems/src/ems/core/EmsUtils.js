@@ -117,7 +117,9 @@ Ext.define('ems.core.EmsUtils', {
     		var errorCode = message.errorCode;
     		if (errorCode == 'AccessDenied') {
     			EU.showMsg('', message.errorMsg || errorCode);
-    			Ems.requestViewportModule();
+    			Ext.defer(function() {
+    				Ems.requestViewportModule();
+    			}, 1000);
     		}
     	} else {
     		this.showErrorDialog({
@@ -182,7 +184,7 @@ Ext.define('ems.core.EmsUtils', {
 	
 	printer: function(pageArgs, pageFn) {
 		return {
-			PAGE_SEPARATOR: '<div style="page-separator"></div>',
+			PAGE_SEPARATOR: '<div class="page-separator"></div>',
 			pages: [],
 			
 			addPage: function(page) {
