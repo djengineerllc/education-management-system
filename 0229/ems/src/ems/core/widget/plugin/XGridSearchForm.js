@@ -69,7 +69,7 @@ Ext.define('ems.core.widget.plugin.XGridSearchForm', {
 						return;
 					}
 					
-					if (me.grid.searchForm.submitValidate(form, this) === false) {
+					if (me.grid.searchForm.submitValidate && me.grid.searchForm.submitValidate(form, this) === false) {
 						return;
 					}
 					
