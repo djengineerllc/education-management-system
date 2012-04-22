@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +39,6 @@ public class StudyAction extends DirectCrudAction {
 	
 	@DirectMethod
 	public void printCert(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
 		String stuNo = request.getParameter("stuNo");
 		
 		StudentBO queryInfo = new StudentBO();
