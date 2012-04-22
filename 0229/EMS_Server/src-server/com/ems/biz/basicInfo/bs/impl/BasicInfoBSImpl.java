@@ -173,25 +173,58 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 	}
 	
 	public List<EducationBO> findEducationByVO(EducationVO educationVO) throws EMSException{
-		StringBuffer hql = new StringBuffer(" from EducationBO where 1=1 ");
+		StringBuffer hql = new StringBuffer("SELECT ebo from EducationBO ebo, UserInfoBO uibo where ebo.teacherId = uibo.id ");
 		List<Object> valueParam = new ArrayList<Object>();
 		if(educationVO.getTeacherId() != null ){
-			hql.append(" and teacherId = ? "); 
+			hql.append(" and ebo.teacherId = ? "); 
 			valueParam.add(educationVO.getTeacherId());
 		}
+		if(!StringUtils.isNullBlank(educationVO.getTeacherName())) {
+			hql.append(" and uibo.userName like ? "); 
+			valueParam.add("%" + educationVO.getTeacherName() + "%");
+		}
+		
 		if(educationVO.getClassId() != null){
-			hql.append(" and classId = ? "); 
+			hql.append(" and ebo.classId = ? "); 
 			valueParam.add(educationVO.getClassId());
 		}
 		if(educationVO.getTermId() != null){
-			hql.append(" and termId = ? "); 
+			hql.append(" and ebo.termId = ? "); 
 			valueParam.add(educationVO.getTermId());
 		}
 		if(!StringUtils.isNullBlank(educationVO.getCourseNo())){
-			hql.append(" and courseNo = ? "); 
+			hql.append(" and ebo.courseNo = ? "); 
 			valueParam.add(educationVO.getCourseNo());
 		}
-		hql.append(" order by id desc ");
+		hql.append(" order by ebo.id desc ");
+		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
+	}
+	
+	public List<UserInfoBO> findTeacherByEducat(EducationVO educationVO) throws EMSException {
+		StringBuffer hql = new StringBuffer("SELECT uibo from UserInfoBO uibo, EducationBO ebo where ebo.teacherId = uibo.id ");
+		List<Object> valueParam = new ArrayList<Object>();
+		if(educationVO.getTeacherId() != null ){
+			hql.append(" and ebo.teacherId = ? "); 
+			valueParam.add(educationVO.getTeacherId());
+		}
+		if(!StringUtils.isNullBlank(educationVO.getTeacherName())) {
+			hql.append(" and uibo.userName like ? "); 
+			valueParam.add("%" + educationVO.getTeacherName() + "%");
+		}
+		
+		if(educationVO.getClassId() != null){
+			hql.append(" and ebo.classId = ? "); 
+			valueParam.add(educationVO.getClassId());
+		}
+		if(educationVO.getTermId() != null){
+			hql.append(" and ebo.termId = ? "); 
+			valueParam.add(educationVO.getTermId());
+		}
+		if(!StringUtils.isNullBlank(educationVO.getCourseNo())){
+			hql.append(" and ebo.courseNo = ? "); 
+			valueParam.add(educationVO.getCourseNo());
+		}
+		hql.append(" order by uibo.id desc ");
 		return this.commonDAO.findByHql(hql.toString(), valueParam.toArray());
 	}
 	
