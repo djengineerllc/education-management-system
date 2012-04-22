@@ -6,7 +6,7 @@ Ext.define('ems.core.widget.plugin.XGridPrinter', {
 	alias: 'plugin.xgridprinter',
 	
 	tableTpl: Ext.create('Ext.XTemplate', [
-		'<table border="1" cellpadding="0" cellspacing="0" class="print-table">',
+		'<table width="100%" border="1" cellpadding="0" cellspacing="0" class="print-table">',
 			'<thead>',
 				'{head}',
 			'</thead>',
