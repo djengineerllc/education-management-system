@@ -45,12 +45,13 @@ Ext.define('ems.biz.scoremgr.scoreinput.ScoreInput', {
 		        handler: function() {
 			    	var win = this.up('window'), 
 			    		g = win.down('grid'),
-			    		data = g.getUpdatedData();
+			    		data = g.getData(); // g.getUpdatedData();
 			    	
 					me.A({
 						m: 'submitScoreInputDetail',
 						p: {
-							termId: reqParams[0].id,
+							termId: win.down('#termComboBox').getValue(),
+							courseNo: win.down('#courseComboBox').getValue(),
 							submitData: data
 						}, 
 						cb: function(result, e) {
