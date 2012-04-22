@@ -217,7 +217,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			valueParam.add(userInfoVO.getRoleId());
 		}
 		sql.append(" order by a.id desc ");
-		List result = this.commonDAO.findBySql(sql.toString(), valueParam.toArray());
+		List result = this.commonDAO.findBySql(sql.toString(), valueParam.toArray(), null);
 		UserInfoVO userInfoVO_ret = null;
 		List<UserInfoVO> userInfoVOes = new ArrayList<UserInfoVO>();
 		if(result != null && result.size() >  0){
@@ -245,7 +245,7 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			new StringBuffer("select a.id,a.login_name,a.user_name,a.password,a.email,a.contact,b.role_id ");
 		sql.append(" from ts_user_info a left outer join ts_user_role_rel b on a.id = b.user_id ");
 		sql.append(" where a.id = ? ");
-		List result = this.commonDAO.findBySql(sql.toString(), new Object[]{id});
+		List result = this.commonDAO.findBySql(sql.toString(), new Object[]{id}, null);
 		UserInfoVO userInfoVO_ret = new UserInfoVO();
 		if(result != null && result.size() >  0){
 			Object[] obj = (Object[])result.get(0);
