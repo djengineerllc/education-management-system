@@ -100,6 +100,11 @@ Ext.define('ems.biz.scoremgr.scoreinput.view.ScoreEditUI', {
                     hidden: true,
                     flex: 1
                 }, {
+                    dataIndex: 'stuId',
+                    text: '学生ID',
+                    hidden: true,
+                    flex: 1
+                }, {
                     dataIndex: 'stuNo',
                     text: '学号',
                     flex: 1
@@ -108,7 +113,7 @@ Ext.define('ems.biz.scoremgr.scoreinput.view.ScoreEditUI', {
                     text: '姓名',
                     flex: 1
                 }, {
-                    dataIndex: 'score',
+                    dataIndex: 'scoreValue',
                     text: '成绩',
                     editor: {
                     	xtype: 'textfield'
@@ -116,7 +121,7 @@ Ext.define('ems.biz.scoremgr.scoreinput.view.ScoreEditUI', {
                     flex: 1
                 }, 
                 Dic.column('ScoreLevel', {
-                	dataIndex: 'level',
+                	dataIndex: 'scoreLevel',
                     text: '评级',
                     flex: 1
                 })]
