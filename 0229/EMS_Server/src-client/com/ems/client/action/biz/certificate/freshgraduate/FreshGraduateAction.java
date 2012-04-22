@@ -1,18 +1,13 @@
 package com.ems.client.action.biz.certificate.freshgraduate;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
-import com.ems.client.action.biz.certificate.common.vo.CertQueryVO;
-import com.ems.client.action.biz.certificate.common.vo.StudentInfoVO;
+import com.ems.biz.stuMag.bs.IStudentManageBS;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectCrudAction;
@@ -22,32 +17,26 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
+import conf.hibernate.StudentBO;
+
 @ActionScope(scope=Scope.APPLICATION)
 public class FreshGraduateAction extends DirectCrudAction {
-	private static Map<Integer, StudentInfoVO> studentInfos = new HashMap<Integer, StudentInfoVO>();
-	static {
-		studentInfos.put(1, new StudentInfoVO(1, "0001", "小祝", "1", "2001", "2011A", "101", "10101", "1"));
-		studentInfos.put(2, new StudentInfoVO(2, "0002", "小萌", "2", "2001", "2011A", "101", "10101", "1"));
-	}
+	
+	private IStudentManageBS studentManageBS = this.getBean("studentManageBS", IStudentManageBS.class);
 	
 	@DirectMethod
 	public ExtPagingVO loadList(JsonArray params) {
-		CertQueryVO queryVO = BeanUtils.toBeanFromJsonFirst(params, CertQueryVO.class);
-		System.out.println("-------->" + ToStringBuilder.reflectionToString(queryVO));
+		StudentBO paramBO = BeanUtils.toBeanFromJsonFirst(params, StudentBO.class);
 		
-		List<StudentInfoVO> items = new ArrayList<StudentInfoVO>();
-		for (Map.Entry<Integer, StudentInfoVO> user : studentInfos.entrySet()) {
-			items.add(user.getValue());
-		}
+		List<StudentBO> stuBOList = studentManageBS.findByStudentBO(paramBO);
 		
-		return new ExtPagingVO(items);
+		return new ExtPagingVO(stuBOList);
 	}
 	
 	@DirectMethod
 	public void printCert(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
 		String stuNo = request.getParameter("stuNo");
-		Object rootVO = studentInfos.get(Integer.valueOf(stuNo));
+		Object rootVO = new HashMap();
 		
 		String data = (String) DataTransformerHelper.transform("DT_print_certificate_freshgraduate", rootVO);
 		
