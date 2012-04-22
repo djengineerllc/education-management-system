@@ -5,12 +5,12 @@
 <table border="0" width="100%">
 	<tbody>
 		<tr>
-			<td>Name/姓名: Zhenjun Chen/陈真君</td>
-			<td>Student No./学号: 27620085575202</td>
+			<td>Name/姓名: ${stuInfo.pinyin}/${stuInfo.userName}</td>
+			<td>Student No./学号: ${stuInfo.stuNo}</td>
 		</tr>
 		<tr>
-			<td>Major/专业: Business with Accounting/商务会计</td>
-			<td>Programme/项目: HND</td>
+			<td>Major/专业: Business with Accounting/<@code codeType='Project' data=stuInfo.projectId /></td>
+			<td>Programme/项目: yw/<@code codeType='Professional' data=stuInfo.professId /></td>
 		</tr>
 	</tbody>
 </table>
@@ -37,5 +37,5 @@ Note: Ms: Marks   Hs: Hours   Cs: Credits   Year 1. The Hundred Mark System: 60-
 <div style="text-align:left">注：大一课程评估为百分制：60分及格，100分为满分。大二课程必修课每个学期1学分至少40学时，每门课程评估结果为P（通过）或者F（未通过），P（通过）表示每门课程的所有知识点都合格，U＝在读，记分单元评分标准： A＝70～100，B＝60～69，C＝50～59，F＝0～49。
 </div>
 <div style="height:8px;"></div>
-<div style="text-align:right">Designed by/制表人: xxx</div>
-<div style="text-align:right">Date/日期: 2011年9月20日</div>
+<div style="text-align:right">Designed by/制表人: ${currUser.userName}</div>
+<div style="text-align:right">Date/日期: ${sysDateZH}</div>
