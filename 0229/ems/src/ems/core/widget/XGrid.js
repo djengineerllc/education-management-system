@@ -33,6 +33,7 @@ Ext.define('ems.core.widget.XGrid', {
 	selMode: null, // single / simple / multi / null
 	
 	editingMode: null, // cellediting / rowediting / null
+	editingConfig: null,
 	
 	expandRowBodyTpl: null,
 	
