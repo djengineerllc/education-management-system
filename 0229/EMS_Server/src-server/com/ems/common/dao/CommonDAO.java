@@ -11,6 +11,7 @@ import java.util.Map;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -145,8 +146,8 @@ public class CommonDAO implements ICommonDAO {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List findBySql(final String queryString, final Object[] parameters) {
-		return (List) this.hibernateTemplate.execute(new HibernateCallback() {
+	public <T> List<T> findBySql(final String queryString, final Object[] parameters, final Class<T> resultClass) {
+		return this.hibernateTemplate.execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				Query query = session.createSQLQuery(queryString);
 				if (parameters != null) {
@@ -154,9 +155,43 @@ public class CommonDAO implements ICommonDAO {
 						query.setParameter(i, parameters[i]);
 					}
 				}
+				
+				if (resultClass != null) {
+					query.setResultTransformer(new AliasToBeanResultTransformer(resultClass));
+				}
 				return query.list();
-			}			
+			}
 		});
+	}
+	
+	public static void main(String[] args) {
+		String queryString = "a? b ? c ?list d";  // 
+		Object[] o = new Object[]{1,2,new Object[] {3,4,5,6}};
+		
+		int pos = -1, idx_h = -1, idx_f = -1;
+		for (int i = 0; i < queryString.length(); i++) {
+			if (queryString.charAt(i) == '?') {
+				pos++;
+				idx_h = i;
+				for (i++; (i < queryString.length()) && queryString.charAt(i) != ' '; i++);
+				idx_f = i;
+				
+				if ((idx_f - 1) > idx_h) {
+					String sp = queryString.substring(idx_h, idx_f); // specilParam
+					if ("?list".equalsIgnoreCase(sp)) {
+						Object[] v = (Object[]) o[pos];
+						String t = "(?";
+						for (int j = 0; j < v.length; j++) {
+							t += ",?";
+						}
+						t += ")";
+						
+						String s = queryString.substring(0, idx_h) + t + queryString.substring(idx_f);
+						System.out.println(s);
+					}
+				}
+			}
+		}
 	}
 
 	// -----------------
