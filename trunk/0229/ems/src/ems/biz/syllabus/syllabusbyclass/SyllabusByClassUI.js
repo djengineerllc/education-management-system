@@ -26,7 +26,7 @@ Ext.define('ems.biz.syllabus.syllabusbyclass.SyllabusByClassUI', {
                 		fieldLabel: '学期',
                 		labelWidth: 30,
                 		itemId: 'termComboBox',
-                		name: 'term',
+                		name: 'termId',
                 		value: Session.getLoginInfo().currTerm || ''
                 	}), 
                 	Dic.comboBox('Grade', {
