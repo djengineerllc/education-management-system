@@ -1,21 +1,20 @@
 package com.ems.client.action.biz.certificate.study;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.ems.biz.stuMag.bs.IStudentManageBS;
-import com.ems.client.action.biz.certificate.common.vo.CertQueryVO;
-import com.ems.client.action.biz.certificate.common.vo.StudentInfoVO;
 import com.ems.common.datatransformer.helper.DataTransformerHelper;
 import com.ems.common.util.BeanUtils;
+import com.ems.common.util.DateUtil;
 import com.ems.system.client.DirectCrudAction;
 import com.ems.system.client.vo.ExtPagingVO;
 import com.google.gson.JsonArray;
@@ -43,10 +42,32 @@ public class StudyAction extends DirectCrudAction {
 	public void printCert(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		String stuNo = request.getParameter("stuNo");
-		Object rootVO = new HashMap();
+		
+		StudentBO queryInfo = new StudentBO();
+		queryInfo.setStuNo(stuNo);
+		StudentBO stuBO = studentManageBS.findByStudentBO(queryInfo).get(0);
+		
+		Map<String, Object> rootVO = new HashMap<String, Object>();
+		rootVO.put("stuInfo", stuBO);
+		
+		Date sysDate = DateUtil.currData();
+		rootVO.put("sysDate", sysDate);
+		rootVO.put("sysDateZH", DateFormat.getDateInstance(DateFormat.LONG, Locale.CHINESE).format(sysDate));
+		rootVO.put("sysDateEN", DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH).format(sysDate));
 		
 		String data = (String) DataTransformerHelper.transform("DT_print_certificate_study", rootVO);
 		
 		this.writeToResponse(response, data.getBytes("UTF-8"));
+	}
+	
+	public static void main(String[] args) {
+		Map<String, Object> rootVO = new HashMap<String, Object>();
+		
+		Date sysDate = DateUtil.currData();
+		rootVO.put("sysDate", sysDate);
+		rootVO.put("sysDateZH", DateUtil.formatZh(DateFormat.LONG, sysDate));
+		rootVO.put("sysDateEN", DateUtil.formatEn(DateFormat.LONG, sysDate));
+		
+		System.out.println(rootVO);
 	}
 }
