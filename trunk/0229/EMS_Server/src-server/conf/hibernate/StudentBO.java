@@ -5,8 +5,7 @@ import java.util.Date;
 
 public class StudentBO extends UserInfoBO {
 
-	//loginName		学生姓名
-	//userName		学号
+	//userName		学生姓名
 	
 	private String stuNo; // 学号
 	
