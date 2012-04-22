@@ -52,22 +52,11 @@ public class StudyAction extends DirectCrudAction {
 		
 		Date sysDate = DateUtil.currData();
 		rootVO.put("sysDate", sysDate);
-		rootVO.put("sysDateZH", DateFormat.getDateInstance(DateFormat.LONG, Locale.CHINESE).format(sysDate));
-		rootVO.put("sysDateEN", DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH).format(sysDate));
+		rootVO.put("sysDateZH", DateUtil.formatZh(DateFormat.LONG, sysDate));
+		rootVO.put("sysDateEN", DateUtil.formatEn(DateFormat.LONG, sysDate));
 		
 		String data = (String) DataTransformerHelper.transform("DT_print_certificate_study", rootVO);
 		
 		this.writeToResponse(response, data.getBytes("UTF-8"));
-	}
-	
-	public static void main(String[] args) {
-		Map<String, Object> rootVO = new HashMap<String, Object>();
-		
-		Date sysDate = DateUtil.currData();
-		rootVO.put("sysDate", sysDate);
-		rootVO.put("sysDateZH", DateUtil.formatZh(DateFormat.LONG, sysDate));
-		rootVO.put("sysDateEN", DateUtil.formatEn(DateFormat.LONG, sysDate));
-		
-		System.out.println(rootVO);
 	}
 }
