@@ -30,20 +30,24 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                     }]
                 },
                 columns: [{
-                    dataIndex: 'id',
-                    text: '专业ID',
-                    flex: 1
-                },{
-                    dataIndex: 'professName',
-                    text: '专业名称',
-                    flex: 2
-                },{
                     dataIndex: 'projectId',
                     text: '项目ID',
                     flex: 1
                 }, {
                     dataIndex: 'projectName',
                     text: '项目名',
+                    flex: 2
+                },{
+                    dataIndex: 'id',
+                    text: '专业ID',
+                    flex: 1
+                },{
+                    dataIndex: 'professName',
+                    text: '专业中文名',
+                    flex: 2
+                },{
+                    dataIndex: 'professNameEn',
+                    text: '专业英文名',
                     flex: 2
                 }]
             }]
