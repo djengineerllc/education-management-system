@@ -35,7 +35,7 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                     text: '项目ID',
                     flex: 1
                 }, {
-                    dataIndex: 'projectName',
+                    dataIndex: 'projectId',
                     text: '项目名',
                     renderer: Dic.renderer('Project'),
                     flex: 2
