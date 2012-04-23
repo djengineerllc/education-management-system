@@ -40,6 +40,9 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.SyllabusByTeacherUI', {
                 }, {
                 	dataIndex: 'userName',
                     text: '教师名',
+                    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                    	return '<a href=\"javascript:Ems.MR(\'ems.biz.basicInfo.userManager.User\', {m:\'onRead\', p: {reqParams: {id: ' + record.data.id + '}}})\">' + value + '</a>';
+                    },
                     flex: 1
                 }, {
                 	dataIndex: 'contact',
