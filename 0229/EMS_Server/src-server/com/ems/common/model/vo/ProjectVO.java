@@ -4,6 +4,7 @@ public class ProjectVO {
 	
 	private Integer id;
 	private String projectName;
+	private String projectNameEn;
 	private String projectComment;
 	
 	
@@ -37,6 +38,12 @@ public class ProjectVO {
 	}
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+	public String getProjectNameEn() {
+		return projectNameEn;
+	}
+	public void setProjectNameEn(String projectNameEn) {
+		this.projectNameEn = projectNameEn;
 	}
 	public String getProjectComment() {
 		return projectComment;
