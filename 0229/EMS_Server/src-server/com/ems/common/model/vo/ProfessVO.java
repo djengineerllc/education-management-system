@@ -4,6 +4,7 @@ public class ProfessVO {
 	
 	private Integer id;
 	private String professName;
+	private String professNameEn;
 	private Integer projectId;
 	private String projectName;
 	
@@ -49,6 +50,12 @@ public class ProfessVO {
 	}
 	public void setProfessName(String professName) {
 		this.professName = professName;
+	}
+	public String getProfessNameEn() {
+		return professNameEn;
+	}
+	public void setProfessNameEn(String professNameEn) {
+		this.professNameEn = professNameEn;
 	}
 	public Integer getProjectId() {
 		return projectId;
