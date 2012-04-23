@@ -49,7 +49,11 @@ public class ProjectAction extends DirectAction {
 		List<ProjectBO> projects = basicInfoBS.getAll(ProjectBO.class, null);
 		for(ProjectBO project_:projects){
 			if (project_.getProjectName().equals(projectBO.getProjectName())) {
-				result.addError("ProjectName", String.format("项目[%s]已重复", projectBO.getProjectName()));
+				result.addError("ProjectName", String.format("项目中文名[%s]已重复", projectBO.getProjectName()));
+				return result;
+			}
+			if (project_.getProjectNameEn().equals(projectBO.getProjectNameEn())) {
+				result.addError("ProjectNameEn", String.format("项目英文名[%s]已重复", projectBO.getProjectNameEn()));
 				return result;
 			}
 		}
