@@ -11,10 +11,13 @@
             <generator class="identity" />
         </id>
         <property name="projectName" type="java.lang.String">
-            <column name="project_name" length="50" />
+            <column name="project_name" />
+        </property>
+        <property name="projectNameEn" type="java.lang.String">
+            <column name="project_name_en" />
         </property>
         <property name="projectComment" type="java.lang.String">
-            <column name="project_comment" length="65535" />
+            <column name="project_comment" />
         </property>
         <property name="createTime" type="java.util.Date">
             <column name="create_time"/>
