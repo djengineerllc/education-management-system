@@ -14,16 +14,18 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 230,
-			height: 80,
+			width: 350,
+			height: 120,
+			autoScroll: true,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
+				autoScroll: true,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
@@ -34,8 +36,11 @@ Ext.define('ems.biz.basicInfo.projectManager.view.ProjectReadUI', {
 					fieldLabel: '项目ID',
 	                name: 'id'
 				},{
-	                fieldLabel: '项目名',
+	                fieldLabel: '项目中文名',
 	                name: 'projectName'
+	            }, {
+	                fieldLabel: '项目英文名',
+	                name: 'projectNameEn'
 	            }]
 			}]
 		};
