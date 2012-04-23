@@ -99,6 +99,14 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		if(!StringUtils.isNullBlank(projectVO.getProjectName())){
 			hql = hql+" and projectName like ? "; 
 			valueParam.add("%"+projectVO.getProjectName()+"%");
+			
+			if (StringUtils.isNullBlank(projectVO.getProjectNameEn())){
+				projectVO.setProjectNameEn(projectVO.getProjectName());
+			}
+		}
+		if(!StringUtils.isNullBlank(projectVO.getProjectNameEn())){
+			hql = hql+" and projectNameEn like ? "; 
+			valueParam.add("%"+projectVO.getProjectNameEn()+"%");
 		}
 		hql = hql+" order by id desc "; 
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
