@@ -207,7 +207,11 @@ Ext.define('ems.main.Main', {
 	},
 	
 	onLogout: function (params, request) {
+		var me = this,
+			eo = request.eventSource;
+		
 		EU.showConfirmDialog({
+			animateTarget: eo.el,
 			msg: '您确认退出系统？',
 			callback: function(btnId, value) {
 				if (btnId == 'yes') {
