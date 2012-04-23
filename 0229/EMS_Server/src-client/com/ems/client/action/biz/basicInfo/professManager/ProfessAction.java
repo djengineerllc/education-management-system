@@ -40,19 +40,9 @@ public class ProfessAction extends DirectAction {
 	
 	@DirectMethod
 	public ExtPagingVO loadProfess(JsonArray params) {
-		List<ProfessVO> professVOList = new ArrayList<ProfessVO>();
 		ProfessVO professVO_qry = BeanUtils.toBeanFromJsonFirst(params, ProfessVO.class);
 		List<ProfessBO> professes = basicInfoBS.findProfessByVO(professVO_qry);
-		ProfessVO professVO = null;
-		for(ProfessBO profess : professes){
-			professVO = new ProfessVO();
-			professVO.setId(profess.getId());
-			professVO.setProfessName(profess.getProfessName());
-			professVO.setProjectId(profess.getProjectId());
-			professVO.setProjectName(Code.getName("Project", profess.getProjectId()));
-			professVOList.add(professVO);
-		}
-		return new ExtPagingVO(professVOList);
+		return new ExtPagingVO(professes);
 	}
 	
 	@DirectFormPostMethod
@@ -62,7 +52,11 @@ public class ProfessAction extends DirectAction {
 		List<ProfessBO> professes = basicInfoBS.getAll(ProfessBO.class, null);
 		for(ProfessBO profess_ :professes ){
 			if (profess_.getProfessName().equals(professBO.getProfessName())) {
-				result.addError("professName", String.format("专业[%s]已重复", professBO.getProfessName()));
+				result.addError("professName", String.format("专业中文名[%s]已重复", professBO.getProfessName()));
+				return result;
+			}
+			if (profess_.getProfessNameEn().equals(professBO.getProfessNameEn())) {
+				result.addError("professNameEn", String.format("专业英文名[%s]已重复", professBO.getProfessNameEn()));
 				return result;
 			}
 		}
@@ -72,17 +66,11 @@ public class ProfessAction extends DirectAction {
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		System.out.println("getFormData gradeId = " + id);
-		ProfessVO professVO = null;
+		ProfessBO profess = null;
 		if(id != null){
-			ProfessBO profess = basicInfoBS.findById(ProfessBO.class, id);
-			professVO = new ProfessVO();
-			professVO.setId(profess.getId());
-			professVO.setProfessName(profess.getProfessName());
-			professVO.setProjectId(profess.getProjectId());
-			professVO.setProjectName(Code.getName("Project", profess.getProjectId()));
+			profess = basicInfoBS.findById(ProfessBO.class, id);
 		}
-		return new ExtFormVO(professVO);
+		return new ExtFormVO(profess);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
