@@ -27,10 +27,10 @@ xsi:schemaLocation="
 			<map>
 				<entry key="Grade" value="SELECT new CodeTableBO(bo.id, bo.gradeName) FROM GradeBO bo ORDER BY bo.id DESC" />
 				<entry key="Class" value="SELECT new CodeTableBO(bo.id, bo.className, bo.gradeId) FROM ClassBO bo ORDER BY bo.gradeId, bo.id DESC" />
-				<entry key="Project" value="SELECT new CodeTableBO(bo.id, bo.projectName) FROM ProjectBO bo ORDER BY bo.id DESC" />
-				<entry key="Professional" value="SELECT new CodeTableBO(bo.id, bo.professName, bo.projectId) FROM ProfessBO bo ORDER BY bo.projectId,bo.id DESC" />
+				<entry key="Project" value="SELECT new CodeTableBO(bo.id, bo.projectName, bo.projectNameEn, null, null) FROM ProjectBO bo ORDER BY bo.id DESC" />
+				<entry key="Professional" value="SELECT new CodeTableBO(bo.id, bo.professName, bo.professNameEn, null, bo.projectId) FROM ProfessBO bo ORDER BY bo.projectId,bo.id DESC" />
 				<entry key="Term" value="SELECT new CodeTableBO(bo.id, bo.termName) FROM TermBO bo ORDER BY bo.id DESC" />
-				<entry key="Course" value="SELECT new CodeTableBO(bo.courseNo, bo.courseName, bo.courseEngName, bo.courseEngName, bo.courseType) FROM CourseBO bo ORDER BY bo.id DESC" />
+				<entry key="Course" value="SELECT new CodeTableBO(bo.courseNo, bo.courseName, bo.courseEngName, null, bo.courseType) FROM CourseBO bo ORDER BY bo.id DESC" />
 				<entry key="Room" value="SELECT new CodeTableBO(bo.id, bo.roomName, bo.termId) FROM RoomBO bo ORDER BY bo.id DESC" />
 				<entry key="Role" value="SELECT new CodeTableBO(bo.id, bo.roleName) FROM RoleInfoBO bo where bo.roleCd!='student' ORDER BY bo.id ASC" />
 				<entry key="Role_key_code" value="SELECT new CodeTableBO(bo.roleCd, bo.roleName) FROM RoleInfoBO bo ORDER BY bo.id ASC" />
