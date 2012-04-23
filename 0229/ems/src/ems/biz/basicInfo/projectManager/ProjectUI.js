@@ -31,7 +31,11 @@ Ext.define('ems.biz.basicInfo.projectManager.ProjectUI', {
                     flex: 1
                 }, {
                     dataIndex: 'projectName',
-                    text: '项目名',
+                    text: '项目中文名',
+                    flex: 2
+                }, {
+                	dataIndex: 'projectNameEn',
+                    text: '项目英文名',
                     flex: 2
                 }]
             }]
