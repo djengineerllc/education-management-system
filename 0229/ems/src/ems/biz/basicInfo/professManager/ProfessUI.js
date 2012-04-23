@@ -20,11 +20,12 @@ Ext.define('ems.biz.basicInfo.professManager.ProfessUI', {
                 paging: true,
                 loadDF: me.DF('loadProfess'),
                 searchForm: {
-                    items: [Dic.comboBox('Project', {
-					fieldLabel: '项目名',
-					name: 'projectId',
-					headerOption: true
-				}),{
+                    items: [
+                    Dic.comboBox('Project', {
+							fieldLabel: '项目名',
+							name: 'projectId',
+							headerOption: true
+					}),{
                         fieldLabel: '专业名',
                         name: 'professName'
                     }]
