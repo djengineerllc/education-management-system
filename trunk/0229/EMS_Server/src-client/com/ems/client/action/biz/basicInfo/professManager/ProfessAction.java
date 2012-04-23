@@ -66,11 +66,17 @@ public class ProfessAction extends DirectAction {
 	}
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		ProfessBO profess = null;
+		ProfessVO professVO = null;
 		if(id != null){
-			profess = basicInfoBS.findById(ProfessBO.class, id);
+			ProfessBO profess = basicInfoBS.findById(ProfessBO.class, id);
+			professVO = new ProfessVO();
+			professVO.setId(profess.getId());
+			professVO.setProfessName(profess.getProfessName());
+			professVO.setProfessNameEn(profess.getProfessNameEn());
+			professVO.setProjectId(profess.getProjectId());
+			professVO.setProjectName(Code.getName("Project", profess.getProjectId()));
 		}
-		return new ExtFormVO(profess);
+		return new ExtFormVO(professVO);
 	}
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
