@@ -10,6 +10,7 @@ import com.ems.common.model.bo.BaseBO;
 public class ProjectBO extends BaseBO {
 
 	private String projectName;
+	private String projectNameEn;
 	private String projectComment;
 	
 	public String getProjectName() {
@@ -17,6 +18,12 @@ public class ProjectBO extends BaseBO {
 	}
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+	public String getProjectNameEn() {
+		return projectNameEn;
+	}
+	public void setProjectNameEn(String projectNameEn) {
+		this.projectNameEn = projectNameEn;
 	}
 	public String getProjectComment() {
 		return projectComment;

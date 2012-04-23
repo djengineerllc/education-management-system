@@ -11,6 +11,7 @@ public class ProfessBO extends BaseBO {
 
 	private Integer projectId;
 	private String professName;
+	private String professNameEn;
 	
 	public Integer getProjectId() {
 		return projectId;
@@ -23,5 +24,11 @@ public class ProfessBO extends BaseBO {
 	}
 	public void setProfessName(String professName) {
 		this.professName = professName;
+	}
+	public String getProfessNameEn() {
+		return professNameEn;
+	}
+	public void setProfessNameEn(String professNameEn) {
+		this.professNameEn = professNameEn;
 	}
 }
