@@ -17,7 +17,7 @@ Ext.define('ems.core.EmsUtils', {
 		}
 		
 		return Ext.MessageBox.show(config || {
-			width: 360
+//			width: 360
 		}); 
 //		Ext.apply(config || {}, {
 //			autoHeight: true,
