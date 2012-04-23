@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2012-04-23 20:59:19
+Date: 2012-04-23 21:13:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,7 +56,7 @@ CREATE TABLE `tb_class` (
 INSERT INTO tb_class VALUES ('4', '7', '雅思10-1班', '60', null, '2012-03-19 22:36:08', '2012-03-19 22:40:22');
 INSERT INTO tb_class VALUES ('5', '7', '计算机0901班', '80', null, '2012-03-19 22:38:01', null);
 INSERT INTO tb_class VALUES ('6', '3', '雅思1001班', '35', null, '2012-03-19 23:04:56', '2012-03-21 21:15:41');
-INSERT INTO tb_class VALUES ('7', '8', '1', '1', null, '2012-04-06 22:41:24', '2012-04-06 22:41:24');
+INSERT INTO tb_class VALUES ('7', '8', '自定义班级', '1', null, '2012-04-23 21:08:27', '2012-04-23 21:08:27');
 
 -- ----------------------------
 -- Table structure for `tb_code_table`
@@ -195,7 +195,7 @@ CREATE TABLE `tb_profess` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) DEFAULT NULL,
   `profess_name` varchar(200) DEFAULT NULL,
-  `profess_name_en` varchar(200) DEFAULT NULL,
+  `profess_name_en` varchar(200) DEFAULT '',
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -215,7 +215,7 @@ DROP TABLE IF EXISTS `tb_project`;
 CREATE TABLE `tb_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(200) DEFAULT NULL,
-  `project_name_en` varchar(200) DEFAULT NULL,
+  `project_name_en` varchar(200) DEFAULT '',
   `project_comment` text,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -341,15 +341,15 @@ CREATE TABLE `tb_syllabus` (
   `teacher_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_syllabus
 -- ----------------------------
-INSERT INTO tb_syllabus VALUES ('104', '4', '7', '12', '2', '1', '5019', '7', '4');
-INSERT INTO tb_syllabus VALUES ('105', '4', '5', '12', '1', '1', '1130', '7', '5');
-INSERT INTO tb_syllabus VALUES ('106', '4', '4', '12', '1', '1', '5019', '2', '1');
-INSERT INTO tb_syllabus VALUES ('107', '4', '4', '34', '1', '1', '1130', '2', '5');
+INSERT INTO tb_syllabus VALUES ('108', '4', '7', '12', '2', '1', '5019', '7', '4');
+INSERT INTO tb_syllabus VALUES ('109', '4', '5', '12', '1', '1', '1130', '7', '5');
+INSERT INTO tb_syllabus VALUES ('110', '4', '4', '12', '1', '1', '5019', '2', '1');
+INSERT INTO tb_syllabus VALUES ('111', '4', '4', '34', '1', '1', '1130', '2', '5');
 
 -- ----------------------------
 -- Table structure for `tb_term`
