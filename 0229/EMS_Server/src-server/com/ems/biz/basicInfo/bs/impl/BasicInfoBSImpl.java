@@ -97,16 +97,9 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 		String hql = "from ProjectBO where 1=1 ";
 		List<Object> valueParam = new ArrayList<Object>();
 		if(!StringUtils.isNullBlank(projectVO.getProjectName())){
-			hql = hql+" and projectName like ? "; 
+			hql = hql+" and (projectName like ? or projectNameEn like ?) "; 
 			valueParam.add("%"+projectVO.getProjectName()+"%");
-			
-			if (StringUtils.isNullBlank(projectVO.getProjectNameEn())){
-				projectVO.setProjectNameEn(projectVO.getProjectName());
-			}
-		}
-		if(!StringUtils.isNullBlank(projectVO.getProjectNameEn())){
-			hql = hql+" and projectNameEn like ? "; 
-			valueParam.add("%"+projectVO.getProjectNameEn()+"%");
+			valueParam.add("%"+projectVO.getProjectName()+"%");
 		}
 		hql = hql+" order by id desc "; 
 		return this.commonDAO.findByHql(hql, valueParam.toArray());
@@ -120,7 +113,8 @@ public class BasicInfoBSImpl implements IBasicInfoBS {
 			valueParam.add(professVO.getProjectId());
 		}
 		if(!StringUtils.isNullBlank(professVO.getProfessName())){
-			hql.append(" and professName like ? "); 
+			hql.append(" and (professName like ? or professNameEn like ?) "); 
+			valueParam.add("%"+professVO.getProfessName()+"%");
 			valueParam.add("%"+professVO.getProfessName()+"%");
 		}
 		hql.append(" order by id desc ");
