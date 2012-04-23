@@ -212,7 +212,7 @@ Ext.define('ems.system.Dic', {
 		};
 	},
 	
-	displayfield: function(dicType, config) {
+	displayfield: function(dicType, config) { // TODO refItemId
 		var me = this, 
 		displayField = Ext.create('Ext.form.field.Display', Ext.apply(config, {
 			listeners: {
