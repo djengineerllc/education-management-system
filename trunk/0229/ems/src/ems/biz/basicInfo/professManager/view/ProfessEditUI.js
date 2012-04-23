@@ -37,9 +37,11 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessEditUI', {
 				items: [{
 					xtype: 'hiddenfield',
 					name: 'id'
-				},Dic.comboBox('Project', {
+				},
+				Dic.comboBox('Project', {
 					fieldLabel: '项目名',
 					name: 'projectId',
+					allowBlank: false,
 					value: ''
 				}),{
 	                fieldLabel: '专业中文名',
