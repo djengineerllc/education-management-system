@@ -8,8 +8,8 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.view.ViewSyllabusUI', {
 			sltTeacherIds = [],
 			contentPanel = me.down('#contentPanel');
 		
-		Ext.each(sltTeachers, function(sltTeacher) {
-			sltTeacherIds.push(sltTeacher.id);
+		sltTeacherIds = Ext.Array.map(sltTeachers, function(sltTeacher) {
+			return sltTeacher.id;
 		});
 		
 		contentPanel.el.load({
@@ -18,7 +18,7 @@ Ext.define('ems.biz.syllabus.syllabusbyteacher.view.ViewSyllabusUI', {
 			scripts: true,
 			params: {
 				termId: termId,
-				sltTeacherId: sltTeacherIds
+				teacherIds: sltTeacherIds
 			}
 		});
 	},
