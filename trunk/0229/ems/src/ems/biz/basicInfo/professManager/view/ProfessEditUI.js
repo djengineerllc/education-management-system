@@ -25,7 +25,8 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessEditUI', {
 				bodyPadding: 10,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					width: 300,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
@@ -41,8 +42,11 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessEditUI', {
 					name: 'projectId',
 					value: ''
 				}),{
-	                fieldLabel: '专业名',
+	                fieldLabel: '专业中文名',
 	                name: 'professName'
+	            },{
+	                fieldLabel: '专业英文名',
+	                name: 'professNameEn'
 	            }]
 			}]
 		};

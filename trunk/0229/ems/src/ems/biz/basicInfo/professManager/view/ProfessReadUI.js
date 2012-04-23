@@ -14,16 +14,17 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessReadUI', {
 	uiConfig: function() {
 		var me = this;
 		return {
-			width: 230,
-			height: 120,
+			width: 350,
+			height: 150,
 			layout: 'fit',
 			items: [{
 				xtype: 'form',
 				border: false,
 				bodyPadding: 10,
+				autoScroll: true,
 				paramOrder: ['id'],
 				fieldDefaults: {
-					labelWidth: 60,
+					labelWidth: 80,
 					labelAlign: 'right'
 				},
 				defaults: {
@@ -40,8 +41,11 @@ Ext.define('ems.biz.basicInfo.professManager.view.ProfessReadUI', {
 					fieldLabel: '专业ID',
 	                name: 'id'
 				},{
-	                fieldLabel: '专业名',
+	                fieldLabel: '专业中文名',
 	                name: 'professName'
+	            },{
+	                fieldLabel: '专业英文名',
+	                name: 'professNameEn'
 	            }]
 			}]
 		};
