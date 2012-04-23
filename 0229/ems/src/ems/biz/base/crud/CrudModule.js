@@ -71,7 +71,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 			if (slts.length == 0) {
 				EU.showInfoDialog({
 					msg: Ext.String.format('请您选中记录后再进行{0}操作。', me.bizActionText[bizAction]),
-					animateTarget: eventSource.el
+					animateTarget: eventSource && eventSource.el
 				});
 //				EU.showMsg(Ext.String.format('请您选中记录后再进行{0}操作。', me.bizActionText[bizAction]), "");
 				
@@ -82,7 +82,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 				if (slts.length > 1) {
 					EU.showInfoDialog({
 						msg: Ext.String.format('请您只选中要进行{0}操作的一条记录。', me.bizActionText[bizAction]),
-						animateTarget: eventSource.el
+						animateTarget: eventSource && eventSource.el
 					});
 					return false;
 				} else {
@@ -98,10 +98,10 @@ Ext.define('ems.biz.base.crud.CrudModule', {
 				return ids;
 			}
         }
+        
 		//TODO slt.data 可以获取更新后的数据
-		var sltRaws = [];
-		Ext.each(slts, function(slt) {
-			sltRaws.push(slt.raw);
+		var sltRaws = Ext.Array.map(slts, function(slt) {
+			return slt.raw;
 		});
 		return sltRaws;
     },
@@ -130,7 +130,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
         var me = this, 
 			eo = request.eventSource,
 			bizAction = 'r', 
-			reqParams = me.getReqParams(bizAction, eo);
+			reqParams = (params && params.reqParams) || me.getReqParams(bizAction, eo);
         if (reqParams === false) {
             return;
         }
@@ -142,7 +142,7 @@ Ext.define('ems.biz.base.crud.CrudModule', {
             title: me.bizActionText[bizAction],
             buttons: [me.cancelButton],
             autoScroll: true,
-			animateTarget: eo.el
+			animateTarget: eo && eo.el
 //			,modal: false
         });
     },
