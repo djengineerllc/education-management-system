@@ -312,3 +312,8 @@
 	border-left: 0px;
 	border-right: 0px;
 }
+
+.ems .link-column > .x-grid-cell-inner {
+	text-decoration: underline;
+	cursor: pointer;
+}
