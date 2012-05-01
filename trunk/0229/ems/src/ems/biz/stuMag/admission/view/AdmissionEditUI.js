@@ -22,7 +22,7 @@ Ext.define('ems.biz.stuMag.admission.view.AdmissionEditUI', {
 					labelAlign: 'right'
 				},
 				defaults: {
-					xtype: 'textfield',
+					xtype: 'displayfield',
 					columnWidth: 0.25
 				},
 				items: [{
@@ -31,11 +31,16 @@ Ext.define('ems.biz.stuMag.admission.view.AdmissionEditUI', {
 				},{
 	                fieldLabel: '报名编号',
 	                name: 'appNum',
-	                columnWidth: 1/2
+	                columnWidth: 1/3
+	            },{
+	            	xtype: 'textfield',
+	                fieldLabel: '学号',
+	                name: 'stuNo',
+	                columnWidth: 1/3
 	            },Dic.comboBox('ApplyStatus', {
 					fieldLabel: '录取状态',
 					name: 'applyStatus',
-					columnWidth: 1/2
+					columnWidth: 1/3
 				}),Dic.comboBox('Project', {
 					fieldLabel: '录取项目',
 					name: 'admissionProjectId',

@@ -30,7 +30,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 					name: 'id'
 				},{
 	                fieldLabel: '学号',
-	                name: 'userName',
+	                name: 'stuNo',
 	                readOnly: me.bizAction == 'c' ? false : true,
 	                columnWidth: 1/3
 	            },{
@@ -59,7 +59,7 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 					columnWidth: 0.25
 				}),{
 	                fieldLabel: '姓名',
-	                name: 'loginName',
+	                name: 'userName',
 	                columnWidth: 0.25
 	            },{
 	                fieldLabel: '拼音',
@@ -139,19 +139,19 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	                fieldLabel: '专业',
 	                name: 'profession',
 	                columnWidth: 0.25
-	            },{
-	                fieldLabel: '毕业年份',
-	                name: 'graduateYear',
-	                columnWidth: 0.25
-	            },{
+	            },Dic.comboBox('SysYear', {
+					fieldLabel: '毕业年份',
+					name: 'graduateYear',
+					columnWidth: 0.25
+				}),{
 	                fieldLabel: '高考省份',
 	                name: 'gkProvince',
 	                 columnWidth: 0.2
-	            },{
-	                fieldLabel: '高考类别',
-	                name: 'gkType',
-	                columnWidth: 0.2
-	            },{
+	            },Dic.comboBox('GkType', {
+					fieldLabel: '高考类别',
+					name: 'gkType',
+					columnWidth: 0.2
+				}),{
 	                fieldLabel: '高考总分',
 	                name: 'gkScore',
 	                columnWidth: 0.2
@@ -159,11 +159,11 @@ Ext.define('ems.biz.stuMag.addNewStu.view.StuEditUI', {
 	                fieldLabel: '英语单科',
 	                name: 'gkEnglishScore',
 	                columnWidth: 0.2
-	            },{
-	                fieldLabel: '高考年份',
-	                name: 'gkYear',
-	                columnWidth: 0.2
-	            },{
+	            },Dic.comboBox('SysYear', {
+					fieldLabel: '高考年份',
+					name: 'gkYear',
+					columnWidth: 0.2
+				}),{
 	                fieldLabel: '父亲姓名',
 	                name: 'fatherName',
 	                columnWidth: 0.25

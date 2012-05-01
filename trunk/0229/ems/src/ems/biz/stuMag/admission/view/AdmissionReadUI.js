@@ -25,10 +25,22 @@ Ext.define('ems.biz.stuMag.admission.view.AdmissionReadUI', {
 				},{
 	                fieldLabel: '报名编号',
 	                name: 'appNum',
-	                columnWidth: 1/2
-	            },Dic.comboBox('ApplyStatus', {
+	                columnWidth: 1/3
+	            },{
+	                fieldLabel: '学号',
+	                name: 'stuNo',
+	                columnWidth: 1/3
+	            },Dic.displayfield('ApplyStatus', {
 					fieldLabel: '录取状态',
 					name: 'applyStatus',
+					columnWidth: 1/3
+				}),Dic.displayfield('Project', {
+					fieldLabel: '录取项目',
+					name: 'admissionProjectId',
+					columnWidth: 1/2
+				}),Dic.displayfield('Professional', {
+					fieldLabel: '录取专业',
+					name: 'admissionProfessId',
 					columnWidth: 1/2
 				}),Dic.displayfield('Project', {
 					fieldLabel: '首选项目',
@@ -95,7 +107,6 @@ Ext.define('ems.biz.stuMag.admission.view.AdmissionReadUI', {
 					labelWidth: 120,
 					columnWidth: 1
 				}),{
-					xtype: 'displayfield',
 					fieldLabel: '拒签情况',
 					columnWidth: 1
 				},Dic.displayfield('VisaType', {
