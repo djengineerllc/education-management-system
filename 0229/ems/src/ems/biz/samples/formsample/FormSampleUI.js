@@ -37,6 +37,7 @@ Ext.define('ems.biz.samples.formsample.FormSampleUI', {
 				{
 					xtype: 'datefield',
 	                fieldLabel: '生日',
+	                format:'Y-m-d',
 	                name: 'birthday'
 	            }, {
 	                fieldLabel: '电子邮件',

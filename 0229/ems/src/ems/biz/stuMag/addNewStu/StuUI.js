@@ -13,7 +13,7 @@ Ext.define('ems.biz.stuMag.addNewStu.StuUI', {
                 xtype: 'xgrid',
                 selMode: 'multi',
                 paging: true,
-                loadDF: me.DF('loadBook'),
+                loadDF: me.DF('loadStus'),
                 searchForm: {
                 	fieldColumns:3,
                     items: [{
