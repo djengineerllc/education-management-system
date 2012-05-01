@@ -76,6 +76,7 @@ xsi:schemaLocation="
 			<tx:method name="remove*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
 			<tx:method name="del*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
 			<tx:method name="submit*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
+			<tx:method name="admission*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="EMSRollbackableException"/>
 			<tx:method name="*" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>

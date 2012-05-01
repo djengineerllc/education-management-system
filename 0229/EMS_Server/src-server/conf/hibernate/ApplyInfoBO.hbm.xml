@@ -14,6 +14,9 @@
         <property name="appNum" column="app_Num"></property>
         <property name="stuNo" column="stu_No"></property>
         <property name="applyDate" column="apply_Date"></property>
+        <property name="admissionProjectId" column="admission_Project_Id"></property>
+        <property name="admissionProfessId" column="admission_Profess_Id"></property>
+        
         <property name="firstProjectId" column="first_Project_Id"></property>
         <property name="firstProfessId" column="first_Profess_Id"></property>
         <property name="secondProjectId" column="second_Project_Id"></property>
