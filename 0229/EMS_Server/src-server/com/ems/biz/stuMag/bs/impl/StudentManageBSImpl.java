@@ -67,6 +67,15 @@ public class StudentManageBSImpl implements IStudentManageBS{
 			commonDAO.delete(commonDAO.findById(StudentBO.class, ids[i]));
 		}
 	}
+	
+	public StudentBO findByStuNo(String stuNo) throws EMSException{
+		String findHQL = "from " + StudentBO.class.getName() + " bo where bo.stuNo = ?";
+		List<StudentBO> students = this.commonDAO.findByHql(findHQL, stuNo);
+		if(!students.isEmpty()){
+			return students.get(0);
+		}
+		return null;
+	}
 
 	public void update(Object obj) throws EMSException {
 		this.commonDAO.update(obj);

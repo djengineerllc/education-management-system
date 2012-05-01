@@ -3,16 +3,18 @@ package com.ems.biz.stuMag.bs.impl;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ems.biz.stuMag.bs.IApplyInfoBS;
+import com.ems.biz.stuMag.bs.IStudentManageBS;
 import com.ems.common.code.Code;
 import com.ems.common.dao.ICommonDAO;
 import com.ems.common.exception.EMSException;
+import com.ems.common.exception.EMSRollbackableException;
 import com.ems.common.model.vo.ApplyInfoVO;
-import com.ems.common.util.BeanUtils;
 import com.ems.common.util.DateUtil;
 
 import conf.hibernate.ApplyInfoBO;
@@ -24,6 +26,10 @@ public class ApplyInfoBSImpl implements IApplyInfoBS {
 	@Autowired
 	@Qualifier("commonDAO")
 	private ICommonDAO commonDAO;
+	
+	@Autowired
+	@Qualifier("studentManageBS")
+	private IStudentManageBS studentManageBS;
 
 	@SuppressWarnings("unchecked")
 	public List<ApplyInfoBO> findApplyInfoBO(ApplyInfoVO applyInfoVO) throws EMSException {
@@ -92,13 +98,23 @@ public class ApplyInfoBSImpl implements IApplyInfoBS {
 	 */
 	public void admission(ApplyInfoBO applyInfoBO) throws EMSException {
 		ApplyInfoBO oldApplyInfoBO = this.findById(applyInfoBO.getId());
+		String oldApplyStatus = oldApplyInfoBO.getApplyStatus();
 		// 1.如果是已经交费 抛出异常
 		if(Code.getValue("ApplyStatus", "S4").equals(applyInfoBO.getApplyStatus())){
-			throw new EMSException("该学生已经交费，不允许进行录取等操作");
+			throw new EMSRollbackableException("该学生已经交费，不允许进行录取等操作");
 		}
+		
+		if(Code.getValue("ApplyStatus", "S2").equals(oldApplyStatus)){
+			if(Code.getValue("ApplyStatus", "S2").equals(applyInfoBO.getApplyStatus())){
+				throw new EMSRollbackableException("该学生已经录取，不允许进行再次录取动作");
+			}
+			StudentBO studentBO = this.studentManageBS.findByStuNo(applyInfoBO.getStuNo());
+			if(null != studentBO)	this.commonDAO.delete(studentBO);
+		}
+		
 		oldApplyInfoBO.setApplyStatus(applyInfoBO.getApplyStatus());
 		
-		if(Code.getValue("ApplyStatus", "S2").equals(applyInfoBO.getApplyStatus())){
+		if(Code.getValue("ApplyStatus", "S2").equals(oldApplyInfoBO.getApplyStatus())){
 		// 2.如果是已经交费，那么填写入学生表
 			oldApplyInfoBO.setAdmissionProfessId(applyInfoBO.getAdmissionProfessId());
 			oldApplyInfoBO.setAdmissionProjectId(applyInfoBO.getAdmissionProjectId());
@@ -106,18 +122,31 @@ public class ApplyInfoBSImpl implements IApplyInfoBS {
 			// invoke insert into tb_student table
 			this.commonDAO.save(this.makeStudentBO(oldApplyInfoBO));
 		}
-		this.update(oldApplyInfoBO);
+		
+		
+		this.commonDAO.update(oldApplyInfoBO);
 	}
 	
 	private StudentBO makeStudentBO(ApplyInfoBO applyInfoBO) throws EMSException{
+		if(null != this.studentManageBS.findByStuNo(applyInfoBO.getStuNo())){
+			throw new EMSRollbackableException("学号 ["+applyInfoBO.getStuNo()+"] 已经存在！");
+		}
 		StudentBO stuBO = new StudentBO();
 		BeanUtils.copyProperties(applyInfoBO, stuBO, new String[]{"id"});
 		stuBO.setGkScore(applyInfoBO.getGkTotalScore());
 		stuBO.setAdmissionQualif(applyInfoBO.getCurrentDegree());
 		stuBO.setContact(applyInfoBO.getContactPersonName());
 		stuBO.setUserName(applyInfoBO.getName());
+		stuBO.setStatus(Code.getValue("StudentStatus", "S4"));
+		stuBO.setProjectId(applyInfoBO.getAdmissionProjectId());
+		stuBO.setProfessId(applyInfoBO.getAdmissionProfessId());
+		stuBO.setProfession(applyInfoBO.getGraduateProfession());
+		stuBO.setIdNumber(applyInfoBO.getIdNum());
 		stuBO.setCreateTime(DateUtil.currData());
 		stuBO.setUpdateTime(DateUtil.currData());
+		if(StringUtils.isBlank(stuBO.getStuNo())){
+			throw new EMSRollbackableException("学号不能为空！");
+		}
 		return stuBO;
 	}
 

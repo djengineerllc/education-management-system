@@ -17,4 +17,6 @@ public interface IStudentManageBS {
 	StudentBO findById(Integer id) throws EMSException;
 	
 	void create(Object obj) throws EMSException;
+	
+	StudentBO findByStuNo(String stuNo) throws EMSException;
 }
