@@ -19,6 +19,12 @@ public class RegistrationDisVO {
 	
 	private String stuNo; // 学号
 	
+	private String userName;
+	
+	private String sex;
+	
+	private String status;
+	
 	private Integer gradeId;//年级ID
 	
 	private Integer projectId;//项目ID
@@ -307,6 +313,30 @@ public class RegistrationDisVO {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

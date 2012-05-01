@@ -95,8 +95,8 @@ public class StudentManageBSImpl implements IStudentManageBS{
 		for(Iterator<RegistrationBO> it = registBOList.iterator(); it.hasNext();){
 			RegistrationDisVO vo = new RegistrationDisVO();
 			RegistrationBO bo = it.next();
-			BeanUtils.copyProperties(vo, bo.getStudent(), new String[]{"id"});
-			BeanUtils.copyProperties(vo, bo);
+			BeanUtils.copyProperties(bo.getStudent(), vo, new String[]{"id"});
+			BeanUtils.copyProperties(bo, vo);
 			registDisVOList.add(vo);
 		}
 		return registDisVOList;
