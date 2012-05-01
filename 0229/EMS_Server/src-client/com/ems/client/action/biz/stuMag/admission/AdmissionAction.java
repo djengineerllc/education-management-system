@@ -36,6 +36,11 @@ public class AdmissionAction extends DirectAction {
 		return new ExtPagingVO(applyInfos);
 	}
 	
+	@DirectFormPostMethod
+	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
+		return null;
+	}
+	
 
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
