@@ -29,7 +29,7 @@ public class StudentBO extends UserInfoBO {
 	
 	private String idNumber;//身份证号
 	
-	private Date birthDate;//出生日期
+	private String birthDate;//出生日期
 	
 	private String homeFixTel;//家庭固定电话
 	
@@ -167,14 +167,6 @@ public class StudentBO extends UserInfoBO {
 
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
 	}
 
 	public String getHomeFixTel() {
@@ -360,5 +352,14 @@ public class StudentBO extends UserInfoBO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+	
 	
 }
