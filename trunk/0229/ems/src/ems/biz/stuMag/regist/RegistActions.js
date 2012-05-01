@@ -1,4 +1,4 @@
-Ext.define('eems.biz.stuMag.regist.RegistActions', {
+Ext.define('ems.biz.stuMag.regist.RegistActions', {
 	extend: 'ems.core.Actions'
 	
 });
