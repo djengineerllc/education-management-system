@@ -14,7 +14,7 @@
         <property name="endFeeFlag" column="end_Fee_Flag"></property>
         <property name="registrationFlag" column="registration_Flag"></property>
         <property name="registYear" column="regist_Year"></property>
-        <many-to-one name="student" column="student_id" fetch="join" lazy="false" cascade="none">
+        <many-to-one name="student" column="student_id" fetch="select" lazy="false" cascade="none">
         </many-to-one>
     </class>
 </hibernate-mapping>
