@@ -1,4 +1,4 @@
-package com.ems.client.action.biz.stuMag.addNewStu;
+package com.ems.client.action.biz.stuMag.admission;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 
-import com.ems.biz.stuMag.bs.IStudentManageBS;
+import com.ems.biz.stuMag.bs.IApplyInfoBS;
+import com.ems.common.code.Code;
+import com.ems.common.model.vo.ApplyInfoVO;
 import com.ems.common.util.BeanUtils;
 import com.ems.system.client.DirectAction;
 import com.ems.system.client.vo.ExtFormVO;
@@ -20,49 +22,49 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.ActionScope;
 import com.softwarementors.extjs.djn.servlet.ssm.Scope;
 
-import conf.hibernate.StudentBO;
+import conf.hibernate.ApplyInfoBO;
 
 @ActionScope(scope=Scope.APPLICATION)
-public class StuAction extends DirectAction  {
+public class AdmissionAction extends DirectAction {
 	
-	private IStudentManageBS studentManageBS = this.getBean("studentManageBS", IStudentManageBS.class);
-	
+	private IApplyInfoBS applyInfoBS = this.getBean("applyInfoBS", IApplyInfoBS.class);
+
 	@DirectMethod
-	public ExtPagingVO loadStus(JsonArray params) {
-		StudentBO studentBO_qry = BeanUtils.toBeanFromJsonFirst(params, StudentBO.class);
-		List<StudentBO> students = studentManageBS.findByStudentBO(studentBO_qry);
-		return new ExtPagingVO(students);
+	public ExtPagingVO loadApplyInfos(JsonArray params){
+		ApplyInfoVO applyInfoVO = BeanUtils.toBeanFromJsonFirst(params, ApplyInfoVO.class);
+		List<ApplyInfoBO> applyInfos = applyInfoBS.findApplyInfoBO(applyInfoVO);
+		return new ExtPagingVO(applyInfos);
 	}
 	
-	@DirectFormPostMethod
-	public ExtFormVO create(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		StudentBO studentBO = BeanUtils.toBeanFromMap(formParameters, StudentBO.class);
-		ExtFormVO result = new ExtFormVO();
-		studentManageBS.create(studentBO);
-		return result;
-	}
-	
+
 	@DirectMethod
 	public ExtFormVO read(Integer id) {
-		StudentBO studentBO = null;
+		ApplyInfoBO applyInfoBO = null;
 		if(id != null){
-			studentBO = studentManageBS.findById(id);
+			applyInfoBO = applyInfoBS.findById(id);
 		}
 		
-		return new ExtFormVO(studentBO);
+		return new ExtFormVO(applyInfoBO);
 	}
 	
 	@DirectFormPostMethod
 	public ExtFormVO update(Map<String, String> formParameters,	 Map<String, FileItem> fileFields) {
-		StudentBO studentBO = BeanUtils.toBeanFromMap(formParameters, StudentBO.class);
+		ApplyInfoBO applyInfoBO = BeanUtils.toBeanFromMap(formParameters, ApplyInfoBO.class);
+		ApplyInfoBO oldApplyInfoBO = applyInfoBS.findById(applyInfoBO.getId());
 		ExtFormVO result = new ExtFormVO();
-		studentManageBS.update(studentBO);
+		oldApplyInfoBO.setApplyStatus(applyInfoBO.getApplyStatus());
+		if(Code.getValue("ApplyStatus", "S2").equals(oldApplyInfoBO.getApplyStatus())){
+			oldApplyInfoBO.setAdmissionProfessId(applyInfoBO.getAdmissionProfessId());
+			oldApplyInfoBO.setAdmissionProjectId(applyInfoBO.getAdmissionProjectId());
+		}
+		applyInfoBS.admission(applyInfoBO);
+		result.setData(oldApplyInfoBO);
 		return result;
 	}
 	
 	@DirectMethod
 	public ExtFormVO delete(Integer[] ids) {
-		studentManageBS.deleteByIds(ids);
+		applyInfoBS.deleteByIds(ids);
 		return new ExtFormVO();
 	}
 	
