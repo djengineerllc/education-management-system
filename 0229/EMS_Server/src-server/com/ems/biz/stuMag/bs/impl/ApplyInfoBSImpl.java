@@ -62,6 +62,7 @@ public class ApplyInfoBSImpl implements IApplyInfoBS {
 		}else{
 			applyInfoBO.setApplyStatus(Code.getValue("ApplyStatus", "S1"));
 		}
+		applyInfoBO.setApplyDate(DateUtil.format(DateUtil.currData(), DateUtil.DATE_FORMAT_DATE_STRING));
 		commonDAO.save(applyInfoBO);
 	}
 
